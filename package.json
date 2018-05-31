@@ -1,0 +1,16 @@
+{
+  "name": "react-gibbon",
+  "version": "0.0.0-5",
+  "description": "~",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "react": "^16.3.2",
+    "react-reconciler": "^0.10.0",
+    "react-test-renderer": "^16.2.0"
+  },
+  "author": "Raphael Amorim",
+  "license": "MIT"
+}
