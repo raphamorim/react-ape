@@ -2,13 +2,13 @@
 
 > Disclamer: Isn't is a Netflix Project. However I decide to use "Gibbon" name to honor their project.
 
-React Gibbon is a react renderer powered by WebGL (maybe soon GL only).
+React Gibbon is a react renderer powered by WebGL.
 
 ```jsx
 import React, { Component } from 'react';
-import { Text, View } from 'react-gibbon';
+import { Text, View, render } from 'react-gibbon';
 
-class WhyReactGibbonIsSoGreat extends Component {
+class ReactGibbonComponent extends Component {
   render() {
     return (
       <View>
@@ -23,4 +23,13 @@ class WhyReactGibbonIsSoGreat extends Component {
     );
   }
 }
+
+render(ReactGibbonComponent, document.querySelector('#canvas-id'));
 ```
+
+### ROADMAP
+
+- [ ] `View`
+- [ ] `Text`
+- [ ] `Image`
+- [ ] Work in a way to render DOM as possibilty too.
