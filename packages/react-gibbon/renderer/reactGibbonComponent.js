@@ -1,14 +1,15 @@
+import Canvas from './components/Canvas';
 import Text from './components/Text';
 
 const ReactGibbonComponent = {
- createElement(type, props, rootContainerElement, parentNamespace) {
-    console.log(type);
+ createElement(type, props, rootContainerElement, gibbonContext, internalInstanceHandle) {
+  console.log(rootContainerElement);
     const COMPONENTS = {
-      TEXT: () => new Text(root, props),
-      default: undefined,
+      CANVAS: () => new Canvas(root, props, gibbonContext),
+      TEXT: () => Text(root, props, gibbonContext),
     };
 
-    return COMPONENTS[type]() || COMPONENTS.default;
+    return COMPONENTS[type]() || undefined;
   },
 }
 

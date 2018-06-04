@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, Text } from '../../react-gibbon/reactGibbonEntry'
+import { render, Text, Canvas } from '../../react-gibbon/reactGibbonEntry'
 
 class App extends React.Component {
   constructor() {
@@ -8,7 +8,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <Text>Should be undefined</Text>
+      <Text>
+        Should be undefined
+      </Text>
     )
   }
 }

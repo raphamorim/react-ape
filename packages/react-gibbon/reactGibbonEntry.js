@@ -12,6 +12,9 @@ export const render = ReactGibbonRenderer.render;
 // export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
 // export const renderOnAppLoaded = renderOnAppLoadedModule;
 
+export const Canvas = 'CANVAS';
+export const Image = 'IMAGE';
+export const View = 'VIEW';
 export const Text = 'TEXT';
 
 export default ReactGibbonRenderer;

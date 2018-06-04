@@ -3,17 +3,15 @@ import reactGibbonComponent from './reactGibbonComponent';
 
 const ReactGibbonFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    if (parentInstance.appendChild) {
-      parentInstance.appendChild(child);
-    } else {
-      parentInstance.document = child;
-    }
+    // noop for now
   },
 
   createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {
-    let parentNamespace = hostContext;
-
-    return reactGibbonComponent.createElement(type, props, internalInstanceHandle);
+    let gibbonContext = null;
+    if (rootContainerInstance.getContext) {
+      gibbonContext = rootContainerInstance.getContext('2d');
+    }
+    return reactGibbonComponent.createElement(type, props, rootContainerInstance, gibbonContext, internalInstanceHandle);
   },
 
   createTextInstance(text, rootContainerInstance, internalInstanceHandle) {
@@ -66,28 +64,23 @@ const ReactGibbonFiber = reconciler({
 
   mutation: {
     appendChild(parentInstance, child) {
-      if (parentInstance.appendChild) {
-        parentInstance.appendChild(child);
-      } else {
-        parentInstance.document = child;
-      }
+      // if (parentInstance.appendChild) {
+      //   parentInstance.appendChild(child);
+      // } else {
+      //   parentInstance.document = child;
+      // }
     },
 
     appendChildToContainer(parentInstance, child) {
-      if (parentInstance.appendChild) {
-        console.log(child)
-        parentInstance.innerHTML = child;
-      } else {
-        parentInstance.document = child;
-      }
+      console.log(child);
     },
 
     removeChild(parentInstance, child) {
-      parentInstance.removeChild(child);
+      // parentInstance.removeChild(child);
     },
 
     removeChildFromContainer(parentInstance, child) {
-      parentInstance.removeChild(child);
+      // parentInstance.removeChild(child);
     },
 
     insertBefore(parentInstance, child, beforeChild) {
@@ -103,7 +96,7 @@ const ReactGibbonFiber = reconciler({
     },
 
     commitTextUpdate(textInstance, oldText, newText) {
-      textInstance.children = newText;
+      // textInstance.children = newText;
     },
   }
 })
@@ -112,7 +105,7 @@ const defaultContainer = {};
 const roots = new Map();
 
 const ReactGibbonRenderer = {
-  render(element, container, callback) {
+  render(canvasElement, container, callback) {
     const containerKey =
       typeof container === 'undefined' ? defaultContainer : container;
     let root = roots.get(containerKey);
@@ -121,7 +114,7 @@ const ReactGibbonRenderer = {
       roots.set(container, root);
     }
 
-    ReactGibbonFiber.updateContainer(element, root, null, callback);
+    ReactGibbonFiber.updateContainer(canvasElement, root, null, callback);
 
     // ReactGibbonFiber.injectIntoDevTools({
     //   bundleType: 1,
