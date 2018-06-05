@@ -5,9 +5,13 @@
 ## Under Development
 
 1 - React Ape IS NOT Ready Yet.
+
 2 - Should follow React Native Elements and Primitives. So will be easy to convert React Components (without bridge) to Canvas/WebGL.
+
 3 - Accept Style as JavaScript Object.
+
 4 - Will allow to inspect React Elements using React DevTools.
+
 5 - I confess there's a lot of ideas and sketches in my head and I'll update the Readme when things become more clear.
 
 React Renderer to build UI interfaces using canvas/WebGL.
