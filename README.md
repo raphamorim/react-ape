@@ -2,11 +2,13 @@
 
 > The name is a "joke" based on [Netflix's React Gibbon](https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b). I choose to use Ape then.
 
+React Renderer to build UI interfaces using canvas/WebGL.
+
 ## Under Development
 
 1 - React Ape IS NOT Ready Yet.
 
-2 - Should follow React Native Elements and Primitives. So will be easy to convert React Components (without bridge) to Canvas/WebGL.
+2 - Should follow React Native Elements and Primitives. So will be easy to convert React Components (without bridges) to Canvas/WebGL.
 
 3 - Accept Style as JavaScript Object.
 
@@ -16,7 +18,7 @@
 
 6 - I confess there's a lot of ideas and sketches in my head and I'll update the Readme when things become more clear.
 
-React Renderer to build UI interfaces using canvas/WebGL.
+## Usage
 
 ```jsx
 import React from 'react'
@@ -111,5 +113,28 @@ Image is exactly what you think it is. However, it adds the ability to hide an i
 
 ### `StyleSheet`
 
-### ROADMAP
+### Roadmap
+
+#### Stage 1
+
+Initial proof-of-concept.
+
+- [ ] `ListView`
+- [ ] Allow switch to WebGL
+- [ ] Support custom React Components which have access to ApeContext (`Canvas2DContext` or WebGL Scene)
+- [ ] Start support to Events/Interaction!
+  - [ ] handleClick
+  - [ ] handleDoubleClick
+  - [ ] handleTouchStart
+  - [ ] handleTouchMove
+  - [ ] handleTouchEnd
+  - [ ] Drag and Drop
+
+### References
+
+- https://github.com/raphamorim/react-tv
+- https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b
+- https://github.com/Flipboard/react-canvas
+- https://github.com/nitin42/Making-a-custom-React-renderer
+
 
