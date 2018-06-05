@@ -87,18 +87,6 @@ render(<App/>, document.getElementById('canvas-id'))
 
 React Ape provides a set of standard React components that abstract the underlying rendering implementation.
 
-### `<Canvas>`
-
-Canvas is the top-level component. Set render context to `Context2dCanvas`.
-
-### `<WebGL>`
-
-WebGL is the top-level component. Set render context to `WebGL`.
-
-### `<GL>`
-
-GL is the top-level component. **Not available yet**. Should Bind GL to work with React-Native.
-
 ### `<View>`
 
 ### `<ListView>`
@@ -113,13 +101,14 @@ Image is exactly what you think it is. However, it adds the ability to hide an i
 
 ### `StyleSheet`
 
-### Roadmap
+## Roadmap
 
 #### Stage 1
 
 Initial proof-of-concept.
 
 - [ ] `ListView`
+- [ ] `View`
 - [ ] Allow switch to WebGL
 - [ ] Support custom React Components which have access to ApeContext (`Canvas2DContext` or WebGL Scene)
 - [ ] Start support to Events/Interaction!
@@ -130,7 +119,7 @@ Initial proof-of-concept.
   - [ ] handleTouchEnd
   - [ ] Drag and Drop
 
-### References
+## References
 
 - https://github.com/raphamorim/react-tv
 - https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b
