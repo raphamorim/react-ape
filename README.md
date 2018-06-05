@@ -1,6 +1,6 @@
 # React Gibbon
 
-> Disclamer: Isn't is a Netflix Project. However I decide to use "Gibbon" name to honor their project.
+> Disclamer: Isn't a Netflix Project. However I decide to use "Gibbon" name to honor their project.
 
 React Renderer to build UI interfaces using canvas/WebGL.
 
@@ -12,9 +12,8 @@ class MyComponent extends Component {
   render() {
     return (
       <View>
-        <Text>
-          It's rendering as WebGL scene.
-        </Text>
+        <Image src={'react-tv-logo.png'}/>
+        <Text content={'It's rendering as WebGL scene.'}/>
         <Text>
           You just use components like 'View' and 'Text',
           instead of web components like 'div' and 'span'.
@@ -24,7 +23,7 @@ class MyComponent extends Component {
   }
 }
 
-render(ReactGibbonComponent, document.querySelector('#canvas-id'));
+render(MyComponent, document.querySelector('#canvas-id'));
 ```
 
 ## React Gibbon Components
@@ -44,6 +43,8 @@ WebGL is the top-level component. Set render context to `WebGL`.
 GL is the top-level component. **Not available yet**. Should Bind GL to work with React-Native.
 
 ### `<View>`
+
+### `<ListView>`
 
 ### `<Text>`
 

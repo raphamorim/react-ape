@@ -1,24 +1,74 @@
 import reconciler from 'react-reconciler';
 import reactGibbonComponent from './reactGibbonComponent';
+import {precacheFiberNode, updateFiberProps} from './reactGibbonComponentTree';
+
+function scaleDPI(canvas, context, customWidth, customHeight) {
+  const width = customWidth ||
+              canvas.offsetWidth ||
+              canvas.width || // attr, eg: <canvas width='400'>
+              canvas.clientWidth; // keep existing width
+  const height = customHeight ||
+               canvas.offsetHeight ||
+               canvas.height ||
+               canvas.clientHeight;
+  const deviceRatio = window.devicePixelRatio || 1;
+  const bsRatio = context.webkitBackingStorePixelRatio ||
+                context.mozBackingStorePixelRatio ||
+                context.msBackingStorePixelRatio ||
+                context.oBackingStorePixelRatio ||
+                context.backingStorePixelRatio || 1;
+  const ratio = deviceRatio / bsRatio;
+
+  if (deviceRatio !== bsRatio) {
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    context.scale(ratio, ratio);
+  }
+  return ratio;
+};
+
+// TODO: Use Context.
+let gibbonContextGlobal = false;
 
 const ReactGibbonFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    // noop for now
   },
 
   createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {
     let gibbonContext = null;
-    if (rootContainerInstance.getContext) {
-      gibbonContext = rootContainerInstance.getContext('2d');
+    if (!gibbonContextGlobal && rootContainerInstance.getContext) {
+      let rootContainerInstanceContext = rootContainerInstance.getContext('2d');
+
+      // TODO: Change it.
+      scaleDPI(rootContainerInstance, rootContainerInstanceContext);
+      gibbonContextGlobal = {
+        type: 'canvas',
+        ctx: rootContainerInstanceContext = rootContainerInstance.getContext('2d'),
+      };
     }
-    return reactGibbonComponent.createElement(type, props, rootContainerInstance, gibbonContext, internalInstanceHandle);
+
+    const gibbonElement = reactGibbonComponent.createElement(
+      type,
+      props,
+      rootContainerInstance,
+      gibbonContextGlobal,
+      internalInstanceHandle,
+    );
+
+    console.log(gibbonElement, internalInstanceHandle)
+
+    precacheFiberNode(internalInstanceHandle, gibbonElement);
+    updateFiberProps(gibbonElement, props);
+    return gibbonElement;
   },
 
   createTextInstance(text, rootContainerInstance, internalInstanceHandle) {
     return text;
   },
 
-  finalizeInitialChildren(wordElement, type, props) {
+  finalizeInitialChildren(element, type, props) {
     return false;
   },
 
@@ -30,7 +80,7 @@ const ReactGibbonFiber = reconciler({
     // noop
   },
 
-  prepareUpdate(wordElement, type, oldProps, newProps) {
+  prepareUpdate(element, type, oldProps, newProps) {
     return true;
   },
 
@@ -38,12 +88,13 @@ const ReactGibbonFiber = reconciler({
     // noop
   },
 
-  resetTextContent(wordElement) {
+  resetTextContent(element) {
     // noop
   },
 
   getRootHostContext(rootInstance) {
     // You can use this 'rootInstance' to pass data from the roots.
+    return {};
   },
 
   getChildHostContext() {
@@ -60,7 +111,7 @@ const ReactGibbonFiber = reconciler({
 
   useSyncScheduling: true,
 
-  now: () => {},
+  now: Date.now,
 
   mutation: {
     appendChild(parentInstance, child) {
@@ -72,7 +123,10 @@ const ReactGibbonFiber = reconciler({
     },
 
     appendChildToContainer(parentInstance, child) {
-      console.log(child);
+      // console.log(1, child);
+      // if (parentInstance.appendChild) {
+      //   parentInstance.appendChild(child);
+      // }
     },
 
     removeChild(parentInstance, child) {
@@ -116,11 +170,11 @@ const ReactGibbonRenderer = {
 
     ReactGibbonFiber.updateContainer(canvasElement, root, null, callback);
 
-    // ReactGibbonFiber.injectIntoDevTools({
-    //   bundleType: 1,
-    //   rendererPackageName: 'ReactGibbon',
-    //   findHostInstanceByFiber: ReactGibbonFiber.findHostInstance,
-    // });
+    ReactGibbonFiber.injectIntoDevTools({
+      bundleType: 1,
+      rendererPackageName: 'ReactGibbon',
+      findHostInstanceByFiber: ReactGibbonFiber.findHostInstance,
+    });
 
     return ReactGibbonFiber.getPublicRootInstance(root);
   },
