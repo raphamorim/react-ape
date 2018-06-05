@@ -10,32 +10,75 @@
 
 3 - Accept Style as JavaScript Object.
 
-4 - Will allow to inspect React Elements using React DevTools.
+4 - Allow to create React Components based on Canvas. 
 
-5 - I confess there's a lot of ideas and sketches in my head and I'll update the Readme when things become more clear.
+5 - Allow to inspect React Elements using React DevTools.
+
+6 - I confess there's a lot of ideas and sketches in my head and I'll update the Readme when things become more clear.
 
 React Renderer to build UI interfaces using canvas/WebGL.
 
 ```jsx
-import React, { Component } from 'react';
-import { Text, View, render } from 'react-ape';
+import React from 'react'
+import { render, Text, ListView, View, Image } from 'react-ape'
 
-class MyComponent extends Component {
+class App extends React.Component {
+  constructor() {
+    super()
+    this.posters = [
+      { name: 'Narcos', src: 'posters/narcos.jpg' },
+      { name: 'Daredevil', src: 'posters/daredevil.jpg' },
+      { name: 'Stranger Things', src: 'posters/stranger-things.jpg' },
+    ]
+  }
+
+  renderPostersList() {
+    const renderRow = (data, idx) => (
+      <View key={idx} onClick={() => { console.log(data) }}>
+        <Image src={data.src} width={200} height={300}/>
+        <Text content={data.name}/>
+      </View>
+    )
+
+    return (
+      <ListView
+        dataSource={this.posters}
+        renderRow={renderRow}
+        style={{ top: 100, left: 30 }}
+      />
+    )
+  }
+
   render() {
     return (
       <View>
-        <Image src={'react-tv-logo.png'}/>
-        <Text content={'Rendering as WebGL scene.'}/>
-        <Text>
-          You just use components like 'View' and 'Text',
-          instead of web components like 'div' and 'span'.
+        <Image
+          src={'http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c529.png'}
+          style={{
+            top: 10,
+            left: 30,
+          }}
+          width={210}
+          height={100}
+        />
+        <Text
+          style={{
+            top: 73,
+            left: 250,
+            fontFamily: 'Arial',
+            fontWeight: 'bold',
+            fontSize: 29,
+          }}
+        >
+          • Netflix Originals
         </Text>
+        { this.renderPostersList() }
       </View>
-    );
+    )
   }
 }
 
-render(MyComponent, document.querySelector('#canvas-id'));
+render(<App/>, document.getElementById('canvas-id'))
 ```
 
 ## React Ape Components
