@@ -1,10 +1,10 @@
 import { createElement } from 'react';
 
 class Canvas {
-  constructor(root, props, gibbonContext) {
+  constructor(root, props, apeContext) {
     this.root = root;
     this.props = props;
-    this.gibbonContext = gibbonContext;
+    this.apeContext = apeContext;
   }
 
   getDefaultProps() {

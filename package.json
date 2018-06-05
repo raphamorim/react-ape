@@ -1,10 +1,11 @@
 {
-  "private": true,
   "workspaces": [ "packages/*" ],
-  "name": "react-gibbon",
+  "files": [
+    "README.md"
+  ],
+  "name": "react-ape",
   "version": "0.0.0-5",
   "description": "React Renderer to build interfaces using canvas/WebGL",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

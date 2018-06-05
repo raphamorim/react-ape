@@ -1,5 +1,5 @@
-function View(root, props, gibbonContext) {
-  const { ctx } = gibbonContext;
+function View(root, props, apeContext) {
+  const { ctx } = apeContext;
   const { style = {} } = props;
 
   return {

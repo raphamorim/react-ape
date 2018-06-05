@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, Text, ListView, View, Image } from '../../react-gibbon/reactGibbonEntry'
+import { render, Text, ListView, View, Image } from '../../react-ape/reactApeEntry'
 
 class App extends React.Component {
   constructor() {

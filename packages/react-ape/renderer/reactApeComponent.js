@@ -4,16 +4,16 @@ import Text from './components/Text';
 import View from './components/View';
 
 const ReactGibbonComponent = {
- createElement(type, props, rootContainerElement, gibbonContext, internalInstanceHandle) {
-    if (!gibbonContext) {
+ createElement(type, props, rootContainerElement, apeContext, internalInstanceHandle) {
+    if (!apeContext) {
       return undefined;
     }
 
     const COMPONENTS = {
-      IMAGE: () => Image(root, props, gibbonContext),
-      LISTVIEW: () => ListView(root, props, gibbonContext),
-      TEXT: () => Text(root, props, gibbonContext),
-      VIEW: () => View(root, props, gibbonContext),
+      IMAGE: () => Image(root, props, apeContext),
+      LISTVIEW: () => ListView(root, props, apeContext),
+      TEXT: () => Text(root, props, apeContext),
+      VIEW: () => View(root, props, apeContext),
     };
 
     return (

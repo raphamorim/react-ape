@@ -6,9 +6,9 @@
  *
  */
 
-import ReactGibbonRenderer from './renderer/ReactGibbonRenderer';
+import ReactApeRenderer from './renderer/ReactApeRenderer';
 
-export const render = ReactGibbonRenderer.render;
+export const render = ReactApeRenderer.render;
 // export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
 
 export const Canvas = 'CANVAS';
@@ -17,4 +17,4 @@ export const Image = 'IMAGE';
 export const View = 'VIEW';
 export const Text = 'TEXT';
 
-export default ReactGibbonRenderer;
+export default ReactApeRenderer;

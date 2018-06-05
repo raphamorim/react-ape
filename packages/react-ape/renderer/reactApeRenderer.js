@@ -1,6 +1,6 @@
 import reconciler from 'react-reconciler';
-import reactGibbonComponent from './reactGibbonComponent';
-import {precacheFiberNode, updateFiberProps} from './reactGibbonComponentTree';
+import reactApeComponent from './reactApeComponent';
+import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
 
 function scaleDPI(canvas, context, customWidth, customHeight) {
   const width = customWidth ||
@@ -30,38 +30,38 @@ function scaleDPI(canvas, context, customWidth, customHeight) {
 };
 
 // TODO: Use Context.
-let gibbonContextGlobal = false;
+let apeContextGlobal = false;
 
-const ReactGibbonFiber = reconciler({
+const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
   },
 
   createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {
-    let gibbonContext = null;
-    if (!gibbonContextGlobal && rootContainerInstance.getContext) {
+    let apeContext = null;
+    if (!apeContextGlobal && rootContainerInstance.getContext) {
       let rootContainerInstanceContext = rootContainerInstance.getContext('2d');
 
       // TODO: Change it.
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
-      gibbonContextGlobal = {
+      apeContextGlobal = {
         type: 'canvas',
         ctx: rootContainerInstanceContext = rootContainerInstance.getContext('2d'),
       };
     }
 
-    const gibbonElement = reactGibbonComponent.createElement(
+    const apeElement = reactApeComponent.createElement(
       type,
       props,
       rootContainerInstance,
-      gibbonContextGlobal,
+      apeContextGlobal,
       internalInstanceHandle,
     );
 
-    console.log(gibbonElement, internalInstanceHandle)
+    console.log(apeElement, internalInstanceHandle)
 
-    precacheFiberNode(internalInstanceHandle, gibbonElement);
-    updateFiberProps(gibbonElement, props);
-    return gibbonElement;
+    precacheFiberNode(internalInstanceHandle, apeElement);
+    updateFiberProps(apeElement, props);
+    return apeElement;
   },
 
   createTextInstance(text, rootContainerInstance, internalInstanceHandle) {
@@ -158,26 +158,26 @@ const ReactGibbonFiber = reconciler({
 const defaultContainer = {};
 const roots = new Map();
 
-const ReactGibbonRenderer = {
+const ReactApeRenderer = {
   render(canvasElement, container, callback) {
     const containerKey =
       typeof container === 'undefined' ? defaultContainer : container;
     let root = roots.get(containerKey);
     if (!root) {
-      root = ReactGibbonFiber.createContainer(containerKey);
+      root = ReactApeFiber.createContainer(containerKey);
       roots.set(container, root);
     }
 
-    ReactGibbonFiber.updateContainer(canvasElement, root, null, callback);
+    ReactApeFiber.updateContainer(canvasElement, root, null, callback);
 
-    ReactGibbonFiber.injectIntoDevTools({
+    ReactApeFiber.injectIntoDevTools({
       bundleType: 1,
-      rendererPackageName: 'ReactGibbon',
-      findHostInstanceByFiber: ReactGibbonFiber.findHostInstance,
+      rendererPackageName: 'ReactApe',
+      findHostInstanceByFiber: ReactApeFiber.findHostInstance,
     });
 
-    return ReactGibbonFiber.getPublicRootInstance(root);
+    return ReactApeFiber.getPublicRootInstance(root);
   },
 }
 
-export default ReactGibbonRenderer;
+export default ReactApeRenderer;

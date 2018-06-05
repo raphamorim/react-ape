@@ -1,6 +1,6 @@
-function Text(root, props, gibbonContext) {
+function Text(root, props, apeContext) {
   console.log(props);
-  const { ctx } = gibbonContext;
+  const { ctx } = apeContext;
   const { style = {}, children, content } = props;
 
   const x = style.left || 20;

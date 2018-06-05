@@ -1,5 +1,5 @@
-function ListView(root, props, gibbonContext) {
-  const { ctx } = gibbonContext;
+function ListView(root, props, apeContext) {
+  const { ctx } = apeContext;
   const { style = {}, renderRow, dataSource } = props;
   const list = []
 

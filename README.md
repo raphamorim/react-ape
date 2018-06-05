@@ -1,19 +1,19 @@
-# React Gibbon
+# React Ape
 
-> Disclamer: Isn't a Netflix Project. However I decide to use "Gibbon" name to honor their project.
+> The name is a "joke" based on [Netflix's React Gibbon](https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b). I choose to use Ape then.
 
 React Renderer to build UI interfaces using canvas/WebGL.
 
 ```jsx
 import React, { Component } from 'react';
-import { Text, View, render } from 'react-gibbon';
+import { Text, View, render } from 'react-ape';
 
 class MyComponent extends Component {
   render() {
     return (
       <View>
         <Image src={'react-tv-logo.png'}/>
-        <Text content={'It's rendering as WebGL scene.'}/>
+        <Text content={'Rendering as WebGL scene.'}/>
         <Text>
           You just use components like 'View' and 'Text',
           instead of web components like 'div' and 'span'.
@@ -26,9 +26,9 @@ class MyComponent extends Component {
 render(MyComponent, document.querySelector('#canvas-id'));
 ```
 
-## React Gibbon Components
+## React Ape Components
 
-React Gibbon provides a set of standard React components that abstract the underlying rendering implementation.
+React Ape provides a set of standard React components that abstract the underlying rendering implementation.
 
 ### `<Canvas>`
 

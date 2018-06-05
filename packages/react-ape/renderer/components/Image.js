@@ -1,6 +1,6 @@
-function ImageComponent(root, props, gibbonContext) {
+function ImageComponent(root, props, apeContext) {
   console.log(props);
-  const { ctx } = gibbonContext;
+  const { ctx } = apeContext;
   const { style = {}, src, width, height } = props;
   let imageElement;
 
