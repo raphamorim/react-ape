@@ -2,6 +2,14 @@
 
 > The name is a "joke" based on [Netflix's React Gibbon](https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b). I choose to use Ape then.
 
+## Under Development
+
+1 - React Ape IS NOT Ready Yet.
+2 - Should follow React Native Elements and Primitives. So will be easy to convert React Components (without bridge) to Canvas/WebGL.
+3 - Accept Style as JavaScript Object.
+4 - Will allow to inspect React Elements using React DevTools.
+5 - I confess there's a lot of ideas and sketches in my head and I'll update the Readme when things become more clear.
+
 React Renderer to build UI interfaces using canvas/WebGL.
 
 ```jsx
@@ -54,10 +62,7 @@ Text is a flexible component that supports multi-line truncation, something whic
 
 Image is exactly what you think it is. However, it adds the ability to hide an image until it is fully loaded and optionally fade it in on load.
 
+### `StyleSheet`
 
 ### ROADMAP
 
-- [ ] `View`
-- [ ] `Text`
-- [ ] `Image`
-- [ ] Work in a way to render DOM as possibilty too.
