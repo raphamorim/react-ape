@@ -20,6 +20,8 @@ React Renderer to build UI interfaces using canvas/WebGL.
 
 ## Usage
 
+![Example App](assets/example.png)
+
 ```jsx
 import React from 'react'
 import { render, Text, ListView, View, Image } from 'react-ape'
