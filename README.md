@@ -2,7 +2,9 @@
 
 > The name is a "joke" based on [Netflix's React Gibbon](https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b). I choose to use Ape then.
 
-React Renderer to build UI interfaces using canvas/WebGL.
+React Renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices.
+
+![Demo PS Vita](assets/demo-ps-vita.png)
 
 ## Under Development
 
