@@ -1,4 +1,4 @@
-# React Ape
+# 🦍 React Ape
 
 > The name is a "joke" based on [Netflix's React Gibbon](https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b). I choose to use Ape then.
 
@@ -111,6 +111,7 @@ Initial proof-of-concept.
 
 - [ ] `ListView`
 - [ ] `View`
+- [ ] Resize
 - [ ] Allow switch to WebGL
 - [ ] Support custom React Components which have access to ApeContext (`Canvas2DContext` or WebGL Scene)
 - [ ] Start support to Events/Interaction!
