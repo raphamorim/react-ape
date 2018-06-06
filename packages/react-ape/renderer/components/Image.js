@@ -1,5 +1,5 @@
 function ImageComponent(root, props, apeContext) {
-  console.log(props);
+  // console.log(props);
   const { ctx } = apeContext;
   const { style = {}, src, width, height } = props;
   let imageElement;

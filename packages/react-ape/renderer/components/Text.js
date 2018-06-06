@@ -1,5 +1,5 @@
 function Text(root, props, apeContext) {
-  console.log(props);
+  // console.log(props);
   const { ctx } = apeContext;
   const { style = {}, children, content } = props;
 

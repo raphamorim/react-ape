@@ -57,7 +57,7 @@ const ReactApeFiber = reconciler({
       internalInstanceHandle,
     );
 
-    console.log(apeElement, internalInstanceHandle)
+    // console.log(apeElement, internalInstanceHandle)
 
     precacheFiberNode(internalInstanceHandle, apeElement);
     updateFiberProps(apeElement, props);

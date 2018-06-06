@@ -52,7 +52,6 @@ class App extends React.Component {
           • Netflix Originals
         </Text>
         { this.renderPostersList() }
-
         <Text
           style={{
             top: 520,
