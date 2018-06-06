@@ -4,7 +4,7 @@
 
 React Renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices.
 
-![Demo PS Vita](assets/demo-ps-vita.png)
+![Demo PS Vita](assets/demo-ps-vita.jpg)
 
 ## Under Development
 
