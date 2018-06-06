@@ -52,6 +52,18 @@ class App extends React.Component {
           • Netflix Originals
         </Text>
         { this.renderPostersList() }
+
+        <Text
+          style={{
+            top: 520,
+            left: 45,
+            fontFamily: 'Arial',
+            fontWeight: 'bold',
+            fontSize: 29,
+          }}
+        >
+          Rendering with Canvas2DContext using React Ape
+        </Text>
       </View>
     )
   }
