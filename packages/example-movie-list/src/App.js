@@ -32,7 +32,7 @@ class App extends React.Component {
     return (
       <View>
         <Image
-          src={'http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c529.png'}
+          src={'posters/netflix.png'}
           style={{
             top: 10,
             left: 30,
