@@ -13,18 +13,27 @@ class App extends React.Component {
 
   renderPostersList() {
     const renderRow = (data, idx) => (
-      <View key={idx} onClick={() => { console.log(data) }}>
+      <Image src={data.src} style={{top: 140, left: 45}} width={200} height={300}/>
+    )
+
+    /*<View key={idx} onClick={() => { console.log(data) }}>
         <Image src={data.src} width={200} height={300}/>
         <Text content={data.name}/>
-      </View>
-    )
+      </View>*/
 
     return (
       <ListView
-        dataSource={this.posters}
-        renderRow={renderRow}
+        // dataSource={this.posters}
+        // renderRow={renderRow}
         style={{ top: 100, left: 30 }}
-      />
+      >
+        <Image src={'posters/stranger-things.jpg'} style={{top: 140, left: 45}} width={200} height={300}/>
+        <Image src={'posters/narcos.jpg'} style={{top: 140, left: 265}} width={200} height={300}/>
+        <Image src={'posters/daredevil.jpg'} style={{top: 140, left: 485}} width={200} height={300}/>
+        <Image src={'posters/stranger-things.jpg'} style={{top: 140, left: 705}} width={200} height={300}/>
+        <Image src={'posters/narcos.jpg'} style={{top: 140, left: 925}} width={200} height={300}/>
+        <Image src={'posters/daredevil.jpg'} style={{top: 140, left: 1145}} width={200} height={300}/>
+      </ListView>
     );
   }
 
