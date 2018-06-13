@@ -28,7 +28,37 @@ React Renderer to build UI interfaces using canvas/WebGL. React Ape was built to
 
 ```jsx
 import React from 'react'
-import { render, Text, ListView, View, Image } from 'react-ape'
+import { render, Text, ListView, View, Image, StyleSheet } from 'react-ape'
+
+const styles = StyleSheet.create({
+  heading: {
+    top: 62,
+    left: 250,
+    color: 'white',
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    fontSize: 29,
+  },
+  date: {
+    top: 62,
+    left: 1150,
+    color: 'red',
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    fontSize: 19,
+  },
+  logo: {
+    top: 10,
+    left: 30,
+  },
+  infoAboutRenderer: {
+    top: 520,
+    left: 45,
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    fontSize: 29,
+  }
+})
 
 class App extends React.Component {
   constructor() {
@@ -38,6 +68,13 @@ class App extends React.Component {
       { name: 'Daredevil', src: 'posters/daredevil.jpg' },
       { name: 'Stranger Things', src: 'posters/stranger-things.jpg' },
     ]
+    this.state = {
+      date: new Date().toISOString()
+    }
+  }
+
+  componentDidMount() {
+    setInterval(() => this.setState({ date: new Date().toISOString() }), 1000)
   }
 
   renderPostersList() {
@@ -52,7 +89,6 @@ class App extends React.Component {
       <ListView
         dataSource={this.posters}
         renderRow={renderRow}
-        style={{ top: 100, left: 30 }}
       />
     )
   }
@@ -61,24 +97,19 @@ class App extends React.Component {
     return (
       <View>
         <Image
-          src={'http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c529.png'}
-          style={{
-            top: 10,
-            left: 30,
-          }}
+          src={'posters/netflix.png'}
+          style={styles.logo}
           width={210}
           height={100}
         />
-        <Text
-          style={{
-            top: 73,
-            left: 250,
-            fontFamily: 'Arial',
-            fontWeight: 'bold',
-            fontSize: 29,
-          }}
-        >
+        <Text style={styles.heading}>
           • Netflix Originals
+        </Text>
+        <Text style={styles.date}>
+          {this.state.date}
+        </Text>
+        <Text style={styles.infoAboutRenderer}>
+          Rendering with Canvas2DContext using React Ape
         </Text>
         { this.renderPostersList() }
       </View>
@@ -112,6 +143,14 @@ Image is exactly what you think it is. However, it adds the ability to hide an i
 - `flatten` (https://facebook.github.io/react-native/docs/stylesheet.html#flatten)
 - `top, left, right, bottom`
 - flexbox (display, justify-content, align-items)
+
+### `dimensions` (WIP)
+
+https://facebook.github.io/react-native/docs/dimensions.html
+
+### `Platform` (WIP)
+
+https://facebook.github.io/react-native/docs/platform-specific-code.html
 
 ## Roadmap
 
