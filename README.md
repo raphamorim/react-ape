@@ -1,5 +1,7 @@
 # 🦍 React Ape
 
+[![CircleCI](https://circleci.com/gh/raphamorim/react-ape/tree/master.svg?style=svg)](https://circleci.com/gh/raphamorim/react-ape/tree/master)
+
 > The name is a "joke" based on [Netflix's React Gibbon](https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b). I choose to use Ape then.
 
 React Renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices.
@@ -103,7 +105,13 @@ Text is a flexible component that supports multi-line truncation, something whic
 
 Image is exactly what you think it is. However, it adds the ability to hide an image until it is fully loaded and optionally fade it in on load.
 
-### `StyleSheet`
+### `StyleSheet` (WIP)
+
+#### TODO:
+
+- `flatten` (https://facebook.github.io/react-native/docs/stylesheet.html#flatten)
+- `top, left, right, bottom`
+- flexbox (display, justify-content, align-items)
 
 ## Roadmap
 

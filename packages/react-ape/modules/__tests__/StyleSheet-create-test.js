@@ -11,39 +11,43 @@ describe('[StyleSheet] • create', () => {
       heading: {
         top: 73,
         left: 250,
-        fontFamily: 'Arial',
-        fontWeight: 'bold',
         fontSize: 29,
       },
       heading2: {
         top: 173,
         left: 250,
+        fontFamily: 'Helvetica',
+        fontWeight: 'normal',
+        fontSize: 15,
+        border: '2px dotted #333',
+      },
+      heading3: {
         fontFamily: 'Arial',
         fontWeight: 'bold',
-        fontSize: 29,
-      }
+        borderStyle: 'solid'
+      },
     })
 
     expect(styles).toEqual({
       heading: {
         x: 250,
         y: 73,
-        fontFamily: 'Arial',
-        fontWeight: 'bold',
-        fontSize: 29,
-        "borderColor": null,
-        "borderSize": null,
-        "borderStyle": [],
+        fontSize: 29
       },
       heading2: {
         x: 250,
         y: 173,
+        fontFamily: 'Helvetica',
+        fontWeight: 'normal',
+        fontSize: 15,
+        borderColor: '#333',
+        borderSize: '2',
+        borderStyle: [3],
+      },
+      heading3: {
         fontFamily: 'Arial',
         fontWeight: 'bold',
-        fontSize: 29,
-        "borderColor": null,
-        "borderSize": null,
-        "borderStyle": [],
+        borderStyle: [],
       }
     });
   })

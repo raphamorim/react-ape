@@ -38,10 +38,15 @@ function create(styles) {
       }
 
       borderStyle = border[1];
+      delete style.border;
+    }
+
+    if (borderColor) {
+      style['borderColor'] = borderColor;
     }
 
     if (borderSize) {
-      borderSize = borderSize.replace(/[^0-9]/g, '');
+      style['borderSize'] = borderSize.replace(/[^0-9]/g, '');;
     }
 
     if (typeof(borderStyle) === 'string') {
@@ -52,16 +57,19 @@ function create(styles) {
       } else {
         borderStyle = [];
       }
+
+      style['borderStyle'] = borderStyle;
     }
 
-    style['x'] = style.left || 20;
-    style['y'] = style.top || 20;
-    delete style.top;
-    delete style.left;
+    if (style.left) {
+      style['x'] = style.left;
+      delete style.left;
+    }
 
-    style['borderSize'] = borderSize;
-    style['borderStyle'] = borderStyle;
-    style['borderColor'] = borderColor;
+    if (style.top) {
+      style['y'] = style.top;
+      delete style.top;
+    }
 
     processedStyles[styleKey] = style;
     style = null;
