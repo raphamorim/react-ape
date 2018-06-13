@@ -7,6 +7,7 @@
  */
 
 import ReactApeRenderer from './renderer/ReactApeRenderer';
+import StyleSheetModule from './modules/StyleSheet';
 
 export const render = ReactApeRenderer.render;
 // export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
@@ -16,5 +17,6 @@ export const ListView = 'LISTVIEW';
 export const Image = 'IMAGE';
 export const View = 'VIEW';
 export const Text = 'TEXT';
+export const StyleSheet = StyleSheetModule;
 
 export default ReactApeRenderer;

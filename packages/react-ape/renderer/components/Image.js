@@ -25,11 +25,6 @@ function ImageComponent(root, props, apeContext) {
       console.warn('failed to load image:', src);
     // }
   })
-
-  return {
-    type: 'Image',
-    props: props,
-  }
 }
 
 export default ImageComponent;

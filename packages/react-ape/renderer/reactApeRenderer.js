@@ -5,8 +5,8 @@ import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
 function scaleDPI(canvas, context, customWidth, customHeight) {
   const width = customWidth ||
               canvas.offsetWidth ||
-              canvas.width || // attr, eg: <canvas width='400'>
-              canvas.clientWidth; // keep existing width
+              canvas.width ||
+              canvas.clientWidth;
   const height = customHeight ||
                canvas.offsetHeight ||
                canvas.height ||
@@ -34,6 +34,10 @@ let apeContextGlobal = false;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
+    if (parentInstance.appendChild) {
+      console.log(parentInstance, child);
+      parentInstance.appendChild(child);
+    }
   },
 
   createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {
@@ -115,6 +119,7 @@ const ReactApeFiber = reconciler({
 
   mutation: {
     appendChild(parentInstance, child) {
+      // console.log('appendChild', parentInstance, child);
       // if (parentInstance.appendChild) {
       //   parentInstance.appendChild(child);
       // } else {
@@ -123,10 +128,12 @@ const ReactApeFiber = reconciler({
     },
 
     appendChildToContainer(parentInstance, child) {
-      // console.log(1, child);
-      // if (parentInstance.appendChild) {
-      //   parentInstance.appendChild(child);
-      // }
+      console.log('appendChildToContainer', parentInstance, child);
+      if (child.render) {
+        child.render(apeContextGlobal);
+      } else {
+        child(apeContextGlobal);
+      }
     },
 
     removeChild(parentInstance, child) {

@@ -1,5 +1,22 @@
 import React from 'react'
-import { render, Text, ListView, View, Image } from '../../react-ape/reactApeEntry'
+import { render, Text, ListView, View, Image, StyleSheet } from '../../react-ape/reactApeEntry'
+
+const styles = StyleSheet.create({
+  heading: {
+    top: 73,
+    left: 250,
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    fontSize: 29,
+  },
+  heading2: {
+    top: 173,
+    left: 250,
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    fontSize: 29,
+  }
+})
 
 class App extends React.Component {
   constructor() {
@@ -13,65 +30,66 @@ class App extends React.Component {
 
   renderPostersList() {
     const renderRow = (data, idx) => (
-      <Image src={data.src} style={{top: 140, left: 45}} width={200} height={300}/>
-    )
-
-    /*<View key={idx} onClick={() => { console.log(data) }}>
+      <View key={idx} onClick={() => { console.log(data) }}>
         <Image src={data.src} width={200} height={300}/>
         <Text content={data.name}/>
-      </View>*/
+      </View>
+    )
 
     return (
       <ListView
-        // dataSource={this.posters}
-        // renderRow={renderRow}
+        dataSource={this.posters}
+        renderRow={renderRow}
         style={{ top: 100, left: 30 }}
-      >
-        <Image src={'posters/stranger-things.jpg'} style={{top: 140, left: 45}} width={200} height={300}/>
-        <Image src={'posters/narcos.jpg'} style={{top: 140, left: 265}} width={200} height={300}/>
-        <Image src={'posters/daredevil.jpg'} style={{top: 140, left: 485}} width={200} height={300}/>
-        <Image src={'posters/stranger-things.jpg'} style={{top: 140, left: 705}} width={200} height={300}/>
-        <Image src={'posters/narcos.jpg'} style={{top: 140, left: 925}} width={200} height={300}/>
-        <Image src={'posters/daredevil.jpg'} style={{top: 140, left: 1145}} width={200} height={300}/>
-      </ListView>
+      />
     );
   }
 
   render() {
+    // <View>
+      //   <Image
+      //     src={'posters/netflix.png'}
+      //     style={{
+      //       top: 10,
+      //       left: 30,
+      //     }}
+      //     width={210}
+      //     height={100}
+      //   />
+      //   <Text
+      //     style={{
+      //       top: 73,
+      //       left: 250,
+      //       fontFamily: 'Arial',
+      //       fontWeight: 'bold',
+      //       fontSize: 29,
+      //     }}
+      //   >
+      //     • Netflix Originals
+      //   </Text>
+      //   { this.renderPostersList() }
+      // <Text
+      //     style={{
+      //       top: 520,
+      //       left: 45,
+      //       fontFamily: 'Arial',
+      //       fontWeight: 'bold',
+      //       fontSize: 29,
+      //     }}
+      //   >
+      //     Rendering with Canvas2DContext using React Ape
+      //   </Text>
+      // </View>
+
     return (
       <View>
-        <Image
-          src={'posters/netflix.png'}
-          style={{
-            top: 10,
-            left: 30,
-          }}
-          width={210}
-          height={100}
-        />
-        <Text
-          style={{
-            top: 73,
-            left: 250,
-            fontFamily: 'Arial',
-            fontWeight: 'bold',
-            fontSize: 29,
-          }}
-        >
+        <Text style={styles.heading}>
           • Netflix Originals
         </Text>
-        { this.renderPostersList() }
-        <Text
-          style={{
-            top: 520,
-            left: 45,
-            fontFamily: 'Arial',
-            fontWeight: 'bold',
-            fontSize: 29,
-          }}
-        >
-          Rendering with Canvas2DContext using React Ape
+        <Text style={styles.heading2}>
+          • Netflix NotOriginals
         </Text>
+        { this.renderPostersList() }
       </View>
     )
   }

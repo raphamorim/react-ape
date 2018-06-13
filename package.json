@@ -1,4 +1,5 @@
 {
+  "private": true,
   "workspaces": [ "packages/*" ],
   "files": [
     "README.md"
@@ -7,13 +8,29 @@
   "version": "0.0.0-5",
   "description": "React Renderer to build interfaces using canvas/WebGL",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
+    "test": "yarn jest:ci",
+    "jest": "jest --no-cache",
+    "jest:ci": "jest --no-cache --bail --ci --runInBand"
   },
   "devDependencies": {
     "react": "^16.3.2",
     "react-reconciler": "^0.11.0",
-    "react-test-renderer": "^16.2.0"
+    "react-test-renderer": "^16.2.0",
+    "babel-jest": "21.0.2",
+    "babel-preset-stage-2": "^6.24.1",
+    "jest": "21.0.2"
   },
   "author": "Raphael Amorim",
-  "license": "MIT"
+  "license": "MIT",
+  "jest": {
+    "roots": [
+      "<rootDir>/packages/react-ape"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "verbose": true,
+    "resetModules": true
+  }
 }

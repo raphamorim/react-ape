@@ -3,25 +3,23 @@ import ListView from './components/ListView';
 import Text from './components/Text';
 import View from './components/View';
 
-const ReactGibbonComponent = {
- createElement(type, props, rootContainerElement, apeContext, internalInstanceHandle) {
-    if (!apeContext) {
-      return undefined;
-    }
+const ReactApeComponent = {
+ createElement(type, props, rootContainerElement, internalInstanceHandle) {
 
     const COMPONENTS = {
-      IMAGE: () => Image(root, props, apeContext),
-      LISTVIEW: () => ListView(root, props, apeContext),
-      TEXT: () => Text(root, props, apeContext),
-      VIEW: () => View(root, props, apeContext),
+      IMAGE: () => Image.bind(this, rootContainerElement, props),
+      TEXT: () => Text.bind(this, rootContainerElement, props),
+
+      LISTVIEW: () => new ListView(props),
+      VIEW: () => new View(props),
     };
 
     return (
       (COMPONENTS[type]) ?
       COMPONENTS[type]() :
-      console.warn('ReactGibbon could not identify ' + type + ' as ReactGibbonComponent')
+      console.warn('ReactApe could not identify ' + type + ' as ReactApeComponent')
     )
   },
 }
 
-export default ReactGibbonComponent;
+export default ReactApeComponent;
