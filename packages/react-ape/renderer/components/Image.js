@@ -1,4 +1,4 @@
-function ImageComponent(root, props, apeContext) {
+function ImageComponent(props, apeContext) {
   // console.log(props);
   const { ctx } = apeContext;
   const { style = {}, src, width, height } = props;
@@ -8,16 +8,13 @@ function ImageComponent(root, props, apeContext) {
     return null;
   }
 
-  const x = style.left || 20;
-  const y = style.top || 20;
-
   imageElement = new Image();
   imageElement.src = src;
 
   imageElement.addEventListener('load', function() {
     const imageWidth = width || this.naturalWidth;
     const imageHeight = height || this.naturalHeight;
-    ctx.drawImage(imageElement, x, y, imageWidth, imageHeight);
+    ctx.drawImage(imageElement, style.x, style.y, imageWidth, imageHeight);
   })
 
   imageElement.addEventListener('error', function() {

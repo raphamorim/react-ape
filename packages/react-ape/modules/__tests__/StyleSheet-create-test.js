@@ -11,6 +11,7 @@ describe('[StyleSheet] • create', () => {
       heading: {
         top: 73,
         left: 250,
+        color: '#333',
         fontSize: 29,
       },
       heading2: {
@@ -24,7 +25,7 @@ describe('[StyleSheet] • create', () => {
       heading3: {
         fontFamily: 'Arial',
         fontWeight: 'bold',
-        borderStyle: 'solid'
+        borderStyle: 'solid',
       },
     })
 
@@ -32,7 +33,8 @@ describe('[StyleSheet] • create', () => {
       heading: {
         x: 250,
         y: 73,
-        fontSize: 29
+        color: '#333',
+        fontSize: 29,
       },
       heading2: {
         x: 250,

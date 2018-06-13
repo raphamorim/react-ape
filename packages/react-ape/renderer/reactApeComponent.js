@@ -7,15 +7,15 @@ const ReactApeComponent = {
  createElement(type, props, rootContainerElement, internalInstanceHandle) {
 
     const COMPONENTS = {
-      IMAGE: () => Image.bind(this, rootContainerElement, props),
-      TEXT: () => Text.bind(this, rootContainerElement, props),
+      IMAGE: () => Image.bind(this, props),
+      TEXT: () => Text.bind(this, props),
 
       LISTVIEW: () => new ListView(props),
       VIEW: () => new View(props),
     };
 
     return (
-      (COMPONENTS[type]) ?
+      COMPONENTS[type] ?
       COMPONENTS[type]() :
       console.warn('ReactApe could not identify ' + type + ' as ReactApeComponent')
     )

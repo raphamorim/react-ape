@@ -34,9 +34,10 @@ let apeContextGlobal = false;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
+    console.log('appendInitialChild', parentInstance, child);
     if (parentInstance.appendChild) {
-      console.log(parentInstance, child);
       parentInstance.appendChild(child);
+      parentInstance.render(apeContextGlobal);
     }
   },
 
@@ -85,6 +86,8 @@ const ReactApeFiber = reconciler({
   },
 
   prepareUpdate(element, type, oldProps, newProps) {
+    // console.log(element)
+    // TODO: Updates
     return true;
   },
 
@@ -98,7 +101,7 @@ const ReactApeFiber = reconciler({
 
   getRootHostContext(rootInstance) {
     // You can use this 'rootInstance' to pass data from the roots.
-    return {};
+    return rootInstance;
   },
 
   getChildHostContext() {
@@ -119,7 +122,7 @@ const ReactApeFiber = reconciler({
 
   mutation: {
     appendChild(parentInstance, child) {
-      // console.log('appendChild', parentInstance, child);
+      console.log('appendChild', parentInstance, child);
       // if (parentInstance.appendChild) {
       //   parentInstance.appendChild(child);
       // } else {
@@ -128,7 +131,7 @@ const ReactApeFiber = reconciler({
     },
 
     appendChildToContainer(parentInstance, child) {
-      console.log('appendChildToContainer', parentInstance, child);
+      console.log('appendChildToContainer', parentInstance, child)
       if (child.render) {
         child.render(apeContextGlobal);
       } else {

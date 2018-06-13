@@ -23,7 +23,7 @@ class ListView {
 
     this._renderList.forEach(callRenderFunctions);
 
-    console.log(dataSource, renderRow)
+    // console.log(dataSource, renderRow)
 
   }
 }
