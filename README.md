@@ -158,6 +158,8 @@ https://facebook.github.io/react-native/docs/platform-specific-code.html
 
 Initial proof-of-concept.
 
+- [ ] `Focus/Navigation`
+- [ ] Smart clearRect based on `DiffProperties`
 - [ ] `ListView`
 - [ ] `View`
 - [ ] Resize

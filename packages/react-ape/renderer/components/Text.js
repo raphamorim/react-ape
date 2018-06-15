@@ -2,7 +2,7 @@ function Text(props, apeContext) {
   const { ctx } = apeContext;
   const { style = {}, children, content } = props;
 
-  // ctx.beginPath();
+  ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);
   ctx.textBaseline = 'middle';
   ctx.lineWidth = style.borderSize;
@@ -15,8 +15,7 @@ function Text(props, apeContext) {
   ctx.fill();
   // ctx.stroke();
   // ctx.setLineDash([]);
-  // ctx.closePath();
-  // ctx.reset();
+  ctx.closePath();
 }
 
 export default Text;

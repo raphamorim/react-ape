@@ -10,13 +10,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 29,
   },
-  date: {
+  time: {
     top: 62,
     left: 1150,
     color: 'red',
     fontFamily: 'Arial',
     fontWeight: 'bold',
-    fontSize: 19,
+    fontSize: 25,
   },
   logo: {
     top: 10,
@@ -40,16 +40,15 @@ class App extends React.Component {
       { name: 'Stranger Things', src: 'posters/stranger-things.jpg' },
     ];
     this.state = {
-      date: new Date().toISOString()
+      time: new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1"),
     }
   }
 
   componentDidMount() {
-    // setInterval(() => {
-    //   const date = new Date().toISOString();
-    //   console.log(date);
-    //   this.setState({ date });
-    // }, 1000)
+    setInterval(() => {
+      const time = new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+      this.setState({ time });
+    }, 100)
   }
 
   renderPostersList() {
@@ -70,24 +69,6 @@ class App extends React.Component {
   }
 
   render() {
-    // <View>
-      //   <Text
-      //     style={{
-      //       top: 73,
-      //       left: 250,
-      //       fontFamily: 'Arial',
-      //       fontWeight: 'bold',
-      //       fontSize: 29,
-      //     }}
-      //   >
-      //     • Netflix Originals
-      //   </Text>
-      //   { this.renderPostersList() }
-
-      // </View>
-
-// { this.renderPostersList() }
-
     return (
       <View>
         <Image
@@ -99,13 +80,13 @@ class App extends React.Component {
         <Text style={styles.heading}>
           • Netflix Originals
         </Text>
-        <Text style={styles.date}>
-          {this.state.date}
+        <Text style={styles.time}>
+          {this.state.time}
         </Text>
         <Text style={styles.infoAboutRenderer}>
           Rendering with Canvas2DContext using React Ape
         </Text>
-        { true || this.renderPostersList() }
+        { this.renderPostersList() }
       </View>
     )
   }

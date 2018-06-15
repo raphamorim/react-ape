@@ -1,6 +1,6 @@
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
-import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
+import {precacheFiberNode, diffProperties, updateFiberProps} from './reactApeComponentTree';
 
 function scaleDPI(canvas, context, customWidth, customHeight) {
   const width = customWidth ||
@@ -29,12 +29,26 @@ function scaleDPI(canvas, context, customWidth, customHeight) {
   return ratio;
 };
 
+CanvasRenderingContext2D.prototype.clear =
+  CanvasRenderingContext2D.prototype.clear || function (preserveTransform) {
+    if (preserveTransform) {
+      this.save();
+      this.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+    this.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    if (preserveTransform) {
+      this.restore();
+    }
+};
+
 // TODO: Use Context.
 let apeContextGlobal = false;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    console.log('appendInitialChild', parentInstance, child);
+    // console.log('appendInitialChild', parentInstance, child);
     if (parentInstance.appendChild) {
       parentInstance.appendChild(child);
       parentInstance.render(apeContextGlobal);
@@ -42,6 +56,7 @@ const ReactApeFiber = reconciler({
   },
 
   createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {
+    // console.log('createInstance');
     let apeContext = null;
     if (!apeContextGlobal && rootContainerInstance.getContext) {
       let rootContainerInstanceContext = rootContainerInstance.getContext('2d');
@@ -50,6 +65,7 @@ const ReactApeFiber = reconciler({
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
       apeContextGlobal = {
         type: 'canvas',
+        _internalRenderQueue: [],
         ctx: rootContainerInstanceContext = rootContainerInstance.getContext('2d'),
       };
     }
@@ -70,10 +86,14 @@ const ReactApeFiber = reconciler({
   },
 
   createTextInstance(text, rootContainerInstance, internalInstanceHandle) {
+    // console.log('createTextInstance');
+    // let textNode = reactApeComponent.createTextNode(text, rootContainerInstance);
+    // precacheFiberNode(internalInstanceHandle, textNode);
     return text;
   },
 
   finalizeInitialChildren(element, type, props) {
+    // console.log('finalizeInitialChildren', element);
     return false;
   },
 
@@ -81,50 +101,97 @@ const ReactApeFiber = reconciler({
     return inst;
   },
 
-  prepareForCommit() {
-    // noop
+  prepareForCommit(rootContainerInstance) {
+    // console.log('prepareForCommit');
   },
 
-  prepareUpdate(element, type, oldProps, newProps) {
-    // console.log(element)
-    // TODO: Updates
-    return true;
+  prepareUpdate(element, type, oldProps, newProps, rootContainerInstance) {
+    if (newProps) {
+
+    // const diff = reactApeComponent.diffProperties(
+    //   element,
+    //   type,
+    //   oldProps,
+    //   newProps,
+    //   rootContainerInstance
+    // );
+
+      const apeElement = reactApeComponent.createElement(
+        type,
+        newProps,
+        rootContainerInstance,
+        apeContextGlobal,
+      );
+
+      apeContextGlobal._internalRenderQueue.push(apeElement);
+    }
   },
 
-  resetAfterCommit() {
-    // noop
+  resetAfterCommit(rootContainerInstance) {
+    if (apeContextGlobal._internalRenderQueue.length) {
+      apeContextGlobal.ctx.clear();
+      apeContextGlobal._internalRenderQueue.forEach((fn) => {
+        if (fn.render) {
+          fn.render(apeContextGlobal);
+        } else {
+          fn(apeContextGlobal);
+        }
+      })
+      apeContextGlobal._internalRenderQueue = [];
+    }
   },
 
   resetTextContent(element) {
+    console.log('resetTextContent');
     // noop
   },
 
   getRootHostContext(rootInstance) {
-    // You can use this 'rootInstance' to pass data from the roots.
-    return rootInstance;
+    // let type;
+    // let namespace;
+    // const nodeType = rootContainerInstance.nodeType;
+    // switch (nodeType) {
+    //   case DOCUMENT_NODE:
+    //   case DOCUMENT_FRAGMENT_NODE: {
+    //     type = nodeType === DOCUMENT_NODE ? '#document' : '#fragment';
+    //     let root = (rootContainerInstance: any).documentElement;
+    //     namespace = root ? root.namespaceURI : getChildNamespace(null, '');
+    //     break;
+    //   }
+    //   default: {
+    //     const container: any =
+    //       nodeType === COMMENT_NODE
+    //         ? rootContainerInstance.parentNode
+    //         : rootContainerInstance;
+    //     const ownNamespace = container.namespaceURI || null;
+    //     type = container.tagName;
+    //     namespace = getChildNamespace(ownNamespace, type);
+    //     break;
+    //   }
+    // }
+    // return namespace;
   },
 
   getChildHostContext() {
     return {};
   },
 
-  shouldSetTextContent(type, props) {
-    return false;
-  },
-
   scheduleAnimationCallback() {},
 
   scheduleDeferredCallback() {},
 
-  useSyncScheduling: true,
+  useSyncScheduling: false,
 
   now: Date.now,
 
   mutation: {
     appendChild(parentInstance, child) {
-      console.log('appendChild', parentInstance, child);
+      // console.log('appendChild', parentInstance, child);
       // if (parentInstance.appendChild) {
       //   parentInstance.appendChild(child);
+      // } else {
+      //   child(apeContextGlobal);
+      // }
       // } else {
       //   parentInstance.document = child;
       // }
@@ -140,29 +207,36 @@ const ReactApeFiber = reconciler({
     },
 
     removeChild(parentInstance, child) {
+      console.log('removeChild');
       // parentInstance.removeChild(child);
     },
 
     removeChildFromContainer(parentInstance, child) {
+      console.log('removeChildFromContainer');
       // parentInstance.removeChild(child);
     },
 
     insertBefore(parentInstance, child, beforeChild) {
-      // noob
+      console.log('insertBefore');
     },
 
     commitUpdate(instance, updatePayload, type, oldProps, newProps) {
-      // noop
+      console.log('>> commitUpdate');
     },
 
-    commitMount(instance, updatePayload, type, oldProps, newProps) {
-      // noop
-    },
+    commitMount(instance, updatePayload, type, oldProps, newProps) {},
 
     commitTextUpdate(textInstance, oldText, newText) {
+      console.log('>>>', textInstance)
       // textInstance.children = newText;
     },
-  }
+  },
+
+  shouldSetTextContent(props) {
+    return (
+      typeof props.children === 'string' || typeof props.children === 'number'
+    );
+  },
 })
 
 const defaultContainer = {};
