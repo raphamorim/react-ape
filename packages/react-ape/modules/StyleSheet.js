@@ -74,7 +74,7 @@ function create(styles) {
       delete style.left;
     }
 
-    if (style.top || style.left == 0) {
+    if (style.top || style.top == 0) {
       style['y'] = style.top;
       delete style.top;
     }

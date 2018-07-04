@@ -31,8 +31,8 @@ describe('[StyleSheet] • create', () => {
 
     expect(styles).toEqual({
       heading: {
-        x: 250,
-        y: 0,
+        y: 73,
+        x: 0,
         color: '#333',
         fontSize: 29,
       },
