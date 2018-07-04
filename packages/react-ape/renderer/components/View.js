@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2018-present, Raphael Amorim.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
 class View {
   constructor(props) {
     this.props = props;
@@ -17,16 +25,11 @@ class View {
     const { ctx } = apeContext;
     const { style = {} } = this.props;
 
-    // ctx.beginPath();
-    // ctx.setLineDash(style.borderStyle);
-    // ctx.fillStyle = (style.background) ? style.background : def.background;
-    // ctx.fillRect(args.x, args.y, args.width, (args.height || args.width));
-
-    // ctx.lineWidth = (style.borderSize) ? style.borderSize : def.lineWidth;
-    // ctx.strokeStyle = (style.borderColor) ? style.borderColor : def.strokeStyle;
-    // ctx.strokeRect(args.x, args.y, args.width, (args.height || args.width));
-    // ctx.setLineDash([]);
-    // ctx.closePath();
+    ctx.beginPath();
+    ctx.rect(style.x, style.y, style.width || 200, style.height || 200);
+    ctx.fillStyle = style.backgroundColor || 'white';
+    ctx.fill();
+    ctx.closePath();
 
     const callRenderFunctions = (renderFunction) => {
       (renderFunction.render) ?

@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2018-present, Raphael Amorim.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
 import {precacheFiberNode, diffProperties, updateFiberProps} from './reactApeComponentTree';
@@ -48,7 +56,7 @@ let apeContextGlobal = false;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    // console.log('appendInitialChild', parentInstance, child);
+    console.log('appendInitialChild', parentInstance, child);
     if (parentInstance.appendChild) {
       parentInstance.appendChild(child);
       parentInstance.render(apeContextGlobal);
@@ -65,7 +73,7 @@ const ReactApeFiber = reconciler({
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
       apeContextGlobal = {
         type: 'canvas',
-        _internalRenderQueue: [],
+        _renderQueueForUpdate: [],
         ctx: rootContainerInstanceContext = rootContainerInstance.getContext('2d'),
       };
     }
@@ -78,7 +86,7 @@ const ReactApeFiber = reconciler({
       internalInstanceHandle,
     );
 
-    // console.log(apeElement, internalInstanceHandle)
+    // console.log(apeElement)
 
     precacheFiberNode(internalInstanceHandle, apeElement);
     updateFiberProps(apeElement, props);
@@ -123,21 +131,21 @@ const ReactApeFiber = reconciler({
         apeContextGlobal,
       );
 
-      apeContextGlobal._internalRenderQueue.push(apeElement);
+      apeContextGlobal._renderQueueForUpdate.push(apeElement);
     }
   },
 
   resetAfterCommit(rootContainerInstance) {
-    if (apeContextGlobal._internalRenderQueue.length) {
+    if (apeContextGlobal._renderQueueForUpdate.length) {
       apeContextGlobal.ctx.clear();
-      apeContextGlobal._internalRenderQueue.forEach((fn) => {
+      apeContextGlobal._renderQueueForUpdate.forEach((fn) => {
         if (fn.render) {
           fn.render(apeContextGlobal);
         } else {
           fn(apeContextGlobal);
         }
       })
-      apeContextGlobal._internalRenderQueue = [];
+      apeContextGlobal._renderQueueForUpdate = [];
     }
   },
 
@@ -186,7 +194,7 @@ const ReactApeFiber = reconciler({
 
   mutation: {
     appendChild(parentInstance, child) {
-      // console.log('appendChild', parentInstance, child);
+      console.log('appendChild', parentInstance, child);
       // if (parentInstance.appendChild) {
       //   parentInstance.appendChild(child);
       // } else {

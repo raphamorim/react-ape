@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2018-present, Raphael Amorim.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
 function create(styles) {
   if (!styles) {
     return {};
@@ -61,12 +69,12 @@ function create(styles) {
       style['borderStyle'] = borderStyle;
     }
 
-    if (style.left) {
+    if (style.left || style.left == 0) {
       style['x'] = style.left;
       delete style.left;
     }
 
-    if (style.top) {
+    if (style.top || style.left == 0) {
       style['y'] = style.top;
       delete style.top;
     }

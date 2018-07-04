@@ -28,6 +28,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
     fontWeight: 'bold',
     fontSize: 29,
+  },
+  list: {
+    top: 100,
+    left: 0,
+    backgroundColor: '#303030',
+    width: 2000,
+    height: 300
   }
 })
 
@@ -63,7 +70,7 @@ class App extends React.Component {
       <ListView
         dataSource={this.posters}
         renderRow={renderRow}
-        style={{ top: 100, left: 30 }}
+        style={styles.list}
       />
     );
   }

@@ -1,31 +1,31 @@
-class ListView {
-  constructor(props) {
-    this.props = props;
+/**
+ * Copyright (c) 2018-present, Raphael Amorim.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
 
-    this._renderList = [];
-  }
+function renderChildren(children) {
 
-  appendChild(fn) {
-    this._renderList.push(fn);
-  }
+}
 
-  children() {
-    return this._renderList;
-  }
+function ListView(props, apeContext) {
+  const { ctx } = apeContext;
+  const { style = {}, dataSource, renderRow } = props;
+  let children = [];
 
-  render(apeContext) {
-    const { ctx } = apeContext;
-    const { style = {}, dataSource, renderRow } = this.props;
+  dataSource.forEach((data, idx) => {
+    children.push(renderRow(data, idx));
+  });
 
-    const callRenderFunctions = (renderFunction) => {
-      renderFunction(apeContext);
-    }
+  ctx.beginPath();
+  ctx.rect(style.x, style.y, style.width || 200, style.height || 200);
+  ctx.fillStyle = style.backgroundColor || 'white';
+  ctx.fill();
+  ctx.closePath();
 
-    this._renderList.forEach(callRenderFunctions);
-
-    // console.log(dataSource, renderRow)
-
-  }
+  return renderChildren.bind(this, children);
 }
 
 export default ListView;

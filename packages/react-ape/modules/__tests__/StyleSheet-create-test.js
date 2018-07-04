@@ -10,7 +10,7 @@ describe('[StyleSheet] • create', () => {
     const styles = StyleSheet.create({
       heading: {
         top: 73,
-        left: 250,
+        left: 0,
         color: '#333',
         fontSize: 29,
       },
@@ -32,7 +32,7 @@ describe('[StyleSheet] • create', () => {
     expect(styles).toEqual({
       heading: {
         x: 250,
-        y: 73,
+        y: 0,
         color: '#333',
         fontSize: 29,
       },

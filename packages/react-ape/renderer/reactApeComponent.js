@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2018-present, Raphael Amorim.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
 import Image from './components/Image';
 import ListView from './components/ListView';
 import Text from './components/Text';
@@ -7,13 +15,12 @@ const CHILDREN = 'children';
 const STYLE = 'style';
 
 const ReactApeComponent = {
- createElement(type, props, rootContainerElement, internalInstanceHandle) {
-
+  createElement(type, props, rootContainerElement, apeContextGlobal, internalInstanceHandle) {
     const COMPONENTS = {
       IMAGE: () => Image.bind(this, props),
       TEXT: () => Text.bind(this, props),
 
-      LISTVIEW: () => new ListView(props),
+      LISTVIEW: () => ListView(props, apeContextGlobal),
       VIEW: () => new View(props),
     };
 
