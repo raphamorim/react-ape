@@ -9,11 +9,12 @@
 import ReactApeRenderer from './renderer/ReactApeRenderer';
 import StyleSheetModule from './modules/StyleSheet';
 
+import ListViewComponent from './renderer/components/ListView';
+export const ListView = ListViewComponent;
+
 export const render = ReactApeRenderer.render;
 // export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
 
-export const Canvas = 'CANVAS';
-export const ListView = 'LISTVIEW';
 export const Image = 'IMAGE';
 export const View = 'VIEW';
 export const Text = 'TEXT';

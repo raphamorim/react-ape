@@ -7,6 +7,7 @@
  */
 
 function Text(props, apeContext) {
+  // console.log(props)
   const { ctx } = apeContext;
   const { style = {}, children, content } = props;
 

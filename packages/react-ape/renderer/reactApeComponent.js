@@ -6,10 +6,9 @@
  *
  */
 
-import Image from './components/Image';
-import ListView from './components/ListView';
-import Text from './components/Text';
-import View from './components/View';
+import Image from './elements/Image';
+import Text from './elements/Text';
+import View from './elements/View';
 
 const CHILDREN = 'children';
 const STYLE = 'style';
@@ -20,7 +19,6 @@ const ReactApeComponent = {
       IMAGE: () => Image.bind(this, props),
       TEXT: () => Text.bind(this, props),
 
-      LISTVIEW: () => ListView(props, apeContextGlobal),
       VIEW: () => new View(props),
     };
 

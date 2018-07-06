@@ -56,7 +56,7 @@ let apeContextGlobal = false;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    console.log('appendInitialChild', parentInstance, child);
+    // console.log('appendInitialChild', parentInstance, child, typeof child);
     if (parentInstance.appendChild) {
       parentInstance.appendChild(child);
       parentInstance.render(apeContextGlobal);

@@ -7,6 +7,7 @@
  */
 
 function ImageComponent(props, apeContext) {
+  console.log(props, apeContext);
   const { ctx } = apeContext;
   const { style = {}, src, width, height } = props;
   let imageElement;
@@ -19,19 +20,19 @@ function ImageComponent(props, apeContext) {
   imageElement.src = src;
 
   if (imageElement.complete) {
-    const imageWidth = width || this.naturalWidth;
-    const imageHeight = height || this.naturalHeight;
+    console.log(1);
+    const imageWidth = width || style.width || this.naturalWidth;
+    const imageHeight = height || style.height || this.naturalHeight;
     ctx.drawImage(imageElement, style.x, style.y, imageWidth, imageHeight);
   } else {
     function loadImage() {
-      const imageWidth = width || this.naturalWidth;
-      const imageHeight = height || this.naturalHeight;
+      const imageWidth = width || style.width || this.naturalWidth;
+      const imageHeight = height || style.height || this.naturalHeight;
       ctx.drawImage(imageElement, style.x, style.y, imageWidth, imageHeight);
       imageElement.removeEventListener
     }
 
     imageElement.addEventListener('load', loadImage);
-    // imageElement.removeEventListener('load', loadImage);
 
     imageElement.addEventListener('error', function() {
       // if (window.__DEV__) {

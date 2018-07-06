@@ -6,26 +6,41 @@
  *
  */
 
-function renderChildren(children) {
+import React from 'react';
 
-}
+/**
+  Usage:
 
-function ListView(props, apeContext) {
-  const { ctx } = apeContext;
-  const { style = {}, dataSource, renderRow } = props;
-  let children = [];
+  <ListView
+    dataSource={this.posters}
+    renderRow={renderRow}
+    style={styles.list}
+  />
 
-  dataSource.forEach((data, idx) => {
-    children.push(renderRow(data, idx));
-  });
+  <View key={idx} onClick={() => { console.log(data) }}>
+        <Image src={data.src} width={200} height={300}/>
+        <Text content={data.name}/>
+      </View>
+*/
 
-  ctx.beginPath();
-  ctx.rect(style.x, style.y, style.width || 200, style.height || 200);
-  ctx.fillStyle = style.backgroundColor || 'white';
-  ctx.fill();
-  ctx.closePath();
+class ListView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return renderChildren.bind(this, children);
+  render() {
+    const {
+      style,
+      renderRow = () => {},
+      dataSource = [],
+    } = this.props;
+
+    return React.createElement(
+      'VIEW',
+      { style: style },
+      dataSource.map(renderRow)
+    );
+  }
 }
 
 export default ListView;
