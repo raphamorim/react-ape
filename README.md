@@ -172,6 +172,7 @@ Initial proof-of-concept.
   - [ ] handleTouchMove
   - [ ] handleTouchEnd
   - [ ] Drag and Drop
+- [ ] Document explaing how React-Ape lifecycle works
 
 ## References
 

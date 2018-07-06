@@ -12,15 +12,10 @@ import React from 'react';
   Usage:
 
   <ListView
-    dataSource={this.posters}
-    renderRow={renderRow}
-    style={styles.list}
+    dataSource={[]}
+    renderRow={() => {}}
+    style={StyleObject}
   />
-
-  <View key={idx} onClick={() => { console.log(data) }}>
-        <Image src={data.src} width={200} height={300}/>
-        <Text content={data.name}/>
-      </View>
 */
 
 class ListView extends React.Component {
@@ -29,15 +24,11 @@ class ListView extends React.Component {
   }
 
   render() {
-    const {
-      style,
-      renderRow = () => {},
-      dataSource = [],
-    } = this.props;
+    const {style, renderRow, dataSource} = this.props;
 
     return React.createElement(
       'VIEW',
-      { style: style },
+      {style: style},
       dataSource.map(renderRow)
     );
   }

@@ -14,19 +14,24 @@ const CHILDREN = 'children';
 const STYLE = 'style';
 
 const ReactApeComponent = {
-  createElement(type, props, rootContainerElement, apeContextGlobal, internalInstanceHandle) {
+  createElement(
+    type,
+    props,
+    rootContainerElement,
+    apeContextGlobal,
+    internalInstanceHandle
+  ) {
     const COMPONENTS = {
       IMAGE: () => Image.bind(this, props),
       TEXT: () => Text.bind(this, props),
-
       VIEW: () => new View(props),
     };
 
-    return (
-      COMPONENTS[type] ?
-      COMPONENTS[type]() :
-      console.warn('ReactApe could not identify ' + type + ' as ReactApeComponent')
-    )
+    return COMPONENTS[type]
+      ? COMPONENTS[type]()
+      : console.warn(
+          'ReactApe could not identify ' + type + ' as ReactApeComponent'
+        );
   },
 
   createTextNode(text, rootContainerElement) {
@@ -36,7 +41,13 @@ const ReactApeComponent = {
     // ).createTextNode(text);
   },
 
-  diffProperties(element, tag, lastRawProps, nextRawProps, rootContainerElement) {
+  diffProperties(
+    element,
+    tag,
+    lastRawProps,
+    nextRawProps,
+    rootContainerElement
+  ) {
     let updatePayload = null;
 
     const lastProps = lastRawProps;
@@ -133,7 +144,7 @@ const ReactApeComponent = {
     }
 
     return updatePayload;
-  }
-}
+  },
+};
 
 export default ReactApeComponent;

@@ -1,5 +1,12 @@
-import React from 'react'
-import { render, Text, ListView, View, Image, StyleSheet } from '../../react-ape/reactApeEntry'
+import React from 'react';
+import {
+  render,
+  Text,
+  ListView,
+  View,
+  Image,
+  StyleSheet,
+} from '../../react-ape/reactApeEntry';
 
 const styles = StyleSheet.create({
   heading: {
@@ -23,48 +30,68 @@ const styles = StyleSheet.create({
     left: 30,
   },
   infoAboutRenderer: {
-    top: 520,
-    left: 45,
+    top: 590,
+    left: 30,
     fontFamily: 'Arial',
     fontWeight: 'bold',
-    fontSize: 29,
+    color: 'lightblue',
+    fontSize: 23,
   },
   list: {
     top: 100,
     left: 0,
     backgroundColor: '#303030',
     width: 2000,
-    height: 300
-  }
-})
+    height: 400,
+  },
+});
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
     this.posters = [
-      { name: 'Narcos', src: 'posters/narcos.jpg' },
-      { name: 'Daredevil', src: 'posters/daredevil.jpg' },
-      { name: 'Stranger Things', src: 'posters/stranger-things.jpg' },
+      {name: 'Narcos', src: 'posters/narcos.jpg'},
+      {name: 'Daredevil', src: 'posters/daredevil.jpg'},
+      {name: 'Stranger Things', src: 'posters/stranger-things.jpg'},
+      {name: 'Narcos', src: 'posters/narcos.jpg'},
+      {name: 'Daredevil', src: 'posters/daredevil.jpg'},
+      {name: 'Stranger Things', src: 'posters/stranger-things.jpg'},
+      {name: 'Narcos', src: 'posters/narcos.jpg'},
+      {name: 'Daredevil', src: 'posters/daredevil.jpg'},
+      {name: 'Stranger Things', src: 'posters/stranger-things.jpg'},
     ];
     this.state = {
-      time: new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1"),
-    }
+      time: new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1'),
+    };
   }
 
   componentDidMount() {
     setInterval(() => {
-      const time = new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
-      this.setState({ time });
-    }, 100)
+      const time = new Date()
+        .toTimeString()
+        .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
+      this.setState({time});
+    }, 100);
   }
 
   renderPostersList() {
     const renderRow = (data, idx) => (
-      <View key={idx} onClick={() => { console.log(data) }}>
-        <Image src={data.src} width={200} height={300}/>
-        <Text content={data.name}/>
+      <View
+        height={200}
+        width={200}
+        key={'poster-list-' + idx}
+        onClick={() => {
+          console.log(data);
+        }}>
+        <Image
+          style={{x: 220 * idx + 30, y: 140, width: 200, height: 300}}
+          src={data.src}
+        />
+        <Text style={{x: 220 * idx + 30, y: 460, color: '#FFF'}}>
+          {data.name}
+        </Text>
       </View>
-    )
+    );
 
     return (
       <ListView
@@ -84,19 +111,13 @@ class App extends React.Component {
           width={210}
           height={100}
         />
-        <Text style={styles.heading}>
-          • Netflix Originals
-        </Text>
-        <Text style={styles.time}>
-          {this.state.time}
-        </Text>
-        <Text style={styles.infoAboutRenderer}>
-          Rendering with Canvas2DContext using React Ape
-        </Text>
-        { this.renderPostersList() }
+        <Text style={styles.heading}>• Netflix Originals</Text>
+        <Text style={styles.time}>{this.state.time}</Text>
+        <Text style={styles.infoAboutRenderer}>Maded with React Ape</Text>
+        {this.renderPostersList()}
       </View>
-    )
+    );
   }
 }
 
-render(<App/>, document.getElementById('root'))
+render(<App />, document.getElementById('root'));
