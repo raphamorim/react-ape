@@ -24,12 +24,12 @@ class ListView extends React.Component {
   }
 
   render() {
-    const {style, renderRow, dataSource} = this.props;
+    const {style, renderRow = () => {}, dataSource = []} = this.props;
 
     return React.createElement(
-      'VIEW',
-      {style: style},
-      dataSource.map(renderRow)
+      'View',
+      style || null,
+      dataSource.length ? dataSource.map(renderRow) : null
     );
   }
 }

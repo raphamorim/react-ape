@@ -13,15 +13,15 @@ function create(styles) {
 
   let processedStyles = {};
 
-  Object.keys(styles).forEach((styleKey) => {
+  Object.keys(styles).forEach(styleKey => {
     let style = styles[styleKey];
     if (typeof style !== 'object') {
       return {};
     }
 
-    let borderSize = (style.borderSize || null),
-      borderColor = (style.borderColor || null),
-      borderStyle = (style.borderStyle || []);
+    let borderSize = style.borderSize || null,
+      borderColor = style.borderColor || null,
+      borderStyle = style.borderStyle || [];
 
     if (style.border) {
       let border = [],
@@ -54,10 +54,10 @@ function create(styles) {
     }
 
     if (borderSize) {
-      style['borderSize'] = borderSize.replace(/[^0-9]/g, '');;
+      style['borderSize'] = borderSize.replace(/[^0-9]/g, '');
     }
 
-    if (typeof(borderStyle) === 'string') {
+    if (typeof borderStyle === 'string') {
       if (borderStyle === 'dashed') {
         borderStyle = [12];
       } else if (borderStyle === 'dotted') {
@@ -81,7 +81,7 @@ function create(styles) {
 
     processedStyles[styleKey] = style;
     style = null;
-  })
+  });
 
   styles = null;
   return processedStyles;
@@ -89,4 +89,4 @@ function create(styles) {
 
 export default {
   create: create,
-}
+};

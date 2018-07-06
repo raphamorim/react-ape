@@ -6,6 +6,6 @@
  *
  */
 
-export const View = 'VIEW';
-export const Image = 'IMAGE';
-export const Text = 'TEXT';
+export const View = 'View';
+export const Image = 'Image';
+export const Text = 'Text';

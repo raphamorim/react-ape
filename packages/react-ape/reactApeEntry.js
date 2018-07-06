@@ -15,9 +15,9 @@ export const ListView = ListViewComponent;
 export const render = ReactApeRenderer.render;
 // export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
 
-export const Image = 'IMAGE';
-export const View = 'VIEW';
-export const Text = 'TEXT';
+export const Image = 'Image';
+export const View = 'View';
+export const Text = 'Text';
 
 export const StyleSheet = StyleSheetModule;
 

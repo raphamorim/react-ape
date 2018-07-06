@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import {createElement} from 'react';
 
 class Canvas {
   constructor(root, props, apeContext) {
@@ -19,26 +19,24 @@ class Canvas {
     const height = this.props.height * this.props.scale;
     const style = {
       width: this.props.width,
-      height: this.props.height
+      height: this.props.height,
     };
 
-    return (
-      createElement('canvas', {
-        ref: 'canvas',
-        className: this.props.className,
-        id: this.props.id,
-        width: width,
-        height: height,
-        style: style,
-        // onTouchStart: this.handleTouchStart,
-        // onTouchMove: this.handleTouchMove,
-        // onTouchEnd: this.handleTouchEnd,
-        // onTouchCancel: this.handleTouchEnd,
-        onClick: this.handleClick,
-        onContextMenu: this.handleContextMenu,
-        onDoubleClick: this.handleDoubleClick
-      })
-    );
+    return createElement('canvas', {
+      ref: 'canvas',
+      className: this.props.className,
+      id: this.props.id,
+      width: width,
+      height: height,
+      style: style,
+      // onTouchStart: this.handleTouchStart,
+      // onTouchMove: this.handleTouchMove,
+      // onTouchEnd: this.handleTouchEnd,
+      // onTouchCancel: this.handleTouchEnd,
+      onClick: this.handleClick,
+      onContextMenu: this.handleContextMenu,
+      onDoubleClick: this.handleDoubleClick,
+    });
   }
 
   hitTest(e) {

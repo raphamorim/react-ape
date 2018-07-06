@@ -8,23 +8,25 @@
 
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
-import {precacheFiberNode, diffProperties, updateFiberProps} from './reactApeComponentTree';
+import {
+  precacheFiberNode,
+  diffProperties,
+  updateFiberProps,
+} from './reactApeComponentTree';
 
 function scaleDPI(canvas, context, customWidth, customHeight) {
-  const width = customWidth ||
-              canvas.offsetWidth ||
-              canvas.width ||
-              canvas.clientWidth;
-  const height = customHeight ||
-               canvas.offsetHeight ||
-               canvas.height ||
-               canvas.clientHeight;
+  const width =
+    customWidth || canvas.offsetWidth || canvas.width || canvas.clientWidth;
+  const height =
+    customHeight || canvas.offsetHeight || canvas.height || canvas.clientHeight;
   const deviceRatio = window.devicePixelRatio || 1;
-  const bsRatio = context.webkitBackingStorePixelRatio ||
-                context.mozBackingStorePixelRatio ||
-                context.msBackingStorePixelRatio ||
-                context.oBackingStorePixelRatio ||
-                context.backingStorePixelRatio || 1;
+  const bsRatio =
+    context.webkitBackingStorePixelRatio ||
+    context.mozBackingStorePixelRatio ||
+    context.msBackingStorePixelRatio ||
+    context.oBackingStorePixelRatio ||
+    context.backingStorePixelRatio ||
+    1;
   const ratio = deviceRatio / bsRatio;
 
   if (deviceRatio !== bsRatio) {
@@ -35,21 +37,20 @@ function scaleDPI(canvas, context, customWidth, customHeight) {
     context.scale(ratio, ratio);
   }
   return ratio;
-};
+}
 
-CanvasRenderingContext2D.prototype.clear =
-  CanvasRenderingContext2D.prototype.clear || function (preserveTransform) {
-    if (preserveTransform) {
-      this.save();
-      this.setTransform(1, 0, 0, 1, 0, 0);
-    }
+function clear(context, preserveTransform) {
+  if (preserveTransform) {
+    context.save();
+    context.setTransform(1, 0, 0, 1, 0, 0);
+  }
 
-    this.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
-    if (preserveTransform) {
-      this.restore();
-    }
-};
+  if (preserveTransform) {
+    context.restore();
+  }
+}
 
 // TODO: Use Context.
 let apeContextGlobal = false;
@@ -63,7 +64,13 @@ const ReactApeFiber = reconciler({
     }
   },
 
-  createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {
+  createInstance(
+    type,
+    props,
+    rootContainerInstance,
+    hostContext,
+    internalInstanceHandle
+  ) {
     // console.log('createInstance');
     let apeContext = null;
     if (!apeContextGlobal && rootContainerInstance.getContext) {
@@ -74,7 +81,9 @@ const ReactApeFiber = reconciler({
       apeContextGlobal = {
         type: 'canvas',
         _renderQueueForUpdate: [],
-        ctx: rootContainerInstanceContext = rootContainerInstance.getContext('2d'),
+        ctx: (rootContainerInstanceContext = rootContainerInstance.getContext(
+          '2d'
+        )),
       };
     }
 
@@ -83,7 +92,7 @@ const ReactApeFiber = reconciler({
       props,
       rootContainerInstance,
       apeContextGlobal,
-      internalInstanceHandle,
+      internalInstanceHandle
     );
 
     // console.log(apeElement)
@@ -115,20 +124,19 @@ const ReactApeFiber = reconciler({
 
   prepareUpdate(element, type, oldProps, newProps, rootContainerInstance) {
     if (newProps) {
-
-    // const diff = reactApeComponent.diffProperties(
-    //   element,
-    //   type,
-    //   oldProps,
-    //   newProps,
-    //   rootContainerInstance
-    // );
+      // const diff = reactApeComponent.diffProperties(
+      //   element,
+      //   type,
+      //   oldProps,
+      //   newProps,
+      //   rootContainerInstance
+      // );
 
       const apeElement = reactApeComponent.createElement(
         type,
         newProps,
         rootContainerInstance,
-        apeContextGlobal,
+        apeContextGlobal
       );
 
       apeContextGlobal._renderQueueForUpdate.push(apeElement);
@@ -137,14 +145,14 @@ const ReactApeFiber = reconciler({
 
   resetAfterCommit(rootContainerInstance) {
     if (apeContextGlobal._renderQueueForUpdate.length) {
-      apeContextGlobal.ctx.clear();
-      apeContextGlobal._renderQueueForUpdate.forEach((fn) => {
+      clear(apeContextGlobal.ctx);
+      apeContextGlobal._renderQueueForUpdate.forEach(fn => {
         if (fn.render) {
           fn.render(apeContextGlobal);
         } else {
           fn(apeContextGlobal);
         }
-      })
+      });
       apeContextGlobal._renderQueueForUpdate = [];
     }
   },
@@ -206,7 +214,7 @@ const ReactApeFiber = reconciler({
     },
 
     appendChildToContainer(parentInstance, child) {
-      console.log('appendChildToContainer', parentInstance, child)
+      console.log('appendChildToContainer', parentInstance, child);
       if (child.render) {
         child.render(apeContextGlobal);
       } else {
@@ -235,7 +243,7 @@ const ReactApeFiber = reconciler({
     commitMount(instance, updatePayload, type, oldProps, newProps) {},
 
     commitTextUpdate(textInstance, oldText, newText) {
-      console.log('>>>', textInstance)
+      console.log('>>>', textInstance);
       // textInstance.children = newText;
     },
   },
@@ -245,7 +253,7 @@ const ReactApeFiber = reconciler({
       typeof props.children === 'string' || typeof props.children === 'number'
     );
   },
-})
+});
 
 const defaultContainer = {};
 const roots = new Map();
@@ -270,6 +278,6 @@ const ReactApeRenderer = {
 
     return ReactApeFiber.getPublicRootInstance(root);
   },
-}
+};
 
 export default ReactApeRenderer;

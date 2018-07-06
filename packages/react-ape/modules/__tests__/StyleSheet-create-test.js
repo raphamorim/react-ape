@@ -4,7 +4,7 @@ describe('[StyleSheet] • create', () => {
   it('create must be a function', () => {
     expect(typeof StyleSheet).toEqual('object');
     expect(typeof StyleSheet.create).toEqual('function');
-  })
+  });
 
   it('should create a valid style object', () => {
     const styles = StyleSheet.create({
@@ -27,7 +27,7 @@ describe('[StyleSheet] • create', () => {
         fontWeight: 'bold',
         borderStyle: 'solid',
       },
-    })
+    });
 
     expect(styles).toEqual({
       heading: {
@@ -50,13 +50,13 @@ describe('[StyleSheet] • create', () => {
         fontFamily: 'Arial',
         fontWeight: 'bold',
         borderStyle: [],
-      }
+      },
     });
-  })
+  });
 
   describe('using an empty/invalid object', () => {
     it('empty: should return empty object', () => {
-      const styles = StyleSheet.create({})
+      const styles = StyleSheet.create({});
       expect(styles).toEqual({});
     });
 
@@ -67,7 +67,7 @@ describe('[StyleSheet] • create', () => {
         fontFamily: 'Arial',
         fontWeight: 'bold',
         fontSize: 29,
-      })
+      });
       expect(styles).toEqual({});
     });
   });

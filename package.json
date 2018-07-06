@@ -11,8 +11,8 @@
   "description": "React Renderer to build interfaces using canvas/WebGL",
   "scripts": {
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
-    "test": "yarn jest:ci",
-    "jest": "jest --no-cache",
+    "test": "yarn prettier:stat && yarn jest:ci",
+    "jest": "jest",
     "jest:ci": "jest --no-cache --bail --ci --runInBand",
     "prettier:stat": "node ./scripts/prettier/index.js",
     "prettier": "node ./scripts/prettier/index.js write-changed",
@@ -27,7 +27,7 @@
     "prettier": "^1.5.3",
     "react": "^16.3.2",
     "react-reconciler": "^0.12.0",
-    "react-test-renderer": "^16.2.0"
+    "react-test-renderer": "^16.4.1"
   },
   "author": "Raphael Amorim",
   "license": "MIT",
