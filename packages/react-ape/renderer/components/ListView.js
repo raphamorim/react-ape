@@ -28,7 +28,7 @@ class ListView extends React.Component {
 
     return React.createElement(
       'View',
-      style || null,
+      style ? {style} : null,
       dataSource.length ? dataSource.map(renderRow) : null
     );
   }
