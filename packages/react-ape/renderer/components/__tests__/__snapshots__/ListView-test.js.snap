@@ -19,15 +19,19 @@ exports[`ListView renders correctly 1`] = `
 
 exports[`ListView should render properly with dataSource and renderRow 1`] = `
 <View>
-  <Text>
-    Pug
-    , which age is 
-    5
-  </Text>
-  <Text>
-    Golden Retriever
-    , which age is 
-    8
-  </Text>
+  <View>
+    <Text>
+      Pug
+      , which age is 
+      5
+    </Text>
+  </View>
+  <View>
+    <Text>
+      Golden Retriever
+      , which age is 
+      8
+    </Text>
+  </View>
 </View>
 `;

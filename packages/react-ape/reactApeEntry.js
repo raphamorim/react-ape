@@ -6,7 +6,7 @@
  *
  */
 
-import ReactApeRenderer from './renderer/ReactApeRenderer';
+import ReactApeRenderer from './renderer/reactApeRenderer';
 import StyleSheetModule from './modules/StyleSheet';
 
 import ListViewComponent from './renderer/components/ListView';

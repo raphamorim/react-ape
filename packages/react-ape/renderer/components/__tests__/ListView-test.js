@@ -18,9 +18,11 @@ describe('ListView', () => {
       {dog: 'Golden Retriever', age: 8},
     ];
     const renderRow = (data, idx) => (
-      <Text key={idx}>
-        {data.dog}, which age is {data.age}
-      </Text>
+      <View key={idx}>
+        <Text>
+          {data.dog}, which age is {data.age}
+        </Text>
+      </View>
     );
 
     const ListViewTree = renderer
