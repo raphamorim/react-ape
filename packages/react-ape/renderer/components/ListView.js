@@ -19,13 +19,8 @@ import React from 'react';
 */
 
 class ListView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {style, renderRow = () => {}, dataSource = []} = this.props;
-
     return React.createElement(
       'View',
       style ? {style} : null,

@@ -113,7 +113,7 @@ class App extends React.Component {
         />
         <Text style={styles.heading}>• Netflix Originals</Text>
         <Text style={styles.time}>{this.state.time}</Text>
-        <Text style={styles.infoAboutRenderer}>Maded with React Ape</Text>
+        <Text style={styles.infoAboutRenderer}>Made with React Ape</Text>
         {this.renderPostersList()}
       </View>
     );

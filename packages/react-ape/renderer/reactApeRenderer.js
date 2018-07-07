@@ -15,27 +15,31 @@ import {
 } from './reactApeComponentTree';
 
 function scaleDPI(canvas, context, customWidth, customHeight) {
-  const width =
-    customWidth || canvas.offsetWidth || canvas.width || canvas.clientWidth;
-  const height =
-    customHeight || canvas.offsetHeight || canvas.height || canvas.clientHeight;
-  const deviceRatio = window.devicePixelRatio || 1;
-  const bsRatio =
+  const devicePixelRatio = window.devicePixelRatio || 1;
+
+  const backingStorePixelRatio =
     context.webkitBackingStorePixelRatio ||
     context.mozBackingStorePixelRatio ||
     context.msBackingStorePixelRatio ||
     context.oBackingStorePixelRatio ||
     context.backingStorePixelRatio ||
     1;
-  const ratio = deviceRatio / bsRatio;
 
-  if (deviceRatio !== bsRatio) {
-    canvas.width = Math.round(width * ratio);
-    canvas.height = Math.round(height * ratio);
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
+  const ratio = devicePixelRatio / backingStorePixelRatio;
+
+  const width =
+    customWidth || canvas.offsetWidth || canvas.width || canvas.clientWidth;
+  const height =
+    customHeight || canvas.offsetHeight || canvas.height || canvas.clientHeight;
+  canvas.width = Math.round(width * ratio);
+  canvas.height = Math.round(height * ratio);
+
+  if (devicePixelRatio !== backingStorePixelRatio) {
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
     context.scale(ratio, ratio);
   }
+
   return ratio;
 }
 
@@ -95,7 +99,7 @@ const ReactApeFiber = reconciler({
       internalInstanceHandle
     );
 
-    // console.log(apeElement)
+    // console.log(apeElement);
 
     precacheFiberNode(internalInstanceHandle, apeElement);
     updateFiberProps(apeElement, props);
@@ -256,12 +260,12 @@ const ReactApeFiber = reconciler({
 });
 
 const defaultContainer = {};
-const roots = new Map();
+// Using WeakMap avoids memory leak in case the container is garbage colected.
+const roots = typeof WeakMap === 'function' ? new WeakMap() : new Map();
 
 const ReactApeRenderer = {
   render(canvasElement, container, callback) {
-    const containerKey =
-      typeof container === 'undefined' ? defaultContainer : container;
+    const containerKey = container == null ? defaultContainer : container;
     let root = roots.get(containerKey);
     if (!root) {
       root = ReactApeFiber.createContainer(containerKey);
