@@ -61,8 +61,7 @@ let apeContextGlobal = false;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    // console.log('appendInitialChild', child, typeof child);
-    // console.log(parentInstance);
+    // console.log('appendInitialChild', parentInstance, child, typeof child);
     if (parentInstance.appendChild) {
       parentInstance.appendChild(child);
       parentInstance.render(apeContextGlobal);
@@ -76,7 +75,7 @@ const ReactApeFiber = reconciler({
     hostContext,
     internalInstanceHandle
   ) {
-    console.log('createInstance');
+    // console.log('createInstance');
     let apeContext = null;
     if (!apeContextGlobal && rootContainerInstance.getContext) {
       let rootContainerInstanceContext = rootContainerInstance.getContext('2d');
