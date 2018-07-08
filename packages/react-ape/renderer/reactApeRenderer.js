@@ -8,10 +8,7 @@
 
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
-import {
-  precacheFiberNode,
-  updateFiberProps,
-} from './reactApeComponentTree';
+import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
 
 function scaleDPI(canvas, context, customWidth, customHeight) {
   const devicePixelRatio = window.devicePixelRatio || 1;

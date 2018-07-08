@@ -1,20 +1,21 @@
 const path = require('path');
-const { rollup } = require('rollup');
+const {rollup} = require('rollup');
 const closure = require('./plugins/closure-plugin');
 const babel = require('rollup-plugin-babel');
 const stripBanner = require('rollup-plugin-strip-banner');
 const commonjs = require('rollup-plugin-commonjs');
 const resolve = require('rollup-plugin-node-resolve');
-const { uglify } = require('rollup-plugin-uglify');
+const {uglify} = require('rollup-plugin-uglify');
 const replace = require('rollup-plugin-replace');
 const optimizeJs = require('rollup-plugin-optimize-js');
 const chalk = require('chalk');
 
 const tasks = [];
 const packagePath = 'packages/react-ape';
-const reactApeVersion = require(
-  path.resolve(process.cwd(), `${packagePath}/package.json`)
-).version;
+const reactApeVersion = require(path.resolve(
+  process.cwd(),
+  `${packagePath}/package.json`
+)).version;
 
 const closureOptions = {
   compilation_level: 'SIMPLE',
@@ -46,8 +47,8 @@ function createBundle({entryPath, bundleType, destName}) {
     babel({
       exclude: 'node_modules/**',
       babelrc: false,
-      presets: [['env', { modules: false }], 'react', 'stage-2'],
-      plugins: ['external-helpers']
+      presets: [['env', {modules: false}], 'react', 'stage-2'],
+      plugins: ['external-helpers'],
     }),
     resolve({
       jsnext: true,
@@ -67,18 +68,19 @@ function createBundle({entryPath, bundleType, destName}) {
       include: 'node_modules/**',
     }),
     // Apply dead code elimination and/or minification.
-    bundleType === 'production' && closure(
-      Object.assign({}, closureOptions, {
-        // Don't let it create global variables in the browser.
-        // https://github.com/facebook/react/issues/10909
-        assume_function_wrapper: false,
-        // Works because `google-closure-compiler-js` is forked in Yarn lockfile.
-        // We can remove this if GCC merges my PR:
-        // https://github.com/google/closure-compiler/pull/2707
-        // and then the compiled version is released via `google-closure-compiler-js`.
-        renaming: true,
-      })
-    )
+    bundleType === 'production' &&
+      closure(
+        Object.assign({}, closureOptions, {
+          // Don't let it create global variables in the browser.
+          // https://github.com/facebook/react/issues/10909
+          assume_function_wrapper: false,
+          // Works because `google-closure-compiler-js` is forked in Yarn lockfile.
+          // We can remove this if GCC merges my PR:
+          // https://github.com/google/closure-compiler/pull/2707
+          // and then the compiled version is released via `google-closure-compiler-js`.
+          renaming: true,
+        })
+      ),
   ];
 
   if (bundleType.indexOf('production') >= 0) {
@@ -94,7 +96,7 @@ function createBundle({entryPath, bundleType, destName}) {
       bundle.write({
         format: 'umd',
         globals: {
-          'react': 'React',
+          react: 'React',
         },
         name: 'ReactApe',
         file: `${packagePath}/dist/${destName}`,

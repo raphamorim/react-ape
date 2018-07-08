@@ -33,17 +33,18 @@ const config = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(new UglifyJsPlugin({
-    uglifyOptions: {
+  config.plugins.push(
+    new UglifyJsPlugin({
+      uglifyOptions: {
         output: {
-          comments: false
+          comments: false,
         },
         compress: {
           warnings: false,
         },
       },
-    }
-  ));
+    })
+  );
   config.plugins.push(
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
