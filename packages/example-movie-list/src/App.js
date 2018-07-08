@@ -6,7 +6,7 @@ import {
   View,
   Image,
   StyleSheet,
-} from '../../react-ape/reactApeEntry';
+} from 'react-ape';
 
 const styles = StyleSheet.create({
   heading: {

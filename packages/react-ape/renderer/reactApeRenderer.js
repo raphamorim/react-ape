@@ -10,7 +10,6 @@ import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
 import {
   precacheFiberNode,
-  diffProperties,
   updateFiberProps,
 } from './reactApeComponentTree';
 
@@ -275,7 +274,7 @@ const ReactApeRenderer = {
     ReactApeFiber.updateContainer(canvasElement, root, null, callback);
 
     ReactApeFiber.injectIntoDevTools({
-      bundleType: 1,
+      bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
       rendererPackageName: 'ReactApe',
       findHostInstanceByFiber: ReactApeFiber.findHostInstance,
     });

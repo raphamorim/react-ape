@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const sourcePath = path.join(__dirname, 'src');
 
 const config = {
-  entry: ['babel-polyfill', path.resolve(sourcePath, 'App.js')],
+  entry: [path.resolve(sourcePath, 'App.js')],
   output: {
     path: __dirname,
     filename: 'bundle.js',
@@ -33,7 +33,17 @@ const config = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(new UglifyJsPlugin());
+  config.plugins.push(new UglifyJsPlugin({
+    uglifyOptions: {
+        output: {
+          comments: false
+        },
+        compress: {
+          warnings: false,
+        },
+      },
+    }
+  ));
   config.plugins.push(
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
