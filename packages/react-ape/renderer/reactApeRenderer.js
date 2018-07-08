@@ -8,11 +8,7 @@
 
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
-import {
-  precacheFiberNode,
-  diffProperties,
-  updateFiberProps,
-} from './reactApeComponentTree';
+import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
 
 function scaleDPI(canvas, context, customWidth, customHeight) {
   const devicePixelRatio = window.devicePixelRatio || 1;
@@ -275,7 +271,7 @@ const ReactApeRenderer = {
     ReactApeFiber.updateContainer(canvasElement, root, null, callback);
 
     ReactApeFiber.injectIntoDevTools({
-      bundleType: 1,
+      bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
       rendererPackageName: 'ReactApe',
       findHostInstanceByFiber: ReactApeFiber.findHostInstance,
     });

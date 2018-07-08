@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
-    "react": "^16.3.2"
+    "react": "^16.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

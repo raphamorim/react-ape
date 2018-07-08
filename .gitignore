@@ -2,6 +2,8 @@
 *.log
 *.map
 
+dist
+
 node_modules
 package-lock.json
 npm-shrinkwrap.json
