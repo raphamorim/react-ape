@@ -4,9 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
+ * @flow
+ *
  */
 
-import React from 'react';
+import * as React from 'react';
 
 /**
   Usage:
@@ -18,12 +20,23 @@ import React from 'react';
   />
 */
 
-class ListView extends React.Component {
+type Props = {|
+  style: { [string]: string | number },
+  dataSource: Array<mixed>,
+  renderRow: mixed => React.Node
+|};
+
+class ListView extends React.Component<Props> {
+  static defaultProps = {
+    renderRow: () => {},
+    dataSource: []
+  };
+
   render() {
-    const {style, renderRow = () => {}, dataSource = []} = this.props;
+    const { style, renderRow, dataSource } = this.props;
     return React.createElement(
       'View',
-      style ? {style} : null,
+      style ? { style } : null,
       dataSource.length ? dataSource.map(renderRow) : null
     );
   }
