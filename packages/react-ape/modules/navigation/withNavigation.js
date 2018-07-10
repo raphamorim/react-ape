@@ -1,17 +1,21 @@
 import React from 'react';
-import { createHOC } from '../utils';
+import { getDisplayName } from '../utils';
 import { FocusPathContext } from './FocusPathContext';
 
+/**
+ * 
+ *
+ */
 export function withNavigation(WrappedComponent) {
-  return createHOC(
+  return class extends React.Component {
+
+    static WrappedComponent = WrappedComponent;
+    static displayName = `withNavigation(${getDisplayName(
+      WrappedComponent
+    )})`;
+
     WrappedComponent,
     class extends React.Component {
-      constructor() {
-        super(...arguments);
-        this.state = {
-          focusedPath: null
-        };
-      }
       render() {
         return (
           <FocusPathContext.Provider value="app-nav">
