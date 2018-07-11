@@ -1,9 +1,6 @@
 version: 2
-jobs:
-  build:
-    docker:
-      - image: circleci/node:8
-
+aliases:
+  build_config: &build_config
     working_directory: ~/repo
 
     steps:
@@ -34,3 +31,14 @@ jobs:
       - run:
           name: Lint and Test packages
           command: yarn test
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+    <<: *build_config
+
+    
+  build_10:
+    docker:
+      - image: circleci/node:10
+    <<: *build_config

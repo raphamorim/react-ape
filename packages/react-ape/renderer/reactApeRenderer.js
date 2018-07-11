@@ -8,7 +8,13 @@
 
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
-import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
+import { precacheFiberNode, updateFiberProps } from './reactApeComponentTree';
+
+export type CanvasComponentContext = {
+  _renderQueueForUpdate: Array<mixed>,
+  type: 'canvas',
+  ctx: CanvasRenderingContext2D
+};
 
 function scaleDPI(canvas, context, customWidth, customHeight) {
   const devicePixelRatio = window.devicePixelRatio || 1;
@@ -53,7 +59,7 @@ function clear(context, preserveTransform) {
 }
 
 // TODO: Use Context.
-let apeContextGlobal = false;
+let apeContextGlobal = null;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
@@ -83,7 +89,7 @@ const ReactApeFiber = reconciler({
         _renderQueueForUpdate: [],
         ctx: (rootContainerInstanceContext = rootContainerInstance.getContext(
           '2d'
-        )),
+        ))
       };
     }
 
@@ -245,14 +251,14 @@ const ReactApeFiber = reconciler({
     commitTextUpdate(textInstance, oldText, newText) {
       console.log('>>>', textInstance);
       // textInstance.children = newText;
-    },
+    }
   },
 
   shouldSetTextContent(props) {
     return (
       typeof props.children === 'string' || typeof props.children === 'number'
     );
-  },
+  }
 });
 
 const defaultContainer = {};
@@ -273,11 +279,11 @@ const ReactApeRenderer = {
     ReactApeFiber.injectIntoDevTools({
       bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
       rendererPackageName: 'ReactApe',
-      findHostInstanceByFiber: ReactApeFiber.findHostInstance,
+      findHostInstanceByFiber: ReactApeFiber.findHostInstance
     });
 
     return ReactApeFiber.getPublicRootInstance(root);
-  },
+  }
 };
 
 export default ReactApeRenderer;

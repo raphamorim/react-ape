@@ -4,11 +4,31 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
+ * @flow
+ *
  */
 
-function Text(props, apeContext) {
-  const {ctx} = apeContext;
-  const {style = {}, children, content} = props;
+import type { CanvasComponentContext } from '../types';
+
+type Props = {|
+  style: {
+    borderStyle?: Array<number>,
+    borderSize: number,
+    borderColor?: string,
+    fontSize?: number,
+    fontFamily?: string,
+    color?: string,
+    align: string,
+    x: number,
+    y: number
+  },
+  children: string,
+  content?: string
+|};
+
+function Text(props: Props, apeContext: CanvasComponentContext) {
+  const { ctx } = apeContext;
+  const { style = {}, children, content } = props;
 
   ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);
