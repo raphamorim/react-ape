@@ -22,10 +22,9 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
-        include: sourcePath,
+        use: { loader: 'babel-loader' }
       },
     ],
   },
@@ -43,15 +42,13 @@ if (process.env.NODE_ENV === 'production') {
           warnings: false,
         },
       },
-    })
-  );
-  config.plugins.push(
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-    })
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
   );
-  config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
-  config.plugins.push(new webpack.HashedModuleIdsPlugin());
 }
 
 module.exports = config;

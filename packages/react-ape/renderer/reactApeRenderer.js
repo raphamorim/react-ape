@@ -10,12 +10,6 @@ import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
 import { precacheFiberNode, updateFiberProps } from './reactApeComponentTree';
 
-export type CanvasComponentContext = {
-  _renderQueueForUpdate: Array<mixed>,
-  type: 'canvas',
-  ctx: CanvasRenderingContext2D
-};
-
 function scaleDPI(canvas, context, customWidth, customHeight) {
   const devicePixelRatio = window.devicePixelRatio || 1;
 

@@ -1,28 +1,46 @@
-import React from 'react';
-import { getDisplayName } from '../utils';
+/**
+ * @flow
+ */
+
+import * as React from 'react';
+import { getComponentDisplayName, unsafeCreateUniqueId } from '../utils';
 import { FocusPathContext } from './FocusPathContext';
 
-/**
- * 
- *
- */
-export function withNavigation(WrappedComponent) {
-  return class extends React.Component {
+type RequiredProps = {};
 
+// See why we do `| void`
+// https://flow.org/en/docs/react/hoc/#toc-injecting-props-with-a-higher-order-component
+type InjectedProps = {
+  focusPath: string | void
+};
+
+/**
+ * Adds `focusPath` to the context so we can create the `focusPath`
+ * from the focusable elements inside the WrappedComponent.
+ * Should be used to wrap the root component of the application.
+ */
+export function withNavigation<Props: RequiredProps>(
+  WrappedComponent: React.ComponentType<Props>
+): React.ComponentType<$Diff<Props, InjectedProps>> {
+  return class extends React.Component<Props> {
     static WrappedComponent = WrappedComponent;
-    static displayName = `withNavigation(${getDisplayName(
+    static displayName = `withNavigation(${getComponentDisplayName(
       WrappedComponent
     )})`;
 
-    WrappedComponent,
-    class extends React.Component {
-      render() {
-        return (
-          <FocusPathContext.Provider value="app-nav">
-            <WrappedComponent />
-          </FocusPathContext.Provider>
-        );
-      }
+    rootFocusPath: string;
+
+    constructor() {
+      super(...arguments);
+      this.rootFocusPath = `root-${unsafeCreateUniqueId()}`;
     }
-  );
+
+    render() {
+      return (
+        <FocusPathContext.Provider value={this.rootFocusPath}>
+          <WrappedComponent {...this.props} />
+        </FocusPathContext.Provider>
+      );
+    }
+  };
 }

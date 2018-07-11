@@ -6,19 +6,13 @@
  *
  */
 
+export { View, Image, Text } from './renderer/constants';
+export { default as ListView } from './renderer/components/ListView';
+export { default as StyleSheet } from './modules/StyleSheet';
+export { withFocus, withNavigation } from './modules/navigation';
+
 import ReactApeRenderer from './renderer/reactApeRenderer';
-import StyleSheetModule from './modules/StyleSheet';
-
-import ListViewComponent from './renderer/components/ListView';
-export const ListView = ListViewComponent;
-
 export const render = ReactApeRenderer.render;
 // export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
-
-export const Image = 'Image';
-export const View = 'View';
-export const Text = 'Text';
-
-export const StyleSheet = StyleSheetModule;
 
 export default ReactApeRenderer;

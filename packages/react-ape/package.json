@@ -2,7 +2,7 @@
   "name": "react-ape",
   "version": "0.0.6",
   "description": "React Renderer to build interfaces using canvas/WebGL",
-  "main": "index.js",
+  "main": "reactApeEntry.js",
   "scripts": {
     "flow": "flow"
   },
@@ -31,9 +31,5 @@
   "bugs": {
     "url": "https://github.com/raphamorim/react-ape/issues"
   },
-  "homepage": "https://github.com/raphamorim/react-ape#readme",
-  "devDependencies": {
-    "flow-bin": "^0.76.0",
-    "flow-typed": "^2.5.1"
-  }
+  "homepage": "https://github.com/raphamorim/react-ape#readme"
 }

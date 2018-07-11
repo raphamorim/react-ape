@@ -6,9 +6,9 @@
  *
  */
 
-const randomKey = Math.random()
-  .toString(36)
-  .slice(2);
+import { unsafeCreateUniqueId } from '../modules/utils';
+
+const randomKey = unsafeCreateUniqueId();
 const internalInstanceKey = '__reactInternalInstance$' + randomKey;
 const internalEventHandlersKey = '__reactEventHandlers$' + randomKey;
 

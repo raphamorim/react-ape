@@ -1,29 +1,53 @@
-import React from 'react';
-import { getDisplayName } from '../utils';
+/**
+ * @flow
+ */
+
+import * as React from 'react';
+import { getComponentDisplayName } from '../utils';
 import { FocusPathContext } from './FocusPathContext';
 
-// focusKey: string
-// focused: boolean
-function withFocus(WrappedComponent) {
-  return class extends React.Component {
+type RequiredProps = {
+  focusKey: string
+};
+
+// See why we do `| void`
+// https://flow.org/en/docs/react/hoc/#toc-injecting-props-with-a-higher-order-component
+type InjectedProps = {
+  focused: boolean | void
+};
+
+/**
+ * Allows the WrappedComponent to be focusable and provides the `focused`
+ * property to it.
+ * The resulting component should provide a `focusKey` property.
+ */
+export function withFocus<Props: RequiredProps>(
+  WrappedComponent: React.ComponentType<Props>
+): React.ComponentType<$Diff<Props, InjectedProps>> {
+  return class extends React.Component<Props> {
     static WrappedComponent = WrappedComponent;
-    static displayName = `withFocus(${getDisplayName(WrappedComponent)})`;
+    static displayName = `withFocus(${getComponentDisplayName(
+      WrappedComponent
+    )})`;
+
+    renderWithFocusPath = focusPath => {
+      // TODO: I need to listen to a global and observable focusPath that will
+      // define if this component should be focused or not (the value of focused)
+      const { focusKey } = this.props;
+      return (
+        <FocusPathContext.Provider value={`${focusPath}/${focusKey}`}>
+          <WrappedComponent
+            {...this.props}
+            focused={true}
+          />
+        </FocusPathContext.Provider>
+      );
+    };
 
     render() {
-      const { focusKey } = this.props;
-      // TODO: I need to listen to a global and observable focusPath that will define
-      // if this component should be focused or not (the value of focused)
       return (
         <FocusPathContext.Consumer>
-          {focusPath => (
-            <FocusPathContext.Provider value={`${focusPath}/${focusKey}`}>
-              <WrappedComponent
-                {...this.props}
-                focused={true}
-                focusPath={`${focusPath}/${focusKey}`}
-              />
-            </FocusPathContext.Provider>
-          )}
+          {this.renderWithFocusPath}
         </FocusPathContext.Consumer>
       );
     }
