@@ -8,7 +8,7 @@
  *
  */
 
-import type { CanvasComponentContext } from '../types';
+import type {CanvasComponentContext} from '../types';
 
 type Props = {|
   style: {
@@ -20,15 +20,15 @@ type Props = {|
     color?: string,
     align: string,
     x: number,
-    y: number
+    y: number,
   },
   children: string,
-  content?: string
+  content?: string,
 |};
 
 function Text(props: Props, apeContext: CanvasComponentContext) {
-  const { ctx } = apeContext;
-  const { style = {}, children, content } = props;
+  const {ctx} = apeContext;
+  const {style = {}, children, content} = props;
 
   ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);

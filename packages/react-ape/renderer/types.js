@@ -11,5 +11,5 @@
 export type CanvasComponentContext = {
   _renderQueueForUpdate: Array<mixed>,
   type: 'canvas',
-  ctx: CanvasRenderingContext2D
+  ctx: CanvasRenderingContext2D,
 };

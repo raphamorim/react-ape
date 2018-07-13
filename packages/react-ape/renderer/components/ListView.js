@@ -21,22 +21,22 @@ import * as React from 'react';
 */
 
 type Props = {|
-  style: { [string]: string | number },
+  style: {[string]: string | number},
   dataSource: Array<mixed>,
-  renderRow: mixed => React.Node
+  renderRow: mixed => React.Node,
 |};
 
 class ListView extends React.Component<Props> {
   static defaultProps = {
     renderRow: () => {},
-    dataSource: []
+    dataSource: [],
   };
 
   render() {
-    const { style, renderRow, dataSource } = this.props;
+    const {style, renderRow, dataSource} = this.props;
     return React.createElement(
       'View',
-      style ? { style } : null,
+      style ? {style} : null,
       dataSource.length ? dataSource.map(renderRow) : null
     );
   }

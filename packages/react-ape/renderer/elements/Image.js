@@ -8,7 +8,7 @@
  *
  */
 
-import type { CanvasComponentContext } from '../types';
+import type {CanvasComponentContext} from '../types';
 
 const cacheImageControl = {};
 
@@ -21,7 +21,7 @@ function saveOnCache(
   cacheImageControl[src] = {
     element,
     width,
-    height
+    height,
   };
 }
 
@@ -30,16 +30,16 @@ type Props = {|
     width?: number,
     height?: number,
     x: number,
-    y: number
+    y: number,
   },
   src: string,
   width: number,
-  height: number
+  height: number,
 |};
 
 function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
-  const { ctx } = apeContext;
-  const { style = {}, src, width, height } = props;
+  const {ctx} = apeContext;
+  const {style = {}, src, width, height} = props;
 
   if (!src) {
     return null;
@@ -64,8 +64,12 @@ function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
     if (!imageElement) {
       return;
     }
-    const imageWidth = Number(width || style.width || imageElement.naturalWidth);
-    const imageHeight = Number(height || style.height || imageElement.naturalHeight);
+    const imageWidth = Number(
+      width || style.width || imageElement.naturalWidth
+    );
+    const imageHeight = Number(
+      height || style.height || imageElement.naturalHeight
+    );
     ctx.drawImage(imageElement, style.x, style.y, imageWidth, imageHeight);
     saveOnCache(src, imageElement, imageWidth, imageHeight);
     imageElement = null;
