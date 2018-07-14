@@ -28,7 +28,12 @@ const defaultOptions = {
 const config = {
   default: {
     patterns: ['packages/**/*.js'],
-    ignore: ['**/node_modules/**', '**bundle.js**', '**/flow-typed/**'],
+    ignore: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**bundle.js**',
+      '**/flow-typed/**',
+    ],
   },
   scripts: {
     patterns: ['scripts/**/*.js', 'fixtures/**/*.js'],

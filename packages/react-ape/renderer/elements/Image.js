@@ -33,12 +33,13 @@ type Props = {|
     y: number,
   },
   src: string,
-  width: number,
-  height: number,
+  imageElement: Image,
+  width?: number,
+  height?: number,
 |};
 
 function drawImage(
-  ctx: CanvasComponentContext,
+  ctx: CanvasRenderingContext2D,
   imageElement: Image,
   x: number,
   y: number,
@@ -50,9 +51,9 @@ function drawImage(
 
 function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
   const {ctx} = apeContext;
-  const {style = {x: 0, y: 0}, src, width, height} = props;
+  const {style = {x: 0, y: 0}, imageElement, src, width, height} = props;
 
-  if (!src) {
+  if (!src && !imageElement) {
     return null;
   }
 
@@ -69,41 +70,41 @@ function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
     return;
   }
 
-  if (src && src.src) {
+  if (imageElement && imageElement.src) {
     drawImage(
       ctx,
-      src,
+      imageElement,
       style.x,
       style.y,
-      width || style.width || src.naturalWidth,
-      height || style.height || src.naturalHeight
+      width || style.width || imageElement.naturalWidth,
+      height || style.height || imageElement.naturalHeight
     );
     return;
   }
 
-  let imageElement = new Image();
-  imageElement.src = src;
+  let newImageElement = new Image();
+  newImageElement.src = src;
 
   function loadImage() {
-    if (!imageElement) {
+    if (!newImageElement) {
       return;
     }
     const imageWidth = Number(
-      width || style.width || imageElement.naturalWidth
+      width || style.width || newImageElement.naturalWidth
     );
     const imageHeight = Number(
-      height || style.height || imageElement.naturalHeight
+      height || style.height || newImageElement.naturalHeight
     );
-    ctx.drawImage(imageElement, style.x, style.y, imageWidth, imageHeight);
-    saveOnCache(src, imageElement, imageWidth, imageHeight);
-    imageElement = null;
+    ctx.drawImage(newImageElement, style.x, style.y, imageWidth, imageHeight);
+    saveOnCache(src, newImageElement, imageWidth, imageHeight);
+    newImageElement = null;
   }
 
-  if (imageElement.complete) {
+  if (newImageElement.complete) {
     loadImage();
   } else {
-    imageElement.addEventListener('load', loadImage);
-    imageElement.addEventListener('error', () => {
+    newImageElement.addEventListener('load', loadImage);
+    newImageElement.addEventListener('error', () => {
       if (process.env.NODE_ENV === 'development') {
         console.warn('failed to load image:', src);
       }
