@@ -34,7 +34,7 @@ function Text(props: Props, apeContext: CanvasComponentContext) {
   ctx.setLineDash(style.borderStyle || []);
   ctx.textBaseline = 'middle';
   ctx.lineWidth = style.borderSize;
-  ctx.strokeStyle = style.borderColor || 'black';
+  // ctx.strokeStyle = style.borderColor || 'black';
   ctx.font = `${style.fontSize || 18}px ${style.fontFamily || 'Helvetica'}`;
   ctx.fillStyle = style.color || 'black';
   ctx.textAlign = style.align;
