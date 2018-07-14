@@ -5,13 +5,13 @@ import ImageFn from '../Image';
 
 describe('Image', () => {
   describe('should call drawImage properly', () => {
-    describe('src as ImageElement', () => {
-      it('with style object and src as props', () => {
+    describe('using imageElement', () => {
+      it('with style object and imageElement as props', () => {
         const imageElement = new Image();
         imageElement.src = 'source-to-image';
 
         const style = {x: 10, y: 100, width: 300, height: 120};
-        const props = {style, src: imageElement};
+        const props = {style, imageElement: imageElement};
         const apeContext = {
           ctx: {
             drawImage: jest.fn(),
@@ -27,12 +27,12 @@ describe('Image', () => {
         expect(drawImage).toBeCalledWith(imageElement, 10, 100, 300, 120);
       });
 
-      it('without style object and width, height, src as props', () => {
+      it('without style object and width, height, imageElement as props', () => {
         const imageElement = new Image();
         imageElement.src =
           'data:image/gif;base64,R0lGODlhCwALAIAAAAAA3pn/ZiH5BAEAAAEALAAAAAALAAsAAAIUhA+hkcuO4lmNVindo7qyrIXiGBYAOw==';
 
-        const props = {src: imageElement, width: 100, height: 320};
+        const props = {imageElement, width: 100, height: 320};
         const apeContext = {
           ctx: {
             drawImage: jest.fn(),
@@ -48,12 +48,12 @@ describe('Image', () => {
         expect(drawImage).toBeCalledWith(imageElement, 0, 0, 100, 320);
       });
 
-      it('without style object and src as props', () => {
+      it('without style object and imageElement as props', () => {
         const imageElement = new Image();
         imageElement.src =
           'data:image/gif;base64,R0lGODlhCwALAIAAAAAA3pn/ZiH5BAEAAAEALAAAAAALAAsAAAIUhA+hkcuO4lmNVindo7qyrIXiGBYAOw==';
 
-        const props = {src: imageElement};
+        const props = {imageElement};
         const apeContext = {
           ctx: {
             drawImage: jest.fn(),
@@ -69,7 +69,7 @@ describe('Image', () => {
         expect(drawImage).toBeCalledWith(imageElement, 0, 0, 0, 0);
       });
     });
-    describe('src as string', () => {
+    describe('using src', () => {
       // it('without style object and src as props', () => {
       //   const imageElement = new Image();
       //   imageElement.src = 'data:image/gif;base64,R0lGODlhCwALAIAAAAAA3pn/ZiH5BAEAAAEALAAAAAALAAsAAAIUhA+hkcuO4lmNVindo7qyrIXiGBYAOw==';
