@@ -37,9 +37,20 @@ type Props = {|
   height: number,
 |};
 
+function drawImage(
+  ctx: CanvasComponentContext,
+  imageElement: Image,
+  x: number,
+  y: number,
+  width: number,
+  height: number
+) {
+  ctx.drawImage(imageElement, x, y, width, height);
+}
+
 function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
   const {ctx} = apeContext;
-  const {style = {}, src, width, height} = props;
+  const {style = {x: 0, y: 0}, src, width, height} = props;
 
   if (!src) {
     return null;
@@ -47,12 +58,25 @@ function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
 
   const cachedImage = cacheImageControl[src];
   if (cachedImage) {
-    ctx.drawImage(
+    drawImage(
+      ctx,
       cachedImage.element,
       style.x,
       style.y,
       width || style.width || cachedImage.width,
       height || style.height || cachedImage.height
+    );
+    return;
+  }
+
+  if (src && src.src) {
+    drawImage(
+      ctx,
+      src,
+      style.x,
+      style.y,
+      width || style.width || src.naturalWidth,
+      height || style.height || src.naturalHeight
     );
     return;
   }
@@ -80,9 +104,9 @@ function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
   } else {
     imageElement.addEventListener('load', loadImage);
     imageElement.addEventListener('error', () => {
-      // if (window.__DEV__) {
-      console.warn('failed to load image:', src);
-      // }
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('failed to load image:', src);
+      }
     });
   }
 }
