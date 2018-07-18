@@ -4,8 +4,6 @@ import renderer from 'react-test-renderer';
 import ListView from '../ListView';
 import {View, Text} from '../../../reactApeEntry';
 
-global.CanvasRenderingContext2D = () => {};
-
 describe('ListView', () => {
   it("should render empty view when doesn't exist dataSource", () => {
     const ListViewTree = renderer.create(<ListView />).toJSON();
