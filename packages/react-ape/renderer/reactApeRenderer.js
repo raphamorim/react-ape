@@ -142,7 +142,7 @@ const ReactApeFiber = reconciler({
   },
 
   resetAfterCommit(rootContainerInstance) {
-    if (apeContextGlobal && apeContextGlobal._renderQueueForUpdate.length) {
+    if (apeContextGlobal._renderQueueForUpdate.length) {
       clear(apeContextGlobal.ctx);
       apeContextGlobal._renderQueueForUpdate.forEach(fn => {
         if (fn.render) {
