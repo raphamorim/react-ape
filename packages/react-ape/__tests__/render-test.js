@@ -27,4 +27,20 @@ describe('render', () => {
 
     expect({dataUrl}).toMatchSnapshot();
   });
+
+  it('renders <View/> correctly', () => {
+    const styles = StyleSheet.create({
+      view: {
+        backgroundColor: 'red',
+        width: 100,
+        height: 300
+      },
+    })
+
+    const canvas = document.createElement('canvas');
+    render(<View style={styles.view}/>, canvas);
+    const dataUrl = canvas.toDataURL();
+
+    expect({dataUrl}).toMatchSnapshot();
+  });
 });
