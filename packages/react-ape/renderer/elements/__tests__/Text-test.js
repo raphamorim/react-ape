@@ -62,8 +62,6 @@ describe('Text', () => {
   describe('with text as content', () => {
     it('should call properly and override children', () => {
       const style = {
-        x: 0,
-        y: 0,
         color: '#333333',
         fontFamily: 'Helvetica Neue',
       };
@@ -107,7 +105,7 @@ describe('Text', () => {
       expect(closePath).toBeCalledWith();
 
       expect(setLineDash).toBeCalledWith([]);
-      expect(fillText).toBeCalledWith(props.content, 0, 0);
+      expect(fillText).toBeCalledWith(props.content, 10, 18);
 
       expect(font).toBe('18px Helvetica Neue');
       expect(textBaseline).toBe('middle');

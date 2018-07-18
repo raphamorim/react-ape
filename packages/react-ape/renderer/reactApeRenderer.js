@@ -63,7 +63,6 @@ let apeContextGlobal = null;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    // console.log('appendInitialChild', parentInstance, child, typeof child);
     if (parentInstance.appendChild) {
       parentInstance.appendChild(child);
       parentInstance.render(apeContextGlobal);
@@ -77,7 +76,6 @@ const ReactApeFiber = reconciler({
     hostContext,
     internalInstanceHandle
   ) {
-    // console.log('createInstance');
     let apeContext = null;
     if (!apeContextGlobal && rootContainerInstance.getContext) {
       let rootContainerInstanceContext = rootContainerInstance.getContext('2d');
@@ -101,22 +99,18 @@ const ReactApeFiber = reconciler({
       internalInstanceHandle
     );
 
-    // console.log(apeElement);
-
     precacheFiberNode(internalInstanceHandle, apeElement);
     updateFiberProps(apeElement, props);
     return apeElement;
   },
 
   createTextInstance(text, rootContainerInstance, internalInstanceHandle) {
-    // console.log('createTextInstance');
     // let textNode = reactApeComponent.createTextNode(text, rootContainerInstance);
     // precacheFiberNode(internalInstanceHandle, textNode);
     return text;
   },
 
   finalizeInitialChildren(element, type, props) {
-    // console.log('finalizeInitialChildren', element);
     return false;
   },
 
@@ -124,9 +118,7 @@ const ReactApeFiber = reconciler({
     return inst;
   },
 
-  prepareForCommit(rootContainerInstance) {
-    // console.log('prepareForCommit');
-  },
+  prepareForCommit(rootContainerInstance) {},
 
   prepareUpdate(element, type, oldProps, newProps, rootContainerInstance) {
     if (newProps) {
@@ -150,7 +142,7 @@ const ReactApeFiber = reconciler({
   },
 
   resetAfterCommit(rootContainerInstance) {
-    if (apeContextGlobal._renderQueueForUpdate.length) {
+    if (apeContextGlobal && apeContextGlobal._renderQueueForUpdate.length) {
       clear(apeContextGlobal.ctx);
       apeContextGlobal._renderQueueForUpdate.forEach(fn => {
         if (fn.render) {
@@ -164,7 +156,6 @@ const ReactApeFiber = reconciler({
   },
 
   resetTextContent(element) {
-    console.log('resetTextContent');
     // noop
   },
 
@@ -208,7 +199,6 @@ const ReactApeFiber = reconciler({
 
   mutation: {
     appendChild(parentInstance, child) {
-      console.log('appendChild', parentInstance, child);
       // if (parentInstance.appendChild) {
       //   parentInstance.appendChild(child);
       // } else {
@@ -220,7 +210,6 @@ const ReactApeFiber = reconciler({
     },
 
     appendChildToContainer(parentInstance, child) {
-      console.log('appendChildToContainer', parentInstance, child);
       if (child.render) {
         child.render(apeContextGlobal);
       } else {
@@ -229,27 +218,22 @@ const ReactApeFiber = reconciler({
     },
 
     removeChild(parentInstance, child) {
-      console.log('removeChild');
       // parentInstance.removeChild(child);
     },
 
     removeChildFromContainer(parentInstance, child) {
-      console.log('removeChildFromContainer');
       // parentInstance.removeChild(child);
     },
 
     insertBefore(parentInstance, child, beforeChild) {
-      console.log('insertBefore');
     },
 
     commitUpdate(instance, updatePayload, type, oldProps, newProps) {
-      console.log('>> commitUpdate');
     },
 
     commitMount(instance, updatePayload, type, oldProps, newProps) {},
 
     commitTextUpdate(textInstance, oldText, newText) {
-      console.log('>>>', textInstance);
       // textInstance.children = newText;
     },
   },

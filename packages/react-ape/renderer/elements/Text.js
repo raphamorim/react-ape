@@ -29,16 +29,18 @@ type Props = {|
 function Text(props: Props, apeContext: CanvasComponentContext) {
   const {ctx} = apeContext;
   const {style = {}, children, content} = props;
+  const fontSize = style.fontSize || 18;
+  const fontFamily = style.fontFamily || 'Helvetica';
 
   ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);
   ctx.textBaseline = 'middle';
   ctx.lineWidth = style.borderSize;
   // ctx.strokeStyle = style.borderColor || 'black';
-  ctx.font = `${style.fontSize || 18}px ${style.fontFamily || 'Helvetica'}`;
+  ctx.font = `${fontSize}px ${fontFamily}`;
   ctx.fillStyle = style.color || 'black';
   ctx.textAlign = style.align;
-  ctx.fillText(content || children, style.x, style.y);
+  ctx.fillText(content || children, style.x || 10, style.y || fontSize);
   // ctx.strokeText(props.children, 20, 20);
   ctx.fill();
   // ctx.stroke();
