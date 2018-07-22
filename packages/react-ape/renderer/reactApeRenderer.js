@@ -76,7 +76,6 @@ const ReactApeFiber = reconciler({
     hostContext,
     internalInstanceHandle
   ) {
-    let apeContext = null;
     if (!apeContextGlobal && rootContainerInstance.getContext) {
       let rootContainerInstanceContext = rootContainerInstance.getContext('2d');
 
@@ -111,6 +110,7 @@ const ReactApeFiber = reconciler({
   },
 
   finalizeInitialChildren(element, type, props) {
+    // console.log(element);
     return false;
   },
 
@@ -142,7 +142,7 @@ const ReactApeFiber = reconciler({
   },
 
   resetAfterCommit(rootContainerInstance) {
-    if (apeContextGlobal._renderQueueForUpdate.length) {
+    if (apeContextGlobal && apeContextGlobal._renderQueueForUpdate.length) {
       clear(apeContextGlobal.ctx);
       apeContextGlobal._renderQueueForUpdate.forEach(fn => {
         if (fn.render) {
@@ -199,6 +199,7 @@ const ReactApeFiber = reconciler({
 
   mutation: {
     appendChild(parentInstance, child) {
+      // console.log(parentInstance, child);
       // if (parentInstance.appendChild) {
       //   parentInstance.appendChild(child);
       // } else {
@@ -225,11 +226,9 @@ const ReactApeFiber = reconciler({
       // parentInstance.removeChild(child);
     },
 
-    insertBefore(parentInstance, child, beforeChild) {
-    },
+    insertBefore(parentInstance, child, beforeChild) {},
 
-    commitUpdate(instance, updatePayload, type, oldProps, newProps) {
-    },
+    commitUpdate(instance, updatePayload, type, oldProps, newProps) {},
 
     commitMount(instance, updatePayload, type, oldProps, newProps) {},
 
@@ -256,6 +255,7 @@ const ReactApeRenderer = {
     if (!root) {
       root = ReactApeFiber.createContainer(containerKey);
       roots.set(container, root);
+      apeContextGlobal = null;
     }
 
     ReactApeFiber.updateContainer(canvasElement, root, null, callback);
