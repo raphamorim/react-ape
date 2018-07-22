@@ -27,8 +27,13 @@ class View {
 
     ctx.globalCompositeOperation = 'destination-over';
     ctx.beginPath();
-    ctx.rect(style.x || 0, style.y || 0, style.width || 200, style.height || 200);
-    ctx.fillStyle = style.backgroundColor || 'white';
+    ctx.rect(
+      style.x || 0,
+      style.y || 0,
+      style.width || 200,
+      style.height || 200
+    );
+    ctx.fillStyle = style.backgroundColor || 'transparent';
     ctx.fill();
     ctx.closePath();
     ctx.globalCompositeOperation = 'source-over';

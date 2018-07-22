@@ -6,13 +6,16 @@
   "scripts": {
     "build": "node ./scripts/rollup",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
-    "test": "yarn flow && yarn prettier:stat && yarn jest:ci",
-    "jest": "jest",
     "flow": "flow",
+    "jest": "jest",
     "jest:ci": "jest --no-cache --bail --ci --runInBand",
-    "prettier:stat": "node ./scripts/prettier",
+    "postinstall": "yarn test-n-build",
+    "prepublishOnly": "yarn test-n-build",
     "prettier": "node ./scripts/prettier write-changed",
-    "prettier:all": "node ./scripts/prettier write"
+    "prettier:all": "node ./scripts/prettier write",
+    "prettier:stat": "node ./scripts/prettier",
+    "test": "yarn flow && yarn prettier:stat && yarn jest:ci",
+    "test-n-build": "yarn test && yarn build"
   },
   "devDependencies": {
     "babel-jest": "21.0.2",
