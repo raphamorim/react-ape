@@ -135,6 +135,30 @@ React Ape provides a set of standard React components that abstract the underlyi
 
 ### `<ListView>`
 
+```jsx
+import { ListView, Text, View } from 'react-ape';
+
+const padding = 30;
+const renderRow = (data, idx) => (
+  <View
+    height={200}
+    width={200}
+    key={'poster-list-' + idx}>
+    <Text style={{top: 220 * (idx + padding), left: 460, color: '#FFF'}}>
+      {data.name}
+    </Text>
+  </View>
+);
+
+const myListView = (
+  <ListView
+    dataSource={this.posters}
+    renderRow={renderRow}
+    style={styles.list}
+  />
+);
+```
+
 ### `<Text>`
 
 Text is a flexible component that supports multi-line truncation, something which has historically been difficult and very expensive to do in DOM.
@@ -165,21 +189,36 @@ https://facebook.github.io/react-native/docs/platform-specific-code.html
 
 Initial proof-of-concept.
 
-- [ ] `Focus/Navigation`
-- [ ] Smart clearRect based on `DiffProperties`
-- [ ] `ListView`
-- [ ] `View`
-- [ ] Resize
-- [ ] Allow switch to WebGL
-- [ ] Support custom React Components which have access to ApeContext (`Canvas2DContext` or WebGL Scene)
-- [ ] Start support to Events/Interaction!
+- [ ] `<View/>`
+  - [ ] overflow support
+- [ ] `<ListView/>`
+  - [ ] support to Focus/Navigation bindings
+  - [ ] calculate automatically space between items
+- [ ] Focus and Navigation system 
+- [ ] Resize (???)
+- [ ] Support custom React Components which have access to ApeContext (`Canvas2DContext`)
+- [ ] Allow to inspect React Ape Components on React DevTools
+- [ ] "Smart clearRect" based on `DiffProperties`
+- [ ] Start support to Events/Interaction
+  - [ ] touchStart
+  - [ ] touchEnd
   - [ ] handleClick
   - [ ] handleDoubleClick
   - [ ] handleTouchStart
   - [ ] handleTouchMove
   - [ ] handleTouchEnd
-  - [ ] Drag and Drop
-- [ ] Document explaing how React-Ape lifecycle works
+
+#### Stage 2
+
+Implement essential functionality needed for daily use by early adopters.
+
+- [ ] Start the Documentation
+  - [ ] Create document explaing React-Ape lifecycle
+- [ ] Flexbox Support
+- [ ] Render to WebGL (`ReactApe.renderToWebGL()`)
+- [ ] Work around Drag and Drop feature
+
+----------------------------------------------------
 
 ## References
 
@@ -187,5 +226,3 @@ Initial proof-of-concept.
 - https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b
 - https://github.com/Flipboard/react-canvas
 - https://github.com/nitin42/Making-a-custom-React-renderer
-
-
