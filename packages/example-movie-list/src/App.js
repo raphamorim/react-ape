@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, Text, ListView, View, Image, StyleSheet} from 'react-ape';
+import {render, Text, ListView, View, Image, StyleSheet, dimensions} from 'react-ape';
 
 const styles = StyleSheet.create({
   heading: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   time: {
     top: 62,
-    left: 1150,
+    left: dimensions.getWidth() - 120,
     color: 'red',
     fontFamily: 'Arial',
     fontWeight: 'bold',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     top: 100,
     left: 0,
     backgroundColor: '#303030',
-    width: 2000,
+    width: dimensions.getWidth(),
     height: 400,
   },
 });
