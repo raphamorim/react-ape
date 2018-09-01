@@ -5,7 +5,9 @@
   ],
   "scripts": {
     "build": "node ./scripts/rollup",
+    "docs-start": "cd website && yarn run start",
     "docs-build": "cd website && yarn run build",
+    "docs-publish": "cd website && yarn run publish-gh-pages",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
     "flow": "flow",
     "jest": "jest",
