@@ -13,4 +13,4 @@ function getHeight() {
 export default {
   getWidth,
   getHeight,
-}
+};

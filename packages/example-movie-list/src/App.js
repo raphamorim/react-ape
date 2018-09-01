@@ -1,5 +1,13 @@
 import React from 'react';
-import {render, Text, ListView, View, Image, StyleSheet, dimensions} from 'react-ape';
+import {
+  render,
+  Text,
+  ListView,
+  View,
+  Image,
+  StyleSheet,
+  dimensions,
+} from 'react-ape';
 
 const styles = StyleSheet.create({
   heading: {

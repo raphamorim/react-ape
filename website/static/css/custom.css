@@ -1,0 +1,44 @@
+/* your custom css */
+.homeContainer {
+  background-color: #2d2d2d;
+  color: #FFF;
+}
+
+.projectTitle {
+  color: inherit;
+}
+
+.big-button {
+  text-align: center;
+  background: #05a5d1;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-weight: 300;
+  margin: 0 12px;
+  display: inline-block;
+  color: #fafafa;
+  text-decoration: none;
+  text-shadow: 0 1px 3px rgba(0,0,0,.3);
+  box-shadow: 1px 3px 3px rgba(0,0,0,.3);
+  transition: background .3s,color .3s;
+}
+
+.big-button:hover {
+  background: #005068;
+  color: #fff;
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}
