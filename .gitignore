@@ -7,3 +7,12 @@ dist
 node_modules
 package-lock.json
 npm-shrinkwrap.json
+
+# Docusaurus
+lib/core/metadata.js
+lib/core/MetadataBlog.js
+
+website/translated_docs
+website/build/
+website/yarn.lock
+website/i18n/*
