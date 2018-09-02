@@ -7,7 +7,11 @@ import {
   Image,
   StyleSheet,
   dimensions,
-} from 'react-ape';
+} from '../../react-ape/reactApeEntry';
+/*
+  ^ The `import` above is only for local development,
+  you can switch to 'react-ape' if you want to.
+*/
 
 const styles = StyleSheet.create({
   heading: {
@@ -112,9 +116,9 @@ class App extends React.Component {
           width={210}
           height={100}
         />
-        <Text style={styles.heading}>• Netflix Originals</Text>
+        <Text style={styles.heading}>• React Ape Originals</Text>
         <Text style={styles.time}>{this.state.time}</Text>
-        <Text style={styles.infoAboutRenderer}>Made with React Ape</Text>
+        <Text style={styles.infoAboutRenderer}>Link to GitHub</Text>
         {this.renderPostersList()}
       </View>
     );
