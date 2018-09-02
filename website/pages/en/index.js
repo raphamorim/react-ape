@@ -1,10 +1,3 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 const React = require('react');
 
 const CompLibrary = require('../../core/CompLibrary.js');
@@ -80,8 +73,8 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href={docUrl('doc1.html', language)}>Get Stated</Button>
-            <Button href={docUrl('doc2.html', language)}>Learn the Basics</Button>
+            <Button href={docUrl('getting-started.html', language)}>Get Stated</Button>
+            <Button href={docUrl('components-and-apis.html', language)}>Learn the Basics</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -179,7 +172,7 @@ const Showcase = props => {
   return (
     <div className="productShowcaseSection paddingBottom">
       <h2>Who is Using This?</h2>
-      <p>This project is used by all these people</p>
+      <p>This project is used by all these people and companies</p>
       <div className="logos">{showcase}</div>
       <div className="more-users">
         <a className="button" href={pageUrl('users.html', props.language)}>
