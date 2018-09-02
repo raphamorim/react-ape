@@ -2,7 +2,7 @@ const React = require('react');
 
 const CompLibrary = require('../../core/CompLibrary.js');
 
-const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
+const MarkdownBlock = CompLibrary.MarkdownBlock;
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
@@ -82,80 +82,38 @@ class HomeSplash extends React.Component {
   }
 }
 
-const Block = props => (
-  <Container
-    padding={['bottom', 'top']}
-    id={props.id}
-    background={props.background}>
-    <GridBlock align="center" contents={props.children} layout={props.layout} />
-  </Container>
-);
-
-const Features = () => (
-  <Block layout="fourColumn">
-    {[
-      {
-        content: 'Convert React Native Apps to Canvas/WebGL',
-        image: imgUrl('react-native.png'),
-        imageAlign: 'top',
-        title: 'Compatible with React Native Primitives',
-      },
-      {
-        content: 'React Ape allows you inspect Canvas Objects',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'top',
-        title: 'Inspect Canvas using React DevTools',
-      },
-    ]}
-  </Block>
-);
-
 const FeatureCallout = () => (
-  <div
-    className="productShowcaseSection paddingBottom"
-    style={{textAlign: 'center'}}>
-    <h2>Feature Callout</h2>
-    <MarkdownBlock>These are features of this project</MarkdownBlock>
+  <div className="paddingBottom">
+    <Container>
+      <div className="blockElement">
+        <div className="blockContent">
+          <h1>Build UI interfaces using HTML5 Canvas/WebGL and React</h1>
+          <p>React Ape lets you build Canvas apps using React. React Ape uses the same design as React, letting you compose a rich UI from declarative components.</p>
+          <MarkdownBlock>
+            {`\`\`\`javascript
+import React, { Component } from 'react';
+import { Text, View } from 'react-ape';
+class ReactApeComponent extends Component {
+  render() {
+    return (
+      <View>
+        <Text>
+          Renderer Text on Canvas
+        </Text>
+        <Text>
+          You just use React Ape components like 'View' and 'Text',
+          just like React Native.
+        </Text>
+      </View>
+    );
+  }
+}
+\`\`\``}
+          </MarkdownBlock>
+        </div>
+      </div>
+    </Container>
   </div>
-);
-
-const LearnHow = () => (
-  <Block background="light">
-    {[
-      {
-        content: 'Talk about learning how to use this',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'right',
-        title: 'Learn How',
-      },
-    ]}
-  </Block>
-);
-
-const TryOut = () => (
-  <Block id="try">
-    {[
-      {
-        content: 'Talk about trying this out',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'left',
-        title: 'Try it Out',
-      },
-    ]}
-  </Block>
-);
-
-const Description = () => (
-  <Block background="dark">
-    {[
-      {
-        content: 'This is another description of how this project is useful',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'right',
-        title: 'Description',
-      },
-    ]}
-  </Block>
 );
 
 const Showcase = props => {
@@ -170,7 +128,7 @@ const Showcase = props => {
   ));
 
   return (
-    <div className="productShowcaseSection paddingBottom">
+    <div className="productShowcaseSection paddingTop paddingBottom">
       <h2>Who is Using This?</h2>
       <p>This project is used by all these people and companies</p>
       <div className="logos">{showcase}</div>
@@ -191,11 +149,7 @@ class Index extends React.Component {
       <div>
         <HomeSplash language={language} />
         <div className="mainContainer">
-          <Features />
           <FeatureCallout />
-          <LearnHow />
-          <TryOut />
-          <Description />
           <Showcase language={language} />
         </div>
       </div>
