@@ -1,21 +1,12 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 // See https://docusaurus.io/docs/site-config for all the possible
 // site configuration options.
 
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'User1',
-    // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/docusaurus.svg',
-    infoLink: 'https://www.facebook.com',
+    caption: 'Globocom',
+    image: 'img/users/globocom.png',
+    infoLink: 'http://www.globo.com/',
     pinned: true,
   },
 ];
@@ -23,25 +14,19 @@ const users = [
 const siteConfig = {
   title: 'React Ape',
   tagline: 'Build UI interfaces using HTML5 Canvas/WebGL and React',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/', // Base URL for your project */
-  // For github.io type URLs, you would set the url and baseUrl like:
-  //   url: 'https://facebook.github.io',
-  //   baseUrl: '/test-site/',
+  url: 'http://raphamorim.io',
+  baseUrl: '/react-ape/', // Base URL for your project */
 
   // Used for publishing and more
-  projectName: 'test-site',
-  organizationName: 'facebook',
-  // For top-level user or org sites, the organization is still the same.
-  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-  //   organizationName: 'JoelMarcey'
+  projectName: 'react-ape',
+  organizationName: 'raphamorim',
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
-    {doc: 'doc4', label: 'Community'},
+    {doc: 'getting-started', label: 'Docs'},
+    {doc: 'contributing-how-to-contribute', label: 'Contributing'},
     {blog: true, label: 'Blog'},
-    {page: 'https://github.com/raphamorim/react-ape', label: 'GitHub'},
+    {href: 'https://github.com/raphamorim/react-ape', label: 'GitHub'},
   ],
 
   // If you have users set above, you add it here:
@@ -59,18 +44,17 @@ const siteConfig = {
   },
 
   /* Custom fonts for website */
-  /*
   fonts: {
     myFont: [
-      "Times New Roman",
-      "Serif"
+      "Helvetica",
+      "sans-serif"
     ],
-    myOtherFont: [
-      "-apple-system",
-      "system-ui"
-    ]
+    // myOtherFont: [
+    //   "-apple-system",
+    //   "system-ui"
+    // ]
   },
-  */
+
 
   copyright: `Copyright © ${new Date().getFullYear()} Raphael Amorim`,
 

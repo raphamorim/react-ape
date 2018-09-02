@@ -1,10 +1,25 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
-  },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+    "The Basics": [
+      "getting-started",
+      "learning-the-basics"
+    ],
+    "Guides": [
+      "components-and-apis"
+    ],
+    "Contributing": [
+      "contributing-how-to-contribute"
+    ],
+    "Components": [
+      "components-image",
+      "components-listview",
+      "components-text",
+      "components-view"
+    ],
+    "APIs": [
+      "apis-dimensions",
+      "apis-platform",
+      "apis-stylesheet"
+    ]
   }
 }
