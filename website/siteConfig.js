@@ -11,6 +11,8 @@ const users = [
   },
 ];
 
+const defaultVersionShown = '0.1';
+
 const siteConfig = {
   title: 'React Ape',
   tagline: 'Build UI interfaces using HTML5 Canvas/WebGL and React',
@@ -27,7 +29,17 @@ const siteConfig = {
     {doc: 'contributing-how-to-contribute', label: 'Contributing'},
     {blog: true, label: 'Blog'},
     {href: 'https://github.com/raphamorim/react-ape', label: 'GitHub'},
+    {href: 'https://reactjs.org/', label: 'React'},
+    {search: true}
   ],
+
+  editUrl: 'https://github.com/raphamorim/react-ape/blob/master/docs/',
+
+  algolia: {
+    apiKey: 'my-api-key',
+    indexName: 'my-index-name',
+    algoliaOptions: {} // Optional, if provided by Algolia
+  },
 
   // If you have users set above, you add it here:
   users,
@@ -39,22 +51,31 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: '#2D2D2D',
-    secondaryColor: '#205C3B',
+    primaryColor: 'rgb(34, 34, 34)',
+    secondaryColor: '#05A5D1',
+    tintColor: '#005068',
+    backgroundColor: '#f5fcff'
   },
+
+  blogSidebarCount: 'ALL',
+
+  highlight: {
+    theme: 'solarized-dark'
+  },
+
+  cleanUrl: true,
 
   /* Custom fonts for website */
   fonts: {
     myFont: [
-      "Helvetica",
-      "sans-serif"
+      'Helvetica',
+      'sans-serif'
     ],
     // myOtherFont: [
-    //   "-apple-system",
-    //   "system-ui"
+    //   -apple-system,
+    //   system-ui
     // ]
   },
-
 
   copyright: `Copyright © ${new Date().getFullYear()} Raphael Amorim`,
 
