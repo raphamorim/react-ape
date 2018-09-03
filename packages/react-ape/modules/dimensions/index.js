@@ -1,12 +1,16 @@
 function getWidth() {
-  if (window && window.innerWidth) {
-    return window.innerWidth;
+  if (window || document) {
+    return (window || {}).innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
   }
 }
 
 function getHeight() {
-  if (window && window.innerHeight) {
-    return window.innerHeight;
+  if (window || document) {
+    return (window || {}).innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
   }
 }
 

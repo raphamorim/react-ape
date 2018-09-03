@@ -6,6 +6,8 @@
  *
  */
 
+import { defaultViewSize } from '../constants';
+
 class View {
   constructor(props) {
     this.props = props;
@@ -25,18 +27,24 @@ class View {
     const {ctx} = apeContext;
     const {style = {}} = this.props;
 
+    const previousStroke = ctx.strokeStyle;
+    const x = style.x || 0;
+    const y = style.y || 0;
+    const width = style.width || defaultViewSize;
+    const height = style.height || defaultViewSize;
+
     ctx.globalCompositeOperation = 'destination-over';
     ctx.beginPath();
-    ctx.rect(
-      style.x || 0,
-      style.y || 0,
-      style.width || 200,
-      style.height || 200
-    );
+    ctx.rect(x, y, width, height);
+    ctx.strokeStyle = style.borderColor || 'transparent';
     ctx.fillStyle = style.backgroundColor || 'transparent';
     ctx.fill();
+    ctx.stroke();
     ctx.closePath();
+
+    // Reset Context
     ctx.globalCompositeOperation = 'source-over';
+    ctx.strokeStyle = previousStroke;
 
     const callRenderFunctions = renderFunction => {
       renderFunction.render

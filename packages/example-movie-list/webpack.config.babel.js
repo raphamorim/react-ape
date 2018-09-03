@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const sourcePath = path.join(__dirname, 'src');
+const reactApePath = path.join(__dirname, '../react-ape');
 
 const config = {
   entry: ['babel-polyfill', path.resolve(sourcePath, 'App.js')],
@@ -14,6 +15,7 @@ const config = {
     extensions: ['.js', '.jsx'],
     modules: [
       sourcePath,
+      reactApePath,
       path.resolve(__dirname, 'node_modules'),
       // yarn-workspaces
       path.resolve(__dirname, '../../node_modules'),
@@ -25,7 +27,7 @@ const config = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
-        include: sourcePath,
+        include: [reactApePath, sourcePath],
       },
     ],
   },
