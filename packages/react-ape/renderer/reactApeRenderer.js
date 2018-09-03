@@ -9,6 +9,7 @@
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
 import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
+import VirtualCanvas from './core/virtualCanvas';
 
 export type CanvasComponentContext = {
   _renderQueueForUpdate: Array<mixed>,
@@ -84,9 +85,8 @@ const ReactApeFiber = reconciler({
       apeContextGlobal = {
         type: 'canvas',
         _renderQueueForUpdate: [],
-        ctx: (rootContainerInstanceContext = rootContainerInstance.getContext(
-          '2d'
-        )),
+        ctx: rootContainerInstanceContext,
+        virtual: new VirtualCanvas(rootContainerInstanceContext)
       };
     }
 
@@ -99,6 +99,9 @@ const ReactApeFiber = reconciler({
     );
 
     precacheFiberNode(internalInstanceHandle, apeElement);
+    if (type === 'View') {
+      apeContextGlobal.virtual.addInstance(internalInstanceHandle);
+    }
     updateFiberProps(apeElement, props);
     return apeElement;
   },

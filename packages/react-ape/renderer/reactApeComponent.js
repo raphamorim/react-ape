@@ -9,6 +9,7 @@
 import Image from './elements/Image';
 import Text from './elements/Text';
 import View from './elements/View';
+import CanvasGrid from './elements/CanvasGrid';
 
 const CHILDREN = 'children';
 const STYLE = 'style';
@@ -24,6 +25,7 @@ const ReactApeComponent = {
     const COMPONENTS = {
       Image: () => Image.bind(this, props),
       Text: () => Text.bind(this, props),
+      CanvasGrid: () => CanvasGrid.bind(this, props),
       View: () => new View(props),
     };
 

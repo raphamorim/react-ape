@@ -31,22 +31,24 @@ function Text(props: Props, apeContext: CanvasComponentContext) {
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
   const fontFamily = style.fontFamily || 'Helvetica';
+  const previousStroke = ctx.strokeStyle;
 
   ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);
   ctx.textBaseline = 'middle';
   ctx.lineWidth = style.borderSize || 0.2;
   ctx.lineJoin = 'round';
-  // ctx.strokeStyle = style.borderColor || 'black';
+  ctx.strokeStyle = style.borderColor || 'transparent';
   ctx.font = `${fontSize}px ${fontFamily}`;
   ctx.fillStyle = style.color || 'black';
   ctx.textAlign = style.align;
   ctx.fillText(content || children, style.x || 10, style.y || fontSize);
-  // ctx.strokeText(props.children, 20, 20);
+  ctx.strokeText(content || children, style.x || 10, style.y || fontSize);
   ctx.fill();
-  // ctx.stroke();
-  // ctx.setLineDash([]);
+  ctx.stroke();
+  ctx.setLineDash([]);
   ctx.closePath();
+  ctx.strokeStyle = previousStroke;
 }
 
 export default Text;
