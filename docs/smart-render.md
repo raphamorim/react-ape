@@ -4,6 +4,6 @@ title: Smart Render
 sidebar_label: Smart Render (reflect)
 ---
 
-# Smart Render
+# Virtual Canvas
 
-React Ape use an render algorithm called Virtual Canvas
+React Ape use an render algorithm called Virtual Canvas.
