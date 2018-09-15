@@ -6,7 +6,9 @@ sidebar_label: How to Contribute
 
 ## How to Contribute
 
-Contribute is always welcome on our project, so if you`re interesting on contribute with us: THANKS! 
+Contribute is always welcome on our project, 
+so if you`re interesting on contribute with us: THANKS! 
+
 Below we will describe how you can be part of our community. 
 
 ## Code of Conduct
@@ -19,11 +21,11 @@ Aiming at a healthy community and with an active voice of all its members, it wi
 + Bulling
 + Personal Offenses
 
-Together, we can maintain the health of our project, some responsibilities of the members:
+We can maintain the health of our project. Here is some responsibilities of the members:
 
-+ To be educated
++ First: BE NICE!
 + Respond when mentioned
-+ Help the beginners (remember, you were a beginner).
++ Support the beginners (remember, you were a beginner).
 + Follow our codes guidelines in PR discourses and request for featues
 
 
@@ -45,23 +47,20 @@ Together, we can maintain the health of our project, some responsibilities of th
  If you want to submit some code for our repository, please, follow this steps:
 
  + Fork our repository
- + Code in your forked repository
- + Run the lint in your final code
+ + Write your code
+ + Run the lint and test task
  + Submit a pull request to marge or release branch (Please, check where is the best place in our roadmap).
  + Wait for review, if you PR "need changes", change and commit at the same PR
  + If everything is ok, you PR will be accept by our team. 
+ + Done!
 
  ## Branch Organization
-
- We keep our master in good shape, with tests passing (Almost all times :) ). Always use your up-to-date
- master to based your contributings. 
 
  If you want to use react-ape on production project, We suggest you use a tagged commit version on Master.
 
  Some branchs to future features can be create, don`t use if you are not envolved on this feature development.
 
- If you have some doubt about branchs to use, please send e-mail to mainteners or open a issue with your question.
-
+ If you have questions about project, please open a issue with your question.
 
 ## Bug tracking
 
@@ -80,14 +79,15 @@ watch to be up-to-date with the project.
 
 ## Coding Style
 
-Our project contains a lint, please, check this before procced with your PR.
+Our project contains a Prettier, please, check this before procced with your PR.
 
 ## Documentation
 
-If you have some doubt about the project, you can check the wiki or check the documentation on our [github](https://github.com/raphamorim/react-ape/tree/master/docs) 
+If you have some question or suggestion, [open an issue](https://github.com/raphamorim/react-ape/issues).
+Let's chat about it! 
 
 Help us with documentation here.
 
 ## License
 
-We are under [MIT license](https://opensource.org/licenses/MIT)
+We are under [MIT License](https://github.com/raphamorim/react-ape/blob/master/README.md)
