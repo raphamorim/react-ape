@@ -7,7 +7,7 @@ sidebar_label: How to Contribute
 ## How to Contribute
 
 Contribute is always welcome on our project, 
-so if you`re interesting on contribute with us: THANKS! 
+so if you're interesting on contribute with us: THANKS! 
 
 Below we will describe how you can be part of our community. 
 
@@ -16,7 +16,6 @@ Below we will describe how you can be part of our community.
 Aiming at a healthy community and with an active voice of all its members, it will not be allowed:
 
 + Discrimination for any reason
-+ Use of slang words
 + Threats
 + Bulling
 + Personal Offenses
