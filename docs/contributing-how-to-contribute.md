@@ -29,17 +29,14 @@ We can maintain the health of our project. Here is some responsibilities of the 
 
 
 ## Adding new features
- Please check our [Roadmap](https://github.com/raphamorim/react-ape#roadmap), if you don`t find your feature, 
+ Please check our [Roadmap](https://github.com/raphamorim/react-ape#roadmap), if you don't find your feature, 
  please use Issue on github projects to start a new discursion. 
  
- If this receive a Go ahead, you can submit your patch as PR to the repository or one of our maintainers will 
+ If this receive a "Go ahead", you can submit your patch as PR to the repository or one of our maintainers will 
  indicate a contributor to solve the task.
 
  ## Our development Process
-
- This repository is managed by Raphael Amorim, as maintener and creator of React-Ape, he( or another person indicate by him) 
- will be responsible to approve new featuers, merges into master and review Pull requests.
-
+ 
  Our project is hosted and managed at Github, all official release are linked on our offical repository following our 
  branch organization.
 
@@ -57,7 +54,7 @@ We can maintain the health of our project. Here is some responsibilities of the 
 
  If you want to use react-ape on production project, We suggest you use a tagged commit version on Master.
 
- Some branchs to future features can be create, don`t use if you are not envolved on this feature development.
+ Some branchs to future features can be create, don't use if you are not envolved on this feature development.
 
  If you have questions about project, please open a issue with your question.
 
@@ -73,7 +70,7 @@ You can help us diagnose and fix existing bugs by asking and providing answers f
 
 ## Getting in Touch
 
-We don`t have a email list at this time, All our discursions are on github, please, start our repository or
+We don't have a email list at this time, All our discursions are on github, please, start our repository or
 watch to be up-to-date with the project.
 
 ## Coding Style
