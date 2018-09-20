@@ -150,7 +150,7 @@ class Index extends React.Component {
         <HomeSplash language={language} />
         <div className="mainContainer">
           <FeatureCallout />
-          <Showcase language={language} />
+          { /* <Showcase language={language} /> */ }
         </div>
       </div>
     );
