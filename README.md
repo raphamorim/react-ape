@@ -1,12 +1,14 @@
-# 🦍 React Ape
+<h1 align="center">React Ape</h1>
+
+> <p align="center">React Renderer to build UI interfaces using canvas/WebGL.</p>
+
+<p align="center"><img alt="React Ape Logo" height="200px" src="assets/logo.png"/></p>
 
 [![CircleCI](https://circleci.com/gh/raphamorim/react-ape/tree/master.svg?style=svg)](https://circleci.com/gh/raphamorim/react-ape/tree/master)
 
-> React Renderer to build UI interfaces using canvas/WebGL.
+## About
 
-<p align="center"><img alt="React Ape Logo" src="assets/logo.png"/></p>
-
-React Renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices. The name is a "joke" based on [Netflix's React Gibbon](https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b). I choose to use Ape then.
+React Ape is a react renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices. If you're curious about the name: It's a "joke" with [Netflix's React Gibbon](https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b) renderer. I choose to use Ape then.
 
 <img alt="Demo PS Vita" src="assets/demo-ps-vita.jpg" height="330px" />
 
@@ -228,3 +230,7 @@ Implement essential functionality needed for daily use by early adopters.
 - https://medium.com/netflix-techblog/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b
 - https://github.com/Flipboard/react-canvas
 - https://github.com/nitin42/Making-a-custom-React-renderer
+
+## Credits
+
+Thanks [Raphael Eckhardt](https://github.com/Raphseck) for the logo <3
