@@ -46,13 +46,19 @@ function scaleDPI(canvas, context, customWidth, customHeight) {
   return ratio;
 }
 
-function clear(context, preserveTransform) {
+function clear(context, preserveTransform, clearRect = {}) {
   if (preserveTransform) {
     context.save();
     context.setTransform(1, 0, 0, 1, 0, 0);
   }
 
-  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  // console.log(clearRect)
+  context.clearRect(
+    clearRect.x || 0,
+    clearRect.y || 0,
+    clearRect.width || context.canvas.width,
+    clearRect.height || context.canvas.height
+  );
 
   if (preserveTransform) {
     context.restore();
@@ -125,34 +131,51 @@ const ReactApeFiber = reconciler({
 
   prepareUpdate(element, type, oldProps, newProps, rootContainerInstance) {
     if (newProps) {
-      // const diff = reactApeComponent.diffProperties(
-      //   element,
-      //   type,
-      //   oldProps,
-      //   newProps,
-      //   rootContainerInstance
-      // );
-
-      const apeElement = reactApeComponent.createElement(
+      // console.log(element, type, oldProps, newProps, rootContainerInstance);
+      const diff = reactApeComponent.diffProperties(
+        element,
         type,
+        oldProps,
         newProps,
-        rootContainerInstance,
-        apeContextGlobal
+        rootContainerInstance
       );
 
-      apeContextGlobal._renderQueueForUpdate.push(apeElement);
+      if (diff) {
+        console.log(type)
+        const { style = {} } = oldProps;
+
+        if (type === 'View') {
+          clear(apeContextGlobal.ctx, false, {
+            x: style.x || 0,
+            y: style.y || 0,
+            width: style.width || 200,
+            height: style.height || 200,
+          });
+        }
+
+        const apeElement = reactApeComponent.createElement(
+          type,
+          newProps,
+          rootContainerInstance,
+          apeContextGlobal
+        );
+
+        apeContextGlobal._renderQueueForUpdate.push(apeElement);
+      }
     }
   },
 
   resetAfterCommit(rootContainerInstance) {
     if (apeContextGlobal && apeContextGlobal._renderQueueForUpdate.length) {
-      clear(apeContextGlobal.ctx);
+      // TODO: Move to request animation frame
       apeContextGlobal._renderQueueForUpdate.forEach(fn => {
-        if (fn.render) {
-          fn.render(apeContextGlobal);
-        } else {
-          fn(apeContextGlobal);
-        }
+        window.requestAnimationFrame(() => {
+          if (fn.render) {
+            fn.render(apeContextGlobal);
+          } else {
+            fn(apeContextGlobal);
+          }
+        });
       });
       apeContextGlobal._renderQueueForUpdate = [];
     }

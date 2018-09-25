@@ -135,14 +135,14 @@ class App extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   setInterval(() => {
-  //     const time = new Date()
-  //       .toTimeString()
-  //       .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
-  //     this.setState({time});
-  //   }, 100);
-  // }
+  componentDidMount() {
+    setInterval(() => {
+      const time = new Date()
+        .toTimeString()
+        .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
+      this.setState({time});
+    }, 100);
+  }
 
   render() {
     return (

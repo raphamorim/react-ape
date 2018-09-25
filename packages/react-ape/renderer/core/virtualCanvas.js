@@ -6,7 +6,7 @@
  *
  */
 
-import type {CanvasComponentContext} from '../types';
+import type { CanvasComponentContext } from '../types';
 import { _SectionBlockSize } from '../constants';
 import { defaultViewSize } from '../constants';
 
@@ -38,16 +38,18 @@ class VirtualCanvas {
 
   addInstance(instance) {
     const { type, memoizedProps, _debugID } = instance;
-    const { style } = memoizedProps;
+    const { style = {} } = memoizedProps;
 
     // TODO: Use React Internal Instance property: _debugID
     const view = {
-      x: 0,
-      y: 0,
+      x: style.x || 0,
+      y: style.y || 0,
       width: style && style.width || defaultViewSize,
       height: style && style.height || defaultViewSize,
       reactInstanceID: _debugID,
     };
+
+    // console.log(view);
 
     // TODO: Calculate what sections cross the View.
   }
