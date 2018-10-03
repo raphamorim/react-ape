@@ -44,18 +44,13 @@ const SplashContainer = props => (
   </div>
 );
 
-const Logo = props => (
-  <div className="projectLogo">
-    <img src={props.img_src} alt="React Ape Logo" />
+const Logo = ({src}) => (
+  <div className="logo">
+    <img src={src} onError={() => {this.onerror=null; this.src=imgUrl('logo.png')}} alt="React Ape Logo" />
   </div>
 );
 
-const ProjectTitle = () => (
-  <h2 className="projectTitle">
-    {siteConfig.title}
-    <small>{siteConfig.tagline}</small>
-  </h2>
-);
+const TagLine = () => (<div className='tagline'>Build apps using React Ape</div>);
 
 const PromoSection = props => (
   <div className="section promoSection">
@@ -71,7 +66,8 @@ class HomeSplash extends React.Component {
     return (
       <SplashContainer>
         <div className="inner">
-          <ProjectTitle />
+          <Logo src={imgUrl('logo.svg')}/>
+          <TagLine />
           <PromoSection>
             <Button href={docUrl('getting-started.html', language)}>Get Stated</Button>
             <Button href={docUrl('components-and-apis.html', language)}>Learn the Basics</Button>

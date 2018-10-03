@@ -1,10 +1,12 @@
 .homeContainer {
-  background-color: #2d2d2d;
+  background-color: #FFB736;
   color: #FFF;
 }
 
-.projectTitle {
-  color: inherit;
+.inner .tagline {
+  color: #444342;
+  font-size: 60px;
+  font-weight: bold;
 }
 
 .big-button {
@@ -25,6 +27,10 @@
 .big-button:hover {
   background: #005068;
   color: #fff;
+}
+
+.logo img {
+  height: 300px;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
