@@ -34,6 +34,10 @@
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+  .inner .tagline {
+    font-size: 33px;
+    margin: -10px 40px 0 40px;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
