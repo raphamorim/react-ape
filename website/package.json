@@ -4,6 +4,7 @@
     "start": "docusaurus-start",
     "build": "docusaurus-build",
     "publish-gh-pages": "docusaurus-publish",
+    "docs-publish": "GIT_USER=raphamorim CURRENT_BRANCH=master USE_SSH=true yarn run publish-gh-pages",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version"

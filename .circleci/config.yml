@@ -31,13 +31,14 @@ aliases:
       - run:
           name: Lint and Test packages
           command: yarn test
+
 jobs:
   build:
     docker:
       - image: circleci/node:8
     <<: *build_config
 
-    
+
   build_10:
     docker:
       - image: circleci/node:10
