@@ -49,7 +49,7 @@ function drawImage(
   ctx.drawImage(imageElement, x, y, width, height);
 }
 
-function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
+function renderImage(props: Props, apeContext: CanvasComponentContext) {
   const {ctx} = apeContext;
   const {style = {x: 0, y: 0}, imageElement, src, width, height} = props;
 
@@ -112,4 +112,12 @@ function ImageComponent(props: Props, apeContext: CanvasComponentContext) {
   }
 }
 
-export default ImageComponent;
+export default function CreateImageInstance(props) {
+  const ImageInstance = {
+    type: 'Image',
+    render: renderImage.bind(this, props),
+    clear: () => {}
+  };
+
+  return ImageInstance;
+};

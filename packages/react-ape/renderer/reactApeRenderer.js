@@ -72,7 +72,8 @@ const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
     if (parentInstance.appendChild) {
       parentInstance.appendChild(child);
-      parentInstance.render(apeContextGlobal);
+      // TODO: Change it later
+      child.parentStyle = parentInstance.getStyle();
     }
   },
 
@@ -92,7 +93,6 @@ const ReactApeFiber = reconciler({
         type: 'canvas',
         _renderQueueForUpdate: [],
         ctx: rootContainerInstanceContext,
-        virtual: new VirtualCanvas(rootContainerInstanceContext)
       };
     }
 
@@ -105,9 +105,6 @@ const ReactApeFiber = reconciler({
     );
 
     precacheFiberNode(internalInstanceHandle, apeElement);
-    if (type === 'View') {
-      apeContextGlobal.virtual.addInstance(internalInstanceHandle);
-    }
     updateFiberProps(apeElement, props);
     return apeElement;
   },
@@ -119,8 +116,10 @@ const ReactApeFiber = reconciler({
   },
 
   finalizeInitialChildren(element, type, props) {
-    // console.log(element);
-    return false;
+    // return false;
+    if (type === 'View') {
+      element.render(apeContextGlobal);
+    }
   },
 
   getPublicInstance(inst) {
@@ -141,17 +140,8 @@ const ReactApeFiber = reconciler({
       );
 
       if (diff) {
-        console.log(type)
+        element.clear(oldProps, element.parentStyle, apeContextGlobal);
         const { style = {} } = oldProps;
-
-        if (type === 'View') {
-          clear(apeContextGlobal.ctx, false, {
-            x: style.x || 0,
-            y: style.y || 0,
-            width: style.width || 200,
-            height: style.height || 200,
-          });
-        }
 
         const apeElement = reactApeComponent.createElement(
           type,
@@ -168,15 +158,11 @@ const ReactApeFiber = reconciler({
   resetAfterCommit(rootContainerInstance) {
     if (apeContextGlobal && apeContextGlobal._renderQueueForUpdate.length) {
       // TODO: Move to request animation frame
-      apeContextGlobal._renderQueueForUpdate.forEach(fn => {
-        window.requestAnimationFrame(() => {
-          if (fn.render) {
-            fn.render(apeContextGlobal);
-          } else {
-            fn(apeContextGlobal);
-          }
-        });
-      });
+      apeContextGlobal._renderQueueForUpdate.forEach(element =>
+        window.requestAnimationFrame(() =>
+          element.render(apeContextGlobal)
+        )
+      );
       apeContextGlobal._renderQueueForUpdate = [];
     }
   },
@@ -228,19 +214,12 @@ const ReactApeFiber = reconciler({
       // console.log(parentInstance, child);
       // if (parentInstance.appendChild) {
       //   parentInstance.appendChild(child);
-      // } else {
-      //   child(apeContextGlobal);
-      // }
-      // } else {
-      //   parentInstance.document = child;
       // }
     },
 
     appendChildToContainer(parentInstance, child) {
       if (child.render) {
         child.render(apeContextGlobal);
-      } else {
-        child(apeContextGlobal);
       }
     },
 
@@ -252,11 +231,14 @@ const ReactApeFiber = reconciler({
       // parentInstance.removeChild(child);
     },
 
-    insertBefore(parentInstance, child, beforeChild) {},
+    insertBefore(parentInstance, child, beforeChild) {
+    },
 
-    commitUpdate(instance, updatePayload, type, oldProps, newProps) {},
+    commitUpdate(instance, updatePayload, type, oldProps, newProps) {
+    },
 
-    commitMount(instance, updatePayload, type, oldProps, newProps) {},
+    commitMount(instance, updatePayload, type, oldProps, newProps) {
+    },
 
     commitTextUpdate(textInstance, oldText, newText) {
       // textInstance.children = newText;
@@ -288,6 +270,7 @@ const ReactApeRenderer = {
 
     ReactApeFiber.injectIntoDevTools({
       bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
+      version: '0.3.0',
       rendererPackageName: 'ReactApe',
       findHostInstanceByFiber: ReactApeFiber.findHostInstance,
     });

@@ -23,17 +23,17 @@ const ReactApeComponent = {
     internalInstanceHandle
   ) {
     const COMPONENTS = {
-      Image: () => Image.bind(this, props),
-      Text: () => Text.bind(this, props),
-      CanvasGrid: () => CanvasGrid.bind(this, props),
-      View: () => new View(props),
+      Image: Image(props),
+      Text: Text(props),
+      CanvasGrid: CanvasGrid(props),
+      View: new View(props),
     };
 
-    return COMPONENTS[type]
-      ? COMPONENTS[type]()
-      : console.warn(
-          'ReactApe could not identify ' + type + ' as ReactApeComponent'
-        );
+    if (!COMPONENTS[type]) {
+      throw new Error(`React Ape could not identify "${type}" as ReactApeComponent. More details: http://raphamorim.io/react-ape`);
+    }
+
+    return COMPONENTS[type];
   },
 
   createTextNode(text, rootContainerElement) {

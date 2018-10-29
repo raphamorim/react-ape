@@ -15,7 +15,7 @@ type Props = {|
   debug?: boolean
 |};
 
-function CanvasGrid(props: Props, apeContext: CanvasComponentContext) {
+function renderCanvasGrid(props: Props, apeContext: CanvasComponentContext) {
   const {ctx} = apeContext;
   const width = ctx.canvas.width;
   const height = ctx.canvas.height;
@@ -53,4 +53,12 @@ function CanvasGrid(props: Props, apeContext: CanvasComponentContext) {
   ctx.strokeStyle = lastStrokeStyle;
 }
 
-export default CanvasGrid;
+export default function CreateCanvasGrid(props) {
+  const CanvasGridInstance = {
+    type: 'CanvasGrid',
+    render: renderCanvasGrid.bind(this, props),
+    clear: () => {}
+  };
+
+  return CanvasGridInstance;
+};
