@@ -1,4 +1,5 @@
 {
+  "name": "react-ape-docs",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
