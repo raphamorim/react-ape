@@ -20,7 +20,7 @@ export const Image = 'Image';
 export const View = 'View';
 export const Text = 'Text';
 export const Tools = {
-  Grid: 'CanvasGrid'
+  Grid: 'CanvasGrid',
 };
 
 export const StyleSheet = StyleSheetModule;

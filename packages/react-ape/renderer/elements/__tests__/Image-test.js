@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import ImageFn from '../Image';
+import CreateImageInstance from '../Image';
 
 describe('Image', () => {
   describe('should call drawImage properly', () => {
@@ -18,7 +18,8 @@ describe('Image', () => {
           },
         };
 
-        ImageFn(props, apeContext);
+        const createImage = CreateImageInstance(props);
+        createImage.render(apeContext);
 
         const {drawImage} = apeContext.ctx;
 
@@ -39,7 +40,8 @@ describe('Image', () => {
           },
         };
 
-        ImageFn(props, apeContext);
+        const createImage = CreateImageInstance(props);
+        createImage.render(apeContext);
 
         const {drawImage} = apeContext.ctx;
 
@@ -60,7 +62,8 @@ describe('Image', () => {
           },
         };
 
-        ImageFn(props, apeContext);
+        const createImage = CreateImageInstance(props);
+        createImage.render(apeContext);
 
         const {drawImage} = apeContext.ctx;
 
@@ -69,22 +72,22 @@ describe('Image', () => {
         expect(drawImage).toBeCalledWith(imageElement, 0, 0, 0, 0);
       });
     });
-    describe('using src', () => {
-      // it('without style object and src as props', () => {
-      //   const imageElement = new Image();
-      //   imageElement.src = 'data:image/gif;base64,R0lGODlhCwALAIAAAAAA3pn/ZiH5BAEAAAEALAAAAAALAAsAAAIUhA+hkcuO4lmNVindo7qyrIXiGBYAOw==';
-      //   const props = {src: imageElement, width: 100, height: 320};
-      //   const apeContext = {
-      //     ctx: {
-      //       drawImage: jest.fn()
-      //     },
-      //   };
-      //   ImageFn(props, apeContext);
-      //   const { drawImage } = apeContext.ctx;
-      //   expect(drawImage.mock.calls.length).toBe(1);
-      //   expect(drawImage.mock.instances.length).toBe(1);
-      //   expect(drawImage).toBeCalledWith(imageElement, 0, 0, 100, 320);
-      // });
-    });
+    // describe('using src', () => {
+    // it('without style object and src as props', () => {
+    //   const imageElement = new Image();
+    //   imageElement.src = 'data:image/gif;base64,R0lGODlhCwALAIAAAAAA3pn/ZiH5BAEAAAEALAAAAAALAAsAAAIUhA+hkcuO4lmNVindo7qyrIXiGBYAOw==';
+    //   const props = {src: imageElement, width: 100, height: 320};
+    //   const apeContext = {
+    //     ctx: {
+    //       drawImage: jest.fn()
+    //     },
+    //   };
+    //   CreateImageInstance(props, apeContext);
+    //   const { drawImage } = apeContext.ctx;
+    //   expect(drawImage.mock.calls.length).toBe(1);
+    //   expect(drawImage.mock.instances.length).toBe(1);
+    //   expect(drawImage).toBeCalledWith(imageElement, 0, 0, 100, 320);
+    // });
+    // });
   });
 });

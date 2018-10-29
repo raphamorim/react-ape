@@ -30,7 +30,9 @@ const ReactApeComponent = {
     };
 
     if (!COMPONENTS[type]) {
-      throw new Error(`React Ape could not identify "${type}" as ReactApeComponent. More details: http://raphamorim.io/react-ape`);
+      throw new Error(
+        `React Ape could not identify "${type}" as ReactApeComponent. More details: http://raphamorim.io/react-ape`
+      );
     }
 
     return COMPONENTS[type];

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   surface: {
     backgroundColor: '#202020',
     width: dimensions.getWidth(),
-    height: dimensions.getHeight()
+    height: dimensions.getHeight(),
   },
   heading: {
     top: 62,
@@ -79,10 +79,7 @@ class App extends React.Component {
 
   renderPostersList() {
     const renderRow = (data, idx) => (
-      <View
-        height={200}
-        width={200}
-        key={'poster-list-' + idx}>
+      <View height={200} width={200} key={'poster-list-' + idx}>
         <Image
           style={{x: 220 * idx + 30, y: 140, width: 200, height: 300}}
           src={data.src}

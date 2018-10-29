@@ -11,19 +11,22 @@
 import type {CanvasComponentContext} from '../types';
 
 type Props = {|
-  style: {
-    borderStyle?: Array<number>,
-    borderSize: number,
-    borderColor?: string,
-    fontSize?: number,
-    fontFamily?: string,
-    color?: string,
-    align: string,
-    x: number,
-    y: number,
-  },
+  style: Style,
   children: string,
   content?: string,
+|};
+
+type Style = {|
+  backgroundColor?: string,
+  borderStyle?: Array<number>,
+  borderSize: number,
+  borderColor?: string,
+  fontSize?: number,
+  fontFamily?: string,
+  color?: string,
+  align: string,
+  x: number,
+  y: number,
 |};
 
 function renderText(props: Props, apeContext: CanvasComponentContext) {
@@ -51,29 +54,31 @@ function renderText(props: Props, apeContext: CanvasComponentContext) {
   ctx.strokeStyle = previousStroke;
 }
 
-function clearText(prevProps, parentStyle = {}, apeContext) {;
+function clearText(
+  prevProps: Props,
+  parentStyle: Style,
+  apeContext: CanvasComponentContext
+) {
   if (prevProps.style) {
-    const { color, borderColor } = prevProps.style;
+    const {color, borderColor} = prevProps.style;
     const clearProps = {
       ...prevProps,
       style: {
         ...prevProps.style,
         color: parentStyle.backgroundColor,
         borderSize: 1.5,
-        borderColor: parentStyle.backgroundColor
-      }
+        borderColor: parentStyle.backgroundColor,
+      },
     };
 
     renderText(clearProps, apeContext);
   }
 }
 
-export default function CreateTextInstance(props) {
-  const TextInstance = {
+export default function CreateTextInstance(props: Props) {
+  return {
     type: 'Text',
     render: renderText.bind(this, props),
-    clear: clearText
+    clear: clearText,
   };
-
-  return TextInstance;
-};
+}

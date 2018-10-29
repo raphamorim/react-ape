@@ -12,7 +12,7 @@ describe('View', () => {
     expect(typeof myView.render).toBe('function');
     expect(myView.children()).toEqual([]);
 
-    const child = jest.fn();
+    const child = {render: jest.fn()};
     myView.appendChild(child);
     expect(myView.children()).toEqual([child]);
 
@@ -25,6 +25,7 @@ describe('View', () => {
             withDestinationOver = true;
           }
         },
+        stroke: jest.fn(),
         rect: jest.fn(),
         closePath: jest.fn(),
       },
@@ -48,7 +49,7 @@ describe('View', () => {
     expect(globalCompositeOperation).toEqual('source-over');
     expect(fillStyle).toEqual('green');
 
-    expect(child.mock.calls.length).toBe(1);
-    expect(child).toBeCalledWith(apeContext);
+    expect(child.render.mock.calls.length).toBe(1);
+    expect(child.render).toBeCalledWith(apeContext);
   });
 });

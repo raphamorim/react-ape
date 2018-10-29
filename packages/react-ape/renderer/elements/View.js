@@ -6,7 +6,7 @@
  *
  */
 
-import { defaultViewSize } from '../constants';
+import {defaultViewSize} from '../constants';
 
 class View {
   constructor(props) {
@@ -25,7 +25,7 @@ class View {
 
     return {
       backgroundColor: 'white',
-      borderColor: 'white'
+      borderColor: 'white',
     };
   }
 
@@ -61,9 +61,7 @@ class View {
     ctx.strokeStyle = previousStroke;
 
     const callRenderFunctions = renderFunction => {
-      renderFunction.render
-        ? renderFunction.render(apeContext)
-        : null;
+      renderFunction.render ? renderFunction.render(apeContext) : null;
     };
 
     this._renderList.forEach(callRenderFunctions);

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import TextFn from '../Text';
+import CreateTextInstance from '../Text';
 
 describe('Text', () => {
   describe('with text as children', () => {
@@ -20,11 +20,13 @@ describe('Text', () => {
           strokeText: jest.fn(),
           fillText: jest.fn(),
           fill: jest.fn(),
+          stroke: jest.fn(),
           closePath: jest.fn(),
         },
       };
 
-      TextFn(props, apeContext);
+      const text = CreateTextInstance(props);
+      text.render(apeContext);
 
       const {
         beginPath,
@@ -36,6 +38,7 @@ describe('Text', () => {
         strokeStyle,
         font,
         textBaseline,
+        stroke,
         strokeText,
       } = apeContext.ctx;
 
@@ -55,7 +58,8 @@ describe('Text', () => {
       expect(fillStyle).toBe('#333333');
 
       expect(strokeStyle).toBe(undefined);
-      expect(strokeText.mock.calls.length).toBe(0);
+      expect(stroke.mock.calls.length).toBe(1);
+      expect(strokeText.mock.calls.length).toBe(1);
     });
   });
 
@@ -77,11 +81,13 @@ describe('Text', () => {
           strokeText: jest.fn(),
           fillText: jest.fn(),
           fill: jest.fn(),
+          stroke: jest.fn(),
           closePath: jest.fn(),
         },
       };
 
-      TextFn(props, apeContext);
+      const text = CreateTextInstance(props);
+      text.render(apeContext);
 
       const {
         beginPath,
@@ -93,6 +99,7 @@ describe('Text', () => {
         strokeStyle,
         font,
         textBaseline,
+        stroke,
         strokeText,
       } = apeContext.ctx;
 
@@ -112,7 +119,8 @@ describe('Text', () => {
       expect(fillStyle).toBe('#333333');
 
       expect(strokeStyle).toBe(undefined);
-      expect(strokeText.mock.calls.length).toBe(0);
+      expect(strokeText.mock.calls.length).toBe(1);
+      expect(stroke.mock.calls.length).toBe(1);
     });
   });
 });

@@ -8,11 +8,11 @@
  *
  */
 
-import type { CanvasComponentContext } from '../types';
-import { _SectionBlockSize } from '../constants';
+import type {CanvasComponentContext} from '../types';
+import {_SectionBlockSize} from '../constants';
 
 type Props = {|
-  debug?: boolean
+  debug?: boolean,
 |};
 
 function renderCanvasGrid(props: Props, apeContext: CanvasComponentContext) {
@@ -53,12 +53,12 @@ function renderCanvasGrid(props: Props, apeContext: CanvasComponentContext) {
   ctx.strokeStyle = lastStrokeStyle;
 }
 
-export default function CreateCanvasGrid(props) {
+export default function CreateCanvasGrid(props: Props) {
   const CanvasGridInstance = {
     type: 'CanvasGrid',
     render: renderCanvasGrid.bind(this, props),
-    clear: () => {}
+    clear: () => {},
   };
 
   return CanvasGridInstance;
-};
+}

@@ -112,12 +112,10 @@ function renderImage(props: Props, apeContext: CanvasComponentContext) {
   }
 }
 
-export default function CreateImageInstance(props) {
-  const ImageInstance = {
+export default function CreateImageInstance(props: Props) {
+  return {
     type: 'Image',
     render: renderImage.bind(this, props),
-    clear: () => {}
+    clear: () => {},
   };
-
-  return ImageInstance;
-};
+}
