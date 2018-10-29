@@ -9,7 +9,6 @@
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
 import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
-import VirtualCanvas from './core/virtualCanvas';
 
 export type CanvasComponentContext = {
   _renderQueueForUpdate: Array<mixed>,
@@ -141,7 +140,7 @@ const ReactApeFiber = reconciler({
 
       if (diff) {
         element.clear(oldProps, element.parentStyle, apeContextGlobal);
-        const { style = {} } = oldProps;
+        const {style = {}} = oldProps;
 
         const apeElement = reactApeComponent.createElement(
           type,
@@ -159,9 +158,7 @@ const ReactApeFiber = reconciler({
     if (apeContextGlobal && apeContextGlobal._renderQueueForUpdate.length) {
       // TODO: Move to request animation frame
       apeContextGlobal._renderQueueForUpdate.forEach(element =>
-        window.requestAnimationFrame(() =>
-          element.render(apeContextGlobal)
-        )
+        element.render(apeContextGlobal)
       );
       apeContextGlobal._renderQueueForUpdate = [];
     }
@@ -231,14 +228,11 @@ const ReactApeFiber = reconciler({
       // parentInstance.removeChild(child);
     },
 
-    insertBefore(parentInstance, child, beforeChild) {
-    },
+    insertBefore(parentInstance, child, beforeChild) {},
 
-    commitUpdate(instance, updatePayload, type, oldProps, newProps) {
-    },
+    commitUpdate(instance, updatePayload, type, oldProps, newProps) {},
 
-    commitMount(instance, updatePayload, type, oldProps, newProps) {
-    },
+    commitMount(instance, updatePayload, type, oldProps, newProps) {},
 
     commitTextUpdate(textInstance, oldText, newText) {
       // textInstance.children = newText;
