@@ -57,9 +57,7 @@ describe('render', () => {
       const expectedCanvas = document.createElement('canvas');
 
       const view = new ViewElement({style: styles.view});
-      view.appendChild(
-        createTextElement({children: 'Text with Defaults'})
-      );
+      view.appendChild(createTextElement({children: 'Text with Defaults'}));
       view.render({ctx: expectedCanvas.getContext('2d')});
 
       render(App, canvas);
