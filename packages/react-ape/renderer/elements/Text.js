@@ -26,7 +26,7 @@ type Props = {|
   content?: string,
 |};
 
-function Text(props: Props, apeContext: CanvasComponentContext) {
+function renderText(props: Props, apeContext: CanvasComponentContext) {
   const {ctx} = apeContext;
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
@@ -51,4 +51,29 @@ function Text(props: Props, apeContext: CanvasComponentContext) {
   ctx.strokeStyle = previousStroke;
 }
 
-export default Text;
+function clearText(prevProps, parentStyle = {}, apeContext) {;
+  if (prevProps.style) {
+    const { color, borderColor } = prevProps.style;
+    const clearProps = {
+      ...prevProps,
+      style: {
+        ...prevProps.style,
+        color: parentStyle.backgroundColor,
+        borderSize: 1.5,
+        borderColor: parentStyle.backgroundColor
+      }
+    };
+
+    renderText(clearProps, apeContext);
+  }
+}
+
+export default function CreateTextInstance(props) {
+  const TextInstance = {
+    type: 'Text',
+    render: renderText.bind(this, props),
+    clear: clearText
+  };
+
+  return TextInstance;
+};

@@ -11,7 +11,6 @@ import { defaultViewSize } from '../constants';
 class View {
   constructor(props) {
     this.props = props;
-
     this._renderList = [];
   }
 
@@ -19,8 +18,23 @@ class View {
     this._renderList.push(fn);
   }
 
+  getStyle() {
+    if (this.props && this.props.style) {
+      return this.props.style;
+    }
+
+    return {
+      backgroundColor: 'white',
+      borderColor: 'white'
+    };
+  }
+
   children() {
     return this._renderList;
+  }
+
+  clear() {
+    // noop
   }
 
   render(apeContext) {
@@ -49,7 +63,7 @@ class View {
     const callRenderFunctions = renderFunction => {
       renderFunction.render
         ? renderFunction.render(apeContext)
-        : renderFunction(apeContext);
+        : null;
     };
 
     this._renderList.forEach(callRenderFunctions);
