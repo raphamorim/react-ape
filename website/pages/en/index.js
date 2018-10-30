@@ -89,6 +89,7 @@ const FeatureCallout = () => (
             {`\`\`\`javascript
 import React, { Component } from 'react';
 import { Text, View } from 'react-ape';
+
 class ReactApeComponent extends Component {
   render() {
     return (
@@ -106,6 +107,8 @@ class ReactApeComponent extends Component {
 }
 \`\`\``}
           </MarkdownBlock>
+          <br/>
+          <br/>
         </div>
       </div>
     </Container>
@@ -137,6 +140,42 @@ const Showcase = props => {
   );
 };
 
+const Examples = (props) => (
+  <div className="examplesSection">
+    <Container>
+      <h1>Check some Examples using React Ape</h1>
+      <p>Those are some examples of React Ape, but <a href="https://github.com/raphamorim/react-ape/issues/new" target="_blank">feel free to add an example.</a></p>
+      <h2>Hello World:</h2>
+    </Container>
+    <div className="blockElement">
+      <div className="blockContent">
+        <iframe src="https://codesandbox.io/embed/zrqy570pjp?hidenavigation=1" style={{
+          width:'100%', height:'500px', border: 0, borderRadius: '4px', overflow: 'hidden'
+        }} sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+      </div>
+    </div>
+
+    <Container>
+      <h2>Netflix ListView:</h2>
+    </Container>
+    <div className="blockElement">
+      <div className="blockContent">
+        <iframe src="https://codesandbox.io/embed/2xzk61702r?hidenavigation=1" style={{
+          width:'100%', height:'500px', border: 0, borderRadius: '4px', overflow: 'hidden'
+        }} sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+      </div>
+    </div>
+
+    {
+      /*<Container>
+        <a className="button" href={pageUrl('examples.html', props.language)}>
+          See more examples
+        </a>
+      </Container>*/
+    }
+  </div>
+)
+
 class Index extends React.Component {
   render() {
     const language = this.props.language || '';
@@ -146,6 +185,7 @@ class Index extends React.Component {
         <HomeSplash language={language} />
         <div className="mainContainer">
           <FeatureCallout />
+          <Examples language={language} />
           { /* <Showcase language={language} /> */ }
         </div>
       </div>

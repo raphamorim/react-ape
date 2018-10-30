@@ -33,6 +33,18 @@
   height: 300px;
 }
 
+.examplesSection {
+  padding-top: 1px;
+  padding-bottom: 10px;
+  margin-bottom: -50px;
+  background: #232729;
+  color: #FFF;
+}
+
+.examplesSection a {
+  color: #FFB736;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
   .inner .tagline {
     font-size: 33px;
