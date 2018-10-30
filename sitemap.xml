@@ -15,4 +15,5 @@
 <url> <loc>http://raphamorim.io/react-ape/docs/contributing-how-to-contribute</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="http://raphamorim.io/react-ape/docs/contributing-how-to-contribute" /> </url>
 <url> <loc>http://raphamorim.io/react-ape/docs/getting-started</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="http://raphamorim.io/react-ape/docs/getting-started" /> </url>
 <url> <loc>http://raphamorim.io/react-ape/docs/learning-the-basics</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="http://raphamorim.io/react-ape/docs/learning-the-basics" /> </url>
+<url> <loc>http://raphamorim.io/react-ape/docs/smart-render</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="http://raphamorim.io/react-ape/docs/smart-render" /> </url>
 </urlset>
