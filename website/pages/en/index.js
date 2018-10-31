@@ -78,7 +78,7 @@ class HomeSplash extends React.Component {
   }
 }
 
-const FeatureCallout = () => (
+const DefinitionCallout = () => (
   <div className="paddingBottom">
     <Container>
       <div className="blockElement">
@@ -112,6 +112,39 @@ class ReactApeComponent extends Component {
         </div>
       </div>
     </Container>
+  </div>
+);
+
+const FirstFeatureCallout = () => (
+  <div className="container paddingBottom paddingTop lightBackground">
+    <div className="wrapper">
+      <div className="blockElement imageAlignSide imageAlignLeft twoByGridBlock">
+        <div className="blockImage">
+          <img src={imgUrl('learn-once.png')}/>
+        </div>
+        <div className="blockContent">
+          <h2>Learn Once, Write Anywhere</h2>
+          <p>React Ape follow React Native's concept of Learn Once Write Anywhere. So, if you have even a little bit of React experience you should create things very fast.</p>
+          <p>Different platforms have different environment and look and with that in mind React Ape follow the concept that engineers should be able to build applications for whatever platform they choose, without needing to learn a fundamentally different set of technologies for each.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const SecondFeatureCallout = () => (
+  <div className="container paddingBottom paddingTop">
+    <div className="wrapper">
+      <div className="blockElement imageAlignSide imageAlignRight twoByGridBlock">
+        <div className="blockContent">
+          <h2>Inspect and debug apps based on HTML5 Canvas using React Developer Tools</h2>
+          <p>React Ape support in production and development environment you use the React Developer Tools, which is a tool that allows you to inspect a React tree, including the component hierarchy, props, state, and more.</p>
+        </div>
+        <div className="blockImage">
+          <img src={imgUrl('developer-tools.png')}/>
+        </div>
+      </div>
+    </div>
   </div>
 );
 
@@ -165,14 +198,6 @@ const Examples = (props) => (
         }} sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
       </div>
     </div>
-
-    {
-      /*<Container>
-        <a className="button" href={pageUrl('examples.html', props.language)}>
-          See more examples
-        </a>
-      </Container>*/
-    }
   </div>
 )
 
@@ -184,7 +209,9 @@ class Index extends React.Component {
       <div>
         <HomeSplash language={language} />
         <div className="mainContainer">
-          <FeatureCallout />
+          <DefinitionCallout />
+          <FirstFeatureCallout />
+          <SecondFeatureCallout />
           <Examples language={language} />
           { /* <Showcase language={language} /> */ }
         </div>

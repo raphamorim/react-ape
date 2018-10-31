@@ -1,14 +1,11 @@
 {
-  "name": "example-1",
+  "name": "playground",
   "version": "1.0.0",
   "author": "Raphael Amorim",
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "start": "webpack-dev-server --progress --colors"
-  },
-  "dependencies": {
-    "react": "^16.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
