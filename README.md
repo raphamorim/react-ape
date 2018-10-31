@@ -1,8 +1,6 @@
 # [React Ape](http://raphamorim.io/react-ape) [![CircleCI](https://circleci.com/gh/raphamorim/react-ape/tree/master.svg?style=svg)](https://circleci.com/gh/raphamorim/react-ape/tree/master)
 
-> React Ape is a react renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices.
-
-<img alt="React Ape Logo" height="200px" src="assets/logo.png"/>
+React Ape is a react renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices.
 
 ## [Check the Docs](http://raphamorim.io/react-ape)
 
