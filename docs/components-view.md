@@ -14,7 +14,7 @@ import { Text, View, render } from "react-ape";
 
 class ViewExample extends React.Component {
   render() {
-    return <View style={{ backgroundColor: "#f00" }} />;
+    return <View style={{ backgroundColor: "red" }} />;
   }
 }
 ```
