@@ -9,25 +9,13 @@ sidebar_label: View
 Most fundamental component, `view` contains the components inside of itself, it can also nest other views.
 
 ```JS
-import React from 'react';
-import {
-  Text,
-  View,
-} from 'react-ape';
+import React from "react";
+import { Text, View, render } from "react-ape";
 
 class ViewExample extends React.Component {
-     constructor(props) {
-       super(props)
-     }
-
-     render() {
-       return (
-         <View style={{ backgroundColor: '#f00' }}>
-        </View>
-       )
-     }
-   }
-
-export default ViewExample
+  render() {
+    return <View style={{ backgroundColor: "#f00" }} />;
+  }
+}
 ```
-<iframe src="https://embed.plnkr.co/plunk/u9RQ0qjTyrI21SEM?show=preview" frameborder="0" width="100%" height="480px"></iframe>
+<iframe src="https://codesandbox.io/embed/v2vxwnlxl?hidenavigation=1" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>

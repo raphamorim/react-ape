@@ -47,4 +47,4 @@ class ListViewExample extends React.Component {
 export default ListViewExample
 ```
 
-<iframe src="https://embed.plnkr.co/plunk/3FfWANyyzjv7H01M?show=preview" frameborder="0" width="100%" height="480px"></iframe>
+<iframe src="https://codesandbox.io/embed/0xo024091v?hidenavigation=1" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>

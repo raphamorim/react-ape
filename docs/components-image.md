@@ -10,27 +10,17 @@ A component to display different types of images on canvas.
 
 This example shows how to display an image at canvas.
 ```JS
-import React from 'react';
-import {
-  Image,
-  View,
-} from 'react-ape';
+import React from "react";
+import { Image, View, render } from "react-ape";
 
 class ImageExample extends React.Component {
-     constructor(props) {
-       super(props)
-     }
-
-     render() {
-       return (
-         <View>
-          <Image src="http://raphamorim.io/react-ape/img/logo.svg">
-          </Image>
-        </View>
-       )
-     }
-   }
-
-export default ImageExample
+  render() {
+    return (
+      <View>
+        <Image src="http://raphamorim.io/react-ape/img/logo.svg" />
+      </View>
+    );
+  }
+}
 ```
-<iframe src="https://embed.plnkr.co/plunk/DBCtQZdmFaEtww4n?show=preview" frameborder="0" width="100%" height="480px"></iframe>
+<iframe src="https://codesandbox.io/embed/24zmzm07my?hidenavigation=1" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
