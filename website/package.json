@@ -1,5 +1,6 @@
 {
   "name": "react-ape-docs",
+  "version": "0.0.1",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
