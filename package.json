@@ -1,16 +1,16 @@
 {
   "private": true,
   "workspaces": [
-    "packages/*", "website"
+    "packages/*",
+    "website"
   ],
   "scripts": {
     "build": "node ./scripts/rollup",
     "docs-start": "cd website && yarn run start",
     "docs-build": "cd website && yarn run build",
     "docs-publish": "cd website && yarn run docs-publish",
+    "playground-start": "cd packages/playground && yarn start",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
-    "flow": "flow",
-    "jest": "jest",
     "jest:ci": "jest --no-cache --bail --ci --runInBand",
     "postinstall": "yarn test-n-build",
     "prepublishOnly": "yarn test-n-build",
@@ -21,25 +21,30 @@
     "test-n-build": "yarn test && yarn build"
   },
   "devDependencies": {
-    "babel-jest": "21.0.2",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-external-helpers": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/preset-env": "^7.1.3",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "24.1.0",
+    "babel-polyfill": "^6.26.0",
+    "canvas-prebuilt": "^1.6.11",
     "chalk": "^2.4.1",
-    "docusaurus": "^1.3.3",
-    "flow-bin": "^0.80.0",
+    "docusaurus": "^1.7.2",
+    "flow-bin": "^0.92.1",
     "flow-typed": "^2.5.1",
     "glob": "^7.1.2",
-    "google-closure-compiler": "20180506.0.0",
-    "jest": "21.0.2",
+    "google-closure-compiler": "20190121.0.0",
+    "jest": "24.1.0",
     "jsdom": "^11.11.0",
-    "prettier": "^1.5.3",
     "lerna": "^3.4.1",
-    "react": "^16.3.2",
+    "prettier": "^1.5.3",
+    "react": "^16.4.1",
     "react-reconciler": "^0.12.0",
     "react-test-renderer": "^16.4.1",
     "rollup": "^0.62.0",
-    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.1.3",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-optimize-js": "^0.0.4",
@@ -51,7 +56,9 @@
   "author": "Raphael Amorim",
   "license": "MIT",
   "jest": {
-    "setupTestFrameworkScriptFile": "./tests/setup.js",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
     "roots": [
       "<rootDir>/packages/react-ape"
     ],

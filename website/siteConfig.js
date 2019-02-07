@@ -27,7 +27,7 @@ const siteConfig = {
   headerLinks: [
     {doc: 'getting-started', label: 'Docs'},
     {doc: 'contributing-how-to-contribute', label: 'Contributing'},
-    {blog: true, label: 'Blog'},
+    // {blog: true, label: 'Blog'},
     {href: 'https://github.com/raphamorim/react-ape', label: 'GitHub'},
     {href: 'https://reactjs.org/', label: 'React'},
     {search: true}

@@ -95,7 +95,7 @@ class ReactApeComponent extends Component {
     return (
       <View>
         <Text>
-          Renderer Text on Canvas
+          Render this text on Canvas
         </Text>
         <Text>
           You just use React Ape components like 'View' and 'Text',
@@ -124,8 +124,8 @@ const FirstFeatureCallout = () => (
         </div>
         <div className="blockContent">
           <h2>Learn Once, Write Anywhere</h2>
-          <p>React Ape follow React Native's concept of Learn Once Write Anywhere. So, if you have even a little bit of React experience you should create things very fast.</p>
-          <p>Different platforms have different environment and look and with that in mind React Ape follow the concept that engineers should be able to build applications for whatever platform they choose, without needing to learn a fundamentally different set of technologies for each.</p>
+          <p>React Ape follow React Native's concept of "Learn Once Write Anywhere". So, if you have even a little bit of React experience you should be able to create things faster.</p>
+          <p>Each platform have a different environment and look, with that in mind React Ape try to allow engineers to build applications for whatever platform they choose, without needing to learn a fundamentally different set of technologies for each.</p>
         </div>
       </div>
     </div>

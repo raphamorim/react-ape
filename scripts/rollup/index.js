@@ -47,8 +47,15 @@ function createBundle({entryPath, bundleType, destName}) {
     babel({
       exclude: 'node_modules/**',
       babelrc: false,
-      presets: [['env', {modules: false}], 'react', 'stage-2'],
-      plugins: ['external-helpers'],
+      presets: [
+        '@babel/preset-flow',
+        '@babel/preset-env',
+        '@babel/preset-react',
+      ],
+      plugins: [
+        '@babel/external-helpers',
+        '@babel/plugin-proposal-class-properties',
+      ],
     }),
     resolve({
       jsnext: true,
