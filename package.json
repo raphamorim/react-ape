@@ -11,8 +11,9 @@
     "docs-publish": "cd website && yarn run docs-publish",
     "playground-start": "cd packages/playground && yarn start",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
+    "build-canvas": "cd node_modules/canvas-prebuilt/canvas && node-gyp rebuild",
     "jest:ci": "jest --no-cache --bail --ci --runInBand",
-    "postinstall": "yarn test-n-build",
+    "postinstall": "yarn build-canvas && yarn test-n-build",
     "prepublishOnly": "yarn test-n-build",
     "prettier": "node ./scripts/prettier write-changed",
     "prettier:all": "node ./scripts/prettier write",
@@ -22,7 +23,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/preset-env": "^7.1.3",
     "@babel/preset-flow": "^7.0.0",
