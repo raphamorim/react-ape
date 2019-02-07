@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<View/> 1`] = `<View />`;
-
 exports[`ListView renders correctly 1`] = `
 <View>
   <Text
@@ -16,6 +14,8 @@ exports[`ListView renders correctly 1`] = `
   </Text>
 </View>
 `;
+
+exports[`ListView should render empty view when doesn't exist dataSource: <View/> 1`] = `<View />`;
 
 exports[`ListView should render properly with dataSource and renderRow 1`] = `
 <View>

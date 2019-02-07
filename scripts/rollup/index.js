@@ -52,10 +52,7 @@ function createBundle({entryPath, bundleType, destName}) {
         '@babel/preset-env',
         '@babel/preset-react',
       ],
-      plugins: [
-        '@babel/external-helpers',
-        '@babel/plugin-proposal-class-properties',
-      ],
+      plugins: ['@babel/plugin-proposal-class-properties'],
     }),
     resolve({
       jsnext: true,
