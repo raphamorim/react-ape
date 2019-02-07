@@ -4,11 +4,11 @@
   "author": "Raphael Amorim",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=production webpack",
+    "build": "webpack -p",
     "start": "webpack-dev-server --progress --colors"
   },
   "devDependencies": {
-    "uglifyjs-webpack-plugin": "^1.0.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.29.2",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": ">=3.1.11"
