@@ -10,6 +10,7 @@ aliases:
       - run:
           name: Node version
           command: node -v
+
       - run:
           name: Yarn version
           command: yarn --version
@@ -34,12 +35,6 @@ aliases:
 
 jobs:
   build:
-    docker:
-      - image: circleci/node:8
-    <<: *build_config
-
-
-  build_10:
     docker:
       - image: circleci/node:10
     <<: *build_config
