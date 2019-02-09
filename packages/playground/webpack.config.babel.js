@@ -6,6 +6,7 @@ const sourcePath = path.join(__dirname, 'src');
 const reactApePath = path.join(__dirname, '../react-ape');
 
 const config = {
+  mode: 'development',
   entry: ['babel-polyfill', path.resolve(sourcePath, 'App.js')],
   output: {
     path: __dirname,
