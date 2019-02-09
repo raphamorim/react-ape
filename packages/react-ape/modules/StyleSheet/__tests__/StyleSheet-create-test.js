@@ -1,4 +1,4 @@
-import StyleSheet from '../StyleSheet';
+import StyleSheet from '../index';
 
 describe('[StyleSheet] • create', () => {
   it('create must be a function', () => {

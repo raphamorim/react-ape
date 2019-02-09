@@ -7,8 +7,9 @@ import {
   Image,
   Tools,
   StyleSheet,
-  dimensions,
+  Dimensions,
 } from '../../react-ape/reactApeEntry';
+
 /*
   ^ The `import` above is only for local development,
   you can switch to 'react-ape' if you want to.
@@ -49,52 +50,64 @@ import {
 //   },
 // });
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      time: new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1'),
-    };
-  }
+// class App extends React.Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       time: new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1'),
+//     };
+//   }
 
-  componentDidMount() {
-    setInterval(() => {
-      const time = new Date()
-        .toTimeString()
-        .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
-      this.setState({time});
-    }, 100);
-  }
+//   componentDidMount() {
+//     setInterval(() => {
+//       const time = new Date()
+//         .toTimeString()
+//         .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
+//       this.setState({time});
+//     }, 100);
+//   }
 
+//   render() {
+//     return (
+//       <View>
+//         <Tools.Grid />
+//         <Image
+//           src={'posters/netflix.png'}
+//           style={{top: 10, left: 30}}
+//           width={210}
+//           height={100}
+//         />
+//         <View
+//           style={{
+//             backgroundColor: 'purple',
+//             height: 80,
+//             width: 280,
+//             x: 500,
+//             y: 220,
+//           }}>
+//           <Text style={{x: 520, y: 260, color: 'white', fontSize: 60}}>
+//             {this.state.time}
+//           </Text>
+//         </View>
+//         <Text style={{x: 500, y: 190, color: 'black'}}>{this.state.time}</Text>
+//         <Text style={{x: 500, y: 360}}>
+//           This TextNode should not render again
+//         </Text>
+//       </View>
+//     );
+//   }
+// }
+
+class FixedDimensionsBasics extends React.Component {
   render() {
     return (
       <View>
-        <Tools.Grid />
-        <Image
-          src={'posters/netflix.png'}
-          style={{top: 10, left: 30}}
-          width={210}
-          height={100}
-        />
-        <View
-          style={{
-            backgroundColor: 'purple',
-            height: 80,
-            width: 280,
-            x: 500,
-            y: 220,
-          }}>
-          <Text style={{x: 520, y: 260, color: 'white', fontSize: 60}}>
-            {this.state.time}
-          </Text>
-        </View>
-        <Text style={{x: 500, y: 190, color: 'black'}}>{this.state.time}</Text>
-        <Text style={{x: 500, y: 360}}>
-          This TextNode should not render again
-        </Text>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
+        <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
       </View>
     );
   }
 }
 
-render(<App />, document.getElementById('root'));
+render(<FixedDimensionsBasics />, document.getElementById('root'));
