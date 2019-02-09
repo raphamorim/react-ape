@@ -1,7 +1,7 @@
 ---
 id: apis-dimensions
-title: dimensions
-sidebar_label: dimensions
+title: Dimensions
+sidebar_label: Dimensions
 ---
 
 ## Dimensions
