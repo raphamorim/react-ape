@@ -31,7 +31,7 @@ const config = {
     ignore: [
       '**/node_modules/**',
       '**/dist/**',
-      '**bundle.js**',
+      'bundle.js',
       '**/flow-typed/**',
     ],
   },

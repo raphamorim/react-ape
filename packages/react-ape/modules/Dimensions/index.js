@@ -26,7 +26,24 @@ function getHeight() {
   }
 }
 
-export default {
-  getWidth,
-  getHeight,
+const Dimensions = {
+  get: function(property) {
+    if (property === 'window') {
+      return {
+        width: getWidth(),
+        height: getHeight(),
+      };
+    }
+
+    if (property === 'screen') {
+      return {
+        width: window ? window.screen.width : 0,
+        height: window ? window.screen.height : 0,
+      };
+    }
+
+    return null;
+  },
 };
+
+export default Dimensions;

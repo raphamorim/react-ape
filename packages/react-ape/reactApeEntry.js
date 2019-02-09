@@ -8,7 +8,7 @@
 
 import ReactApeRenderer from './renderer/reactApeRenderer';
 import StyleSheetModule from './modules/StyleSheet';
-import DimensionsModule from './modules/dimensions';
+import DimensionsModule from './modules/Dimensions';
 
 import ListViewComponent from './renderer/components/ListView';
 export const ListView = ListViewComponent;

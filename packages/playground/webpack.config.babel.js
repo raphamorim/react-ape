@@ -6,11 +6,13 @@ const sourcePath = path.join(__dirname, 'src');
 const reactApePath = path.join(__dirname, '../react-ape');
 
 const config = {
+  target: 'web',
   mode: 'development',
-  entry: ['babel-polyfill', path.resolve(sourcePath, 'App.js')],
+  entry: [path.resolve(sourcePath, 'App.js')],
   output: {
     path: __dirname,
     filename: 'bundle.js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -32,29 +34,45 @@ const config = {
       },
     ],
   },
-  plugins: [],
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+  devServer: {
+    host: '0.0.0.0',
+    open: true,
+    contentBase: __dirname,
+    hot: true,
+    inline: true,
+    compress: false,
+    port: 9000,
+    watchContentBase: true,
+    historyApiFallback: {
+      index: path.join(__dirname, 'index.html'),
+    },
+  },
 };
 
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-        compress: {
-          warnings: false,
-        },
-      },
-    })
-  );
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    })
-  );
-  config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
-  config.plugins.push(new webpack.HashedModuleIdsPlugin());
-}
+// if (process.env.NODE_ENV === 'production') {
+//   config.plugins.push(
+//     new UglifyJsPlugin({
+//       uglifyOptions: {
+//         output: {
+//           comments: false,
+//         },
+//         compress: {
+//           warnings: false,
+//         },
+//       },
+//     })
+//   );
+//   config.plugins.push(
+//     new webpack.DefinePlugin({
+//       'process.env.NODE_ENV': JSON.stringify('production'),
+//     })
+//   );
+//   config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+//   config.plugins.push(new webpack.HashedModuleIdsPlugin());
+// }
 
 module.exports = config;
