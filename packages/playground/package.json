@@ -4,7 +4,7 @@
   "author": "Raphael Amorim",
   "license": "MIT",
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack",
     "start": "webpack-dev-server --progress --colors"
   },
   "devDependencies": {
