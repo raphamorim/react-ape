@@ -2,7 +2,8 @@
   "docs": {
     "The Basics": [
       "getting-started",
-      "learning-the-basics"
+      "learning-the-basics",
+      "height-and-width"
     ],
     "Guides": [
       "components-and-apis"

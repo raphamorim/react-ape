@@ -45,6 +45,21 @@
   color: #FFB736;
 }
 
+.preview {
+  display: flex;
+}
+
+.preview-code {
+  width: 65%;
+}
+
+.preview-app {
+  width: 240px;
+  height: 400px;
+  overflow: hidden;
+  border: 3px solid #333;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
   .inner .tagline {
     font-size: 33px;
@@ -53,9 +68,16 @@
 }
 
 @media only screen and (min-width: 1024px) {
+
 }
 
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 900px) {
+  .preview {
+    flex-direction: column;
+  }
+  .preview-code {
+    width: 100%;
+  }
 }
 
 @media only screen and (min-width: 1400px) {
