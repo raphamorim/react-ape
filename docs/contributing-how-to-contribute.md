@@ -29,10 +29,9 @@ If you want to submit code for the repository, please, follow this steps:
 
  + Fork the repository
  + Write your code
- + Run the lint and test task
- + Submit a pull request to marge or release branch.
- + Wait for review, if you PR "need changes", change and commit at the same PR
- + If everything is ok, you PR will be accept! 
+ + Submit a pull request.
+ + Wait for review
+ + If everything is ok, your PR will be accept! 
  + Done :)
 
 ## Branch Organization
