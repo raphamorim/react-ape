@@ -1,5 +1,6 @@
 {
   "name": "react-ape-docs",
+  "license": "MIT",
   "version": "0.0.7",
   "scripts": {
     "examples": "docusaurus-examples",

@@ -27,12 +27,12 @@ The project is hosted and managed at Github, all official release are linked on 
 
 If you want to submit code for the repository, please, follow this steps:
 
- + Fork the repository
- + Write your code
- + Submit a pull request.
- + Wait for review
- + If everything is ok, your PR will be accept! 
- + Done :)
++ Fork the repository
++ Write your code
++ Submit a pull request.
++ Wait for review
++ If everything is ok, your PR will be accept! 
++ Done :)
 
 ## Branch Organization
 
