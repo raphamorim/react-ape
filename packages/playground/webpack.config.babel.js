@@ -6,7 +6,6 @@ const sourcePath = path.join(__dirname, 'src');
 const reactApePath = path.join(__dirname, '../react-ape');
 
 const config = {
-  target: 'web',
   mode: 'development',
   entry: [path.resolve(sourcePath, 'App.js')],
   output: {
@@ -36,17 +35,11 @@ const config = {
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
     host: '0.0.0.0',
     open: true,
-    contentBase: __dirname,
-    hot: true,
-    inline: true,
-    compress: false,
     port: 9000,
-    watchContentBase: true,
     historyApiFallback: {
       index: path.join(__dirname, 'index.html'),
     },
