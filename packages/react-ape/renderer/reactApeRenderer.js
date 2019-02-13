@@ -19,10 +19,11 @@ export type CanvasComponentContext = {
 
 // TODO: Use Context.
 let apeContextGlobal = null;
+let surfaceHeight = 0;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    if (parentInstance.appendChild) {
+    if (parentInstance.appendChild && child.type !== 'View') {
       parentInstance.appendChild(child);
       // TODO: Change it later
       child.parentStyle = parentInstance.getStyle();
@@ -43,6 +44,8 @@ const ReactApeFiber = reconciler({
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
       apeContextGlobal = {
         type: 'canvas',
+        getSurfaceHeight: () => surfaceHeight,
+        setSurfaceHeight: height => { surfaceHeight = height },
         _renderQueueForUpdate: [],
         ctx: rootContainerInstanceContext,
       };
@@ -113,6 +116,9 @@ const ReactApeFiber = reconciler({
       apeContextGlobal._renderQueueForUpdate.forEach(element =>
         element.render(apeContextGlobal)
       );
+
+      // Resets
+      apeContextGlobal.setSurfaceHeight(0);
       apeContextGlobal._renderQueueForUpdate = [];
     }
   },
