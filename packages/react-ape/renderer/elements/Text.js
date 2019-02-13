@@ -39,8 +39,8 @@ function renderText(props: Props, apeContext: CanvasComponentContext) {
   const fontFamily = style.fontFamily || 'Helvetica';
   const previousStroke = ctx.strokeStyle;
 
-  const x = viewLayoutData.x || style.UNSAFE_x || 0;
-  const y = viewLayoutData.y + (fontSize / 2) || style.UNSAFE_y || 0 + (fontSize / 2);
+  const x = style.UNSAFE_x || viewLayoutData.x || 0;
+  const y = style.UNSAFE_y || viewLayoutData.y + (fontSize / 2) || 0 + (fontSize / 2);
 
   ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);
@@ -72,8 +72,8 @@ function clearText(
       style: {
         ...prevProps.style,
         color: parentStyle.backgroundColor,
-        borderSize: 1.5,
         borderColor: parentStyle.backgroundColor,
+        borderSize: 1.5,
       },
     };
 
