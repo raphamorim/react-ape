@@ -66,7 +66,7 @@ class App extends React.Component {
         .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
       this.setState({
         time,
-        backgroundColor: 'purple'
+        backgroundColor: 'purple',
       });
     }, 100);
   }

@@ -33,9 +33,7 @@ const config = {
       },
     ],
   },
-  plugins: [
-    new webpack.NamedModulesPlugin(),
-  ],
+  plugins: [new webpack.NamedModulesPlugin()],
   devServer: {
     host: '0.0.0.0',
     open: true,
