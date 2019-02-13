@@ -20,7 +20,7 @@ describe('render', () => {
       // node-canvas have rasterize fonts in different ways based on OS
       if (process.platform === 'darwin') {
         expect(dataUrl).toEqual(
-          `data:image/png;base64,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wQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgBsECYAbBAmAGwQJgxn8AO6Nz2CVsSUUAAAAASUVORK5CYII=`
+          `data:image/png;base64,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LABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZhAsAGYQLABmECwAZvwP3cRz1olhT7QAAAAASUVORK5CYII=`
         );
       } else {
         expect(dataUrl).toEqual(
@@ -43,14 +43,8 @@ describe('render', () => {
       );
 
       const canvas = document.createElement('canvas');
-      const expectedCanvas = document.createElement('canvas');
-
-      const view = new ViewElement({style: styles.view});
-      view.appendChild(createTextElement({children: 'Text with Defaults'}));
-      view.render({ctx: expectedCanvas.getContext('2d')});
-
       render(App, canvas);
-      expect(canvas.toDataURL()).toEqual(expectedCanvas.toDataURL());
+      expect(canvas.toDataURL()).toMatchSnapshot();
     });
 
     it('renders <Text/> correctly', () => {
@@ -71,16 +65,8 @@ describe('render', () => {
       );
 
       const canvas = document.createElement('canvas');
-      const expectedCanvas = document.createElement('canvas');
-
-      const view = new ViewElement({style: styles.view});
-      view.appendChild(
-        createTextElement({children: 'My amazing text', style: styles.text})
-      );
-      view.render({ctx: expectedCanvas.getContext('2d')});
-
       render(App, canvas);
-      expect(canvas.toDataURL()).toEqual(expectedCanvas.toDataURL());
+      expect(canvas.toDataURL()).toMatchSnapshot();
     });
 
     it('renders <Text/> with coordinates correctly', () => {
@@ -104,20 +90,8 @@ describe('render', () => {
       );
 
       const canvas = document.createElement('canvas');
-      const expectedCanvas = document.createElement('canvas');
-
       render(App, canvas);
-
-      const view = new ViewElement({style: styles.view});
-      view.appendChild(
-        createTextElement({
-          children: 'Other Text',
-          style: styles.text,
-        })
-      );
-      view.render({ctx: expectedCanvas.getContext('2d')});
-
-      expect(canvas.toDataURL()).toEqual(expectedCanvas.toDataURL());
+      expect(canvas.toDataURL()).toMatchSnapshot();
     });
 
     it('should render nothing with empty children', () => {
@@ -127,21 +101,15 @@ describe('render', () => {
         },
       });
 
-      const canvas = document.createElement('canvas');
-      const expectedCanvas = document.createElement('canvas');
-
-      const view = new ViewElement({style: styles.view});
-      view.appendChild(createTextElement({}));
-      view.render({ctx: expectedCanvas.getContext('2d')});
-
       const App = (
         <View style={styles.view}>
           <Text />
         </View>
       );
 
+      const canvas = document.createElement('canvas');
       render(App, canvas);
-      expect(canvas.toDataURL()).toEqual(expectedCanvas.toDataURL());
+      expect(canvas.toDataURL()).toMatchSnapshot();
     });
   });
 });

@@ -29,12 +29,18 @@ type Style = {|
   y: number,
 |};
 
+// TODO: clearText and resetAfterCommit are ignoring viewLayoutData
+//  Which means that re-render operations are unstable
+
 function renderText(props: Props, apeContext: CanvasComponentContext) {
-  const {ctx} = apeContext;
+  const {ctx, viewLayoutData = {}} = apeContext;
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
   const fontFamily = style.fontFamily || 'Helvetica';
   const previousStroke = ctx.strokeStyle;
+
+  const x = viewLayoutData.x || style.UNSAFE_x || 0;
+  const y = viewLayoutData.y + (fontSize / 2) || style.UNSAFE_y || 0 + (fontSize / 2);
 
   ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);
@@ -45,8 +51,8 @@ function renderText(props: Props, apeContext: CanvasComponentContext) {
   ctx.font = `${fontSize}px ${fontFamily}`;
   ctx.fillStyle = style.color || 'black';
   ctx.textAlign = style.align;
-  ctx.fillText(content || children, style.x || 10, style.y || fontSize);
-  ctx.strokeText(content || children, style.x || 10, style.y || fontSize);
+  ctx.fillText(content || children, x, y);
+  ctx.strokeText(content || children, x, y);
   ctx.fill();
   ctx.stroke();
   ctx.setLineDash([]);

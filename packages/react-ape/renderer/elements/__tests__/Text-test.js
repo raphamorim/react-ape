@@ -7,8 +7,8 @@ describe('Text', () => {
   describe('with text as children', () => {
     it('should call properly', () => {
       const style = {
-        x: 40,
-        y: 10,
+        UNSAFE_x: 40,
+        UNSAFE_y: 10,
         color: '#333333',
         fontFamily: 'Helvetica Neue',
       };
@@ -84,6 +84,7 @@ describe('Text', () => {
           stroke: jest.fn(),
           closePath: jest.fn(),
         },
+        viewLayoutData: {x: 10, y: 10}
       };
 
       const text = CreateTextInstance(props);
@@ -112,7 +113,7 @@ describe('Text', () => {
       expect(closePath).toBeCalledWith();
 
       expect(setLineDash).toBeCalledWith([]);
-      expect(fillText).toBeCalledWith(props.content, 10, 18);
+      expect(fillText).toBeCalledWith(props.content, 10, 19); // 10 + (18/2)
 
       expect(font).toBe('18px Helvetica Neue');
       expect(textBaseline).toBe('middle');

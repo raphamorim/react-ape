@@ -11,6 +11,7 @@ import {defaultViewSize} from '../constants';
 class View {
   constructor(props) {
     this.props = props;
+    this.type = 'View';
     this._renderList = [];
   }
 
@@ -18,9 +19,11 @@ class View {
     this._renderList.push(fn);
   }
 
+  // getStyle is used to clear operations
   getStyle() {
-    if (this.props && this.props.style) {
-      return this.props.style;
+    const { style } = this.props;
+    if (style) {
+      return style;
     }
 
     return {
@@ -38,14 +41,20 @@ class View {
   }
 
   render(apeContext) {
-    const {ctx} = apeContext;
+    const {ctx, getSurfaceHeight, setSurfaceHeight} = apeContext;
     const {style = {}} = this.props;
 
     const previousStroke = ctx.strokeStyle;
-    const x = style.x || 0;
-    const y = style.y || 0;
+    let x = style.x || style.left || 0; // legacy support
+    let y = style.y || style.top || 0; // legacy support
     const width = style.width || defaultViewSize;
     const height = style.height || defaultViewSize;
+
+    if (!style.position || style.position === 'relative') {
+      const surfaceHeight = getSurfaceHeight();
+      y = surfaceHeight;
+      setSurfaceHeight(surfaceHeight + height);
+    }
 
     ctx.globalCompositeOperation = 'destination-over';
     ctx.beginPath();
@@ -61,7 +70,11 @@ class View {
     ctx.strokeStyle = previousStroke;
 
     const callRenderFunctions = renderFunction => {
-      renderFunction.render ? renderFunction.render(apeContext) : null;
+      renderFunction.render ? renderFunction.render({
+        ...apeContext,
+        // specific data for elements rendered inside the View
+        viewLayoutData: { x, y }
+      }) : null;
     };
 
     this._renderList.forEach(callRenderFunctions);
