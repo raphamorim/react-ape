@@ -6,17 +6,6 @@ import createTextElement from '../renderer/elements/Text';
 
 describe('render', () => {
   describe('<Text/>', () => {
-    // let originalTimeout;
-
-    // beforeEach(function() {
-    //   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    //   jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
-    // });
-
-    // afterEach(function() {
-    //   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-    // });
-
     // this test should not change
     it('renders only <Text/> correctly', () => {
       const canvas = document.createElement('canvas');
@@ -152,77 +141,6 @@ describe('render', () => {
       );
 
       render(App, canvas);
-      expect(canvas.toDataURL()).toEqual(expectedCanvas.toDataURL());
-    });
-
-    it.skip('renders <Text/> with state', done => {
-      const styles = StyleSheet.create({
-        view: {
-          backgroundColor: 'black',
-          height: 500,
-          width: 500,
-        },
-        text: {
-          color: 'gray',
-        },
-      });
-
-      function formatDate(dateParam) {
-        return dateParam
-          .toTimeString()
-          .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
-      }
-
-      const canvas = document.createElement('canvas');
-      const expectedCanvas = document.createElement('canvas');
-      const date = new Date(2018, 11, 24, 10, 33, 30, 0);
-
-      class App extends React.Component {
-        constructor() {
-          super();
-          this.state = {time: formatDate(date)};
-        }
-
-        componentDidMount() {
-          setInterval(() => {
-            const nextDate = new Date(2018, 11, 24, 50, 53, 50, 0);
-            this.setState({time: formatDate(nextDate)});
-
-            const updatedCanvas = document.createElement('canvas');
-            const newView = new ViewElement({style: styles.view});
-            newView.appendChild(
-              createTextElement({
-                children: formatDate(nextDate),
-                style: styles.text,
-              })
-            );
-            newView.render({ctx: updatedCanvas.getContext('2d')});
-
-            expect(canvas.toDataURL()).toEqual(updatedCanvas.toDataURL());
-            done();
-          }, 10);
-        }
-
-        render() {
-          return (
-            <View style={styles.view}>
-              <Text style={styles.text}>{this.state.time}</Text>
-            </View>
-          );
-        }
-      }
-
-      const view = new ViewElement({style: styles.view});
-      view.appendChild(
-        createTextElement({
-          children: formatDate(date),
-          style: styles.text,
-        })
-      );
-      view.render({ctx: expectedCanvas.getContext('2d')});
-
-      render(<App />, canvas);
-
       expect(canvas.toDataURL()).toEqual(expectedCanvas.toDataURL());
     });
   });

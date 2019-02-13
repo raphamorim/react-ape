@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --progress --colors --hot"
+    "start": "webpack-dev-server"
   },
   "devDependencies": {
     "uglifyjs-webpack-plugin": "^2.1.1",
