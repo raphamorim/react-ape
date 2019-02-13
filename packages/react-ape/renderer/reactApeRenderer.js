@@ -8,7 +8,7 @@
 
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
-import { scaleDPI, clearCanvas } from './core/canvas';
+import {scaleDPI, clearCanvas} from './core/canvas';
 import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
 
 export type CanvasComponentContext = {

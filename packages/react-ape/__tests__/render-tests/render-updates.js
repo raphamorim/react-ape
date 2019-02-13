@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {render, View, Text, StyleSheet} from '../../reactApeEntry';
 
 describe('Render Updates', () => {
@@ -17,8 +17,8 @@ describe('Render Updates', () => {
           this.state = {
             color: 'blue',
             fontFamily: 'helvetica',
-            fontSize: 25
-          }
+            fontSize: 25,
+          };
         }
 
         componentDidMount() {
@@ -26,13 +26,13 @@ describe('Render Updates', () => {
             this.setState({
               color: 'orange',
               fontFamily: 'arial',
-              fontSize: 13
+              fontSize: 13,
             });
 
             setTimeout(() => {
               expect(canvas.toDataURL()).toMatchSnapshot();
               done();
-            })
+            });
           });
         }
 
@@ -41,10 +41,10 @@ describe('Render Updates', () => {
             <View>
               <Text style={this.state}>Should change!</Text>
             </View>
-          )
+          );
         }
       }
-      render(<TextComponent/>, canvas);
+      render(<TextComponent />, canvas);
       const dataUrl = canvas.toDataURL();
       expect(dataUrl).toMatchSnapshot();
     });
@@ -55,8 +55,8 @@ describe('Render Updates', () => {
         constructor() {
           super();
           this.state = {
-            content: 'Noiiceee'
-          }
+            content: 'Noiiceee',
+          };
         }
 
         componentDidMount() {
@@ -66,19 +66,19 @@ describe('Render Updates', () => {
             setTimeout(() => {
               expect(canvas.toDataURL()).toMatchSnapshot();
               done();
-            })
+            });
           });
         }
 
         render() {
           return (
             <View>
-              <Text style={{ color: 'black' }}>{this.state.content}</Text>
+              <Text style={{color: 'black'}}>{this.state.content}</Text>
             </View>
-          )
+          );
         }
       }
-      render(<TextComponent/>, canvas);
+      render(<TextComponent />, canvas);
       const dataUrl = canvas.toDataURL();
       expect(dataUrl).toMatchSnapshot();
     });
@@ -90,42 +90,42 @@ describe('Render Updates', () => {
           super();
           this.state = {
             firstContent: 'rain-maker',
-            secondContent: 'sete-vezes-mais'
-          }
+            secondContent: 'sete-vezes-mais',
+          };
         }
 
         componentDidMount() {
           setTimeout(() => {
             this.setState({
               firstContent: 'sun-maker',
-              secondContent: 'dez-vezes-mais'
+              secondContent: 'dez-vezes-mais',
             });
 
             setTimeout(() => {
               expect(canvas.toDataURL()).toMatchSnapshot();
               this.setState({
                 firstContent: 'maker',
-                secondContent: 'treze-vezes-mais'
+                secondContent: 'treze-vezes-mais',
               });
 
               setTimeout(() => {
                 expect(canvas.toDataURL()).toMatchSnapshot();
                 done();
               });
-            })
+            });
           });
         }
 
         render() {
           return (
             <View>
-              <Text style={{ color: 'black' }}>{this.state.firstContent}</Text>
-              <Text style={{ color: 'red' }}>{this.state.secondContent}</Text>
+              <Text style={{color: 'black'}}>{this.state.firstContent}</Text>
+              <Text style={{color: 'red'}}>{this.state.secondContent}</Text>
             </View>
-          )
+          );
         }
       }
-      render(<TextComponent/>, canvas);
+      render(<TextComponent />, canvas);
       const dataUrl = canvas.toDataURL();
       expect(dataUrl).toMatchSnapshot();
     });
