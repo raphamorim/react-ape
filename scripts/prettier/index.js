@@ -1,5 +1,3 @@
-'use strict';
-
 // Based on similar script in Jest
 // https://github.com/facebook/jest/blob/master/scripts/prettier.js
 

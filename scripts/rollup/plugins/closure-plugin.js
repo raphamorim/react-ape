@@ -1,5 +1,3 @@
-'use strict';
-
 const ClosureCompiler = require('google-closure-compiler').compiler;
 const {promisify} = require('util');
 const fs = require('fs');
