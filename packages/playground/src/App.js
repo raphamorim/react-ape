@@ -96,16 +96,16 @@ import {
 //   }
 // }
 
-class App2 extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <View>
         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
         <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}}>
-          <Text>Relative!</Text>
+          <Text>Relative</Text>
         </View>
         <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}}>
-          <Text>Relative!</Text>
+          <Text>Relative</Text>
         </View>
         <View style={{width: 60, left: 200, top: 0, height: 60, position: 'absolute', backgroundColor: 'black'}}>
           <Text style={{ color: 'gray' }}>Absolute!</Text>
@@ -115,35 +115,5 @@ class App2 extends React.Component {
     );
   }
 }
-
-class App extends React.Component {
-        constructor() {
-          super();
-          this.state = {
-            color: 'blue',
-            fontFamily: 'helvetica',
-            fontSize: 25,
-          };
-        }
-
-        componentDidMount() {
-          setTimeout(() => {
-            this.setState({
-              color: 'orange',
-              fontFamily: 'arial',
-              fontSize: 13,
-            });
-          });
-        }
-
-        render() {
-          return (
-            <View>
-              <Text style={this.state}>Should change!</Text>
-            </View>
-          );
-        }
-      }
-
 
 render(<App />, document.getElementById('root'));
