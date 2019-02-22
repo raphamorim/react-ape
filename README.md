@@ -4,7 +4,7 @@ React Ape is a react renderer to build UI interfaces using canvas/WebGL. React A
 
 ## [Check the Docs](https://raphamorim.io/react-ape)
 
-<img alt="Demo PS Vita" src="assets/demo-ps-vita.jpg" height="330px" />
+<img alt='Demo PS Vita' src='assets/demo-ps-vita.jpg' height='330px' />
 
 ## Credits
 

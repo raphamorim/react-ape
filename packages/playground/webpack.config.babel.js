@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const sourcePath = path.join(__dirname, 'src');
 const reactApePath = path.join(__dirname, '../react-ape');
@@ -35,6 +34,7 @@ const config = {
   },
   plugins: [new webpack.NamedModulesPlugin()],
   devServer: {
+    compress: false,
     host: '0.0.0.0',
     open: true,
     port: 9000,
@@ -43,27 +43,5 @@ const config = {
     },
   },
 };
-
-// if (process.env.NODE_ENV === 'production') {
-//   config.plugins.push(
-//     new UglifyJsPlugin({
-//       uglifyOptions: {
-//         output: {
-//           comments: false,
-//         },
-//         compress: {
-//           warnings: false,
-//         },
-//       },
-//     })
-//   );
-//   config.plugins.push(
-//     new webpack.DefinePlugin({
-//       'process.env.NODE_ENV': JSON.stringify('production'),
-//     })
-//   );
-//   config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
-//   config.plugins.push(new webpack.HashedModuleIdsPlugin());
-// }
 
 module.exports = config;
