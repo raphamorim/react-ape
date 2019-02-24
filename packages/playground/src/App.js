@@ -11,6 +11,8 @@ import {
   View,
 } from '../../react-ape/reactApeEntry';
 
+import SmartRender from './SmartRender';
+
 class App extends Component {
   render() {
     return (
@@ -31,4 +33,4 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('root'));
+render(<SmartRender />, document.getElementById('root'));

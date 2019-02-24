@@ -24,6 +24,6 @@ export const Tools = {
 };
 
 export const StyleSheet = StyleSheetModule;
-export const dimensions = DimensionsModule;
+export const Dimensions = DimensionsModule;
 
 export default ReactApeRenderer;
