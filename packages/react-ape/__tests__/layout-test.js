@@ -11,11 +11,28 @@ describe('Layout test', () => {
         render() {
           return (
             <View>
-              <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-              <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
-              <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
-              <View style={{width: 60, left: 200, top: 0, height: 60, position: 'absolute', backgroundColor: 'black'}} />
-              <View style={{width: 200, height: 30, backgroundColor: 'orange'}} />
+              <View
+                style={{width: 50, height: 50, backgroundColor: 'powderblue'}}
+              />
+              <View
+                style={{width: 100, height: 100, backgroundColor: 'skyblue'}}
+              />
+              <View
+                style={{width: 150, height: 150, backgroundColor: 'steelblue'}}
+              />
+              <View
+                style={{
+                  width: 60,
+                  left: 200,
+                  top: 0,
+                  height: 60,
+                  position: 'absolute',
+                  backgroundColor: 'black',
+                }}
+              />
+              <View
+                style={{width: 200, height: 30, backgroundColor: 'orange'}}
+              />
             </View>
           );
         }
@@ -34,7 +51,16 @@ describe('Layout test', () => {
         render() {
           return (
             <View>
-              <View style={{width: 60, left: 100, top: 0, height: 60, position: 'absolute', backgroundColor: 'black'}} />
+              <View
+                style={{
+                  width: 60,
+                  left: 100,
+                  top: 0,
+                  height: 60,
+                  position: 'absolute',
+                  backgroundColor: 'black',
+                }}
+              />
               <View style={{position: 'absolute', backgroundColor: 'blue'}} />
             </View>
           );

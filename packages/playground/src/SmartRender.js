@@ -10,7 +10,7 @@ import {
   Dimensions,
 } from '../../react-ape/reactApeEntry';
 
-const { width, height } = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
   surface: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     height: height,
     position: 'absolute',
     top: 0,
-    left: 0
+    left: 0,
   },
   container: {
     position: 'absolute',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     left: 520,
     top: 260,
     color: 'white',
-    fontSize: 60
+    fontSize: 60,
   },
   text: {
     position: 'absolute',
@@ -67,9 +67,7 @@ class SmartRender extends React.Component {
       <View style={styles.surface}>
         <Tools.Grid />
         <View style={styles.container}>
-          <Text style={styles.time}>
-            {this.state.time}
-          </Text>
+          <Text style={styles.time}>{this.state.time}</Text>
         </View>
         <View style={styles.text}>
           <Text style={{color: 'white'}}>

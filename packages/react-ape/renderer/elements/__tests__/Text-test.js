@@ -84,11 +84,10 @@ describe('Text', () => {
           stroke: jest.fn(),
           closePath: jest.fn(),
         },
-        viewLayoutData: {x: 10, y: 10}
       };
 
       const text = CreateTextInstance(props);
-      text.render(apeContext);
+      text.render(apeContext, {spatialGeometry: {x: 10, y: 10}});
 
       const {
         beginPath,

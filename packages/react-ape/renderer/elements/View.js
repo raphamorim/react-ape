@@ -12,28 +12,27 @@ class View {
   constructor(props) {
     this.props = props;
     this.type = 'View';
-    this._renderList = [];
+    this.spatialGeometry = {};
+    this.renderQueue = [];
   }
 
   appendChild(fn) {
-    this._renderList.push(fn);
+    this.renderQueue.push(fn);
   }
 
-  // getStyle is used to clear operations
-  getStyle() {
-    const { style } = this.props;
-    if (style) {
-      return style;
-    }
-
+  getLayoutDefinitions = () => {
     return {
-      backgroundColor: 'white',
-      borderColor: 'white',
+      style: {
+        backgroundColor: 'white',
+        borderColor: 'white',
+        ...(this.props.style || {}),
+      },
+      spatialGeometry: this.spatialGeometry,
     };
-  }
+  };
 
   children() {
-    return this._renderList;
+    return this.renderQueue;
   }
 
   clear() {
@@ -69,15 +68,19 @@ class View {
     ctx.globalCompositeOperation = 'source-over';
     ctx.strokeStyle = previousStroke;
 
+    this.spatialGeometry = {x, y};
+
     const callRenderFunctions = renderFunction => {
-      renderFunction.render ? renderFunction.render({
-        ...apeContext,
-        // specific data for elements rendered inside the View
-        viewLayoutData: { x, y }
-      }) : null;
+      renderFunction.render
+        ? renderFunction.render(
+            apeContext,
+            // spatialGeometry: specific data for elements rendered inside the View
+            this.getLayoutDefinitions()
+          )
+        : null;
     };
 
-    this._renderList.forEach(callRenderFunctions);
+    this.renderQueue.forEach(callRenderFunctions);
   }
 }
 

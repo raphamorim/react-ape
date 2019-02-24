@@ -8,7 +8,7 @@
  *
  */
 
-import type {CanvasComponentContext} from '../types';
+import type {CanvasComponentContext, SpatialGeometry} from '../types';
 
 type Props = {|
   style: Style,
@@ -29,18 +29,25 @@ type Style = {|
   y: number,
 |};
 
-// TODO: clearText and resetAfterCommit are ignoring viewLayoutData
-//  Which means that re-render operations are unstable
+type ParentLayout = {|
+  style: Style,
+  spatialGeometry: SpatialGeometry,
+|};
 
-function renderText(props: Props, apeContext: CanvasComponentContext) {
-  const {ctx, viewLayoutData = {}} = apeContext;
+function renderText(
+  props: Props,
+  apeContext: CanvasComponentContext,
+  parentLayout: ParentLayout
+) {
+  const {ctx} = apeContext;
+  const {spatialGeometry = {x: 0, y: 0}} = parentLayout || {};
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
   const fontFamily = style.fontFamily || 'Helvetica';
   const previousStroke = ctx.strokeStyle;
 
-  const x = style.UNSAFE_x || viewLayoutData.x || 0;
-  const y = style.UNSAFE_y || viewLayoutData.y + (fontSize / 2) || 0 + (fontSize / 2);
+  const x = style.UNSAFE_x || spatialGeometry.x;
+  const y = style.UNSAFE_y || spatialGeometry.y + fontSize / 2;
 
   ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);
@@ -62,7 +69,7 @@ function renderText(props: Props, apeContext: CanvasComponentContext) {
 
 function clearText(
   prevProps: Props,
-  parentStyle: Style,
+  parentLayout: ParentLayout,
   apeContext: CanvasComponentContext
 ) {
   if (prevProps.style) {
@@ -71,13 +78,13 @@ function clearText(
       ...prevProps,
       style: {
         ...prevProps.style,
-        color: parentStyle.backgroundColor,
-        borderColor: parentStyle.backgroundColor,
+        color: parentLayout.style.backgroundColor,
+        borderColor: parentLayout.style.backgroundColor,
         borderSize: 1.5,
       },
     };
 
-    renderText(clearProps, apeContext);
+    renderText(clearProps, apeContext, parentLayout);
   }
 }
 

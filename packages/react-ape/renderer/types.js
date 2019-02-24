@@ -8,8 +8,14 @@
  *
  */
 
+export type SpatialGeometry = {
+  x: number,
+  y: number,
+};
+
 export type CanvasComponentContext = {
-  _renderQueueForUpdate: Array<mixed>,
+  // render queue for update operations
+  renderQueue: Array<mixed>,
   type: 'canvas',
   ctx: CanvasRenderingContext2D,
 };
