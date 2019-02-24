@@ -6,16 +6,12 @@
  *
  */
 
+import {CanvasComponentContext} from './types';
+
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
 import {scaleDPI, clearCanvas} from './core/canvas';
 import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
-
-export type CanvasComponentContext = {
-  _renderQueueForUpdate: Array<mixed>,
-  type: 'canvas',
-  ctx: CanvasRenderingContext2D,
-};
 
 // TODO: Use Context.
 let apeContextGlobal = null;
@@ -26,7 +22,7 @@ const ReactApeFiber = reconciler({
     if (parentInstance.appendChild && child.type !== 'View') {
       parentInstance.appendChild(child);
       // TODO: Change it later
-      child.parentStyle = parentInstance.getStyle();
+      child.getParentLayout = parentInstance.getLayoutDefinitions;
     }
   },
 
@@ -45,8 +41,10 @@ const ReactApeFiber = reconciler({
       apeContextGlobal = {
         type: 'canvas',
         getSurfaceHeight: () => surfaceHeight,
-        setSurfaceHeight: height => { surfaceHeight = height },
-        _renderQueueForUpdate: [],
+        setSurfaceHeight: height => {
+          surfaceHeight = height;
+        },
+        renderQueue: [],
         ctx: rootContainerInstanceContext,
       };
     }
@@ -95,7 +93,8 @@ const ReactApeFiber = reconciler({
       );
 
       if (diff) {
-        element.clear(oldProps, element.parentStyle, apeContextGlobal);
+        const parentLayout = element.parentLayout || element.getParentLayout();
+        element.clear(oldProps, parentLayout, apeContextGlobal);
         const {style = {}} = oldProps;
 
         const apeElement = reactApeComponent.createElement(
@@ -105,21 +104,22 @@ const ReactApeFiber = reconciler({
           apeContextGlobal
         );
 
-        apeContextGlobal._renderQueueForUpdate.push(apeElement);
+        apeElement.parentLayout = parentLayout;
+        apeContextGlobal.renderQueue.push(apeElement);
       }
     }
   },
 
   resetAfterCommit(rootContainerInstance) {
-    if (apeContextGlobal && apeContextGlobal._renderQueueForUpdate.length) {
+    if (apeContextGlobal && apeContextGlobal.renderQueue.length) {
       // TODO: Move to request animation frame
-      apeContextGlobal._renderQueueForUpdate.forEach(element =>
-        element.render(apeContextGlobal)
-      );
+      apeContextGlobal.renderQueue.forEach(element => {
+        element.render(apeContextGlobal, element.parentLayout);
+      });
 
       // Resets
       apeContextGlobal.setSurfaceHeight(0);
-      apeContextGlobal._renderQueueForUpdate = [];
+      apeContextGlobal.renderQueue = [];
     }
   },
 

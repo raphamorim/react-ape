@@ -5,7 +5,12 @@ import View from '../View';
 
 describe('View', () => {
   it('absolute view should render properly', () => {
-    const style = {top: 10, left: 100, position: 'absolute', backgroundColor: 'green'};
+    const style = {
+      top: 10,
+      left: 100,
+      position: 'absolute',
+      backgroundColor: 'green',
+    };
     const props = {style, children: 'My Amazing Text'};
     const myView = new View(props);
 
@@ -31,7 +36,7 @@ describe('View', () => {
       },
       getSurfaceHeight: () => 0,
       setSurfaceHeight: () => {},
-      viewLayoutData: {x: 100, y: 10}
+      viewLayoutData: {x: 100, y: 10},
     };
 
     myView.render(apeContext);
@@ -52,10 +57,20 @@ describe('View', () => {
     expect(globalCompositeOperation).toEqual('source-over');
     expect(fillStyle).toEqual('green');
 
-    expect(child.render.mock.calls.length).toBe(1);
-    expect(child.render).toBeCalledWith(apeContext);
-  });
+    const parentLayout = {
+      spatialGeometry: {x: 100, y: 10},
+      style: {
+        backgroundColor: 'green',
+        borderColor: 'white',
+        left: 100,
+        position: 'absolute',
+        top: 10,
+      },
+    };
 
+    expect(child.render.mock.calls.length).toBe(1);
+    expect(child.render).toBeCalledWith(apeContext, parentLayout);
+  });
 
   it('relative view should render properly', () => {
     const style = {backgroundColor: 'blue'};
@@ -84,7 +99,7 @@ describe('View', () => {
       },
       getSurfaceHeight: () => 0,
       setSurfaceHeight: () => {},
-      viewLayoutData: {x: 0, y: 0}
+      viewLayoutData: {x: 0, y: 0},
     };
 
     myView.render(apeContext);
@@ -105,7 +120,12 @@ describe('View', () => {
     expect(globalCompositeOperation).toEqual('source-over');
     expect(fillStyle).toEqual('blue');
 
+    const parentLayout = {
+      spatialGeometry: {x: 0, y: 0},
+      style: {backgroundColor: 'blue', borderColor: 'white'},
+    };
+
     expect(child.render.mock.calls.length).toBe(1);
-    expect(child.render).toBeCalledWith(apeContext);
+    expect(child.render).toBeCalledWith(apeContext, parentLayout);
   });
 });
