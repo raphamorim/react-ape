@@ -22,7 +22,7 @@
     "prettier:all": "node ./scripts/prettier write",
     "prettier:stat": "node ./scripts/prettier",
     "test": "yarn flow && yarn prettier:stat && yarn jest",
-    "test:ci": "yarn flow && yarn prettier:stat && yarn jest:linux"
+    "test:ci": "yarn flow && yarn prettier:stat && yarn jest:ci"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
