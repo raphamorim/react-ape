@@ -32,7 +32,7 @@ describe('Render Updates', () => {
             });
 
             setTimeout(() => {
-              expect(canvas.toDataURL()).toMatchSnapshot();
+              testCanvasSnapshot(expect, canvas);
               done();
             });
           });
@@ -66,7 +66,7 @@ describe('Render Updates', () => {
             this.setState({content: 'Dudeeee!'});
 
             setTimeout(() => {
-              expect(canvas.toDataURL()).toMatchSnapshot();
+              testCanvasSnapshot(expect, canvas);
               done();
             });
           });
@@ -103,14 +103,14 @@ describe('Render Updates', () => {
             });
 
             setTimeout(() => {
-              expect(canvas.toDataURL()).toMatchSnapshot();
+              testCanvasSnapshot(expect, canvas);
               this.setState({
                 firstContent: 'maker',
                 secondContent: 'treze-vezes-mais',
               });
 
               setTimeout(() => {
-                expect(canvas.toDataURL()).toMatchSnapshot();
+                testCanvasSnapshot(expect, canvas);
                 done();
               });
             });
