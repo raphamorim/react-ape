@@ -1,5 +1,6 @@
 import React from 'react';
 import {render, View} from '../reactApeEntry';
+import testCanvasSnapshot from '../../../tests/testCanvasSnapshot';
 
 describe('Layout test', () => {
   describe('Test "relative" and "absolute" <Views/>', () => {
@@ -39,8 +40,7 @@ describe('Layout test', () => {
       }
 
       render(<Layout />, canvas);
-      const dataUrl = canvas.toDataURL();
-      expect(dataUrl).toMatchSnapshot();
+      testCanvasSnapshot(expect, canvas);
     });
 
     test('Test 2 absolute views with different positions', () => {
@@ -68,8 +68,7 @@ describe('Layout test', () => {
       }
 
       render(<Layout />, canvas);
-      const dataUrl = canvas.toDataURL();
-      expect(dataUrl).toMatchSnapshot();
+      testCanvasSnapshot(expect, canvas);
     });
   });
 });

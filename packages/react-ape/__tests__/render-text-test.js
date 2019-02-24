@@ -1,6 +1,7 @@
 import React from 'react';
 import {render, View, Text, StyleSheet} from '../reactApeEntry';
 
+import testCanvasSnapshot from '../../../tests/testCanvasSnapshot';
 import ViewElement from '../renderer/elements/View';
 import createTextElement from '../renderer/elements/Text';
 
@@ -44,7 +45,8 @@ describe('render', () => {
 
       const canvas = document.createElement('canvas');
       render(App, canvas);
-      expect(canvas.toDataURL()).toMatchSnapshot();
+
+      testCanvasSnapshot(expect, canvas);
     });
 
     it('renders <Text/> correctly', () => {
@@ -91,7 +93,8 @@ describe('render', () => {
 
       const canvas = document.createElement('canvas');
       render(App, canvas);
-      expect(canvas.toDataURL()).toMatchSnapshot();
+
+      testCanvasSnapshot(expect, canvas);
     });
 
     it('should render nothing with empty children', () => {
@@ -109,7 +112,8 @@ describe('render', () => {
 
       const canvas = document.createElement('canvas');
       render(App, canvas);
-      expect(canvas.toDataURL()).toMatchSnapshot();
+
+      testCanvasSnapshot(expect, canvas);
     });
   });
 });

@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {render, View, Text, StyleSheet} from '../../reactApeEntry';
 
+import testCanvasSnapshot from '../../../../tests/testCanvasSnapshot';
+
 describe('Render Updates', () => {
   describe('View', () => {
     test.skip('Style prop updates', () => {
@@ -45,8 +47,8 @@ describe('Render Updates', () => {
         }
       }
       render(<TextComponent />, canvas);
-      const dataUrl = canvas.toDataURL();
-      expect(dataUrl).toMatchSnapshot();
+
+      testCanvasSnapshot(expect, canvas);
     });
 
     test('Test "Text" simple content change', done => {
@@ -79,8 +81,7 @@ describe('Render Updates', () => {
         }
       }
       render(<TextComponent />, canvas);
-      const dataUrl = canvas.toDataURL();
-      expect(dataUrl).toMatchSnapshot();
+      testCanvasSnapshot(expect, canvas);
     });
 
     test('Test "Text" multiples content change', done => {
@@ -126,8 +127,7 @@ describe('Render Updates', () => {
         }
       }
       render(<TextComponent />, canvas);
-      const dataUrl = canvas.toDataURL();
-      expect(dataUrl).toMatchSnapshot();
+      testCanvasSnapshot(expect, canvas);
     });
   });
 });
