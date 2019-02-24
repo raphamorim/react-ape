@@ -10,38 +10,36 @@ import {
   Dimensions,
 } from '../../react-ape/reactApeEntry';
 
+const { width, height } = Dimensions.get('screen');
+
 const styles = StyleSheet.create({
   surface: {
     backgroundColor: '#202020',
-    width: dimensions.getWidth(),
-    height: dimensions.getHeight(),
+    width: width,
+    height: height,
+    position: 'absolute',
+    top: 0,
+    left: 0
   },
-  heading: {
-    top: 62,
-    left: 250,
-    color: 'white',
-    fontFamily: 'Arial',
-    fontWeight: 'bold',
-    fontSize: 29,
+  container: {
+    position: 'absolute',
+    left: 150,
+    top: 100,
+    backgroundColor: 'orange',
+    height: 80,
+    width: 280,
   },
   time: {
-    top: 62,
-    left: dimensions.getWidth() - 120,
-    color: 'red',
-    fontFamily: 'Arial',
-    fontWeight: 'bold',
-    fontSize: 25,
+    position: 'absolute',
+    left: 520,
+    top: 260,
+    color: 'white',
+    fontSize: 60
   },
-  logo: {
-    top: 10,
-    left: 30,
-  },
-  list: {
-    top: 100,
-    left: 0,
-    backgroundColor: '#303030',
-    width: dimensions.getWidth(),
-    height: 400,
+  text: {
+    position: 'absolute',
+    left: 150,
+    top: 260,
   },
 });
 
@@ -50,7 +48,6 @@ class SmartRender extends React.Component {
     super();
     this.state = {
       time: new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1'),
-      backgroundColor: 'blue',
     };
   }
 
@@ -61,31 +58,24 @@ class SmartRender extends React.Component {
         .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
       this.setState({
         time,
-        backgroundColor: this.state.backgroundColor === 'blue' ? 'purple' : 'blue'
       });
     }, 100);
   }
 
   render() {
     return (
-      <View>
+      <View style={styles.surface}>
         <Tools.Grid />
-        <View
-          style={{
-            backgroundColor: this.state.backgroundColor,
-            height: 80,
-            width: 280,
-            x: 500,
-            y: 220,
-          }}>
-          <Text style={{x: 520, y: 260, color: 'white', fontSize: 60}}>
+        <View style={styles.container}>
+          <Text style={styles.time}>
             {this.state.time}
           </Text>
         </View>
-        <Text style={{x: 500, y: 190, color: 'black'}}>{this.state.time}</Text>
-        <Text style={{x: 500, y: 360}}>
-          This TextNode should not render again!!!
-        </Text>
+        <View style={styles.text}>
+          <Text style={{color: 'white'}}>
+            This TextNode should not render again!!!
+          </Text>
+        </View>
       </View>
     );
   }
