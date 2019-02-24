@@ -1,11 +1,12 @@
 function testCanvasSnapshot(expect, canvas) {
   // node-canvas have rasterize fonts in different ways based on OS
-  if (process.platform === 'darwin') {
+  // TODO: Support tests for linux (CI)
+  // if (process.platform !== 'darwin') {
     expect(canvas.toDataURL()).toMatchSnapshot();
-  } else {
-    // TODO: Support tests for linux (CI)
-    expect(true).toEqual(true);
-  }
+  // } else {
+
+    // expect(true).toEqual(true);
+  // }
 }
 
 export default testCanvasSnapshot;

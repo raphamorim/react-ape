@@ -14,13 +14,15 @@
     "docs-build": "cd website && yarn run build",
     "docs-publish": "cd website && yarn run docs-publish",
     "docs-start": "cd website && yarn run start",
-    "jest:ci": "jest --no-cache --bail --ci --runInBand",
+    "jest": "jest --no-cache --bail --ci --runInBand",
+    "jest:ci": "jest --updateSnapshot",
     "playground": "cd packages/playground && yarn run start",
     "prepublishOnly": "yarn ci",
     "prettier": "node ./scripts/prettier write-changed",
     "prettier:all": "node ./scripts/prettier write",
     "prettier:stat": "node ./scripts/prettier",
-    "test": "yarn flow && yarn prettier:stat && yarn jest:ci"
+    "test": "yarn flow && yarn prettier:stat && yarn jest",
+    "test:ci": "yarn flow && yarn prettier:stat && yarn jest:linux"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

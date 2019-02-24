@@ -35,7 +35,7 @@ aliases:
 
       - run:
           name: Lint and Test packages
-          command: yarn test
+          command: yarn test:ci
 
 jobs:
   build:
