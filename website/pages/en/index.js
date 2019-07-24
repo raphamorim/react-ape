@@ -69,7 +69,7 @@ class HomeSplash extends React.Component {
           <Logo src={imgUrl('logo.svg')}/>
           <TagLine />
           <PromoSection>
-            <Button href={docUrl('getting-started.html', language)}>Get Stated</Button>
+            <Button href={docUrl('getting-started.html', language)}>Get Started</Button>
             <Button href={docUrl('components-and-apis.html', language)}>Learn the Basics</Button>
           </PromoSection>
         </div>
