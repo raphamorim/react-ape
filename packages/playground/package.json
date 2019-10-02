@@ -7,6 +7,10 @@
     "build": "webpack",
     "start": "webpack-dev-server"
   },
+  "files": [
+    "scripts/",
+    "index.js"
+  ],
   "devDependencies": {
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
