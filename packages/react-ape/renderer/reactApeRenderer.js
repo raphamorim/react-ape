@@ -221,11 +221,9 @@ const ReactApeFiber = reconciler({
   },
 
   shouldSetTextContent(props) {
-    // return (
-    //   typeof props.children === 'string' || typeof props.children === 'number'
-    // );
-
-    return false;
+    return (
+      typeof props.children === 'string' || typeof props.children === 'number'
+    );
   },
 });
 
@@ -247,8 +245,6 @@ const ReactApeRenderer = {
       roots.set(canvasDOMElement, root);
       apeContextGlobal = null;
     }
-
-    console.log(reactApeElement);
 
     ReactApeFiber.updateContainer(reactApeElement, root, null, callback);
 
