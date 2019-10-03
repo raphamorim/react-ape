@@ -7,10 +7,29 @@
 import React, {Component} from 'react';
 import {render, Text, View} from '../../react-ape/reactApeEntry';
 
-import SmartRender from './SmartRender';
+// import SmartRender from './SmartRender';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // You can also log the error to an error reporting service
+    console.log(error, errorInfo);
+  }
+
   render() {
+    if (this.state.errorInfo) {
+      return errorInfo;
+    }
+
     return (
       <View>
         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
@@ -37,4 +56,4 @@ class App extends Component {
   }
 }
 
-render(<SmartRender />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));

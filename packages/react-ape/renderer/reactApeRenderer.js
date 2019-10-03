@@ -12,6 +12,13 @@ import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
 import {scaleDPI, clearCanvas} from './core/canvas';
 import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
+import devToolsConfig from './config/devtools';
+import {
+  now as FrameSchedulingNow,
+  cancelDeferredCallback as FrameSchedulingCancelDeferredCallback,
+  scheduleDeferredCallback as FrameSchedulingScheduleDeferredCallback,
+  shouldYield as FrameSchedulingShouldYield,
+} from './reactApeFrameScheduling';
 
 // TODO: Use Context.
 let apeContextGlobal = null;
@@ -68,11 +75,13 @@ const ReactApeFiber = reconciler({
     return text;
   },
 
-  finalizeInitialChildren(element, type, props) {
+  finalizeInitialChildren(parentInstance, type, props) {
     // return false;
     if (type === 'View') {
-      element.render(apeContextGlobal);
+      parentInstance.render(apeContextGlobal);
     }
+
+    return false;
   },
 
   getPublicInstance(inst) {
@@ -151,19 +160,38 @@ const ReactApeFiber = reconciler({
     //   }
     // }
     // return namespace;
+    return {};
   },
 
   getChildHostContext() {
     return {};
   },
 
-  scheduleAnimationCallback() {},
-
-  scheduleDeferredCallback() {},
-
+  scheduleTimeout: setTimeout,
+  cancelTimeout: clearTimeout,
+  scheduleDeferredCallback: FrameSchedulingScheduleDeferredCallback,
+  cancelDeferredCallback: FrameSchedulingCancelDeferredCallback,
+  schedulePassiveEffects: FrameSchedulingScheduleDeferredCallback,
+  cancelPassiveEffects: FrameSchedulingCancelDeferredCallback,
+  noTimeout: -1,
   useSyncScheduling: false,
+  now: FrameSchedulingNow,
 
-  now: Date.now,
+  // supportsPersistence: false,
+
+  isPrimaryRenderer: true,
+
+  supportsMutation: true,
+
+  shouldDeprioritizeSubtree(type, props) {
+    return false;
+  },
+
+  appendChildToContainer(parentInstance, child) {
+    if (child.render) {
+      child.render(apeContextGlobal);
+    }
+  },
 
   mutation: {
     appendChild(parentInstance, child) {
@@ -171,12 +199,6 @@ const ReactApeFiber = reconciler({
       // if (parentInstance.appendChild) {
       //   parentInstance.appendChild(child);
       // }
-    },
-
-    appendChildToContainer(parentInstance, child) {
-      if (child.render) {
-        child.render(apeContextGlobal);
-      }
     },
 
     removeChild(parentInstance, child) {
@@ -187,7 +209,7 @@ const ReactApeFiber = reconciler({
       // parentInstance.removeChild(child);
     },
 
-    insertBefore(parentInstance, child, beforeChild) {},
+    insertInContainerBefore(parentInstance, child, beforeChild) {},
 
     commitUpdate(instance, updatePayload, type, oldProps, newProps) {},
 
@@ -199,10 +221,17 @@ const ReactApeFiber = reconciler({
   },
 
   shouldSetTextContent(props) {
-    return (
-      typeof props.children === 'string' || typeof props.children === 'number'
-    );
+    // return (
+    //   typeof props.children === 'string' || typeof props.children === 'number'
+    // );
+
+    return false;
   },
+});
+
+ReactApeFiber.injectIntoDevTools({
+  ...devToolsConfig,
+  findHostInstanceByFiber: ReactApeFiber.findHostInstance
 });
 
 const defaultContainer = {};
@@ -210,23 +239,18 @@ const defaultContainer = {};
 const roots = typeof WeakMap === 'function' ? new WeakMap() : new Map();
 
 const ReactApeRenderer = {
-  render(canvasElement, container, callback) {
-    const containerKey = container == null ? defaultContainer : container;
+  render(reactApeElement, canvasDOMElement, callback) {
+    const containerKey = canvasDOMElement == null ? defaultContainer : canvasDOMElement;
     let root = roots.get(containerKey);
     if (!root) {
       root = ReactApeFiber.createContainer(containerKey);
-      roots.set(container, root);
+      roots.set(canvasDOMElement, root);
       apeContextGlobal = null;
     }
 
-    ReactApeFiber.updateContainer(canvasElement, root, null, callback);
+    console.log(reactApeElement);
 
-    ReactApeFiber.injectIntoDevTools({
-      bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
-      version: '0.1.0',
-      rendererPackageName: 'ReactApe',
-      findHostInstanceByFiber: ReactApeFiber.findHostInstance,
-    });
+    ReactApeFiber.updateContainer(reactApeElement, root, null, callback);
 
     return ReactApeFiber.getPublicRootInstance(root);
   },
