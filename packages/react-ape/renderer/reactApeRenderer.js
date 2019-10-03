@@ -229,7 +229,7 @@ const ReactApeFiber = reconciler({
 
 ReactApeFiber.injectIntoDevTools({
   ...devToolsConfig,
-  findHostInstanceByFiber: ReactApeFiber.findHostInstance
+  findHostInstanceByFiber: ReactApeFiber.findHostInstance,
 });
 
 const defaultContainer = {};
@@ -238,7 +238,8 @@ const roots = typeof WeakMap === 'function' ? new WeakMap() : new Map();
 
 const ReactApeRenderer = {
   render(reactApeElement, canvasDOMElement, callback) {
-    const containerKey = canvasDOMElement == null ? defaultContainer : canvasDOMElement;
+    const containerKey =
+      canvasDOMElement == null ? defaultContainer : canvasDOMElement;
     let root = roots.get(containerKey);
     if (!root) {
       root = ReactApeFiber.createContainer(containerKey);

@@ -31,7 +31,7 @@ function setTimeoutCallback() {
 // We also don't implement cancel functionality b'c Fiber doesn't currently need it.
 export function scheduleDeferredCallback(
   callback: () => mixed,
-  options?: {timeout: number},
+  options?: {timeout: number}
 ): number {
   // We assume only one callback is scheduled at a time b'c that's how Fiber works.
   scheduledCallback = callback;
