@@ -36,11 +36,13 @@ export function scheduleDeferredCallback(
   // We assume only one callback is scheduled at a time b'c that's how Fiber works.
   scheduledCallback = callback;
   const timeoutId = setTimeout(setTimeoutCallback, 1);
+  // $FlowFixMe
   return (timeoutId: any); // Timeouts are always numbers on RN
 }
 
 export function cancelDeferredCallback(callbackID: number) {
   scheduledCallback = null;
+  // $FlowFixMe
   clearTimeout((callbackID: any)); // Timeouts are always numbers on RN
 }
 

@@ -193,31 +193,35 @@ const ReactApeFiber = reconciler({
     }
   },
 
-  mutation: {
-    appendChild(parentInstance, child) {
-      // console.log(parentInstance, child);
-      // if (parentInstance.appendChild) {
-      //   parentInstance.appendChild(child);
-      // }
-    },
+  appendChildToContainer(parentInstance, child) {
+    if (child.render) {
+      child.render(apeContextGlobal);
+    }
+  },
 
-    removeChild(parentInstance, child) {
-      // parentInstance.removeChild(child);
-    },
+  appendChild(parentInstance, child) {
+    // console.log(parentInstance, child);
+    // if (parentInstance.appendChild) {
+    //   parentInstance.appendChild(child);
+    // }
+  },
 
-    removeChildFromContainer(parentInstance, child) {
-      // parentInstance.removeChild(child);
-    },
+  removeChild(parentInstance, child) {
+    // parentInstance.removeChild(child);
+  },
 
-    insertInContainerBefore(parentInstance, child, beforeChild) {},
+  removeChildFromContainer(parentInstance, child) {
+    // parentInstance.removeChild(child);
+  },
 
-    commitUpdate(instance, updatePayload, type, oldProps, newProps) {},
+  insertInContainerBefore(parentInstance, child, beforeChild) {},
 
-    commitMount(instance, updatePayload, type, oldProps, newProps) {},
+  commitUpdate(instance, updatePayload, type, oldProps, newProps) {},
 
-    commitTextUpdate(textInstance, oldText, newText) {
-      // textInstance.children = newText;
-    },
+  commitMount(instance, updatePayload, type, oldProps, newProps) {},
+
+  commitTextUpdate(textInstance, oldText, newText) {
+    // textInstance.children = newText;
   },
 
   shouldSetTextContent(props) {
