@@ -1,7 +1,6 @@
 function Spinner(props, apeContext) {
   const {ctx, next} = apeContext;
   const {style = {}, degrees} = props;
-  console.log('spinner', degrees, apeContext)
 
   const offset = 8;
   ctx.save();
