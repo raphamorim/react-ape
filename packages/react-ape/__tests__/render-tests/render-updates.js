@@ -25,16 +25,17 @@ describe('Render Updates', () => {
 
         componentDidMount() {
           setTimeout(() => {
-            this.setState({
-              color: 'orange',
-              fontFamily: 'arial',
-              fontSize: 13,
-            });
-
-            setTimeout(() => {
-              testCanvasSnapshot(expect, canvas);
-              done();
-            });
+            this.setState(
+              {
+                color: 'orange',
+                fontFamily: 'arial',
+                fontSize: 13,
+              },
+              () => {
+                testCanvasSnapshot(expect, canvas);
+                done();
+              }
+            );
           });
         }
 
@@ -63,9 +64,7 @@ describe('Render Updates', () => {
 
         componentDidMount() {
           setTimeout(() => {
-            this.setState({content: 'Dudeeee!'});
-
-            setTimeout(() => {
+            this.setState({content: 'Dudeeee!'}, () => {
               testCanvasSnapshot(expect, canvas);
               done();
             });
@@ -104,15 +103,16 @@ describe('Render Updates', () => {
 
             setTimeout(() => {
               testCanvasSnapshot(expect, canvas);
-              this.setState({
-                firstContent: 'maker',
-                secondContent: 'treze-vezes-mais',
-              });
-
-              setTimeout(() => {
-                testCanvasSnapshot(expect, canvas);
-                done();
-              });
+              this.setState(
+                {
+                  firstContent: 'maker',
+                  secondContent: 'treze-vezes-mais',
+                },
+                () => {
+                  testCanvasSnapshot(expect, canvas);
+                  done();
+                }
+              );
             });
           });
         }
