@@ -1,15 +1,19 @@
 {
   "name": "playground",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server"
   },
+  "files": [
+    "scripts/",
+    "index.js"
+  ],
   "devDependencies": {
-    "webpack": "^4.29.3",
+    "webpack": "^4.35.2",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": ">=3.1.11"
+    "webpack-dev-server": ">=3.8.2"
   }
 }
