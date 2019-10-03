@@ -5,14 +5,27 @@
 */
 
 import React, {Component} from 'react';
-import {render, Text, View} from '../../react-ape/reactApeEntry';
+import {render, Text, View, registerComponent} from '../../react-ape/reactApeEntry';
 
+import Spinner from './Spinner';
 import SmartRender from './SmartRender';
+
+// Create Custom Components
+const custom = {
+  Spinner: registerComponent('Spinner', Spinner)
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {hasError: false};
+    this.state = {hasError: false, degrees: 0.0};
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      const { degrees } = this.state;
+      this.setState({ degrees: degrees + 0.10 });
+    }, 100);
   }
 
   static getDerivedStateFromError(error) {
@@ -26,15 +39,17 @@ class App extends Component {
   }
 
   render() {
+    const { degrees } = this.state;
     if (this.state.errorInfo) {
       return errorInfo;
     }
 
     return (
       <View>
+        <custom.Spinner degrees={degrees} style={{ color: 'lightblue' }} />
         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
         <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}}>
-          <Text>Relative</Text>
+          <Text>Relative {degrees}</Text>
         </View>
         <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}}>
           <Text>Relative</Text>
@@ -56,4 +71,4 @@ class App extends Component {
   }
 }
 
-render(<SmartRender />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));

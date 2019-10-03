@@ -10,6 +10,7 @@ import Image from './elements/Image';
 import Text from './elements/Text';
 import View from './elements/View';
 import CanvasGrid from './elements/CanvasGrid';
+import { CustomComponents } from '../modules/Register';
 
 const CHILDREN = 'children';
 const STYLE = 'style';
@@ -22,7 +23,14 @@ const ReactApeComponent = {
     apeContextGlobal,
     internalInstanceHandle
   ) {
+    // TODO: Run it once
+    const custom = {};
+    Object.keys(CustomComponents).forEach(customKey => {
+      custom[customKey] = CustomComponents[customKey](props, apeContextGlobal);
+    });
+
     const COMPONENTS = {
+      ...custom,
       Image: Image(props),
       Text: Text(props),
       CanvasGrid: CanvasGrid(props),
