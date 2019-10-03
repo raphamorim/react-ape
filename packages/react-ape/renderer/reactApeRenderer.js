@@ -80,8 +80,6 @@ const ReactApeFiber = reconciler({
     if (type === 'View') {
       parentInstance.render(apeContextGlobal);
     }
-
-    return false;
   },
 
   getPublicInstance(inst) {
@@ -92,7 +90,6 @@ const ReactApeFiber = reconciler({
 
   prepareUpdate(element, type, oldProps, newProps, rootContainerInstance) {
     if (newProps) {
-      // console.log(element, type, oldProps, newProps, rootContainerInstance);
       const diff = reactApeComponent.diffProperties(
         element,
         type,

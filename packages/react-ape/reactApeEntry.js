@@ -13,6 +13,9 @@ import DimensionsModule from './modules/Dimensions';
 import ListViewComponent from './renderer/components/ListView';
 export const ListView = ListViewComponent;
 
+import RegisterComponentFn from './modules/Register';
+export const registerComponent = RegisterComponentFn;
+
 export const render = ReactApeRenderer.render;
 // export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
 
