@@ -24,6 +24,7 @@ type Props = {|
   style: {[string]: string | number},
   dataSource: Array<mixed>,
   renderRow: mixed => React.Node,
+  renderSeparator: mixed => React.Node
 |};
 
 class ListView extends React.Component<Props> {
@@ -34,11 +35,18 @@ class ListView extends React.Component<Props> {
 
   render() {
     const {style, renderRow, dataSource} = this.props;
-    return React.createElement(
-      'View',
-      style ? {style} : null,
-      dataSource.length ? dataSource.map(renderRow) : null
-    );
+    let size = 0;
+    return React.createElement('View', style ? {style} : null,
+      dataSource.map((data, idx) => {
+        const element = React.createElement(
+          'View',
+          {style: { position: 'absolute', top: size }},
+          renderRow(data, idx)
+        )
+        size += 40;
+        return element;
+      })
+    )
   }
 }
 
