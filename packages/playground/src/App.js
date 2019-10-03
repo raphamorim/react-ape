@@ -5,7 +5,7 @@
 */
 
 import React, {Component} from 'react';
-import {render, Text, ListView, View} from '../../react-ape/reactApeEntry';
+import {render, Text, SectionList, View} from '../../react-ape/reactApeEntry';
 
 import SmartRender from './SmartRender';
 
@@ -26,19 +26,28 @@ class App extends Component {
   }
 
   render() {
-    const data = ['red', 'blue'];
+    const data = [
+      {
+        title: 'Main dishes',
+        data: ['Pizza', 'Burger', 'Risotto'],
+      },
+      {
+        title: 'Sides',
+        data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+      }
+    ];
 
     if (this.state.errorInfo) {
       return errorInfo;
     }
 
     return (
-      <ListView
-        dataSource={data}
-        renderRow={(rowData) => (
-          <Text>{rowData}</Text>
+      <SectionList
+        sections={data}
+        renderItem={({ item }) => (
+          <Text>{item}</Text>
         )}
-        renderSeparator={(sectionId, rowId) =>  (<View key={rowId}/>)}
+        renderSectionHeader={(sectionId, rowId) => (<View key={rowId}/>)}
       />
     );
   }

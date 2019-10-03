@@ -22,12 +22,12 @@ import * as React from 'react';
 
 type Props = {|
   style: {[string]: string | number},
-  dataSource: Array<mixed>,
-  renderRow: mixed => React.Node,
-  renderSeparator: mixed => React.Node
+  sections: Array<mixed>,
+  renderItem: mixed => React.Node,
+  renderSectionHeader: mixed => React.Node
 |};
 
-class ListView extends React.Component<Props> {
+class SectionList extends React.Component<Props> {
   static defaultProps = {
     renderRow: () => {},
     dataSource: [],
@@ -50,4 +50,4 @@ class ListView extends React.Component<Props> {
   }
 }
 
-export default ListView;
+export default SectionList;
