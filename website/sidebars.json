@@ -11,11 +11,14 @@
     "Contributing": [
       "contributing-how-to-contribute"
     ],
+    "Custom Components": [
+      "customcomponents-registercomponent"
+    ],
     "Components": [
       "components-image",
-      "components-listview",
       "components-text",
-      "components-view"
+      "components-view",
+      "components-sectionlist"
     ],
     "APIs": [
       "apis-dimensions",
