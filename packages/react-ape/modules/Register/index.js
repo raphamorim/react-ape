@@ -8,13 +8,25 @@
 
 export const CustomComponents = {};
 
-function registerComponent(componentName, componentRender, componentClear) {
+function registerComponent(componentName, Component) {
   CustomComponents[componentName] = (props) => {
-    const clearRender = (_, layout, ape) => {  };
+    const clearRender = (prevProps, parentLayout, apeContext) => {
+      const clearProps = {
+        ...prevProps,
+        style: {
+          ...prevProps.style,
+          color: parentLayout.style.backgroundColor,
+        },
+        isResetPhase: true
+      }
+
+      Component.render(clearProps, apeContext, parentLayout);
+    };
+
     return {
       type: componentName,
-      render: componentRender.bind(this, props),
-      clear: componentClear && componentClear.bind(this, props) || clearRender
+      render: Component.render.bind(this, props),
+      clear: Component.reset || clearRender
     }
   };
 

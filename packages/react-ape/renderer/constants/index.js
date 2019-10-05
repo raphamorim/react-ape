@@ -6,11 +6,6 @@
  *
  */
 
-export const View = 'View';
-export const Image = 'Image';
-export const Text = 'Text';
-export const CanvasGrid = 'CanvasGrid';
-
 // Defaults for Render
 export const defaultViewSize = 200; // 200x200
 

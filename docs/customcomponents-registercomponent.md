@@ -18,43 +18,91 @@ Registers an app's root component.
 | appKey | `string` | `Yes` | Application key. |
 | renderFunction | `function` | `Yes` | A function that renders using Canvas2dContext. |
 
-```JS
-import React from 'react';
-import { render, registerComponent } from 'react-ape';
+<!--DOCUSAURUS_CODE_TABS-->
 
-function Spinner(props, canvas) {
-  const { ctx } = canvas;
-  const { style = {}, degrees } = props;
+<!--Spinner.jsx-->
+```js
+class Spinner {
+  componentDidCatch(error, errorInfo) {
+    console.log(error, errorInfo);
+  }
 
-  const OFFSET = 8;
-  ctx.save();
-  ctx.translate(OFFSET, OFFSET);
-  ctx.rotate(degrees);
+  reset(prevProps, parentStyle, canvas) {
+    const { ctx } = canvas;
+    // parentStyle.backgroundColor // white
+    if (ctx) {
+      ctx.clearRect(0, 0, 18, 18);
+    }
+  }
 
-  // Draw half open circle
-  ctx.beginPath();
-  ctx.lineWidth = 2;
-  ctx.arc(8 - OFFSET, 8 - OFFSET, 6, 0, 1.75 * Math.PI);
-  ctx.strokeFill = props.style.color;
-  ctx.stroke();
+  render(props, canvas) {
+    const { ctx } = canvas;
+    const { style = {}, degrees } = props;
+    const { color = 'black' } = style;
 
-  // Draw arrowhead
-  ctx.lineWidth = 2;
-  ctx.moveTo(13 - OFFSET, 1 - OFFSET);
-  ctx.lineTo(9 - OFFSET, 5 - OFFSET);
-  ctx.lineTo(13 - OFFSET, 5 - OFFSET);
-  ctx.lineTo(13 - OFFSET, 1 - OFFSET);
-  ctx.stroke();
-  ctx.restore();
+    const offset = 8;
+    ctx.save();
+    ctx.translate(offset, offset);
+    ctx.rotate(degrees);
+
+    // Draw half open circle
+    ctx.beginPath();
+    ctx.lineWidth = 2;
+    ctx.arc(8 - offset, 8 - offset, 6, 0, 1.75 * Math.PI);
+    ctx.strokeStyle = color;
+    ctx.stroke();
+
+    // Draw arrowhead
+    ctx.lineWidth = 2;
+    ctx.moveTo(13 - offset, 1 - offset);
+    ctx.lineTo(9 - offset, 5 - offset);
+    ctx.lineTo(13 - offset, 5 - offset);
+    ctx.lineTo(13 - offset, 1 - offset);
+    ctx.strokeStyle = color;
+    ctx.stroke();
+    ctx.restore();
+  }
 }
 
-const customComponents = {
+const spinner = new Spinner();
+export default spinner;
+```
+
+<!--App.jsx-->
+```js
+import React from 'react';
+import {render, View, registerComponent} from 'react-ape';
+
+import Spinner from './Spinner';
+
+// Create Custom Components
+const custom = {
   Spinner: registerComponent('Spinner', Spinner)
 }
 
-const App = () => {
-  return <customComponents.Spinner degrees={4.3} style={{ color: 'lightblue' }} />
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { degrees: 0.0 };
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      const { degrees } = this.state;
+      this.setState({ degrees: degrees + 0.10 });
+    }, 10);
+  }
+
+  render() {
+    const { degrees } = this.state;
+    return (
+      <View style={{ backgroundColor: 'white' }}>
+        <custom.Spinner degrees={ degrees } style={{ color: 'blue' }} />
+      </View>
+    );
+  }
 }
 
-render(<App/>, document.querySelector('#canvas-id'));
+render(<App />, document.getElementById('root'));
 ```
+<!--END_DOCUSAURUS_CODE_TABS-->
