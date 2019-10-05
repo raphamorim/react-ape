@@ -8,14 +8,28 @@
  *
  */
 
-export type SpatialGeometry = {
+export type SpatialGeometry = {|
   x: number,
   y: number,
+|};
+
+export type ApeElement = {|
+  render: (CanvasComponentContext, ?Layout) => mixed,
+  clear?: () => mixed,
+  parentLayout?: Layout
+|};
+
+export type Layout = {
+  style?: {
+    backgroundColor: string,
+    borderColor: string,
+  },
+  spatialGeometry: SpatialGeometry
 };
 
 export type CanvasComponentContext = {
   // render queue for update operations
-  renderQueue: Array<mixed>,
+  renderQueue: Array<ApeElement>,
   type: 'canvas',
   ctx: CanvasRenderingContext2D,
 };

@@ -29,10 +29,14 @@ class Spinner {
 
   reset(prevProps, parentStyle, canvas) {
     const { ctx } = canvas;
-    // parentStyle.backgroundColor // white
-    if (ctx) {
-      ctx.clearRect(0, 0, 18, 18);
-    }
+    /* 
+     If you want to do a smart reset, you can call render method
+     using the parent styles instead use clearRect.
+
+     parentStyle will return <View/> style properties:
+     parentStyle.backgroundColor === white
+    */
+    ctx.clearRect(0, 0, 18, 18);
   }
 
   render(props, canvas) {
