@@ -25,12 +25,12 @@ class App extends Component {
     setInterval(() => {
       const { degrees } = this.state;
       this.setState({ degrees: degrees + 0.10 });
-    }, 100);
+    }, 10);
   }
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    return {hasError: true};
+    return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
@@ -45,9 +45,14 @@ class App extends Component {
     }
 
     return (
-      <View>
-        <custom.Spinner degrees={degrees} style={{ color: 'lightblue' }} />
-        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+      <View style={{ backgroundColor: 'white' }}>
+        <custom.Spinner degrees={ degrees } style={{ color: 'blue' }} />
+      </View>
+    );
+  }
+}
+
+/*<View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
         <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}}>
           <Text>Relative {degrees}</Text>
         </View>
@@ -66,9 +71,6 @@ class App extends Component {
           <Text style={{color: 'gray'}}>Absolute!</Text>
         </View>
         <View style={{width: 200, height: 30, backgroundColor: 'orange'}} />
-      </View>
-    );
-  }
-}
+*/
 
 render(<App />, document.getElementById('root'));

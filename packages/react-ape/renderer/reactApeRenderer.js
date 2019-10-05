@@ -11,6 +11,7 @@ import {CanvasComponentContext} from './types';
 import reconciler from 'react-reconciler';
 import reactApeComponent from './reactApeComponent';
 import {scaleDPI, clearCanvas} from './core/canvas';
+import {renderElement, renderQueue} from './core/render';
 import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
 import devToolsConfig from './config/devtools';
 import {
@@ -28,6 +29,7 @@ const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
     if (parentInstance.appendChild && child.type !== 'View') {
       parentInstance.appendChild(child);
+
       // TODO: Change it later
       child.getParentLayout = parentInstance.getLayoutDefinitions;
     }
@@ -41,10 +43,11 @@ const ReactApeFiber = reconciler({
     internalInstanceHandle
   ) {
     if (!apeContextGlobal && rootContainerInstance.getContext) {
-      let rootContainerInstanceContext = rootContainerInstance.getContext('2d');
+      const rootContainerInstanceContext = rootContainerInstance.getContext('2d');
 
       // TODO: Change it.
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
+
       apeContextGlobal = {
         type: 'canvas',
         getSurfaceHeight: () => surfaceHeight,
@@ -76,17 +79,18 @@ const ReactApeFiber = reconciler({
   },
 
   finalizeInitialChildren(parentInstance, type, props) {
-    // return false;
     if (type === 'View') {
       parentInstance.render(apeContextGlobal);
     }
+    return false;
   },
 
   getPublicInstance(inst) {
     return inst;
   },
 
-  prepareForCommit(rootContainerInstance) {},
+  prepareForCommit(rootContainerInstance) {
+  },
 
   prepareUpdate(element, type, oldProps, newProps, rootContainerInstance) {
     if (newProps) {
@@ -110,6 +114,11 @@ const ReactApeFiber = reconciler({
           apeContextGlobal
         );
 
+        if (diff.indexOf('children') === -1) {
+          renderElement(apeContextGlobal, apeElement, parentLayout);
+          return;
+        }
+
         apeElement.parentLayout = parentLayout;
         apeContextGlobal.renderQueue.push(apeElement);
       }
@@ -117,16 +126,11 @@ const ReactApeFiber = reconciler({
   },
 
   resetAfterCommit(rootContainerInstance) {
-    if (apeContextGlobal && apeContextGlobal.renderQueue.length) {
-      // TODO: Move to request animation frame
-      apeContextGlobal.renderQueue.forEach(element => {
-        element.render(apeContextGlobal, element.parentLayout);
-      });
-
-      // Resets
+    // resetAfterCommit happens only for children changes
+    renderQueue(apeContextGlobal, () => {
       apeContextGlobal.setSurfaceHeight(0);
       apeContextGlobal.renderQueue = [];
-    }
+    });
   },
 
   resetTextContent(element) {
@@ -134,29 +138,6 @@ const ReactApeFiber = reconciler({
   },
 
   getRootHostContext(rootInstance) {
-    // let type;
-    // let namespace;
-    // const nodeType = rootContainerInstance.nodeType;
-    // switch (nodeType) {
-    //   case DOCUMENT_NODE:
-    //   case DOCUMENT_FRAGMENT_NODE: {
-    //     type = nodeType === DOCUMENT_NODE ? '#document' : '#fragment';
-    //     let root = (rootContainerInstance: any).documentElement;
-    //     namespace = root ? root.namespaceURI : getChildNamespace(null, '');
-    //     break;
-    //   }
-    //   default: {
-    //     const container: any =
-    //       nodeType === COMMENT_NODE
-    //         ? rootContainerInstance.parentNode
-    //         : rootContainerInstance;
-    //     const ownNamespace = container.namespaceURI || null;
-    //     type = container.tagName;
-    //     namespace = getChildNamespace(ownNamespace, type);
-    //     break;
-    //   }
-    // }
-    // return namespace;
     return {};
   },
 
@@ -171,13 +152,10 @@ const ReactApeFiber = reconciler({
   schedulePassiveEffects: FrameSchedulingScheduleDeferredCallback,
   cancelPassiveEffects: FrameSchedulingCancelDeferredCallback,
   noTimeout: -1,
-  useSyncScheduling: false,
+  useSyncScheduling: true,
   now: FrameSchedulingNow,
 
-  // supportsPersistence: false,
-
   isPrimaryRenderer: true,
-
   supportsMutation: true,
 
   shouldDeprioritizeSubtree(type, props) {
@@ -211,11 +189,17 @@ const ReactApeFiber = reconciler({
     // parentInstance.removeChild(child);
   },
 
-  insertInContainerBefore(parentInstance, child, beforeChild) {},
+  insertInContainerBefore(parentInstance, child, beforeChild) {
+    // noop
+  },
 
-  commitUpdate(instance, updatePayload, type, oldProps, newProps) {},
+  commitUpdate(instance, updatePayload, type, oldProps, newProps) {
+    // noop
+  },
 
-  commitMount(instance, updatePayload, type, oldProps, newProps) {},
+  commitMount(instance, updatePayload, type, oldProps, newProps) {
+    // noop
+  },
 
   commitTextUpdate(textInstance, oldText, newText) {
     // textInstance.children = newText;
