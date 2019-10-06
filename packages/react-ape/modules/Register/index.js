@@ -9,7 +9,7 @@
 export const CustomComponents = {};
 
 function registerComponent(componentName, Component) {
-  CustomComponents[componentName] = (props) => {
+  CustomComponents[componentName] = props => {
     const clearRender = (prevProps, parentLayout, apeContext) => {
       const clearProps = {
         ...prevProps,
@@ -17,8 +17,8 @@ function registerComponent(componentName, Component) {
           ...prevProps.style,
           color: parentLayout.style.backgroundColor,
         },
-        isResetPhase: true
-      }
+        isResetPhase: true,
+      };
 
       Component.render(clearProps, apeContext, parentLayout);
     };
@@ -26,8 +26,8 @@ function registerComponent(componentName, Component) {
     return {
       type: componentName,
       render: Component.render.bind(this, props),
-      clear: Component.reset || clearRender
-    }
+      clear: Component.reset || clearRender,
+    };
   };
 
   return componentName;

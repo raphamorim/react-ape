@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {render, View, Text, StyleSheet} from '../../reactApeEntry';
 
 import testCanvasSnapshot from '../../../../tests/testCanvasSnapshot';

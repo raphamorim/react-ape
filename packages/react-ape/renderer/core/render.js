@@ -10,17 +10,18 @@
 
 import type {CanvasComponentContext, Layout, ApeElement} from '../types';
 
-const execRender = window.requestAnimationFrame || function exec(fn) { fn() };
-
 function renderApeElement(
   apeContextGlobal: CanvasComponentContext,
   element: ApeElement,
   parentLayout?: ?Layout
 ) {
-  execRender(() => { element.render(apeContextGlobal, parentLayout) });
+  element.render(apeContextGlobal, parentLayout);
 }
 
-function renderApeQueue(apeContextGlobal: CanvasComponentContext, onFinish: () => mixed) {
+function renderApeQueue(
+  apeContextGlobal: CanvasComponentContext,
+  onFinish: () => mixed
+) {
   if (apeContextGlobal && apeContextGlobal.renderQueue.length) {
     // TODO: Move to request animation frame
     apeContextGlobal.renderQueue.forEach(element => {

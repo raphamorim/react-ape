@@ -31,7 +31,7 @@ class Spinner {
     const { ctx } = canvas;
     /* 
      If you want to do a smart reset, you can call render method
-     using the parent styles instead use clearRect.
+     using prevProps with parent styles instead of use clearRect.
 
      parentStyle will return <View/> style properties:
      parentStyle.backgroundColor === white
@@ -51,9 +51,9 @@ class Spinner {
 
     // Draw half open circle
     ctx.beginPath();
+    ctx.strokeStyle = color;
     ctx.lineWidth = 2;
     ctx.arc(8 - offset, 8 - offset, 6, 0, 1.75 * Math.PI);
-    ctx.strokeStyle = color;
     ctx.stroke();
 
     // Draw arrowhead
@@ -62,7 +62,6 @@ class Spinner {
     ctx.lineTo(9 - offset, 5 - offset);
     ctx.lineTo(13 - offset, 5 - offset);
     ctx.lineTo(13 - offset, 1 - offset);
-    ctx.strokeStyle = color;
     ctx.stroke();
     ctx.restore();
   }

@@ -10,7 +10,7 @@ import Image from './elements/Image';
 import Text from './elements/Text';
 import View from './elements/View';
 import CanvasGrid from './elements/CanvasGrid';
-import { CustomComponents } from '../modules/Register';
+import {CustomComponents} from '../modules/Register';
 
 const CHILDREN = 'children';
 const STYLE = 'style';
