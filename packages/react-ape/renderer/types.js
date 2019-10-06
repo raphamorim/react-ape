@@ -8,6 +8,21 @@
  *
  */
 
+export type CustomCanvasRenderingContext2D = CanvasRenderingContext2D & {|
+  webkitBackingStorePixelRatio?: number,
+  mozBackingStorePixelRatio?: number,
+  msBackingStorePixelRatio?: number,
+  oBackingStorePixelRatio?: number,
+  backingStorePixelRatio?: number,
+|};
+
+export type CanvasRect = {|
+  x: number,
+  y: number,
+  width?: number,
+  height?: number,
+|};
+
 export type SpatialGeometry = {|
   x: number,
   y: number,
@@ -16,7 +31,7 @@ export type SpatialGeometry = {|
 export type ApeElement = {|
   render: (CanvasComponentContext, ?Layout) => mixed,
   clear?: () => mixed,
-  parentLayout?: Layout
+  parentLayout?: Layout,
 |};
 
 export type Layout = {
@@ -24,12 +39,12 @@ export type Layout = {
     backgroundColor: string,
     borderColor: string,
   },
-  spatialGeometry: SpatialGeometry
+  spatialGeometry: SpatialGeometry,
 };
 
 export type CanvasComponentContext = {
   // render queue for update operations
   renderQueue: Array<ApeElement>,
   type: 'canvas',
-  ctx: CanvasRenderingContext2D,
+  ctx: CustomCanvasRenderingContext2D,
 };

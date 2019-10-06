@@ -73,6 +73,7 @@ function clearText(
   apeContext: CanvasComponentContext
 ) {
   if (prevProps.style) {
+    console.log('clear');
     const {color, borderColor} = prevProps.style;
     const clearProps = {
       ...prevProps,

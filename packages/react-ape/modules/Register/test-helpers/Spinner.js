@@ -1,8 +1,4 @@
 class Spinner {
-  componentDidCatch(error, errorInfo) {
-    console.log(error, errorInfo);
-  }
-
   reset(prevProps, parentStyle, canvas) {
     const {ctx} = canvas;
     // parentStyle.backgroundColor // white
