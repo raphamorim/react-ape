@@ -47,14 +47,14 @@ function renderText(
   const previousStroke = ctx.strokeStyle;
 
   let x = style.UNSAFE_x || spatialGeometry.x;
-  let y = style.UNSAFE_y || spatialGeometry.y + (fontSize / 2) || fontSize;
+  let y = style.UNSAFE_y || spatialGeometry.y + fontSize / 2 || fontSize;
 
   // If position is absolute should reset geometry
   if (style.position === 'absolute') {
     x = style.left || 0;
     y = style.top || fontSize;
 
-  // If is relative and x and y haven't be processed, don't render
+    // If is relative and x and y haven't be processed, don't render
   } else if (!spatialGeometry) {
     return null;
   }
@@ -84,7 +84,7 @@ function clearText(
   parentLayout: ParentLayout,
   apeContext: CanvasComponentContext
 ) {
-  const {color, borderColor} = prevProps && prevProps.style || {};
+  const {color, borderColor} = (prevProps && prevProps.style) || {};
   const clearProps = {
     ...prevProps,
     style: {

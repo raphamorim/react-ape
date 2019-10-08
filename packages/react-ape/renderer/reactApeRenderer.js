@@ -129,7 +129,7 @@ const ReactApeFiber = reconciler({
 
         const apeElement = reactApeComponent.createElement(
           type,
-          { ...newProps, children: newProps.children.join('') },
+          {...newProps, children: newProps.children.join('')},
           rootContainerInstance,
           apeContextGlobal
         );

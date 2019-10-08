@@ -23,7 +23,12 @@ const custom = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {hasError: false, color: 'blue', degrees: 0.0, text: 'Loading...'};
+    this.state = {
+      hasError: false,
+      color: 'blue',
+      degrees: 0.0,
+      text: 'Loading...',
+    };
   }
 
   componentDidMount() {
@@ -44,29 +49,31 @@ class App extends Component {
   }
 
   render() {
-    const {degrees, text, color } = this.state;
+    const {degrees, text, color} = this.state;
     if (this.state.errorInfo) {
       return errorInfo;
     }
 
     return (
       <View>
-        <View style={{ backgroundColor: 'white' }}>
+        <View style={{backgroundColor: 'white'}}>
           <Text>SSSSS</Text>
-          <Text>{ text }</Text>
+          <Text>{text}</Text>
         </View>
-        <View style={{ backgroundColor: 'red' }}>
-          <Text style={{ color: 'white' }}>{ text }</Text>
-          <Text style={{ color: color }}>ABC</Text>
+        <View style={{backgroundColor: 'red'}}>
+          <Text style={{color: 'white'}}>{text}</Text>
+          <Text style={{color: color}}>ABC</Text>
         </View>
-        <Text style={{ position: 'absolute', top: 100, left: 100 }}>122121 { text }</Text>
-        <Text style={{ position: 'absolute', top: 140, left: 100 }}>{ text }</Text>
+        <Text style={{position: 'absolute', top: 100, left: 100}}>
+          122121 {text}
+        </Text>
+        <Text style={{position: 'absolute', top: 140, left: 100}}>{text}</Text>
       </View>
     );
   }
 }
 
- /*
+/*
 
 
         <Text>12, { text }</Text>
