@@ -26,7 +26,10 @@ const ReactApeComponent = {
     // TODO: Run it once
     const customDict = {};
     Object.keys(CustomComponents).forEach(customKey => {
-      customDict[customKey] = CustomComponents[customKey](props, apeContextGlobal);
+      customDict[customKey] = CustomComponents[customKey](
+        props,
+        apeContextGlobal
+      );
     });
 
     const COMPONENTS = {
