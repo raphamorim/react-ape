@@ -23,13 +23,13 @@ const custom = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {hasError: false, degrees: 0.0, text: 'Loading...'};
+    this.state = {hasError: false, color: 'blue', degrees: 0.0, text: 'Loading...'};
   }
 
   componentDidMount() {
     setTimeout(() => {
       const {degrees} = this.state;
-      this.setState({degrees: degrees + 0.1, text: 'Loaded'});
+      this.setState({degrees: degrees + 0.1, color: 'orange', text: 'Loaded'});
     }, 10);
   }
 
@@ -44,15 +44,36 @@ class App extends Component {
   }
 
   render() {
-    const {degrees, text} = this.state;
+    const {degrees, text, color } = this.state;
     if (this.state.errorInfo) {
       return errorInfo;
     }
 
     return (
-      <View style={{backgroundColor: 'white'}}>
-        <Text>{ text }</Text>
-        <custom.Spinner degrees={degrees} style={{color: 'blue'}} />
+      <View>
+        <View style={{ backgroundColor: 'white' }}>
+          <Text>SSSSS</Text>
+          <Text>{ text }</Text>
+        </View>
+        <View style={{ backgroundColor: 'red' }}>
+          <Text style={{ color: 'white' }}>{ text }</Text>
+          <Text style={{ color: color }}>ABC</Text>
+        </View>
+        <Text style={{ position: 'absolute', top: 100, left: 100 }}>122121 { text }</Text>
+        <Text style={{ position: 'absolute', top: 140, left: 100 }}>{ text }</Text>
+      </View>
+    );
+  }
+}
+
+ /*
+
+
+        <Text>12, { text }</Text>
+
+
+          <View style={{width: 200, height: 30, backgroundColor: 'orange'}} />
+          <custom.Spinner degrees={degrees} style={{color: 'blue'}} />
         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
         <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}}>
           <Text>Relative { text }</Text>
@@ -70,11 +91,6 @@ class App extends Component {
             backgroundColor: 'black',
           }}>
           <Text style={{color: 'gray'}}>Absolute!</Text>
-        </View>
-        <View style={{width: 200, height: 30, backgroundColor: 'orange'}} />
-      </View>
-    );
-  }
-}
+        </View>*/
 
 render(<App />, document.getElementById('root'));

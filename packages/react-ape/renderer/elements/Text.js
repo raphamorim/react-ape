@@ -46,8 +46,20 @@ function renderText(
   const fontFamily = style.fontFamily || 'Helvetica';
   const previousStroke = ctx.strokeStyle;
 
-  const x = style.UNSAFE_x || spatialGeometry.x;
-  const y = style.UNSAFE_y || spatialGeometry.y + fontSize / 2;
+  let x = style.UNSAFE_x || spatialGeometry.x;
+  let y = style.UNSAFE_y || spatialGeometry.y + (fontSize / 2) || fontSize;
+
+  // If position is absolute should reset geometry
+  if (style.position === 'absolute') {
+    x = style.left || 0;
+    y = style.top || fontSize;
+
+  // If is relative and x and y haven't be processed, don't render
+  } else if (!spatialGeometry) {
+    return null;
+  }
+
+  const item = content || children;
 
   ctx.beginPath();
   ctx.setLineDash(style.borderStyle || []);
@@ -58,7 +70,7 @@ function renderText(
   ctx.font = `${fontSize}px ${fontFamily}`;
   ctx.fillStyle = style.color || 'black';
   ctx.textAlign = style.align;
-  ctx.fillText(content || children, x, y);
+  ctx.fillText(item, x, y);
   ctx.strokeText(content || children, x, y);
   ctx.fill();
   ctx.stroke();
@@ -72,21 +84,18 @@ function clearText(
   parentLayout: ParentLayout,
   apeContext: CanvasComponentContext
 ) {
-  if (prevProps.style) {
-    console.log('clear');
-    const {color, borderColor} = prevProps.style;
-    const clearProps = {
-      ...prevProps,
-      style: {
-        ...prevProps.style,
-        color: parentLayout.style.backgroundColor,
-        borderColor: parentLayout.style.backgroundColor,
-        borderSize: 1.5,
-      },
-    };
+  const {color, borderColor} = prevProps && prevProps.style || {};
+  const clearProps = {
+    ...prevProps,
+    style: {
+      ...prevProps.style,
+      color: parentLayout.style.backgroundColor,
+      borderColor: parentLayout.style.backgroundColor,
+      borderSize: 1.5,
+    },
+  };
 
-    renderText(clearProps, apeContext, parentLayout);
-  }
+  renderText(clearProps, apeContext, parentLayout);
 }
 
 export default function CreateTextInstance(props: Props) {
