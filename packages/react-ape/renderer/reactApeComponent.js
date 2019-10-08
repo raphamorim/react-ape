@@ -24,13 +24,13 @@ const ReactApeComponent = {
     internalInstanceHandle
   ) {
     // TODO: Run it once
-    const custom = {};
+    const customDict = {};
     Object.keys(CustomComponents).forEach(customKey => {
-      custom[customKey] = CustomComponents[customKey](props, apeContextGlobal);
+      customDict[customKey] = CustomComponents[customKey](props, apeContextGlobal);
     });
 
     const COMPONENTS = {
-      ...custom,
+      ...customDict,
       Image: Image(props),
       Text: Text(props),
       CanvasGrid: CanvasGrid(props),

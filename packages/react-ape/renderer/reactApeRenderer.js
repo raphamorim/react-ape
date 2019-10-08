@@ -47,9 +47,7 @@ const ReactApeFiber = reconciler({
         '2d'
       );
 
-      // TODO: Change it.
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
-
       apeContextGlobal = {
         type: 'canvas',
         getSurfaceHeight: () => surfaceHeight,
@@ -94,7 +92,6 @@ const ReactApeFiber = reconciler({
   prepareForCommit(rootContainerInstance) {},
 
   prepareUpdate(element, type, oldProps, newProps, rootContainerInstance) {
-    console.log(element === 'Text', newProps);
     if (newProps) {
       const diff = reactApeComponent.diffProperties(
         element,
@@ -104,11 +101,9 @@ const ReactApeFiber = reconciler({
         rootContainerInstance
       );
 
-      console.log(element === 'Text', diff);
       if (diff) {
         const parentLayout = element.parentLayout || element.getParentLayout();
         element.clear(oldProps, parentLayout, apeContextGlobal);
-        const {style = {}} = oldProps;
 
         const apeElement = reactApeComponent.createElement(
           type,
@@ -120,11 +115,26 @@ const ReactApeFiber = reconciler({
         // If isn't a children update, should render with new props
         if (diff.length && diff.indexOf('children') === -1) {
           renderElement(apeContextGlobal, apeElement, parentLayout);
-          return;
+          return null;
         }
 
         apeElement.parentLayout = parentLayout;
         apeContextGlobal.renderQueue.push(apeElement);
+        return null;
+      }
+
+      if (type === 'Text' && newProps.children && newProps.children.join) {
+        const parentLayout = element.parentLayout || element.getParentLayout();
+        element.clear(oldProps, parentLayout, apeContextGlobal);
+
+        const apeElement = reactApeComponent.createElement(
+          type,
+          { ...newProps, children: newProps.children.join('') },
+          rootContainerInstance,
+          apeContextGlobal
+        );
+
+        renderElement(apeContextGlobal, apeElement, parentLayout);
       }
     }
   },
@@ -167,15 +177,10 @@ const ReactApeFiber = reconciler({
   },
 
   appendChildToContainer(parentInstance, child) {
-    if (child.render) {
-      child.render(apeContextGlobal);
-    }
-  },
-
-  appendChildToContainer(parentInstance, child) {
-    if (child.render) {
-      child.render(apeContextGlobal);
-    }
+    // apeContextGlobal.setSurfaceHeight(0);
+    // if (child.render) {
+    //   child.render(apeContextGlobal);
+    // }
   },
 
   appendChild(parentInstance, child) {
@@ -207,7 +212,7 @@ const ReactApeFiber = reconciler({
 
   commitTextUpdate(textInstance, oldText, newText) {
     // textInstance.children = newText;
-    console.log(textInstance, oldText, newText);
+    // console.log(111, textInstance, oldText, newText);
   },
 
   shouldSetTextContent(props) {

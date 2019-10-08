@@ -17,7 +17,7 @@ import RegisterComponentFn from './modules/Register';
 export const registerComponent = RegisterComponentFn;
 
 export const render = ReactApeRenderer.render;
-// export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
+// export const unmountComponentAtNode = ReactApeRender.unmountComponentAtNode;
 
 export const Image = 'Image';
 export const View = 'View';

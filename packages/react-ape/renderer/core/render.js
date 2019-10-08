@@ -12,10 +12,9 @@ import type {CanvasComponentContext, Layout, ApeElement} from '../types';
 
 function renderApeElement(
   apeContextGlobal: CanvasComponentContext,
-  element: ApeElement,
-  parentLayout?: ?Layout
+  element: ApeElement
 ) {
-  element.render(apeContextGlobal, parentLayout);
+  element.render(apeContextGlobal, element.parentLayout);
 }
 
 function renderApeQueue(
@@ -25,7 +24,7 @@ function renderApeQueue(
   if (apeContextGlobal && apeContextGlobal.renderQueue.length) {
     // TODO: Move to request animation frame
     apeContextGlobal.renderQueue.forEach(element => {
-      renderApeElement(apeContextGlobal, element, element.parentLayout);
+      renderApeElement(apeContextGlobal, element);
     });
 
     onFinish();
