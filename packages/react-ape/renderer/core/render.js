@@ -8,6 +8,7 @@
  *
  */
 
+import { clearCanvas } from './canvas';
 import type {CanvasComponentContext, Layout, ApeElement} from '../types';
 
 function renderApeElement(
@@ -22,6 +23,8 @@ function renderApeQueue(
   onFinish: () => mixed
 ) {
   if (apeContextGlobal && apeContextGlobal.renderQueue.length) {
+    //clearCanvas(apeContextGlobal, true);
+
     // TODO: Move to request animation frame
     apeContextGlobal.renderQueue.forEach(element => {
       renderApeElement(apeContextGlobal, element);

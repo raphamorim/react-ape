@@ -8,7 +8,8 @@ React-Ape exports two functions: `withFocusable` and `withNavigation`. A declara
 
 ```JS
 import React from 'react';
-import { withFocusable, withNavigation, Text, View, render } from 'react-ape';
+import { Text, View, render } from 'react-ape';
+import { withFocusable, withNavigation } from 'react-ape/modules/navigation';
 
 const Item = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'focused' : 'unfocused'

@@ -19,7 +19,6 @@
       "components-image",
       "components-text",
       "components-view",
-      "components-focusable",
       "components-sectionlist"
     ],
     "APIs": [
