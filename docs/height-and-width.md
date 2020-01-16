@@ -23,7 +23,7 @@ Setting dimensions this way is common for components that should always render a
 import React, { Component } from 'react';
 import { View, render } from 'react-ape';
 
-class DimensionsBasics extends React.Component {
+class DimensionsBasics extends Component {
   render() {
     return (
       <View>
