@@ -6,7 +6,8 @@
       "height-and-width"
     ],
     "Guides": [
-      "components-and-apis"
+      "components-and-apis",
+      "navigation"
     ],
     "Contributing": [
       "contributing-how-to-contribute"

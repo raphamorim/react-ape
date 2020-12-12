@@ -13,7 +13,6 @@ import reactApeComponent from './reactApeComponent';
 import {scaleDPI, clearCanvas} from './core/canvas';
 import {renderElement, renderQueue} from './core/render';
 import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
-import devToolsConfig from './config/devtools';
 import {
   now as FrameSchedulingNow,
   cancelDeferredCallback as FrameSchedulingCancelDeferredCallback,
@@ -191,7 +190,9 @@ const ReactApeFiber = reconciler({
   },
 
   removeChild(parentInstance, child) {
-    // parentInstance.removeChild(child);
+    if (child.type && child.type === 'View') {
+      child.clear(apeContextGlobal, parentInstance.getLayoutDefinitions());
+    }
   },
 
   removeChildFromContainer(parentInstance, child) {
@@ -203,7 +204,6 @@ const ReactApeFiber = reconciler({
   },
 
   commitUpdate(instance, updatePayload, type, oldProps, newProps) {
-    // noop
   },
 
   commitMount(instance, updatePayload, type, oldProps, newProps) {
@@ -223,8 +223,10 @@ const ReactApeFiber = reconciler({
 });
 
 ReactApeFiber.injectIntoDevTools({
-  ...devToolsConfig,
-  findHostInstanceByFiber: ReactApeFiber.findHostInstance,
+  bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
+  version: '0.1.0',
+  rendererPackageName: 'react-ape',
+  findFiberByHostInstance: () => null,
 });
 
 const defaultContainer = {};
@@ -243,7 +245,6 @@ const ReactApeRenderer = {
     }
 
     ReactApeFiber.updateContainer(reactApeElement, root, null, callback);
-
     return ReactApeFiber.getPublicRootInstance(root);
   },
 };
