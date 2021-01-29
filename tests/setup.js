@@ -10,7 +10,7 @@ function copyProps(src, target) {
     .reduce((result, prop) => ({
       ...result,
       [prop]: Object.getOwnPropertyDescriptor(src, prop)
-    }),{});
+    }), {});
   Object.defineProperties(target, props);
 }
 
