@@ -8,7 +8,6 @@
   "license": "MIT",
   "scripts": {
     "build": "node ./scripts/rollup",
-    "build-canvas": "cd node_modules/canvas-prebuilt/canvas && node-gyp rebuild",
     "ci": "yarn test && yarn build",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
     "docs-build": "cd website && yarn run build",
