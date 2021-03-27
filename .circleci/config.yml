@@ -30,7 +30,7 @@ aliases:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-          name: Build canvas-prebuilt
+          name: Build canvas
           command: yarn build-canvas
 
       - run:
