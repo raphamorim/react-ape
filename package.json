@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node ./scripts/rollup",
-    "build-canvas": "cd node_modules/canvas-prebuilt/canvas && node-gyp rebuild",
+    "build-canvas": "cd node_modules/canvas && node-gyp rebuild",
     "ci": "yarn test && yarn build",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
     "docs-build": "cd website && yarn run build",
@@ -33,7 +33,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "24.1.0",
     "babel-polyfill": "^6.26.0",
-    "canvas-prebuilt": "^1.6.11",
+    "canvas": "^2.7.0",
     "chalk": "^2.4.1",
     "docusaurus": "^1.7.2",
     "flow-bin": "^0.109.0",
