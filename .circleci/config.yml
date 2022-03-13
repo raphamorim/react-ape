@@ -40,5 +40,5 @@ aliases:
 jobs:
   build:
     docker:
-      - image: circleci/node:10.15.1
+      - image: circleci/node:16.13.1
     <<: *build_config

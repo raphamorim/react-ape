@@ -1,4 +1,5 @@
-const canvas = require('canvas-prebuilt');
+const { createCanvas, loadImage } = require('canvas');
+const canvas = createCanvas(200, 200);
 const { JSDOM } = require('jsdom');
 
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
