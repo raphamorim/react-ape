@@ -24,6 +24,7 @@
     "test:ci": "yarn flow && yarn prettier:stat && yarn jest:ci"
   },
   "devDependencies": {
+    "canvas": "2.9.0",
     "@babel/core": "7.0.0",
     "@babel/plugin-proposal-class-properties": "7.3.0",
     "@babel/preset-env": "7.16.11",
@@ -66,8 +67,5 @@
       "node_modules"
     ],
     "verbose": true
-  },
-  "dependencies": {
-    "canvas": "^2.9.0"
   }
 }
