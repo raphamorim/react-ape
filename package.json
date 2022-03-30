@@ -41,7 +41,7 @@
     "google-closure-compiler": "20220301.0.0",
     "jest": "27.5.1",
     "jsdom": "19.0.0",
-    "lerna": "3.10.8",
+    "lerna": "4.0.0",
     "prettier": "1.5.3",
     "react": "17.0.1",
     "react-reconciler": "0.22.1",
