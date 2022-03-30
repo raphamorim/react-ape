@@ -27,16 +27,17 @@ type Props = {|
 |};
 
 class ListView extends React.Component<Props> {
-  static defaultProps = {
-    renderRow: () => {},
+  static defaultProps: Props = {
+    renderRow: () => null,
     dataSource: [],
+    style: {}
   };
 
   render() {
     const {style, renderRow, dataSource} = this.props;
     return React.createElement(
       'View',
-      style ? {style} : null,
+      {style},
       dataSource.length ? dataSource.map(renderRow) : null
     );
   }

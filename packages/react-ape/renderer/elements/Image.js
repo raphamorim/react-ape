@@ -97,7 +97,6 @@ function renderImage(props: Props, apeContext: CanvasComponentContext) {
     );
     ctx.drawImage(newImageElement, style.x, style.y, imageWidth, imageHeight);
     saveOnCache(src, newImageElement, imageWidth, imageHeight);
-    newImageElement = null;
   }
 
   if (newImageElement.complete) {

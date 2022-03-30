@@ -3,8 +3,11 @@
 // TODO: make this hardware relevant/aware
 
 const hasNativePerformanceNow =
-  typeof performance === 'object' && typeof performance.now === 'function';
+  typeof performance === 'object' && 
+  // $FlowFixMe[method-unbinding]
+  typeof performance.now === 'function';
 
+// $FlowFixMe[signature-verification-failure]
 export const now = hasNativePerformanceNow
   ? () => performance.now()
   : () => Date.now();
@@ -36,13 +39,13 @@ export function scheduleDeferredCallback(
   // We assume only one callback is scheduled at a time b'c that's how Fiber works.
   scheduledCallback = callback;
   const timeoutId = setTimeout(setTimeoutCallback, 1);
-  // $FlowFixMe
+  // $FlowFixMe[unclear-type]
   return (timeoutId: any); // Timeouts are always numbers on RN
 }
 
 export function cancelDeferredCallback(callbackID: number) {
   scheduledCallback = null;
-  // $FlowFixMe
+  // $FlowFixMe[unclear-type]
   clearTimeout((callbackID: any)); // Timeouts are always numbers on RN
 }
 
