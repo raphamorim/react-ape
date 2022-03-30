@@ -37,10 +37,14 @@ describe('Render Updates', () => {
             <View>
               <View style={{backgroundColor: 'white'}}>
                 <Text>SSSSS</Text>
-                <Text>{text}</Text>
+                <Text>
+                  {text}
+                </Text>
               </View>
               <View style={{backgroundColor: 'red'}}>
-                <Text style={{color: 'white'}}>{text}</Text>
+                <Text style={{color: 'white'}}>
+                  {text}
+                </Text>
                 <Text style={{color: 'white'}}>ABC</Text>
               </View>
               <Text
@@ -127,7 +131,9 @@ describe('Render Updates', () => {
         render() {
           return (
             <View>
-              <Text style={{color: 'black'}}>{this.state.text}</Text>
+              <Text style={{color: 'black'}}>
+                {this.state.text}
+              </Text>
             </View>
           );
         }
@@ -173,8 +179,12 @@ describe('Render Updates', () => {
         render() {
           return (
             <View>
-              <Text style={{color: 'black'}}>{this.state.firstContent}</Text>
-              <Text style={{color: 'red'}}>{this.state.secondContent}</Text>
+              <Text style={{color: 'black'}}>
+                {this.state.firstContent}
+              </Text>
+              <Text style={{color: 'red'}}>
+                {this.state.secondContent}
+              </Text>
             </View>
           );
         }

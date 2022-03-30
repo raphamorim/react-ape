@@ -6,9 +6,7 @@
  *
  */
 
-const randomKey = Math.random()
-  .toString(36)
-  .slice(2);
+const randomKey = Math.random().toString(36).slice(2);
 const internalInstanceKey = '__reactInternalInstance$' + randomKey;
 const internalEventHandlersKey = '__reactEventHandlers$' + randomKey;
 

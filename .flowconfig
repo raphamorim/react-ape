@@ -12,7 +12,6 @@ untyped-import=off
 [options]
 module.use_strict=true
 suppress_type=$FlowIssue
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
 include_warnings=true
 emoji=true
 

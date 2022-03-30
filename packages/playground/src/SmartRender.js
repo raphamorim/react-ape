@@ -67,7 +67,9 @@ class SmartRender extends React.Component {
       <View style={styles.surface}>
         <Tools.Grid />
         <View style={styles.container}>
-          <Text style={styles.time}>{this.state.time}</Text>
+          <Text style={styles.time}>
+            {this.state.time}
+          </Text>
         </View>
         <View style={styles.text}>
           <Text style={{color: 'white'}}>
