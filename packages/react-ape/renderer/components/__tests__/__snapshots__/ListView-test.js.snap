@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ListView renders correctly 1`] = `
-<View>
+<View
+  style={Object {}}
+>
   <Text
     id="render-row-0"
   >
@@ -15,10 +17,16 @@ exports[`ListView renders correctly 1`] = `
 </View>
 `;
 
-exports[`ListView should render empty view when doesn't exist dataSource: <View/> 1`] = `<View />`;
+exports[`ListView should render empty view when doesn't exist dataSource: <View/> 1`] = `
+<View
+  style={Object {}}
+/>
+`;
 
 exports[`ListView should render properly with dataSource and renderRow 1`] = `
-<View>
+<View
+  style={Object {}}
+>
   <View>
     <Text>
       Pug

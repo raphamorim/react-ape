@@ -44,7 +44,7 @@ describe('registerComponent', () => {
         }
 
         componentDidMount() {
-          setInterval(() => {
+          setTimeout(() => {
             const {degrees} = this.state;
             this.setState({degrees: degrees + 0.1}, () => {
               testCanvasSnapshot(expect, canvas);
