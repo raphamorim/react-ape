@@ -53,7 +53,7 @@ function renderCanvasGrid(props: Props, apeContext: CanvasComponentContext) {
   ctx.strokeStyle = lastStrokeStyle;
 }
 
-export default function CreateCanvasGrid(props: Props) {
+export default function CreateCanvasGrid(props: Props): mixed {
   const CanvasGridInstance = {
     type: 'CanvasGrid',
     render: renderCanvasGrid.bind(this, props),

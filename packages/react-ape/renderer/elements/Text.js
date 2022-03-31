@@ -98,7 +98,7 @@ function clearText(
   renderText(clearProps, apeContext, parentLayout);
 }
 
-export default function CreateTextInstance(props: Props) {
+export default function CreateTextInstance(props: Props): mixed {
   return {
     type: 'Text',
     render: renderText.bind(this, props),

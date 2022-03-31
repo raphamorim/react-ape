@@ -30,10 +30,10 @@ class ListView extends React.Component<Props> {
   static defaultProps: Props = {
     renderRow: () => null,
     dataSource: [],
-    style: {}
+    style: {},
   };
 
-  render() {
+  render(): React.Element<string> {
     const {style, renderRow, dataSource} = this.props;
     return React.createElement(
       'View',

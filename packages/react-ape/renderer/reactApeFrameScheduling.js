@@ -3,7 +3,7 @@
 // TODO: make this hardware relevant/aware
 
 const hasNativePerformanceNow =
-  typeof performance === 'object' && 
+  typeof performance === 'object' &&
   // $FlowFixMe[method-unbinding]
   typeof performance.now === 'function';
 
@@ -43,12 +43,12 @@ export function scheduleDeferredCallback(
   return (timeoutId: any); // Timeouts are always numbers on RN
 }
 
-export function cancelDeferredCallback(callbackID: number) {
+export function cancelDeferredCallback(callbackID: number): void {
   scheduledCallback = null;
   // $FlowFixMe[unclear-type]
   clearTimeout((callbackID: any)); // Timeouts are always numbers on RN
 }
 
-export function shouldYield() {
+export function shouldYield(): boolean {
   return frameDeadline <= now();
 }

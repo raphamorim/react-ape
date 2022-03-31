@@ -49,7 +49,7 @@ function exec(command, args) {
   return execFileSync(command, args, options);
 }
 
-const mergeBase = exec('git', ['merge-base', 'HEAD', 'master']).trim();
+const mergeBase = exec('git', ['merge-base', 'HEAD', 'main']).trim();
 const changedFiles = new Set(
   exec('git', [
     'diff',

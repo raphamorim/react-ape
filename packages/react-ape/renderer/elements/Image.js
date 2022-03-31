@@ -111,7 +111,7 @@ function renderImage(props: Props, apeContext: CanvasComponentContext) {
   }
 }
 
-export default function CreateImageInstance(props: Props) {
+export default function CreateImageInstance(props: Props): mixed {
   return {
     type: 'Image',
     render: renderImage.bind(this, props),
