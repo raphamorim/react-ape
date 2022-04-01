@@ -16,68 +16,68 @@ import Spinner from './Spinner';
 import SmartRender from './SmartRender';
 
 // Create Custom Components
-const custom = {
-  Spinner: registerComponent('Spinner', Spinner),
-};
+// const custom = {
+//   Spinner: registerComponent('Spinner', Spinner),
+// };
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasError: false,
-      color: 'blue',
-      degrees: 0.0,
-      text: 'Loading...',
-    };
-  }
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       hasError: false,
+//       color: 'blue',
+//       degrees: 0.0,
+//       text: 'Loading...',
+//     };
+//   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      const {degrees} = this.state;
-      this.setState({degrees: degrees + 0.1, color: 'orange', text: 'Loaded'});
-    }, 10);
-  }
+//   componentDidMount() {
+//     setTimeout(() => {
+//       const {degrees} = this.state;
+//       this.setState({degrees: degrees + 0.1, color: 'orange', text: 'Loaded'});
+//     }, 10);
+//   }
 
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return {hasError: true};
-  }
+//   static getDerivedStateFromError(error) {
+//     // Update state so the next render will show the fallback UI.
+//     return {hasError: true};
+//   }
 
-  componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
-    console.log(error, errorInfo);
-  }
+//   componentDidCatch(error, errorInfo) {
+//     // You can also log the error to an error reporting service
+//     console.log(error, errorInfo);
+//   }
 
-  render() {
-    const {degrees, text, color} = this.state;
-    if (this.state.errorInfo) {
-      return errorInfo;
-    }
+//   render() {
+//     const {degrees, text, color} = this.state;
+//     if (this.state.errorInfo) {
+//       return errorInfo;
+//     }
 
-    return (
-      <View>
-        <View style={{backgroundColor: 'white'}}>
-          <Text>SSSSS</Text>
-          <Text>
-            {text}
-          </Text>
-        </View>
-        <View style={{backgroundColor: 'red'}}>
-          <Text style={{color: 'white'}}>
-            {text}
-          </Text>
-          <Text style={{color: color}}>ABC</Text>
-        </View>
-        <Text style={{position: 'absolute', top: 100, left: 100}}>
-          122121 {text}
-        </Text>
-        <Text style={{position: 'absolute', top: 140, left: 100}}>
-          {text}
-        </Text>
-      </View>
-    );
-  }
-}
+//     return (
+//       <View>
+//         <View style={{backgroundColor: 'white'}}>
+//           <Text>SSSSS</Text>
+//           <Text>
+//             {text}
+//           </Text>
+//         </View>
+//         <View style={{backgroundColor: 'red'}}>
+//           <Text style={{color: 'white'}}>
+//             {text}
+//           </Text>
+//           <Text style={{color: color}}>ABC</Text>
+//         </View>
+//         <Text style={{position: 'absolute', top: 100, left: 100}}>
+//           122121 {text}
+//         </Text>
+//         <Text style={{position: 'absolute', top: 140, left: 100}}>
+//           {text}
+//         </Text>
+//       </View>
+//     );
+//   }
+// }
 
 /*
 
@@ -106,4 +106,4 @@ class App extends Component {
           <Text style={{color: 'gray'}}>Absolute!</Text>
         </View>*/
 
-render(<App />, document.getElementById('root'));
+render(<SmartRender />, document.getElementById('root'));

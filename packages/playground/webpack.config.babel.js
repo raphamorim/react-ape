@@ -22,15 +22,22 @@ const config = {
       path.resolve(__dirname, '../../node_modules'),
     ],
   },
+  externals: [
+    sourcePath,
+    reactApePath,
+    path.resolve(__dirname, 'node_modules'),
+    // yarn-workspaces
+    path.resolve(__dirname, '../../node_modules'),
+  ],
   module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-        include: [reactApePath, sourcePath],
-      },
-    ],
+    // rules: [
+    //   {
+    //     test: /\.(js|jsx)$/,
+    //     exclude: /node_modules/,
+    //     use: ['babel-loader'],
+    //     include: [reactApePath, sourcePath],
+    //   },
+    // ],
   },
   plugins: [new webpack.NamedModulesPlugin()],
   devServer: {
