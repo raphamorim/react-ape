@@ -18,3 +18,5 @@ website/translated_docs
 website/build/
 website/yarn.lock
 website/i18n/*
+
+packages/playground/bundle.js
