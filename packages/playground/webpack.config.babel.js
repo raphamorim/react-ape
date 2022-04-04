@@ -5,6 +5,7 @@ const sourcePath = path.join(__dirname, 'src');
 const reactApePath = path.join(__dirname, '../react-ape');
 
 const config = {
+  target: 'web',
   mode: 'development',
   entry: [path.resolve(sourcePath, 'App.js')],
   output: {
@@ -30,24 +31,27 @@ const config = {
     path.resolve(__dirname, '../../node_modules'),
   ],
   module: {
-    // rules: [
-    //   {
-    //     test: /\.(js|jsx)$/,
-    //     exclude: /node_modules/,
-    //     use: ['babel-loader'],
-    //     include: [reactApePath, sourcePath],
-    //   },
-    // ],
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        include: [reactApePath, sourcePath],
+        options: {
+          rootMode: 'upward',
+        },
+      },
+    ],
   },
-  plugins: [new webpack.NamedModulesPlugin()],
   devServer: {
     compress: false,
     host: '0.0.0.0',
     open: true,
     port: 9000,
-    historyApiFallback: {
-      index: path.join(__dirname, 'index.html'),
-    },
+    hot: true,
+    // historyApiFallback: {
+    //   index: path.join(__dirname, 'index.html'),
+    // },
   },
 };
 
