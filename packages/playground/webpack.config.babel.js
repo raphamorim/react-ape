@@ -1,18 +1,24 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const sourcePath = path.join(__dirname, 'src');
 const reactApePath = path.join(__dirname, '../react-ape');
 
 const config = {
-  target: 'web',
   mode: 'development',
   entry: [path.resolve(sourcePath, 'App.js')],
   output: {
     path: __dirname,
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: 'auto',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Playground',
+      template: 'index.html'
+    })
+  ],
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [
@@ -47,11 +53,8 @@ const config = {
     compress: false,
     host: '0.0.0.0',
     open: true,
-    port: 9000,
-    hot: true,
-    // historyApiFallback: {
-    //   index: path.join(__dirname, 'index.html'),
-    // },
+    port: 8080,
+    hot: true
   },
 };
 
