@@ -16,8 +16,8 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Playground',
-      template: 'index.html'
-    })
+      template: 'index.html',
+    }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -54,7 +54,7 @@ const config = {
     host: '0.0.0.0',
     open: true,
     port: 8080,
-    hot: true
+    hot: true,
   },
 };
 
