@@ -30,6 +30,7 @@ const config = {
       '**/node_modules/**',
       '**/dist/**',
       'bundle.js',
+      'packages/playground/bundle.js',
       '**/flow-typed/**',
     ],
   },

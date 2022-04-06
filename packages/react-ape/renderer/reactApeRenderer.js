@@ -139,6 +139,8 @@ const ReactApeFiber = reconciler({
     }
   },
 
+  clearContainer() {},
+
   resetAfterCommit(rootContainerInstance) {
     // resetAfterCommit happens only for children changes
     renderQueue(apeContextGlobal, () => {
