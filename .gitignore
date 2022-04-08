@@ -14,9 +14,10 @@ lib/core/MetadataBlog.js
 
 .vscode/
 
-website/translated_docs
-website/build/
-website/yarn.lock
-website/i18n/*
+# Website
+packages/website/translated_docs
+packages/website/build/
+packages/website/yarn.lock
+packages/website/i18n/*
 
 packages/playground/bundle.js

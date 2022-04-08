@@ -102,6 +102,6 @@ export default function CreateTextInstance(props: Props): mixed {
   return {
     type: 'Text',
     render: renderText.bind(this, props),
-    clear: clearText,
+    // clear: clearText,
   };
 }

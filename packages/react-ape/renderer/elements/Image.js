@@ -115,6 +115,6 @@ export default function CreateImageInstance(props: Props): mixed {
   return {
     type: 'Image',
     render: renderImage.bind(this, props),
-    clear: () => {},
+    // clear: () => {},
   };
 }
