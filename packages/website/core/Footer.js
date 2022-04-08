@@ -27,9 +27,7 @@ class Footer extends React.Component {
             <a href={this.docUrl('doc1.html', this.props.language)}>
               Getting Started
             </a>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
-              Guides
-            </a>
+            <a href={this.docUrl('doc2.html', this.props.language)}>Guides</a>
             <a href={this.docUrl('doc3.html', this.props.language)}>
               API Reference
             </a>
@@ -47,7 +45,7 @@ class Footer extends React.Component {
               Stack Overflow
             </a>
              <a href="https://discordapp.com/">Project Chat</a>
-            */ }
+            */}
             <a
               href="https://twitter.com/raphamorims"
               target="_blank"
@@ -72,7 +70,9 @@ class Footer extends React.Component {
           </div>
         </section>
 
-        <section className="copyright">{this.props.config.copyright}</section>
+        <section className="copyright">
+          {this.props.config.copyright}
+        </section>
       </footer>
     );
   }

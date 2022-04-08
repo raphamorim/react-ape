@@ -30,7 +30,7 @@ const siteConfig = {
     {blog: true, label: 'Blog'},
     {href: 'https://github.com/raphamorim/react-ape', label: 'GitHub'},
     {href: 'https://reactjs.org/', label: 'React'},
-    {search: true}
+    {search: true},
   ],
 
   editUrl: 'https://github.com/raphamorim/react-ape/blob/master/docs/',
@@ -38,7 +38,7 @@ const siteConfig = {
   algolia: {
     apiKey: 'my-api-key',
     indexName: 'my-index-name',
-    algoliaOptions: {} // Optional, if provided by Algolia
+    algoliaOptions: {}, // Optional, if provided by Algolia
   },
 
   // If you have users set above, you add it here:
@@ -54,23 +54,20 @@ const siteConfig = {
     primaryColor: 'rgb(34, 34, 34)',
     secondaryColor: '#05A5D1',
     tintColor: '#005068',
-    backgroundColor: '#f5fcff'
+    backgroundColor: '#f5fcff',
   },
 
   blogSidebarCount: 'ALL',
 
   highlight: {
-    theme: 'solarized-dark'
+    theme: 'solarized-dark',
   },
 
   cleanUrl: true,
 
   /* Custom fonts for website */
   fonts: {
-    myFont: [
-      'Helvetica',
-      'sans-serif'
-    ],
+    myFont: ['Helvetica', 'sans-serif'],
     // myOtherFont: [
     //   -apple-system,
     //   system-ui
