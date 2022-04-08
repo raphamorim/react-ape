@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://raphamorim.io/react-ape/blog</id>
+    <title>React Ape Blog</title>
+    <updated>2018-10-05T06:00:00Z</updated>
+    <generator>Feed for Node.js</generator>
+    <link rel="alternate" href="http://raphamorim.io/react-ape/blog"/>
+    <subtitle>The best place to stay up-to-date with the latest React Ape news and events.</subtitle>
+    <logo>http://raphamorim.io/react-ape/null</logo>
+    <rights>Copyright © 2022 Raphael Amorim</rights>
+    <entry>
+        <title type="html"><![CDATA[Hey! It's React Ape]]></title>
+        <id>http://raphamorim.io/react-ape/blog/2018/10/05/hey-its-react-ape.html</id>
+        <link href="http://raphamorim.io/react-ape/blog/2018/10/05/hey-its-react-ape.html">
+        </link>
+        <updated>2018-10-05T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Hey everyone!</p>
+]]></summary>
+        <author>
+            <name>Raphael Amorim</name>
+            <uri>http://twitter.com/@raphamorims</uri>
+        </author>
+    </entry>
+</feed>
