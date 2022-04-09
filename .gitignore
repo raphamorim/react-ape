@@ -20,4 +20,4 @@ packages/website/build/
 packages/website/yarn.lock
 packages/website/i18n/*
 
-packages/playground/bundle.js
+packages/app/bundle.js

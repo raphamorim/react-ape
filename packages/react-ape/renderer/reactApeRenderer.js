@@ -54,8 +54,13 @@ const ReactApeFiber = reconciler({
         setSurfaceHeight: height => {
           surfaceHeight = height;
         },
-        renderQueue: [],
         ctx: rootContainerInstanceContext,
+        clear: function clear() {
+          const width = rootContainerInstance.width;
+          const height = rootContainerInstance.height;
+          this.ctx.clearRect(0, 0, width, height);
+        },
+        renderQueue: [],
       };
     }
 
@@ -119,6 +124,7 @@ const ReactApeFiber = reconciler({
         }
 
         apeElement.parentLayout = parentLayout;
+        apeContextGlobal.clear();
         apeContextGlobal.renderQueue.push(apeElement);
         return null;
       }
@@ -170,7 +176,6 @@ const ReactApeFiber = reconciler({
   noTimeout: -1,
   useSyncScheduling: true,
   now: FrameSchedulingNow,
-
   isPrimaryRenderer: true,
   supportsMutation: true,
 

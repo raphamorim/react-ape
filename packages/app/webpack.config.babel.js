@@ -15,7 +15,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Playground',
+      title: 'App',
       template: 'index.html',
     }),
   ],
