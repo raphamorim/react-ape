@@ -124,7 +124,7 @@ const ReactApeFiber = reconciler({
         }
 
         apeElement.parentLayout = parentLayout;
-        apeContextGlobal.clear();
+        // apeContextGlobal.clear();
         apeContextGlobal.renderQueue.push(apeElement);
         return null;
       }
