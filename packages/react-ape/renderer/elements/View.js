@@ -44,8 +44,8 @@ class View {
     const {style = {}} = this.props;
 
     const previousStroke = ctx.strokeStyle;
-    let x = style.x || 0; // legacy support (style.top)
-    let y = style.y || 0; // legacy support (style.left)
+    let x = style.x || style.left || 0;
+    let y = style.y || style.top || 0;
     const width = style.width || defaultViewSize;
     const height = style.height || defaultViewSize;
 
