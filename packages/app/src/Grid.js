@@ -20,19 +20,19 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 100,
-    width: 100
+    width: 100,
   },
 });
 
 class Grid extends Component {
   constructor(props) {
     super(props);
-  };
+  }
 
   render() {
-    const { height } = this.props;
+    const {height} = this.props;
     return (
-      <View style={{ ...styles.grid, height }}>
+      <View style={{...styles.grid, height}}>
         <Text style={styles.title}>GameBoy</Text>
         <Image src={'pokemon-red.jpg'} height={200} width={200} />
       </View>

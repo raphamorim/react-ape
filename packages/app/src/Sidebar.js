@@ -19,18 +19,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 40,
     top: 100,
-  }
+  },
 });
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-  };
+  }
 
   render() {
-    const { height } = this.props;
+    const {height} = this.props;
     return (
-      <View style={{ ...styles.sidebar, height }}>
+      <View style={{...styles.sidebar, height}}>
         <View style={styles.container}>
           <Text>Sidebar</Text>
         </View>
