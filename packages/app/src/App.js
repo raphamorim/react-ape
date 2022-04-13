@@ -114,29 +114,26 @@ class App extends Component {
   }
 }
 
-
-
-        // <Text>12, { text }</Text>
-        //   <View style={{width: 200, height: 30, backgroundColor: 'orange'}} />
-        //   <custom.Spinner degrees={degrees} style={{color: 'blue'}} />
-        // <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-        // <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}}>
-        //   <Text>Relative { text }</Text>
-        // </View>
-        // <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}}>
-        //   <Text>Relative</Text>
-        // </View>
-        // <View
-        //   style={{
-        //     width: 60,
-        //     left: 200,
-        //     top: 0,
-        //     height: 60,
-        //     position: 'absolute',
-        //     backgroundColor: 'black',
-        //   }}>
-        //   <Text style={{color: 'gray'}}>Absolute!</Text>
-        // </View>
-
+// <Text>12, { text }</Text>
+//   <View style={{width: 200, height: 30, backgroundColor: 'orange'}} />
+//   <custom.Spinner degrees={degrees} style={{color: 'blue'}} />
+// <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+// <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}}>
+//   <Text>Relative { text }</Text>
+// </View>
+// <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}}>
+//   <Text>Relative</Text>
+// </View>
+// <View
+//   style={{
+//     width: 60,
+//     left: 200,
+//     top: 0,
+//     height: 60,
+//     position: 'absolute',
+//     backgroundColor: 'black',
+//   }}>
+//   <Text style={{color: 'gray'}}>Absolute!</Text>
+// </View>
 
 render(<App />, document.getElementById('root'));
