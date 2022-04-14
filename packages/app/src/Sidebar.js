@@ -7,6 +7,8 @@ import {
   registerComponent,
 } from '../../react-ape/reactApeEntry';
 
+const {height} = Dimensions.get('screen');
+
 const styles = StyleSheet.create({
   sidebar: {
     position: 'absolute',
@@ -14,6 +16,7 @@ const styles = StyleSheet.create({
     top: 0,
     backgroundColor: 'orange',
     width: 280,
+    height: height,
   },
   container: {
     position: 'absolute',
@@ -28,11 +31,11 @@ class Sidebar extends Component {
   }
 
   render() {
-    const {height} = this.props;
     return (
-      <View style={{...styles.sidebar, height}}>
+      <View style={styles.sidebar}>
         <View style={styles.container}>
           <Text>Sidebar</Text>
+          <Text>To fix relative positioning</Text>
         </View>
       </View>
     );

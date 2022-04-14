@@ -7,16 +7,24 @@ import {
   StyleSheet,
 } from '../../react-ape/reactApeEntry';
 
+const {height} = Dimensions.get('screen');
+
 const styles = StyleSheet.create({
   grid: {
     position: 'absolute',
     left: 400,
     top: 100,
     width: 280,
+    height: height,
   },
   title: {
     color: 'white',
-    fontSize: 50,
+    fontSize: 60,
+  },
+  gameList: {
+    position: 'absolute',
+    left: 400,
+    top: 200,
   },
   image: {
     height: 100,
@@ -24,17 +32,39 @@ const styles = StyleSheet.create({
   },
 });
 
+const gameList = [
+  {
+    title: 'Pokemon Red',
+    imageSrc: 'pokemon-red.jpg'
+  },
+  {
+    title: 'Pokemon Blue',
+    imageSrc: 'pokemon-blue.jpg'
+  },
+];
+
 class Grid extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {height} = this.props;
     return (
-      <View style={{...styles.grid, height}}>
+      <View style={styles.grid}>
         <Text style={styles.title}>GameBoy</Text>
-        <Image src={'pokemon-red.jpg'} height={200} width={200} />
+        <View style={styles.gameList}>
+          {/* TODO: Replace for a LISTVIEW */}
+          {gameList.map((game) => {
+            const { title, imageSrc } = game;
+            return (
+              <Image 
+                src={imageSrc}
+                height={340} 
+                width={340} 
+              />
+            );
+          })}
+        </View>
       </View>
     );
   }

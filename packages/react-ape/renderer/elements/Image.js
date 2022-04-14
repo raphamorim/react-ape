@@ -49,11 +49,29 @@ function drawImage(
   ctx.drawImage(imageElement, x, y, width, height);
 }
 
-function renderImage(props: Props, apeContext: CanvasComponentContext) {
+function renderImage(
+  props: Props, 
+  apeContext: CanvasComponentContext,
+  parentLayout: ParentLayout
+) {
   const {ctx} = apeContext;
-  const {style = {x: 0, y: 0}, imageElement, src, width, height} = props;
+  const {spatialGeometry = {x: 0, y: 0}} = parentLayout || {};
+  const {style = {}, imageElement, src, width, height} = props;
 
   if (!src && !imageElement) {
+    return null;
+  }
+
+  let x = style.UNSAFE_x || spatialGeometry.x;
+  let y = style.UNSAFE_y || spatialGeometry.y;
+
+  // If position is absolute should reset geometry
+  if (style.position === 'absolute') {
+    x = style.left || 0;
+    y = style.top || 0;
+
+  // If is relative and x and y haven't be processed, don't render
+  } else if (!spatialGeometry) {
     return null;
   }
 
@@ -62,8 +80,8 @@ function renderImage(props: Props, apeContext: CanvasComponentContext) {
     drawImage(
       ctx,
       cachedImage.element,
-      style.x,
-      style.y,
+      x,
+      y,
       width || style.width || cachedImage.width,
       height || style.height || cachedImage.height
     );
@@ -74,8 +92,8 @@ function renderImage(props: Props, apeContext: CanvasComponentContext) {
     drawImage(
       ctx,
       imageElement,
-      style.x,
-      style.y,
+      x,
+      y,
       width || style.width || imageElement.naturalWidth,
       height || style.height || imageElement.naturalHeight
     );
@@ -95,7 +113,7 @@ function renderImage(props: Props, apeContext: CanvasComponentContext) {
     const imageHeight = Number(
       height || style.height || newImageElement.naturalHeight
     );
-    ctx.drawImage(newImageElement, style.x, style.y, imageWidth, imageHeight);
+    ctx.drawImage(newImageElement, x, y, imageWidth, imageHeight);
     saveOnCache(src, newImageElement, imageWidth, imageHeight);
   }
 

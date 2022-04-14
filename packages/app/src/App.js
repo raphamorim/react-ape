@@ -14,7 +14,7 @@ import Grid from './Grid';
 
 const {width, height} = Dimensions.get('screen');
 
-// Create Custom Components
+// Register Custom Components
 const custom = {
   Spinner: registerComponent('Spinner', Spinner),
 };
@@ -34,18 +34,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasError: false,
-      color: 'blue',
-      degrees: 0.0,
-      text: 'Loading...',
+      hasError: false
     };
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
-      const {degrees} = this.state;
-      this.setState({degrees: degrees + 0.1, color: 'orange', text: 'Loaded'});
-    }, 10);
   }
 
   static getDerivedStateFromError(error) {
@@ -59,15 +49,15 @@ class App extends Component {
   }
 
   render() {
-    const {degrees, text, color} = this.state;
-    if (this.state.errorInfo) {
-      return errorInfo;
+    const {hasError} = this.state;
+    if (hasError) {
+      return null;
     }
 
     return (
       <View style={styles.surface}>
-        <Sidebar height={height} />
-        <Grid height={height} />
+        <Sidebar />
+        <Grid />
       </View>
     );
   }
