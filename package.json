@@ -4,18 +4,12 @@
     "packages/*",
     "website"
   ],
-  "author": "Raphael Amorim",
+  "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "node ./scripts/rollup",
     "ci": "yarn test && yarn build",
-    /*
-      NOTE ABOUT CI-LOCAL COMMAND:
-
-      React-Ape's CI uses circleci/node:16.13.1 (linux) and since canvas renders a
-      different output based on the operating system. It requires run the tests
-      on the same OS. More information on: https://github.com/raphamorim/react-ape#testing-it
-    */
+    // ci-local: https://github.com/raphamorim/react-ape#testing-it
     "ci-local": "docker build -t react-ape .",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
     "docs-build": "cd ./packages/website && yarn run build",
