@@ -8,7 +8,7 @@
  *
  */
 
-import type {CanvasComponentContext} from '../types';
+import type {CanvasComponentContext, SpatialGeometry} from '../types';
 
 const cacheImageControl = {};
 
@@ -25,17 +25,24 @@ function saveOnCache(
   };
 }
 
+type ImageStyle = {|
+  width?: number,
+  height?: number,
+  x: number,
+  y: number,
+|};
+
 type Props = {|
-  style: {
-    width?: number,
-    height?: number,
-    x: number,
-    y: number,
-  },
+  style: ImageStyle,
   src: string,
   imageElement: Image,
   width?: number,
   height?: number,
+|};
+
+type ParentLayout = {|
+  style: ImageStyle,
+  spatialGeometry: SpatialGeometry,
 |};
 
 function drawImage(
@@ -50,7 +57,7 @@ function drawImage(
 }
 
 function renderImage(
-  props: Props, 
+  props: Props,
   apeContext: CanvasComponentContext,
   parentLayout: ParentLayout
 ) {
@@ -70,7 +77,7 @@ function renderImage(
     x = style.left || 0;
     y = style.top || 0;
 
-  // If is relative and x and y haven't be processed, don't render
+    // If is relative and x and y haven't be processed, don't render
   } else if (!spatialGeometry) {
     return null;
   }

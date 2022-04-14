@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
 const gameList = [
   {
     title: 'Pokemon Red',
-    imageSrc: 'pokemon-red.jpg'
+    imageSrc: 'pokemon-red.jpg',
   },
   {
     title: 'Pokemon Blue',
-    imageSrc: 'pokemon-blue.jpg'
+    imageSrc: 'pokemon-blue.jpg',
   },
 ];
 
@@ -54,15 +54,9 @@ class Grid extends Component {
         <Text style={styles.title}>GameBoy</Text>
         <View style={styles.gameList}>
           {/* TODO: Replace for a LISTVIEW */}
-          {gameList.map((game) => {
-            const { title, imageSrc } = game;
-            return (
-              <Image 
-                src={imageSrc}
-                height={340} 
-                width={340} 
-              />
-            );
+          {gameList.map(game => {
+            const {title, imageSrc} = game;
+            return <Image src={imageSrc} height={340} width={340} />;
           })}
         </View>
       </View>
