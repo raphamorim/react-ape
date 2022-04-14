@@ -5,7 +5,7 @@ import testCanvasSnapshot from '../../../../tests/testCanvasSnapshot';
 
 describe('Render Updates', () => {
   describe('Relative View', () => {
-    test('Render relative view with props and children updates', done => {
+    test.only('Render relative view with props and children updates', done => {
       const canvas = document.createElement('canvas');
       class ViewComponent extends React.Component {
         constructor() {

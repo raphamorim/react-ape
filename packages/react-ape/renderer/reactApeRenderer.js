@@ -108,7 +108,7 @@ const ReactApeFiber = reconciler({
 
       if (diff) {
         const parentLayout = element.parentLayout || element.getParentLayout();
-        // element.clear(oldProps, parentLayout, apeContextGlobal);
+        element.clear(oldProps, parentLayout, apeContextGlobal);
 
         const apeElement = reactApeComponent.createElement(
           type,
@@ -124,14 +124,14 @@ const ReactApeFiber = reconciler({
         }
 
         apeElement.parentLayout = parentLayout;
-        // apeContextGlobal.clear();
+        // EXPERIMENTAL: apeContextGlobal.clear();
         apeContextGlobal.renderQueue.push(apeElement);
         return null;
       }
 
       if (type === 'Text' && newProps.children && newProps.children.join) {
         const parentLayout = element.parentLayout || element.getParentLayout();
-        // element.clear(oldProps, parentLayout, apeContextGlobal);
+        element.clear(oldProps, parentLayout, apeContextGlobal);
 
         const apeElement = reactApeComponent.createElement(
           type,
