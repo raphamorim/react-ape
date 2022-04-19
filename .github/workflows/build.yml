@@ -17,8 +17,9 @@ jobs:
       - name: Checkout source Git repo
         uses: actions/checkout@v2
 
-      - name: Run tests with make docker-test-github
-        env:
-          NODE_BASE_IMAGE_TAG: latest
-        run: make docker-test-github
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: yarn test:ci
 
