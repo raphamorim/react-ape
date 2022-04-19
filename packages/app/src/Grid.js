@@ -56,7 +56,9 @@ class Grid extends Component {
           {/* TODO: Replace for a LISTVIEW */}
           {gameList.map(game => {
             const {title, imageSrc} = game;
-            return <Image key={title} src={imageSrc} height={340} width={340} />;
+            return (
+              <Image key={title} src={imageSrc} height={340} width={340} />
+            );
           })}
         </View>
       </View>

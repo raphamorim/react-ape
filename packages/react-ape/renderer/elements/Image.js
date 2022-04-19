@@ -30,6 +30,7 @@ type ImageStyle = {|
   height?: number,
   x: number,
   y: number,
+  overflow?: string,
 |};
 
 type Props = {|
@@ -87,8 +88,8 @@ function renderImage(
   let w = width || style.width;
   let h = height || style.height;
 
-  // If overlay hidden exists then height and width should be limited
-  if (parentLayout.style && parentLayout.style.overlay === 'hidden') {
+  // If overflow hidden exists then height and width should be limited
+  if (parentLayout.style && parentLayout.style.overflow === 'hidden') {
     h = parentLayout.style.height;
     w = parentLayout.style.width;
   }
@@ -124,12 +125,8 @@ function renderImage(
     if (!newImageElement) {
       return;
     }
-    const imageWidth = Number(
-      w || newImageElement.naturalWidth
-    );
-    const imageHeight = Number(
-      h || newImageElement.naturalHeight
-    );
+    const imageWidth = Number(w || newImageElement.naturalWidth);
+    const imageHeight = Number(h || newImageElement.naturalHeight);
     ctx.drawImage(newImageElement, x, y, imageWidth, imageHeight);
     saveOnCache(src, newImageElement, imageWidth, imageHeight);
   }

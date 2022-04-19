@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#080808',
     width: width,
     height: 250,
-    overlay: 'hidden' // TODO: develop overlay
-  }
+    overflow: 'hidden',
+  },
 });
 
 class Banner extends Component {
