@@ -89,7 +89,11 @@ function renderImage(
   let h = height || style.height;
 
   // If overflow hidden exists then height and width should be limited
-  if (parentLayout.style && parentLayout.style.overflow === 'hidden') {
+  if (
+    parentLayout &&
+    parentLayout.style &&
+    parentLayout.style.overflow === 'hidden'
+  ) {
     h = parentLayout.style.height;
     w = parentLayout.style.width;
   }

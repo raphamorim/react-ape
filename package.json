@@ -15,7 +15,7 @@
     "docs-publish": "cd ./packages/website && yarn run docs-publish",
     "docs-start": "cd ./packages/website && yarn run start",
     "jest": "jest --env=node --no-cache --bail --ci --runInBand --detectOpenHandles",
-    "jest:ci": "jest --env=node --updateSnapshot --detectOpenHandles",
+    "jest:ci": "jest --env=node --detectOpenHandles",
     "app": "cd ./packages/app && yarn run start",
     "prepublishOnly": "yarn ci",
     "prettier": "node ./scripts/prettier write-changed",
