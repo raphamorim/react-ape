@@ -9,7 +9,6 @@
   "scripts": {
     "build": "node ./scripts/rollup",
     "ci": "yarn test && yarn build",
-    // ci-local: https://github.com/raphamorim/react-ape#testing-it
     "ci-local": "docker build -t react-ape .",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
     "docs-build": "cd ./packages/website && yarn run build",

@@ -54,7 +54,7 @@ function renderText(
     x = style.left || 0;
     y = style.top || fontSize;
 
-  // If is relative and x and y haven't be processed, don't render
+    // If is relative and x and y haven't be processed, don't render
   } else if (!spatialGeometry) {
     return null;
   }
