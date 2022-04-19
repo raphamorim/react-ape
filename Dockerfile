@@ -1,4 +1,4 @@
-FROM circleci/node:16.13.1
+FROM node:16
 
 ENV NPM_CONFIG_LOGLEVEL info
 

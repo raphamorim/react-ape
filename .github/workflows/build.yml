@@ -1,0 +1,24 @@
+name: Build
+
+on: push
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    env:
+      DEFAULT_PYTHON: 3.8
+      PIPELINE_CONTEXT: DEV
+      PIPELINE_LIBRARY_PATH: ${{ github.workspace }}/.github/library
+
+    steps:
+
+      # Checkout your source repo (must do this before the library)
+      - name: Checkout source Git repo
+        uses: actions/checkout@v2
+
+      - name: Run tests with make docker-test-github
+        env:
+          NODE_BASE_IMAGE_TAG: latest
+        run: make docker-test-github
+
