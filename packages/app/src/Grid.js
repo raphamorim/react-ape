@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   grid: {
     position: 'absolute',
     left: 400,
-    top: 100,
+    top: 300,
     width: 280,
     height: height,
   },
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   gameList: {
     position: 'absolute',
     left: 400,
-    top: 200,
+    top: 400,
   },
   image: {
     height: 100,
@@ -56,7 +56,7 @@ class Grid extends Component {
           {/* TODO: Replace for a LISTVIEW */}
           {gameList.map(game => {
             const {title, imageSrc} = game;
-            return <Image src={imageSrc} height={340} width={340} />;
+            return <Image key={title} src={imageSrc} height={340} width={340} />;
           })}
         </View>
       </View>

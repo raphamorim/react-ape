@@ -83,14 +83,24 @@ function renderImage(
   }
 
   const cachedImage = cacheImageControl[src];
+
+  let w = width || style.width;
+  let h = height || style.height;
+
+  // If overlay hidden exists then height and width should be limited
+  if (parentLayout.style && parentLayout.style.overlay === 'hidden') {
+    h = parentLayout.style.height;
+    w = parentLayout.style.width;
+  }
+
   if (cachedImage) {
     drawImage(
       ctx,
       cachedImage.element,
       x,
       y,
-      width || style.width || cachedImage.width,
-      height || style.height || cachedImage.height
+      w || cachedImage.width,
+      h || cachedImage.height
     );
     return;
   }
@@ -101,8 +111,8 @@ function renderImage(
       imageElement,
       x,
       y,
-      width || style.width || imageElement.naturalWidth,
-      height || style.height || imageElement.naturalHeight
+      w || imageElement.naturalWidth,
+      h || imageElement.naturalHeight
     );
     return;
   }
@@ -115,10 +125,10 @@ function renderImage(
       return;
     }
     const imageWidth = Number(
-      width || style.width || newImageElement.naturalWidth
+      w || newImageElement.naturalWidth
     );
     const imageHeight = Number(
-      height || style.height || newImageElement.naturalHeight
+      h || newImageElement.naturalHeight
     );
     ctx.drawImage(newImageElement, x, y, imageWidth, imageHeight);
     saveOnCache(src, newImageElement, imageWidth, imageHeight);

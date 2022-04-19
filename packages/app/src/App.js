@@ -11,6 +11,7 @@ import {
 import Spinner from './Spinner';
 import Sidebar from './Sidebar';
 import Grid from './Grid';
+import Banner from './Banner';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -57,6 +58,7 @@ class App extends Component {
     return (
       <View style={styles.surface}>
         <Sidebar />
+        <Banner />
         <Grid />
       </View>
     );
