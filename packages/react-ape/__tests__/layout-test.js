@@ -39,8 +39,7 @@ describe('Layout test', () => {
         }
       }
 
-      render(<Layout />, canvas);
-      testCanvasSnapshot(expect, canvas);
+      render(<Layout />, canvas, testCanvasSnapshot(expect, canvas));
     });
 
     test('Test 2 absolute views with different positions', () => {
@@ -67,8 +66,7 @@ describe('Layout test', () => {
         }
       }
 
-      render(<Layout />, canvas);
-      testCanvasSnapshot(expect, canvas);
+      render(<Layout />, canvas, testCanvasSnapshot(expect, canvas));
     });
   });
 });

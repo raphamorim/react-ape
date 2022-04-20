@@ -65,4 +65,6 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('root'));
+render(<View style={{backgroundColor: 'purple'}}>
+          <Text style={{color: 'white'}}>Pure Text</Text>
+        </View>, document.getElementById('root'));

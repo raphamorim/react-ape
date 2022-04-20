@@ -10,7 +10,13 @@ describe('Image', () => {
         const imageElement = new Image();
         imageElement.src = 'source-to-image';
 
-        const style = {x: 10, y: 100, width: 300, height: 120};
+        const style = {
+          position: 'absolute',
+          left: 10, 
+          top: 100, 
+          width: 300, 
+          height: 120
+        };
         const props = {style, imageElement: imageElement};
         const apeContext = {
           ctx: {

@@ -5,7 +5,7 @@ import testCanvasSnapshot from '../../../../tests/testCanvasSnapshot';
 
 describe('Render Updates', () => {
   describe('Relative View', () => {
-    test.only('Render relative view with props and children updates', done => {
+    test('Render relative view with props and children updates', done => {
       const canvas = document.createElement('canvas');
       class ViewComponent extends React.Component {
         constructor() {
@@ -17,6 +17,7 @@ describe('Render Updates', () => {
         }
 
         componentDidMount() {
+          testCanvasSnapshot(expect, canvas);
           setTimeout(() => {
             this.setState(
               {
@@ -64,8 +65,6 @@ describe('Render Updates', () => {
         }
       }
       render(<ViewComponent />, canvas);
-
-      testCanvasSnapshot(expect, canvas);
     });
   });
 
@@ -83,6 +82,7 @@ describe('Render Updates', () => {
         }
 
         componentDidMount() {
+          testCanvasSnapshot(expect, canvas);
           setTimeout(() => {
             this.setState(
               {
@@ -107,8 +107,6 @@ describe('Render Updates', () => {
         }
       }
       render(<TextComponent />, canvas);
-
-      testCanvasSnapshot(expect, canvas);
     });
 
     test('Test "Text" simple text change', done => {
@@ -122,6 +120,7 @@ describe('Render Updates', () => {
         }
 
         componentDidMount() {
+          testCanvasSnapshot(expect, canvas);
           this.setState({text: 'Dudeeee!'}, () => {
             testCanvasSnapshot(expect, canvas);
             done();
@@ -139,7 +138,6 @@ describe('Render Updates', () => {
         }
       }
       render(<TextComponent />, canvas);
-      testCanvasSnapshot(expect, canvas);
     });
 
     test('Test "Text" multiples content change', done => {
@@ -154,6 +152,7 @@ describe('Render Updates', () => {
         }
 
         componentDidMount() {
+          testCanvasSnapshot(expect, canvas);
           setTimeout(() => {
             this.setState({
               firstContent: 'sun-maker',
@@ -190,7 +189,6 @@ describe('Render Updates', () => {
         }
       }
       render(<TextComponent />, canvas);
-      testCanvasSnapshot(expect, canvas);
     });
   });
 });
