@@ -27,11 +27,10 @@ describe('registerComponent', () => {
         );
       }
 
-      render(<App />, canvas);
-      testCanvasSnapshot(expect, canvas);
+      render(<App />, canvas, () => testCanvasSnapshot(expect, canvas));
     });
 
-    test('should update when props change', done => {
+    test.skip('should update when props change', done => {
       const canvas = document.createElement('canvas');
       expect(typeof registerComponent).toEqual('function');
       registerComponent('Spinner', Spinner);
@@ -46,11 +45,11 @@ describe('registerComponent', () => {
         componentDidMount() {
           setTimeout(() => {
             const {degrees} = this.state;
-            this.setState({degrees: degrees + 0.1}, () => {
+            this.setState({degrees: 0.1}, () => {
               testCanvasSnapshot(expect, canvas);
               done();
             });
-          }, 10);
+          });
         }
 
         render() {
@@ -63,8 +62,7 @@ describe('registerComponent', () => {
         }
       }
 
-      render(<AppWithUpdate />, canvas);
-      testCanvasSnapshot(expect, canvas);
+      render(<AppWithUpdate />, canvas, () => testCanvasSnapshot(expect, canvas));
     });
   });
 });
