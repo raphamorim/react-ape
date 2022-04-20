@@ -62,7 +62,9 @@ describe('registerComponent', () => {
         }
       }
 
-      render(<AppWithUpdate />, canvas, () => testCanvasSnapshot(expect, canvas));
+      render(<AppWithUpdate />, canvas, () =>
+        testCanvasSnapshot(expect, canvas)
+      );
     });
   });
 });

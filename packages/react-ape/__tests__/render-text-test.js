@@ -14,7 +14,7 @@ describe('render', () => {
         <View style={{backgroundColor: 'purple'}}>
           <Text style={{color: 'white'}}>Pure Text</Text>
         </View>,
-        canvas, 
+        canvas,
         () => {
           const dataUrl = canvas.toDataURL();
           testCanvasSnapshot(expect, canvas);

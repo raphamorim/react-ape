@@ -12,10 +12,10 @@ describe('Image', () => {
 
         const style = {
           position: 'absolute',
-          left: 10, 
-          top: 100, 
-          width: 300, 
-          height: 120
+          left: 10,
+          top: 100,
+          width: 300,
+          height: 120,
         };
         const props = {style, imageElement: imageElement};
         const apeContext = {
