@@ -25,7 +25,7 @@
     "test:ci": "yarn flow && yarn prettier:stat && yarn jest:ci"
   },
   "devDependencies": {
-    "@babel/register": "^7.17.7",
+    "@babel/register": "7.17.7",
     "@babel/core": "7.17.8",
     "@babel/plugin-proposal-class-properties": "7.3.0",
     "@babel/preset-env": "7.16.11",
