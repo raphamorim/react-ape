@@ -4,7 +4,6 @@ title: Height and Width
 sidebar_label: Height and Width
 ---
 
-
 ## Height and Width
 
 A component's height and width determine its size on the screen.

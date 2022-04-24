@@ -6,7 +6,8 @@
       "height-and-width"
     ],
     "Guides": [
-      "components-and-apis"
+      "components-and-apis",
+      "navigation-on-apps"
     ],
     "Contributing": [
       "contributing-how-to-contribute"
@@ -23,7 +24,8 @@
     "APIs": [
       "apis-dimensions",
       "apis-platform",
-      "apis-stylesheet"
+      "apis-stylesheet",
+      "apis-navigation"
     ]
   }
 }
