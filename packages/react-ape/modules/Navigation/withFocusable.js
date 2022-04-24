@@ -1,5 +1,3 @@
-function withFocusable() {
-
-}
+function withFocusable() {}
 
 export default withFocusable;

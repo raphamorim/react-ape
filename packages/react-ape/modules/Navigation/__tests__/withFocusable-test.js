@@ -1,4 +1,4 @@
-import { withFocusable } from '../index';
+import {withFocusable} from '../index';
 
 describe.skip('withFocusable', () => {
   describe('Dimensions.get()', () => {

@@ -37,13 +37,13 @@ class View {
   }
 
   clear() {
-    const { ctx } = apeContext;
-    const { style } = parentLayout;
+    const {ctx} = apeContext;
+    const {style} = parentLayout;
     // Draw entire View using parent style (without children)
     if (this.previousRect) {
       const previousStroke = ctx.strokeStyle;
       ctx.beginPath();
-      const { x, y, width, height } = this.previousRect;
+      const {x, y, width, height} = this.previousRect;
       ctx.rect(x, y, width, height);
       console.log(style.backgroundColor);
       ctx.strokeStyle = style.backgroundColor || 'transparent';

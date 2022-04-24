@@ -1,5 +1,3 @@
-function withNavigation() {
-
-}
+function withNavigation() {}
 
 export default withNavigation;

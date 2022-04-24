@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: width / 2 - 40,
     top: height / 4,
-    backgroundColor: 'blue'
-  }
+    backgroundColor: 'blue',
+  },
 });
 
 class Loader extends Component {
@@ -49,9 +49,12 @@ class Loader extends Component {
   render() {
     const {degrees} = this.state;
     return (
-      <View style={ styles.container }>
-        <custom.Spinner degrees={degrees} style={{ top: height / 4 + 8, left: width / 2 - 60, color: 'white' }} />
-        <Text style={{ color: 'white' }}>Loading Store...</Text>
+      <View style={styles.container}>
+        <custom.Spinner
+          degrees={degrees}
+          style={{top: height / 4 + 8, left: width / 2 - 60, color: 'white'}}
+        />
+        <Text style={{color: 'white'}}>Loading Store...</Text>
       </View>
     );
   }
