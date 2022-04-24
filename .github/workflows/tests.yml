@@ -12,7 +12,6 @@ jobs:
       PIPELINE_LIBRARY_PATH: ${{ github.workspace }}/.github/library
 
     steps:
-
       # Checkout your source repo (must do this before the library)
       - name: Checkout source Git repo
         uses: actions/checkout@v3

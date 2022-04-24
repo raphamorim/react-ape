@@ -3,14 +3,18 @@ name: Build and Publish Documentation
 on:
   push:
     branches:
-      - main
+      - 'main'
 
 jobs:
   build:
     runs-on: macos-latest
 
-steps:
+    env:
+      DEFAULT_PYTHON: 3.8
+      PIPELINE_CONTEXT: DEV
+      PIPELINE_LIBRARY_PATH: ${{ github.workspace }}/.github/library
 
+    steps:
       # Checkout your source repo (must do this before the library)
       - name: Checkout source Git repo
         uses: actions/checkout@v3
