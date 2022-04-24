@@ -1,4 +1,4 @@
-name: Build
+name: Run Tests
 
 on: push
 
@@ -35,4 +35,3 @@ jobs:
 
       - name: Run tests
         run: yarn test:ci
-
