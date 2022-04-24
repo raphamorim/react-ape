@@ -18,6 +18,12 @@ const {width, height} = Dimensions.get('screen');
 
 // Register Custom Components
 const custom = {
+  /* 
+    <custom.Spinner 
+      degrees={degrees}
+      style={{ top: height / 4 + 8, left: width / 2 - 60, color: 'white' }}
+    />
+  */
   Spinner: registerComponent('Spinner', Spinner),
 };
 

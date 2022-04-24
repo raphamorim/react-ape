@@ -14,6 +14,7 @@ class View {
     this.type = 'View';
     this.spatialGeometry = {};
     this.renderQueue = [];
+    this.previousRect = null;
   }
 
   appendChild(fn) {
@@ -36,7 +37,21 @@ class View {
   }
 
   clear() {
-    // noop
+    const { ctx } = apeContext;
+    const { style } = parentLayout;
+    // Draw entire View using parent style (without children)
+    if (this.previousRect) {
+      const previousStroke = ctx.strokeStyle;
+      ctx.beginPath();
+      const { x, y, width, height } = this.previousRect;
+      ctx.rect(x, y, width, height);
+      console.log(style.backgroundColor);
+      ctx.strokeStyle = style.backgroundColor || 'transparent';
+      ctx.fillStyle = style.backgroundColor || 'transparent';
+      ctx.fill();
+      ctx.stroke();
+      ctx.closePath();
+    }
   }
 
   render(apeContext) {
@@ -58,6 +73,7 @@ class View {
     ctx.globalCompositeOperation = 'destination-over';
     ctx.beginPath();
     ctx.rect(x, y, width, height);
+    this.previousRect = {x, y, width, height};
     ctx.strokeStyle = style.borderColor || 'transparent';
     ctx.fillStyle = style.backgroundColor || 'transparent';
     ctx.fill();

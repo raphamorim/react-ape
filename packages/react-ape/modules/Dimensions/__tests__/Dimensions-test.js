@@ -1,6 +1,6 @@
 import Dimensions from '../index';
 
-describe('[Dimensions]', () => {
+describe('Dimensions', () => {
   describe('Dimensions.get()', () => {
     test('empty arguments should return null', () => {
       expect(typeof Dimensions).toEqual('object');

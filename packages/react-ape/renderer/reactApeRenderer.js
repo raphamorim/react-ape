@@ -199,6 +199,9 @@ const ReactApeFiber = reconciler({
 
   removeChild(parentInstance, child) {
     // parentInstance.removeChild(child);
+    if (child.type && child.type === 'View') {
+      child.clear(apeContextGlobal, parentInstance.getLayoutDefinitions());
+    }
   },
 
   removeChildFromContainer(parentInstance, child) {
