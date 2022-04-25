@@ -88,5 +88,5 @@ function create(styles) {
 }
 
 export default {
-  create: create,
+  create,
 };

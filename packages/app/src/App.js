@@ -6,6 +6,7 @@ import {
   Dimensions,
   StyleSheet,
   registerComponent,
+  Navigation,
 } from '../../react-ape/reactApeEntry';
 
 import Spinner from './Spinner';
@@ -15,6 +16,8 @@ import Clock from './Clock';
 import Slideshow from './Slideshow';
 
 const {width, height} = Dimensions.get('screen');
+
+const { withNavigation } = Navigation;
 
 // Register Custom Components
 const custom = {
@@ -56,6 +59,10 @@ class App extends Component {
 
   render() {
     const {hasError} = this.state;
+    const {currentFocusPath} = this.props;
+
+    console.log(currentFocusPath);
+
     if (hasError) {
       return null;
     }
@@ -71,4 +78,6 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('root'));
+const NavigableApp = withNavigation(App);
+
+render(<NavigableApp />, document.getElementById('root'));

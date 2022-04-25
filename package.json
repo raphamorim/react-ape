@@ -25,12 +25,12 @@
     "test:ci": "yarn flow && yarn prettier:stat && yarn jest:ci"
   },
   "devDependencies": {
-    "@babel/register": "7.17.7",
     "@babel/core": "7.17.8",
     "@babel/plugin-proposal-class-properties": "7.3.0",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-flow": "7.16.7",
     "@babel/preset-react": "7.16.7",
+    "@babel/register": "7.17.7",
     "babel-jest": "27.5.1",
     "babel-loader": "8.0.5",
     "babel-polyfill": "6.26.0",

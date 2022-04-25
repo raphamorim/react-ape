@@ -5,6 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   registerComponent,
+  Navigation,
 } from '../../react-ape/reactApeEntry';
 
 const {height} = Dimensions.get('screen');
@@ -24,6 +25,8 @@ const styles = StyleSheet.create({
     top: 100,
   },
 });
+
+console.log(Navigation)
 
 class Sidebar extends Component {
   constructor(props) {

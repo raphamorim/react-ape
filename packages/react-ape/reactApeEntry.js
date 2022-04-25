@@ -9,6 +9,7 @@
 import ReactApeRenderer from './renderer/reactApeRenderer';
 import StyleSheetModule from './modules/StyleSheet';
 import DimensionsModule from './modules/Dimensions';
+import NavigationModule from './modules/Navigation';
 
 import ListViewComponent from './renderer/components/ListView';
 export const ListView = ListViewComponent;
@@ -28,5 +29,6 @@ export const Tools = {
 
 export const StyleSheet = StyleSheetModule;
 export const Dimensions = DimensionsModule;
+export const Navigation = NavigationModule;
 
 export default ReactApeRenderer;

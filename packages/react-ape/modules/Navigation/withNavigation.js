@@ -1,3 +1,5 @@
-function withNavigation() {}
+function withNavigation(components) {
+	return components;
+}
 
 export default withNavigation;
