@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const banners = [
-  'banner/brave-fencer-musashi.png',
-  'banner/suikoden-2.jpg',
-  'banner/brave-fencer-musashi.png',
+const slides = [
+  'slides/brave-fencer-musashi.png',
+  'slides/suikoden-2.jpg',
+  'slides/brave-fencer-musashi.png',
 ];
 
 const delay = 2500;
@@ -45,7 +45,7 @@ function Slideshow() {
       timeoutRef.current = setTimeout(
         () =>
           setIndex(
-            prevIndex => (prevIndex === banners.length - 1 ? 0 : prevIndex + 1)
+            prevIndex => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1)
           ),
         delay
       );
@@ -59,13 +59,13 @@ function Slideshow() {
 
   return (
     <View style={{...styles.slideshow}}>
-      {banners.map((banner, index) => <Image src={banner} key={index} />)}
+      {slides.map((slide, index) => <Image src={slide} key={index} />)}
     </View>
   );
 }
 
 /*<View style={styles.slideshowDots}>
-        {banners.map((_, index) => (
+        {slides.map((_, index) => (
           <View 
             style={index === idx ? styles.slideshowDotActive : styles.slideshowDot }
           />

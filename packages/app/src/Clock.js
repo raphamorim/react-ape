@@ -39,9 +39,8 @@ class Clock extends React.Component {
       const time = new Date()
         .toTimeString()
         .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
-      this.setState({
-        time,
-      });
+
+      this.setState({time});
     }, 100);
   }
 

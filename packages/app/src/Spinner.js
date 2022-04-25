@@ -3,16 +3,16 @@ class Spinner {
     console.log(error, errorInfo);
   }
 
-  reset(prevProps, parentStyle, canvas) {
-    const {ctx} = canvas;
+  reset(prevProps, parentStyle, ape) {
+    const {ctx} = ape;
     // parentStyle.backgroundColor // white
     if (ctx) {
       ctx.clearRect(0, 0, 18, 18);
     }
   }
 
-  render(props, canvas) {
-    const {ctx} = canvas;
+  render(props, ape) {
+    const {ctx} = ape;
     const {style = {}, top, left, degrees} = props;
     const {color = 'black'} = style;
 

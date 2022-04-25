@@ -54,7 +54,7 @@ class Loader extends Component {
           degrees={degrees}
           style={{top: height / 4 + 8, left: width / 2 - 60, color: 'white'}}
         />
-        <Text style={{color: 'white'}}>Loading Store...</Text>
+        <Text style={{color: 'white'}}>Loading...</Text>
       </View>
     );
   }
