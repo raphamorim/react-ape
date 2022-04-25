@@ -25,8 +25,6 @@ function withNavigation(ReactApeComponent) {
 	function Navigate() {
 		const [currentFocusPath, setFocusPath] = useState(null);
 
-		// focusPath
-
 		return (
 			<ReactApeComponent 
 				setFocusPath={setFocusPath} 

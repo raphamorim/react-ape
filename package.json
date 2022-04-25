@@ -4,6 +4,9 @@
     "packages/*",
     "website"
   ],
+  "engines": {
+    "node": ">=16.13.1"
+  },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",
   "scripts": {
