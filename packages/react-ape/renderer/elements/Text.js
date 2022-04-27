@@ -40,32 +40,33 @@ function renderText(
   parentLayout: ParentLayout
 ) {
   const {ctx} = apeContext;
-  const {spatialGeometry = {x: 0, y: 0}} = parentLayout || {};
+
+  const {spatialGeometry, renderAcc, setRenderAcc} = parentLayout || {};
+  const parentStyle = parentLayout.style;
+
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
   const fontFamily = style.fontFamily || 'Helvetica';
   const previousStroke = ctx.strokeStyle;
 
-  const viewStyle = parentLayout.style;
-
-  let x = style.UNSAFE_x || spatialGeometry.x;
-  let y = style.UNSAFE_y || spatialGeometry.y + fontSize / 2 || fontSize;
+  let x = style.left || spatialGeometry.x;
+  let y = style.top || spatialGeometry.y + fontSize / 2 || fontSize;
 
   // If position is absolute should reset geometry
-  if (style.position === 'absolute') {
-    x = style.left || 0;
-    y = style.top || fontSize;
+  if (style.position !== 'absolute' || style.position === 'relative') {
+    y = y + renderAcc.textLinePos;
+
+    console.log(content, parentStyle, renderAcc.textLinePos)
+    setRenderAcc({ 
+      renderAcc, 
+      textLinePos: parentStyle.lineHeight + renderAcc.textLinePos
+    });
   }
 
   // If is relative and x and y haven't be processed, don't render
   if (!spatialGeometry) {
     return null;
   }
-
-  console.log(viewStyle);
-  // if (!style.position ) {
-
-  // }
 
   const item = content || children;
 

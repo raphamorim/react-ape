@@ -41,7 +41,7 @@ class Clock extends React.Component {
         .replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
 
       this.setState({time});
-    }, 100);
+    }, 300);
   }
 
   render() {

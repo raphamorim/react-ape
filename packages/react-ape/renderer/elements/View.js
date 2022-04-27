@@ -6,13 +6,18 @@
  *
  */
 
-import {defaultViewSize} from '../constants';
+import { ViewDefaults } from '../constants';
 
 class View {
   constructor(props) {
     this.props = props;
     this.type = 'View';
+    // {x,y}
     this.spatialGeometry = {};
+    // Render Accumulator to help different layout config, should be reset on clear
+    this.renderAcc = {
+      textLinePos: 0,
+    };
     this.renderQueue = [];
     this.previousRect = null;
   }
@@ -21,15 +26,23 @@ class View {
     this.renderQueue.push(fn);
   }
 
+  setRenderAcc = (newRenderAcc) => {
+    this.renderAcc = newRenderAcc;
+  }
+
   getLayoutDefinitions = () => {
+    const setRenderAcc = this.setRenderAcc;
+    const getRenderAcc = this.getRenderAcc;
     return {
       style: {
         backgroundColor: 'white',
         borderColor: 'white',
-        lineHeight: '22px',
+        lineHeight: ViewDefaults.lineHeight,
         ...(this.props.style || {}),
       },
       spatialGeometry: this.spatialGeometry,
+      renderAcc: this.renderAcc,
+      setRenderAcc,
     };
   };
 
@@ -40,13 +53,13 @@ class View {
   clear() {
     const {ctx} = apeContext;
     const {style} = parentLayout;
+
     // Draw entire View using parent style (without children)
     if (this.previousRect) {
       const previousStroke = ctx.strokeStyle;
       ctx.beginPath();
       const {x, y, width, height} = this.previousRect;
       ctx.rect(x, y, width, height);
-      console.log(style.backgroundColor);
       ctx.strokeStyle = style.backgroundColor || 'transparent';
       ctx.fillStyle = style.backgroundColor || 'transparent';
       ctx.fill();
@@ -62,8 +75,8 @@ class View {
     const previousStroke = ctx.strokeStyle;
     let x = style.x || style.left || 0;
     let y = style.y || style.top || 0;
-    const width = style.width || defaultViewSize;
-    const height = style.height || defaultViewSize;
+    const width = style.width || ViewDefaults.size;
+    const height = style.height || ViewDefaults.size;
 
     if (!style.position || style.position === 'relative') {
       const surfaceHeight = getSurfaceHeight();
@@ -98,6 +111,10 @@ class View {
     };
 
     this.renderQueue.forEach(callRenderFunctions);
+
+    this.setRenderAcc({
+      textLinePos: 0
+    });
   }
 }
 

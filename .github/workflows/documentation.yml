@@ -39,5 +39,5 @@ jobs:
         run: yarn install
 
       - name: Build and publish docs
-        run: yarn doc-build and yarn doc-publish
+        run: yarn docs-build and yarn docs-publish
 

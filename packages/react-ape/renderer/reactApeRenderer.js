@@ -55,11 +55,12 @@ const ReactApeFiber = reconciler({
           surfaceHeight = height;
         },
         ctx: rootContainerInstanceContext,
-        clear: function clear() {
-          const width = rootContainerInstance.width;
-          const height = rootContainerInstance.height;
-          this.ctx.clearRect(0, 0, width, height);
-        },
+        // EXPERIMENTAL:
+        // clear: function clear() {
+        //   const width = rootContainerInstance.width;
+        //   const height = rootContainerInstance.height;
+        //   this.ctx.clearRect(0, 0, width, height);
+        // },
         renderQueue: [],
       };
     }

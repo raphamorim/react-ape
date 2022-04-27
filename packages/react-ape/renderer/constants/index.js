@@ -8,7 +8,10 @@
  */
 
 // Defaults for Render
-export const defaultViewSize: number = 200; // 200x200
+export const ViewDefaults = {
+  size: 200, // 200x200
+  lineHeight: 24,
+};
 
 // ReactApe Internal Constants
 export const _SectionBlockSize: number = 80; // 80x80
