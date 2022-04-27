@@ -26,6 +26,7 @@ class View {
       style: {
         backgroundColor: 'white',
         borderColor: 'white',
+        lineHeight: '22px',
         ...(this.props.style || {}),
       },
       spatialGeometry: this.spatialGeometry,

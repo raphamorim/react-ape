@@ -46,6 +46,8 @@ function renderText(
   const fontFamily = style.fontFamily || 'Helvetica';
   const previousStroke = ctx.strokeStyle;
 
+  const viewStyle = parentLayout.style;
+
   let x = style.UNSAFE_x || spatialGeometry.x;
   let y = style.UNSAFE_y || spatialGeometry.y + fontSize / 2 || fontSize;
 
@@ -53,11 +55,17 @@ function renderText(
   if (style.position === 'absolute') {
     x = style.left || 0;
     y = style.top || fontSize;
+  }
 
-    // If is relative and x and y haven't be processed, don't render
-  } else if (!spatialGeometry) {
+  // If is relative and x and y haven't be processed, don't render
+  if (!spatialGeometry) {
     return null;
   }
+
+  console.log(viewStyle);
+  // if (!style.position ) {
+
+  // }
 
   const item = content || children;
 

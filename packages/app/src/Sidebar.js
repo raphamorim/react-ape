@@ -37,8 +37,9 @@ class Sidebar extends Component {
     return (
       <View style={styles.sidebar}>
         <View style={styles.container}>
-          <Text>Sidebar</Text>
-          <Text>To fix relative positioning</Text>
+          <Text>GameBoy</Text>
+          <Text>GameBoy Advance</Text>
+          <Text>PS One</Text>
         </View>
       </View>
     );
