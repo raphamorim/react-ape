@@ -28,7 +28,14 @@ let surfaceHeight = 0;
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
     if (parentInstance.appendChild && child.type !== 'View') {
-      parentInstance.appendChild(child);
+      let layout = {};
+      if (child.instructions && child.instructions.relative) {
+        layout = {
+          ...layout,
+          ...parentInstance.getAndUpdateCurrentLayout(),
+        };
+      }
+      parentInstance.appendChild({...child, layout});
 
       // TODO: Change it later
       child.getParentLayout = parentInstance.getLayoutDefinitions;
@@ -109,6 +116,10 @@ const ReactApeFiber = reconciler({
 
       if (diff) {
         const parentLayout = element.parentLayout || element.getParentLayout();
+        if (type === 'Text') {
+          parentLayout.resetLayout(); // View needs to be reset on text updates
+        }
+
         element.clear(oldProps, parentLayout, apeContextGlobal);
 
         const apeElement = reactApeComponent.createElement(

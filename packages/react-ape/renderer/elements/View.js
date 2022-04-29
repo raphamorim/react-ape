@@ -6,7 +6,7 @@
  *
  */
 
-import { ViewDefaults } from '../constants';
+import {ViewDefaults} from '../constants';
 
 class View {
   constructor(props) {
@@ -15,8 +15,8 @@ class View {
     // {x,y}
     this.spatialGeometry = {};
     // Render Accumulator to help different layout config, should be reset on clear
-    this.renderAcc = {
-      textLinePos: 0,
+    this.layout = {
+      relativeIndex: 1,
     };
     this.renderQueue = [];
     this.previousRect = null;
@@ -26,18 +26,25 @@ class View {
     this.renderQueue.push(fn);
   }
 
-  setRenderAcc = (newRenderAcc) => {
-    console.log('setRenderAcc', this.renderAcc, newRenderAcc);
-    this.renderAcc = newRenderAcc;
-  }
+  getAndUpdateCurrentLayout = () => {
+    const {style} = this.getLayoutDefinitions();
+    const currentRelativeIndex = this.layout.relativeIndex;
+    this.layout = {
+      relativeIndex: this.layout.relativeIndex + 1,
+    };
+    return {
+      relativeIndex: currentRelativeIndex,
+    };
+  };
 
-  getRenderAcc = () => {
-    return this.renderAcc;
-  }
+  resetLayout = () => {
+    this.layout = {
+      relativeIndex: 0,
+    };
+  };
 
   getLayoutDefinitions = () => {
-    const setRenderAcc = this.setRenderAcc;
-    const getRenderAcc = this.getRenderAcc;
+    const resetLayout = this.resetLayout;
     return {
       style: {
         backgroundColor: 'white',
@@ -46,8 +53,7 @@ class View {
         ...(this.props.style || {}),
       },
       spatialGeometry: this.spatialGeometry,
-      getRenderAcc,
-      setRenderAcc,
+      resetLayout,
     };
   };
 
@@ -107,20 +113,14 @@ class View {
 
     const callRenderFunctions = renderFunction => {
       renderFunction.render
-        ? renderFunction.render(
-            apeContext,
-            // spatialGeometry: specific data for elements rendered inside the View
-            this.getLayoutDefinitions()
-          )
+        ? renderFunction.render(apeContext, {
+            ...this.getLayoutDefinitions(),
+            ...renderFunction.layout,
+          })
         : null;
     };
 
     this.renderQueue.forEach(callRenderFunctions);
-
-    // Reset acc after render
-    this.setRenderAcc({
-      textLinePos: 0
-    });
   }
 }
 
