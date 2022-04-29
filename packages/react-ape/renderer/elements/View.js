@@ -6,7 +6,7 @@
  *
  */
 
-import { ViewDefaults } from '../constants';
+import {ViewDefaults} from '../constants';
 
 class View {
   constructor(props) {
@@ -26,9 +26,9 @@ class View {
     this.renderQueue.push(fn);
   }
 
-  setRenderAcc = (newRenderAcc) => {
+  setRenderAcc = newRenderAcc => {
     this.renderAcc = newRenderAcc;
-  }
+  };
 
   getLayoutDefinitions = () => {
     const setRenderAcc = this.setRenderAcc;
@@ -113,7 +113,7 @@ class View {
     this.renderQueue.forEach(callRenderFunctions);
 
     this.setRenderAcc({
-      textLinePos: 0
+      textLinePos: 0,
     });
   }
 }

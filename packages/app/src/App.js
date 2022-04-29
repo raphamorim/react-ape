@@ -17,7 +17,7 @@ import Slideshow from './Slideshow';
 
 const {width, height} = Dimensions.get('screen');
 
-const { withNavigation } = Navigation;
+const {withNavigation} = Navigation;
 
 // Register Custom Components
 const custom = {

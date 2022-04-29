@@ -25,13 +25,20 @@ type Style = {|
   fontFamily?: string,
   color?: string,
   align: string,
+  lineHeight?: number,
   x: number,
   y: number,
+|};
+
+type RenderAcc = {|
+  textLinePos: number,
 |};
 
 type ParentLayout = {|
   style: Style,
   spatialGeometry: SpatialGeometry,
+  renderAcc: RenderAcc,
+  setRenderAcc: (RenderAcc | void) => void,
 |};
 
 function renderText(
@@ -56,10 +63,10 @@ function renderText(
   if (style.position !== 'absolute' || style.position === 'relative') {
     y = y + renderAcc.textLinePos;
 
-    console.log(content, parentStyle, renderAcc.textLinePos)
-    setRenderAcc({ 
-      renderAcc, 
-      textLinePos: parentStyle.lineHeight + renderAcc.textLinePos
+    console.log(content, parentStyle, renderAcc.textLinePos);
+    setRenderAcc({
+      ...renderAcc,
+      textLinePos: Number(parentStyle.lineHeight) + renderAcc.textLinePos,
     });
   }
 

@@ -23,10 +23,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 40,
     top: 100,
+    lineHeight: 40,
   },
 });
 
-console.log(Navigation)
+console.log(Navigation);
 
 class Sidebar extends Component {
   constructor(props) {

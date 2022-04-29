@@ -1,7 +1,7 @@
 // import withFocusable from './withFocusable';
 // import withNavigation from './withNavigation';
 
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
 /*
 	USAGE:
@@ -20,23 +20,22 @@ import React, { useState, useEffect } from 'react';
 			return <FocusableItem focusPath='item-1'/>
 */
 
-
 function withNavigation(ReactApeComponent) {
-	function Navigate() {
-		const [currentFocusPath, setFocusPath] = useState(null);
+  function Navigate() {
+    const [currentFocusPath, setFocusPath] = useState(null);
 
-		return (
-			<ReactApeComponent 
-				setFocusPath={setFocusPath} 
-				currentFocusPath={currentFocusPath} 
-			/>
-		);
-	}
+    return (
+      <ReactApeComponent
+        setFocusPath={setFocusPath}
+        currentFocusPath={currentFocusPath}
+      />
+    );
+  }
 
-	return Navigate;
+  return Navigate;
 }
 
 export default {
-	// withFocusable,
-	withNavigation
-}
+  // withFocusable,
+  withNavigation,
+};
