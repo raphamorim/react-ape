@@ -48,8 +48,10 @@ function renderText(
 ) {
   const {ctx} = apeContext;
 
-  const {spatialGeometry, renderAcc, setRenderAcc} = parentLayout || {};
+  const {spatialGeometry, getRenderAcc, setRenderAcc} = parentLayout || {};
   const parentStyle = parentLayout.style;
+
+  const renderAcc = getRenderAcc();
 
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
@@ -61,13 +63,12 @@ function renderText(
 
   // If position is absolute should reset geometry
   if (style.position !== 'absolute' || style.position === 'relative') {
-    y = y + renderAcc.textLinePos;
-
     console.log(content, parentStyle, renderAcc.textLinePos);
     setRenderAcc({
-      ...renderAcc,
       textLinePos: Number(parentStyle.lineHeight) + renderAcc.textLinePos,
     });
+
+    y = y + renderAcc.textLinePos;
   }
 
   // If is relative and x and y haven't be processed, don't render
@@ -101,15 +102,21 @@ function clearText(
   apeContext: CanvasComponentContext
 ) {
   const {color, borderColor} = (prevProps && prevProps.style) || {};
+  const {setRenderAcc} = parentLayout || {};
+  const parentStyle = parentLayout.style;
   const clearProps = {
     ...prevProps,
     style: {
       ...prevProps.style,
       color: parentLayout.style.backgroundColor,
       borderColor: parentLayout.style.backgroundColor,
-      borderSize: 2,
+      borderSize: 2
     },
   };
+
+  setRenderAcc({
+    textLinePos: 0,
+  });
 
   renderText(clearProps, apeContext, parentLayout);
 }

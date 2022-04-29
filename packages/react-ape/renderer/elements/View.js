@@ -6,7 +6,7 @@
  *
  */
 
-import {ViewDefaults} from '../constants';
+import { ViewDefaults } from '../constants';
 
 class View {
   constructor(props) {
@@ -26,9 +26,14 @@ class View {
     this.renderQueue.push(fn);
   }
 
-  setRenderAcc = newRenderAcc => {
+  setRenderAcc = (newRenderAcc) => {
+    console.log('setRenderAcc', this.renderAcc, newRenderAcc);
     this.renderAcc = newRenderAcc;
-  };
+  }
+
+  getRenderAcc = () => {
+    return this.renderAcc;
+  }
 
   getLayoutDefinitions = () => {
     const setRenderAcc = this.setRenderAcc;
@@ -41,7 +46,7 @@ class View {
         ...(this.props.style || {}),
       },
       spatialGeometry: this.spatialGeometry,
-      renderAcc: this.renderAcc,
+      getRenderAcc,
       setRenderAcc,
     };
   };
@@ -112,8 +117,9 @@ class View {
 
     this.renderQueue.forEach(callRenderFunctions);
 
+    // Reset acc after render
     this.setRenderAcc({
-      textLinePos: 0,
+      textLinePos: 0
     });
   }
 }
