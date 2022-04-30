@@ -44,24 +44,26 @@ type ParentLayout = {|
 function renderText(
   props: Props,
   apeContext: CanvasComponentContext,
-  parentLayout: ParentLayout
+  parentLayout: ParentLayout = {}
 ) {
   const {ctx} = apeContext;
 
-  const {spatialGeometry, relativeIndex} = parentLayout || {};
-  const parentStyle = parentLayout.style;
+  const {spatialGeometry = {}, relativeIndex} = parentLayout;
+  const parentStyle = parentLayout.style || {};
 
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
   const fontFamily = style.fontFamily || 'Helvetica';
   const previousStroke = ctx.strokeStyle;
 
-  let x = style.left || spatialGeometry.x;
+  let x = style.left || spatialGeometry.x || 0;
   let y = style.top || spatialGeometry.y + fontSize / 2 || fontSize;
 
   // If position is absolute should reset geometry
   if (style.position !== 'absolute' || style.position === 'relative') {
-    y = y + Number(parentStyle.lineHeight) * (relativeIndex || 1);
+    if (parentStyle.lineHeight) {
+      y = y + Number(parentStyle.lineHeight) * (relativeIndex || 1);
+    }
   }
 
   // If is relative and x and y haven't be processed, don't render

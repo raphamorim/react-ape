@@ -58,11 +58,13 @@ describe('View', () => {
     expect(fillStyle).toEqual('green');
 
     const parentLayout = {
+      resetLayout: expect.any(Function),
       spatialGeometry: {x: 100, y: 10},
       style: {
         backgroundColor: 'green',
         borderColor: 'white',
         left: 100,
+        lineHeight: 24,
         position: 'absolute',
         top: 10,
       },
@@ -122,7 +124,8 @@ describe('View', () => {
 
     const parentLayout = {
       spatialGeometry: {x: 0, y: 0},
-      style: {backgroundColor: 'blue', borderColor: 'white'},
+      resetLayout: expect.any(Function),
+      style: {backgroundColor: 'blue', borderColor: 'white', lineHeight: 24},
     };
 
     expect(child.render.mock.calls.length).toBe(1);

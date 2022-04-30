@@ -7,8 +7,8 @@ describe('Text', () => {
   describe('with text as children', () => {
     it('should call properly', () => {
       const style = {
-        UNSAFE_x: 40,
-        UNSAFE_y: 10,
+        left: 40,
+        top: 10,
         color: '#333333',
         fontFamily: 'Helvetica Neue',
       };
