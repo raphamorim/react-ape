@@ -44,12 +44,12 @@ type ParentLayout = {|
 function renderText(
   props: Props,
   apeContext: CanvasComponentContext,
-  parentLayout: ParentLayout = {}
+  parentLayout: ParentLayout
 ) {
   const {ctx} = apeContext;
 
-  const {spatialGeometry = {}, relativeIndex} = parentLayout;
-  const parentStyle = parentLayout.style || {};
+  const {spatialGeometry = {}, relativeIndex} = parentLayout || {};
+  const parentStyle = (parentLayout && parentLayout.style) || {};
 
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
