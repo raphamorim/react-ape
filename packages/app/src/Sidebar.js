@@ -27,8 +27,6 @@ const styles = StyleSheet.create({
   },
 });
 
-console.log(Navigation);
-
 class Sidebar extends Component {
   constructor(props) {
     super(props);

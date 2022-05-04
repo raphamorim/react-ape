@@ -27,16 +27,21 @@ const styles = StyleSheet.create({
     top: 400,
   },
   image: {
-    height: 100,
-    width: 100,
+    height: 340,
+    width: 340,
   },
 });
 
 const gameList = [
   {
+    title: 'Harvest Moon GBC 2',
+    imageSrc: 'harvest-moon-2.jpg',
+  },
+  {
     title: 'Pokemon Red',
     imageSrc: 'pokemon-red.jpg',
   },
+  
   {
     title: 'Pokemon Blue',
     imageSrc: 'pokemon-blue.jpg',
@@ -53,11 +58,22 @@ class Grid extends Component {
       <View style={styles.grid}>
         <Text style={styles.title}>GameBoy</Text>
         <View style={styles.gameList}>
-          {/* TODO: Replace for a LISTVIEW */}
-          {gameList.map(game => {
+          {/* TODO: Develop relative render for Image */}
+          {gameList.map((game, idx) => {
             const {title, imageSrc} = game;
+            let left = 0; 
+            if (idx > 0) {
+              left = (styles.image.width * 2.3) * idx;
+            }
+            const style = {...styles.image, left };
+            console.log(style)
+
             return (
-              <Image key={title} src={imageSrc} height={340} width={340} />
+              <Image 
+                key={title} 
+                src={imageSrc} 
+                style={style} 
+              />
             );
           })}
         </View>

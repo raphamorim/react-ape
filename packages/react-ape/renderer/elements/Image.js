@@ -70,8 +70,8 @@ function renderImage(
     return null;
   }
 
-  let x = style.UNSAFE_x || spatialGeometry.x;
-  let y = style.UNSAFE_y || spatialGeometry.y;
+  let x = style.left || spatialGeometry.x;
+  let y = style.top || spatialGeometry.y;
 
   // If position is absolute should reset geometry
   if (style.position === 'absolute') {
@@ -82,6 +82,8 @@ function renderImage(
   } else if (!spatialGeometry) {
     return null;
   }
+
+  console.log('á', style.left, x);
 
   const cachedImage = cacheImageControl[src];
 
