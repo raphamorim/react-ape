@@ -83,8 +83,6 @@ function renderImage(
     return null;
   }
 
-  console.log('á', style.left, x);
-
   const cachedImage = cacheImageControl[src];
 
   let w = width || style.width;
