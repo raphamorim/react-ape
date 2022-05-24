@@ -51,19 +51,15 @@ class Grid extends Component {
         <View style={styles.gameList}>
           {/* TODO: Develop relative render for Image */}
           {gameList.map((imageSrc, idx) => {
-            let left = 0; 
+            let left = 0;
             if (idx > 0) {
-              left = (styles.image.width * 2.3) * idx;
+              left = styles.image.width * 2.3 * idx;
             }
-            const style = {...styles.image, left };
-            console.log(style)
+            const style = {...styles.image, left};
+            console.log(style);
 
             return (
-              <Image 
-                key={`grid-image-${idx}`} 
-                src={imageSrc} 
-                style={style} 
-              />
+              <Image key={`grid-image-${idx}`} src={imageSrc} style={style} />
             );
           })}
         </View>
