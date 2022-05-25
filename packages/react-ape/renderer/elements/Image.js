@@ -131,7 +131,7 @@ function renderImage(
     }
     const imageWidth = Number(w || newImageElement.naturalWidth);
     const imageHeight = Number(h || newImageElement.naturalHeight);
-    ctx.drawImage(newImageElement, x, y, imageWidth, imageHeight);
+    drawImage(ctx, newImageElement, x, y, imageWidth, imageHeight);
     saveOnCache(src, newImageElement, imageWidth, imageHeight);
   }
 

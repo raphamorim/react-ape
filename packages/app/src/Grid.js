@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   grid: {
     position: 'absolute',
     left: 400,
-    top: 300,
+    top: 440,
     width: 280,
     height: height,
   },
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   gameList: {
     position: 'absolute',
     left: 400,
-    top: 400,
+    top: 550,
   },
   image: {
     height: 340,
@@ -51,12 +51,9 @@ class Grid extends Component {
         <View style={styles.gameList}>
           {/* TODO: Develop relative render for Image */}
           {gameList.map((imageSrc, idx) => {
-            let left = 0;
-            if (idx > 0) {
-              left = styles.image.width * 2.3 * idx;
-            }
+            const left = (styles.image.width * idx) + 380;
+
             const style = {...styles.image, left};
-            console.log(style);
 
             return (
               <Image key={`grid-image-${idx}`} src={imageSrc} style={style} />

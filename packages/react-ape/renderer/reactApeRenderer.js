@@ -129,13 +129,14 @@ const ReactApeFiber = reconciler({
           apeContextGlobal
         );
 
+        apeElement.parentLayout = parentLayout;
+
         // If isn't a children update, should render with new props
         if (diff.length && diff.indexOf('children') === -1) {
           renderElement(apeContextGlobal, apeElement, parentLayout);
           return null;
         }
 
-        apeElement.parentLayout = parentLayout;
         // EXPERIMENTAL: apeContextGlobal.clear();
         apeContextGlobal.renderQueue.push(apeElement);
         return null;

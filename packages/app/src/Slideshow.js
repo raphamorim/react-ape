@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     top: 0,
     backgroundColor: '#080808',
     width: width,
-    height: 250,
+    height: 420,
     overflow: 'hidden',
   },
 });
@@ -30,7 +30,7 @@ const slides = [
 const delay = 2500;
 
 function Slideshow() {
-  const [index, setIndex] = React.useState(0);
+  const [currentSlide, setCurrentSlide] = React.useState(0);
   const timeoutRef = React.useRef(null);
 
   function resetTimeout() {
@@ -44,8 +44,8 @@ function Slideshow() {
       resetTimeout();
       timeoutRef.current = setTimeout(
         () =>
-          setIndex(
-            prevIndex => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1)
+          setCurrentSlide(
+            prev => (prev === slides.length - 1 ? 0 : prev + 1)
           ),
         delay
       );
@@ -54,22 +54,26 @@ function Slideshow() {
         resetTimeout();
       };
     },
-    [index]
+    [currentSlide]
   );
 
   return (
     <View style={{...styles.slideshow}}>
-      {slides.map((slide, index) => <Image src={slide} key={index} />)}
+      <Image 
+        src={slides[currentSlide]}
+      />
     </View>
   );
 }
 
-/*<View style={styles.slideshowDots}>
-        {slides.map((_, index) => (
-          <View 
-            style={index === idx ? styles.slideshowDotActive : styles.slideshowDot }
-          />
-        ))}
-      </View>*/
+/*
+  <View style={styles.slideshowDots}>
+    {slides.map((_, index) => (
+      <View 
+        style={index === idx ? styles.slideshowDotActive : styles.slideshowDot }
+      />
+    ))}
+  </View>
+*/
 
 export default Slideshow;
