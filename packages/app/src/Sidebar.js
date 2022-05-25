@@ -36,9 +36,9 @@ class Sidebar extends Component {
     return (
       <View style={styles.sidebar}>
         <View style={styles.container}>
-          <Text>GameBoy</Text>
-          <Text>GameBoy Advance</Text>
-          <Text>PS One</Text>
+          <Text>Rio de Janeiro</Text>
+          <Text>Kyoto</Text>
+          <Text>Stockholm</Text>
         </View>
       </View>
     );

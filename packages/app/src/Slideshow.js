@@ -21,10 +21,11 @@ const styles = StyleSheet.create({
   },
 });
 
+// These images are under creative commons CC0
 const slides = [
-  'slides/brave-fencer-musashi.png',
-  'slides/suikoden-2.jpg',
-  'slides/brave-fencer-musashi.png',
+  'slides/pexels-snapwire-730896.jpg',
+  'slides/pexels-aleksandar-pasaric-2339009.jpg',
+  'slides/pexels-max-avans-5072402.jpg'
 ];
 
 const delay = 2500;

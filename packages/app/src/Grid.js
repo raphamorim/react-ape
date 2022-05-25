@@ -19,24 +19,24 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 60,
+    fontSize: 30,
   },
-  gameList: {
+  list: {
     position: 'absolute',
     left: 400,
-    top: 550,
+    top: 520,
   },
   image: {
-    height: 340,
-    width: 340,
+    height: 328,
+    width: 248,
   },
 });
 
-const gameList = [
-  'harvest-moon-2.jpg',
-  'pokemon-red.jpg',
-  'metal-gear-solid.png',
-  'pokemon-blue.jpg',
+// These images are under creative commons CC0
+const list = [
+  'pexels-michelle-guimarães-3648269.jpg',
+  'pexels-raphael-amaral-2869354.jpg',
+  'pexels-karyme-frança-1458036.jpg'
 ];
 
 class Grid extends Component {
@@ -47,11 +47,11 @@ class Grid extends Component {
   render() {
     return (
       <View style={styles.grid}>
-        <Text style={styles.title}>GameBoy</Text>
-        <View style={styles.gameList}>
+        <Text style={styles.title}>Rio de Janeiro</Text>
+        <View style={styles.list}>
           {/* TODO: Develop relative render for Image */}
-          {gameList.map((imageSrc, idx) => {
-            const left = styles.image.width * idx + 380;
+          {list.map((imageSrc, idx) => {
+            const left = styles.image.width * idx + 400;
 
             const style = {...styles.image, left};
 
