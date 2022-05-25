@@ -51,7 +51,7 @@ class Grid extends Component {
         <View style={styles.gameList}>
           {/* TODO: Develop relative render for Image */}
           {gameList.map((imageSrc, idx) => {
-            const left = (styles.image.width * idx) + 380;
+            const left = styles.image.width * idx + 380;
 
             const style = {...styles.image, left};
 

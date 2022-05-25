@@ -44,9 +44,7 @@ function Slideshow() {
       resetTimeout();
       timeoutRef.current = setTimeout(
         () =>
-          setCurrentSlide(
-            prev => (prev === slides.length - 1 ? 0 : prev + 1)
-          ),
+          setCurrentSlide(prev => (prev === slides.length - 1 ? 0 : prev + 1)),
         delay
       );
 
@@ -59,9 +57,7 @@ function Slideshow() {
 
   return (
     <View style={{...styles.slideshow}}>
-      <Image 
-        src={slides[currentSlide]}
-      />
+      <Image src={slides[currentSlide]} />
     </View>
   );
 }
