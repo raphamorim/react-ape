@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 const slides = [
   'slides/pexels-snapwire-730896.jpg',
   'slides/pexels-aleksandar-pasaric-2339009.jpg',
-  'slides/pexels-max-avans-5072402.jpg'
+  'slides/pexels-max-avans-5072402.jpg',
 ];
 
 const delay = 2500;

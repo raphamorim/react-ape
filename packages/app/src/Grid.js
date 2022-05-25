@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 const list = [
   'pexels-michelle-guimarães-3648269.jpg',
   'pexels-raphael-amaral-2869354.jpg',
-  'pexels-karyme-frança-1458036.jpg'
+  'pexels-karyme-frança-1458036.jpg',
 ];
 
 class Grid extends Component {
