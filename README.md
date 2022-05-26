@@ -2,7 +2,7 @@
 
 > React Renderer to build UI interfaces using Canvas/WebGL 
 
-![React-Ape Logo](assets/logo.png)
+<img src="assets/logo.png" width="220" />
 
 ## [Check the Docs (raphamorim.io/react-ape)](https://raphamorim.io/react-ape)
 
