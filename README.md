@@ -24,6 +24,13 @@ Crafting a high-performance TV user interface based on DOM is a real challenge, 
 
 These restrictions make super responsive 60fps experiences especially tricky. The strategy is step in the renderer based on a hardware-accelerated canvas.
 
+## Examples
+
+| App Name  | Github | App URL |
+| ------------- | ------------- | ------------- |
+| Photo Gallery | [raphamorim/react-ape-photo-gallery](github.com/raphamorim/react-ape-photo-gallery) | [Check it out](https://raphamorim.io/react-ape-photo-gallery/)  |
+| [Add yours here](https://github.com/raphamorim/react-ape/edit/main/README.md)  | ---------  | --------- |
+
 ## API Usage
 
 ```jsx
