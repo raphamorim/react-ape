@@ -29,6 +29,7 @@ These restrictions make super responsive 60fps experiences especially tricky. Th
 | App Name  | Github | App URL |
 | ------------- | ------------- | ------------- |
 | Photo Gallery | [raphamorim/react-ape-photo-gallery](https://github.com/raphamorim/react-ape-photo-gallery) | [Check it out](https://raphamorim.io/react-ape-photo-gallery/)  |
+| Movie List | [raphamorim/react-ape-movie-list-demo](https://github.com/raphamorim/react-ape-movie-list-demo) | [Check it out](https://raphamorim.io/react-ape-movie-list-demo/)  |
 | [Add yours here](https://github.com/raphamorim/react-ape/edit/main/README.md)  | ---------  | --------- |
 
 ## API Usage
