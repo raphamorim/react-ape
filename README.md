@@ -44,6 +44,8 @@ npm install react-ape
 yarn add react-ape
 ```
 
+#### React Ape's API usage example
+
 ```jsx
 import React, { Component } from 'react';
 import { Text, View } from 'react-ape';
