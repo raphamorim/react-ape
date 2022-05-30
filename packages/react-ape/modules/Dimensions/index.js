@@ -45,14 +45,14 @@ function get(property) {
 }
 
 function dimensionsListener(handler) {
-  return (target) => {
-    const dimensionsValue = { 
-      window: get('window'), 
-      screen: get('screen') 
+  return target => {
+    const dimensionsValue = {
+      window: get('window'),
+      screen: get('screen'),
     };
 
     handler(dimensionsValue, target);
-  }
+  };
 }
 
 const Dimensions = {
@@ -68,7 +68,7 @@ const Dimensions = {
       // TODO: should work for consoles and TV
       window.removeEventListener('resize', dimensionsListener(listener), false);
     }
-  }
+  },
 };
 
 export default Dimensions;

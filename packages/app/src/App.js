@@ -48,7 +48,7 @@ class App extends Component {
 
     Dimensions.addEventListener((dimensionsValue, target) => {
       console.log(dimensionsValue, target);
-    })
+    });
   }
 
   static getDerivedStateFromError(error) {
