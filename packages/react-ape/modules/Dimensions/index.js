@@ -26,24 +26,49 @@ function getHeight() {
   }
 }
 
+function get(property) {
+  if (property === 'window') {
+    return {
+      width: getWidth(),
+      height: getHeight(),
+    };
+  }
+
+  if (property === 'screen') {
+    return {
+      width: window ? window.screen.width : 0,
+      height: window ? window.screen.height : 0,
+    };
+  }
+
+  return null;
+}
+
+function dimensionsListener(handler) {
+  return (target) => {
+    const dimensionsValue = { 
+      window: get('window'), 
+      screen: get('screen') 
+    };
+
+    handler(dimensionsValue, target);
+  }
+}
+
 const Dimensions = {
-  get: function(property) {
-    if (property === 'window') {
-      return {
-        width: getWidth(),
-        height: getHeight(),
-      };
+  get,
+  addEventListener: function addEventListener(listener) {
+    if (window) {
+      // TODO: should work for consoles and TV
+      window.addEventListener('resize', dimensionsListener(listener), false);
     }
-
-    if (property === 'screen') {
-      return {
-        width: window ? window.screen.width : 0,
-        height: window ? window.screen.height : 0,
-      };
-    }
-
-    return null;
   },
+  removeEventListener: function addEventListener(listener) {
+    if (window) {
+      // TODO: should work for consoles and TV
+      window.removeEventListener('resize', dimensionsListener(listener), false);
+    }
+  }
 };
 
 export default Dimensions;

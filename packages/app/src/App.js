@@ -15,7 +15,7 @@ import Grid from './Grid';
 import Clock from './Clock';
 import Slideshow from './Slideshow';
 
-const {width, height} = Dimensions.get('screen');
+const {width, height} = Dimensions.get('window');
 
 const {withNavigation} = Navigation;
 
@@ -45,6 +45,10 @@ class App extends Component {
     this.state = {
       hasError: false,
     };
+
+    Dimensions.addEventListener((dimensionsValue, target) => {
+      console.log(dimensionsValue, target);
+    })
   }
 
   static getDerivedStateFromError(error) {
