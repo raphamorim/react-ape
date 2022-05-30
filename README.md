@@ -34,6 +34,16 @@ These restrictions make super responsive 60fps experiences especially tricky. Th
 
 ## API Usage
 
+#### Install it using [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+
+```bash
+# NPM
+npm install react-ape
+
+# Yarn
+yarn add react-ape
+```
+
 ```jsx
 import React, { Component } from 'react';
 import { Text, View } from 'react-ape';
