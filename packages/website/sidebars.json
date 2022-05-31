@@ -17,7 +17,8 @@
       "components-image",
       "components-text",
       "components-view",
-      "components-sectionlist"
+      "components-sectionlist",
+      "components-listview"
     ],
     "APIs": [
       "apis-dimensions",
