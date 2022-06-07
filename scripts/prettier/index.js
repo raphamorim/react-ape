@@ -29,7 +29,8 @@ const config = {
     ignore: [
       '**/node_modules/**',
       '**/dist/**',
-      'bundle.js',
+      '**/website/**',
+      '**/bundle.js',
       'packages/playground/bundle.js',
       '**/flow-typed/**',
     ],
