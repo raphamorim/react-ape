@@ -9,7 +9,6 @@
 import Image from './elements/Image';
 import Text from './elements/Text';
 import View from './elements/View';
-import CanvasGrid from './elements/CanvasGrid';
 import {CustomComponents} from '../modules/Register';
 
 const CHILDREN = 'children';
@@ -36,7 +35,6 @@ const ReactApeComponent = {
       ...customDict,
       Image: Image(props),
       Text: Text(props),
-      CanvasGrid: CanvasGrid(props),
       View: new View(props),
     };
 
