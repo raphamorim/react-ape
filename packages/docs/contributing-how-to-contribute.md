@@ -19,7 +19,7 @@ Aiming at a healthy community and with an active voice of all its members, it wi
 
 ## Adding new features
 
-Please check the [Roadmap](https://github.com/raphamorim/react-ape#roadmap), in any trouble please use Issue on github projects to start a new discursion. 
+Please check the [Roadmap](https://github.com/users/raphamorim/projects/1), in any trouble please use Issue on github projects to start a new discursion.
  
 ## Development Process
  
