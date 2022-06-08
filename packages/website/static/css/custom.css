@@ -60,6 +60,10 @@
   border: 3px solid #333;
 }
 
+.paddingTopMax {
+  padding-top: 100px;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
   .inner .tagline {
     font-size: 33px;

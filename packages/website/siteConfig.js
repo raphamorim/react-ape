@@ -4,6 +4,12 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
+    caption: 'Viaplay',
+    image: 'img/users/viaplay.png',
+    infoLink: 'https://viaplay.se/',
+    pinned: true,
+  },
+  {
     caption: 'Globocom',
     image: 'img/users/globocom.png',
     infoLink: 'http://www.globo.com/',
@@ -45,13 +51,13 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: null,
+  headerIcon: 'img/logo.png',
   footerIcon: 'img/logo.svg',
   favicon: 'img/favicon.png',
 
   /* Colors for website */
   colors: {
-    primaryColor: 'rgb(34, 34, 34)',
+    primaryColor: '#9B4C01',
     secondaryColor: '#05A5D1',
     tintColor: '#005068',
     backgroundColor: '#f5fcff',

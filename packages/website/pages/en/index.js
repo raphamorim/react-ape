@@ -193,8 +193,8 @@ const Showcase = props => {
   );
 
   return (
-    <div className="productShowcaseSection paddingTop paddingBottom">
-      <h2>Who is Using This?</h2>
+    <div className="productShowcaseSection paddingTopMax paddingBottom">
+      <h2>Who is Using React Ape?</h2>
       <p>This project is used by all these people and companies</p>
       <div className="logos">
         {showcase}
@@ -270,7 +270,7 @@ class Index extends React.Component {
           <FirstFeatureCallout />
           <SecondFeatureCallout />
           <Examples language={language} />
-          {/* <Showcase language={language} /> */}
+          <Showcase language={language} />
         </div>
       </div>
     );

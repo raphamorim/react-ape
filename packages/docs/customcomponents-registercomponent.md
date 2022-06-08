@@ -1,9 +1,8 @@
 ---
 id: customcomponents-registercomponent
 title: Custom Components
-sidebar_label: Creating and Registering
+sidebar_label: Custom Components
 ---
-
 
 ## Creating Custom Components
 

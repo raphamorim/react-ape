@@ -7,13 +7,11 @@
     ],
     "Guides": [
       "components-and-apis",
-      "navigation-on-apps"
+      "navigation-on-apps",
+      "customcomponents-registercomponent"
     ],
     "Contributing": [
       "contributing-how-to-contribute"
-    ],
-    "Custom Components": [
-      "customcomponents-registercomponent"
     ],
     "Components": [
       "components-image",
@@ -26,6 +24,11 @@
       "apis-platform",
       "apis-stylesheet",
       "apis-navigation"
+    ],
+    "Props": [
+      "style-props-image",
+      "style-props-text",
+      "style-props-view"
     ]
   }
 }
