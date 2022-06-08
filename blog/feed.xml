@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
             <title>React Ape Blog</title>
-            <url>http://raphamorim.io/react-ape/null</url>
+            <url>http://raphamorim.io/react-ape/img/logo.png</url>
             <link>http://raphamorim.io/react-ape/blog</link>
         </image>
         <copyright>Copyright © 2022 Raphael Amorim</copyright>
