@@ -75,6 +75,10 @@ class ReactApeComponent extends Component {
 
 React-Ape's CI uses `macos-latest` and since canvas renders a different output based on the operating system (node-canvas have rasterize fonts in different ways based on OS). It requires run the tests on the same OS. Please be aware that if you want to contribute using a different OS, make sure that you have [Docker](https://www.docker.com/) installed.
 
+## Roadmap
+
+You can follow React-Ape development status here: [Roadmap](https://github.com/users/raphamorim/projects/1/views/1)
+
 ## Credits
 
 A special thanks to [Raphael Eckhardt](https://github.com/Raphseck) for making the logo <3
