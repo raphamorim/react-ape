@@ -39,6 +39,7 @@ function withFocus<Props: RequiredProps>(
           <WrappedComponent
             {...this.props}
             focused={true}
+            setFocus={() => {}}
           />
         </FocusPathContext.Provider>
       );

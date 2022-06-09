@@ -10,7 +10,7 @@ import {
   withNavigation
 } from '../../react-ape/reactApeEntry';
 
-import Spinner from './Spinner';
+// import Spinner from './Spinner';
 import Sidebar from './Sidebar';
 import Grid from './Grid';
 import Clock from './Clock';
@@ -19,15 +19,15 @@ import Slideshow from './Slideshow';
 const {width, height} = Dimensions.get('window');
 
 // Register Custom Components
-const custom = {
-  /* 
-    <custom.Spinner 
-      degrees={degrees}
-      style={{ top: height / 4 + 8, left: width / 2 - 60, color: 'white' }}
-    />
-  */
-  Spinner: registerComponent('Spinner', Spinner),
-};
+/* 
+  <custom.Spinner 
+    degrees={degrees}
+    style={{ top: height / 4 + 8, left: width / 2 - 60, color: 'white' }}
+  />
+*/
+// const custom = {
+//   Spinner: registerComponent('Spinner', Spinner),
+// };
 
 const styles = StyleSheet.create({
   surface: {
@@ -40,18 +40,18 @@ const styles = StyleSheet.create({
 
 class Item extends React.Component {
   render() {
-    const { idx, data } = this.props;
+    const { focused, setFocus, text } = this.props;
+    console.log(focused, setFocus);
     return (
       <View
         height={200}
         width={200}
-        key={'poster-list-' + idx}
         onClick={() => {
           console.log(data);
         }}
       >
-        <Text style={{ x: 220 * idx + 30, y: 460, color: '#FFF' }}>
-          {data.name}
+        <Text style={{ color: '#FFF' }}>
+          {text}
         </Text>
       </View>
     );
@@ -100,15 +100,11 @@ class App extends Component {
         <Grid />
         <FocusableItem
           focusKey={`movie-card-1`}
-          key={`item-1`}
-          idx={1}
-          data={{ name: "aaa" }}
+          text="aaa"
         />
         <FocusableItem
           focusKey={`movie-card-2`}
-          key={`item-2`}
-          idx={2}
-          data={{ name: "bbb" }}
+          text="bbb"
         />
       </View>
     );
