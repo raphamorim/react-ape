@@ -6,6 +6,8 @@ import {
   Dimensions,
   StyleSheet,
   registerComponent,
+  withFocus,
+  withNavigation
 } from '../../react-ape/reactApeEntry';
 
 import Spinner from './Spinner';
@@ -36,6 +38,28 @@ const styles = StyleSheet.create({
   },
 });
 
+class Item extends React.Component {
+  render() {
+    const { idx, data } = this.props;
+    return (
+      <View
+        height={200}
+        width={200}
+        key={'poster-list-' + idx}
+        onClick={() => {
+          console.log(data);
+        }}
+      >
+        <Text style={{ x: 220 * idx + 30, y: 460, color: '#FFF' }}>
+          {data.name}
+        </Text>
+      </View>
+    );
+  }
+}
+
+const FocusableItem = withFocus(Item);
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -43,9 +67,10 @@ class App extends Component {
       hasError: false,
     };
 
-    Dimensions.addEventListener((dimensionsValue, target) => {
-      console.log(dimensionsValue, target);
-    });
+    // In case you want to update the App with new dimensions value:
+    // Dimensions.addEventListener((dimensionsValue, target) => {
+    //   console.log(dimensionsValue, target);
+    // });
   }
 
   static getDerivedStateFromError(error) {
@@ -60,9 +85,8 @@ class App extends Component {
 
   render() {
     const {hasError} = this.state;
-    const {currentFocusPath} = this.props;
 
-    console.log(currentFocusPath);
+    console.log(this.context);
 
     if (hasError) {
       return null;
@@ -74,9 +98,23 @@ class App extends Component {
         <Sidebar />
         <Slideshow />
         <Grid />
+        <FocusableItem
+          focusKey={`movie-card-1`}
+          key={`item-1`}
+          idx={1}
+          data={{ name: "aaa" }}
+        />
+        <FocusableItem
+          focusKey={`movie-card-2`}
+          key={`item-2`}
+          idx={2}
+          data={{ name: "bbb" }}
+        />
       </View>
     );
   }
 }
 
-render(<App />, document.getElementById('root'));
+const NavigationApp = withNavigation(App);
+
+render(<NavigationApp />, document.getElementById('root'));
