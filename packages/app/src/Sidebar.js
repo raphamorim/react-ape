@@ -21,8 +21,9 @@ const styles = StyleSheet.create({
   },
   container: {
     position: 'absolute',
-    left: 40,
-    top: 100,
+    left: 50,
+    top: 200,
+    borderRadius: 10,
     lineHeight: 40,
   },
 });

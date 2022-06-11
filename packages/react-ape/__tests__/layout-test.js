@@ -68,5 +68,30 @@ describe('Layout test', () => {
 
       render(<Layout />, canvas, () => testCanvasSnapshot(expect, canvas));
     });
+    test('Test 2 View with BorderRadius', () => {
+      const canvas = document.createElement('canvas');
+      canvas.height = 600;
+      canvas.width = 600;
+      class Layout extends React.Component {
+        render() {
+          return (
+            <View>
+              <View
+                style={{
+                  width: 60,
+                  left: 100,
+                  top: 0,
+                  height: 60,
+                  borderRadius: 8,
+                  backgroundColor: 'white',
+                }}
+              />
+            </View>
+          );
+        }
+      }
+
+      render(<Layout />, canvas, () => testCanvasSnapshot(expect, canvas));
+    });
   });
 });
