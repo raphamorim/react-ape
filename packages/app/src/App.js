@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
 
 class Item extends React.Component {
   render() {
-    const { focused, setFocus, text } = this.props;
-    console.log(focused, setFocus);
+    const { focused, text } = this.props;
+    console.log(focused);
     return (
       <View
         height={200}
@@ -85,8 +85,9 @@ class App extends Component {
 
   render() {
     const {hasError} = this.state;
+    const {setFocus} = this.props;
 
-    console.log(this.context);
+    console.log(this.context, setFocus);
 
     if (hasError) {
       return null;

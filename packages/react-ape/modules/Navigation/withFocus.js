@@ -38,8 +38,7 @@ function withFocus<Props: RequiredProps>(
         <FocusPathContext.Provider value={`${focusPath}/${focusKey}`}>
           <WrappedComponent
             {...this.props}
-            focused={true}
-            setFocus={() => {}}
+            focused={false}
           />
         </FocusPathContext.Provider>
       );

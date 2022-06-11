@@ -39,7 +39,7 @@ function withNavigation<Props: RequiredProps>(
     render() {
       return (
         <FocusPathContext.Provider value={this.rootFocusPath}>
-          <WrappedComponent {...this.props} />
+          <WrappedComponent {...this.props} setFocus={() => {}} />
         </FocusPathContext.Provider>
       );
     }
