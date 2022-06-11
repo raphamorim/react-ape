@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 40,
     top: 100,
+    borderRadius: 10,
     lineHeight: 40,
   },
 });

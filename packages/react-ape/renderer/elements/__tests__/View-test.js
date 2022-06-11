@@ -9,6 +9,7 @@ describe('View', () => {
       top: 10,
       left: 100,
       position: 'absolute',
+      borderRadius: 10,
       backgroundColor: 'green',
     };
     const props = {style, children: 'My Amazing Text'};
@@ -33,6 +34,9 @@ describe('View', () => {
         stroke: jest.fn(),
         rect: jest.fn(),
         closePath: jest.fn(),
+        moveTo: jest.fn(),
+        lineTo: jest.fn(),
+        quadraticCurveTo: jest.fn(),
       },
       getSurfaceHeight: () => 0,
       setSurfaceHeight: () => {},
@@ -63,6 +67,7 @@ describe('View', () => {
       style: {
         backgroundColor: 'green',
         borderColor: 'white',
+        borderRadius: 10,
         left: 100,
         lineHeight: 24,
         position: 'absolute',
@@ -98,6 +103,9 @@ describe('View', () => {
         stroke: jest.fn(),
         rect: jest.fn(),
         closePath: jest.fn(),
+        moveTo: jest.fn(),
+        lineTo: jest.fn(),
+        quadraticCurveTo: jest.fn(),
       },
       getSurfaceHeight: () => 0,
       setSurfaceHeight: () => {},
@@ -110,11 +118,17 @@ describe('View', () => {
       beginPath,
       closePath,
       fillStyle,
+      moveTo,
+      lineTo,
+      quadraticCurveTo,
       globalCompositeOperation,
     } = apeContext.ctx;
 
     expect(beginPath.mock.calls.length).toBe(1);
     expect(closePath.mock.calls.length).toBe(1);
+    expect(moveTo.mock.calls.length).toBe(1);
+    expect(lineTo.mock.calls.length).toBe(4);
+    expect(quadraticCurveTo.mock.calls.length).toBe(4);
     expect(beginPath).toBeCalledWith();
     expect(closePath).toBeCalledWith();
 
