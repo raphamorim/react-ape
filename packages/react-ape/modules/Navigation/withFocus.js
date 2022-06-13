@@ -21,6 +21,8 @@ type InjectedProps = {
  * property to it.
  * The resulting component should provide a `focusKey` property.
  */
+import FocusSpatialMap from './FocusSpatialMap';
+
 function withFocus<Props: RequiredProps>(
   WrappedComponent: React.ComponentType<Props>
 ): React.ComponentType<$Diff<Props, InjectedProps>> {
@@ -30,15 +32,26 @@ function withFocus<Props: RequiredProps>(
       WrappedComponent
     )})`;
 
-    renderWithFocusPath = focusPath => {
+    constructor() {
+      super(...arguments);
+    }
+
+    renderWithFocusPath = focusContext => {
       // TODO: I need to listen to a global and observable focusPath that will
       // define if this component should be focused or not (the value of focused)
+      const { setFocus, currentFocusPath } = focusContext;
       const { focusKey } = this.props;
+      // const focusPath = `${rootFocusPath}/${focusKey}`;
+
+      FocusSpatialMap.push(focusKey);
+
+      // console.log('renderWithFocusPath', setFocus, currentFocusPath, focusPath);
       return (
-        <FocusPathContext.Provider value={`${focusPath}/${focusKey}`}>
+        <FocusPathContext.Provider value={focusKey}>
           <WrappedComponent
             {...this.props}
-            focused={false}
+            focused={currentFocusPath === focusKey}
+            setFocus={setFocus.bind(this, focusKey)}
           />
         </FocusPathContext.Provider>
       );

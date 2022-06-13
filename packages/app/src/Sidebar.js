@@ -5,7 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   registerComponent,
-  Navigation,
+  withFocus,
 } from '../../react-ape/reactApeEntry';
 
 const {height} = Dimensions.get('screen');
@@ -28,6 +28,23 @@ const styles = StyleSheet.create({
   },
 });
 
+class Item extends React.Component {
+  render() {
+    const { focused, text, setFocus } = this.props;
+    console.log('focusableitem', setFocus, focused);
+    return (
+      <Text style={{
+        color: focused ? '#331A00' : 'white',
+        fontSize: 24
+      }}>
+        {text}
+      </Text>
+    );
+  }
+}
+
+const FocusableItem = withFocus(Item);
+
 class Sidebar extends Component {
   constructor(props) {
     super(props);
@@ -37,9 +54,18 @@ class Sidebar extends Component {
     return (
       <View style={styles.sidebar}>
         <View style={styles.container}>
-          <Text>Rio de Janeiro</Text>
-          <Text>Kyoto</Text>
-          <Text>Stockholm</Text>
+          <FocusableItem
+            focusKey="sidebar-item-1"
+            text="Rio de Janeiro"
+          />
+          <FocusableItem
+            focusKey="sidebar-item-2"
+            text="Kyoto"
+          />
+          <FocusableItem
+            focusKey="sidebar-item-3"
+            text="Stockholm"
+          />
         </View>
       </View>
     );

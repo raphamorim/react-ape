@@ -6,7 +6,6 @@ import {
   Dimensions,
   StyleSheet,
   registerComponent,
-  withFocus,
   withNavigation
 } from '../../react-ape/reactApeEntry';
 
@@ -38,28 +37,6 @@ const styles = StyleSheet.create({
   },
 });
 
-class Item extends React.Component {
-  render() {
-    const { focused, text } = this.props;
-    console.log(focused);
-    return (
-      <View
-        height={200}
-        width={200}
-        onClick={() => {
-          console.log(data);
-        }}
-      >
-        <Text style={{ color: '#FFF' }}>
-          {text}
-        </Text>
-      </View>
-    );
-  }
-}
-
-const FocusableItem = withFocus(Item);
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -85,9 +62,6 @@ class App extends Component {
 
   render() {
     const {hasError} = this.state;
-    const {setFocus} = this.props;
-
-    console.log(this.context, setFocus);
 
     if (hasError) {
       return null;
@@ -99,14 +73,6 @@ class App extends Component {
         <Sidebar />
         <Slideshow />
         <Grid />
-        <FocusableItem
-          focusKey={`movie-card-1`}
-          text="aaa"
-        />
-        <FocusableItem
-          focusKey={`movie-card-2`}
-          text="bbb"
-        />
       </View>
     );
   }

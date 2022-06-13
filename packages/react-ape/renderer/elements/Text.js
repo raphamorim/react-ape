@@ -104,7 +104,7 @@ function clearText(
       ...prevProps.style,
       color: parentLayout.style.backgroundColor,
       borderColor: parentLayout.style.backgroundColor,
-      borderSize: 2,
+      borderSize: 2.1,
     },
   };
 
