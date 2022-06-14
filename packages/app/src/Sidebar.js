@@ -22,23 +22,26 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     left: 40,
-    top: 100,
+    // top: 100,
     borderRadius: 10,
     lineHeight: 40,
+    backgroundColor: 'orange'
   },
 });
 
 class Item extends React.Component {
   render() {
-    const { focused, text, setFocus } = this.props;
+    const { focused, idx, text, setFocus } = this.props;
     console.log('focusableitem', setFocus, focused);
     return (
-      <Text style={{
-        color: focused ? '#331A00' : 'white',
-        fontSize: 24
-      }}>
-        {text}
-      </Text>
+      <View style={{...styles.container, top: idx}}>
+        <Text style={{
+          color: focused ? '#331A00' : 'white',
+          fontSize: 24
+        }}>
+          {text}
+        </Text>
+      </View>
     );
   }
 }
@@ -53,20 +56,23 @@ class Sidebar extends Component {
   render() {
     return (
       <View style={styles.sidebar}>
-        <View style={styles.container}>
+        {/*<View style={styles.container}>*/}
           <FocusableItem
             focusKey="sidebar-item-1"
             text="Rio de Janeiro"
+            idx={120}
           />
           <FocusableItem
             focusKey="sidebar-item-2"
             text="Kyoto"
+            idx={160}
           />
           <FocusableItem
             focusKey="sidebar-item-3"
             text="Stockholm"
+            idx={200}
           />
-        </View>
+        {/*</View>*/}
       </View>
     );
   }
