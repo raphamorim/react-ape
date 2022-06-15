@@ -6,6 +6,7 @@ import {
   StyleSheet,
   registerComponent,
   Navigation,
+  Button
 } from '../../react-ape/reactApeEntry';
 
 const {height} = Dimensions.get('screen');
@@ -40,6 +41,11 @@ class Sidebar extends Component {
           <Text>Rio de Janeiro</Text>
           <Text>Kyoto</Text>
           <Text>Stockholm</Text>
+          <Button
+            onPress ={()=>{}}
+            color={"red"}
+            title="Click me"
+          />
         </View>
       </View>
     );

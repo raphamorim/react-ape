@@ -9,6 +9,7 @@
 import Image from './elements/Image';
 import Text from './elements/Text';
 import View from './elements/View';
+import Button from  './elements/Button'
 import {CustomComponents} from '../modules/Register';
 
 const CHILDREN = 'children';
@@ -36,6 +37,7 @@ const ReactApeComponent = {
       Image: Image(props),
       Text: Text(props),
       View: new View(props),
+      Button : Button(props)
     };
 
     if (!COMPONENTS[type]) {
