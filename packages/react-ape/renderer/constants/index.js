@@ -23,6 +23,7 @@ export const ButtonDefaults ={
    textStyle:{
      textAlign:"center",
      margin:8,
+     color:"white",
      fontSize:18
    },
    buttonDisabled:{

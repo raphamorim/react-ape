@@ -73,14 +73,13 @@ const {ctx} = apeContext
   // If is relative and x and y haven't be processed, don't render
 if(!spatialGeometry) return null
 // start drawing the canvas
-const  {title} = props
+const  {title,color} = props
 const borderRadius = ButtonDefaults.containerStyle.borderRadius 
 const backgroundColor = ButtonDefaults.containerStyle.backgroundColor
-const width = ButtonDefaults.containerStyle.width
-const height = ButtonDefaults.containerStyle.height
 let x = spatialGeometry.x || 20
 let y = spatialGeometry.y || 40
-const antiClockWise = false
+const width = x + y 
+const height = ButtonDefaults.containerStyle.height
 ctx.beginPath()
 //ctx.lineWidth = borderWidth
 ctx.fillStyle = backgroundColor
@@ -117,15 +116,13 @@ ctx.quadraticCurveTo(x + width, y, x + width, y + borderRadius);
 
 ctx.fill()
 ctx.stroke()
-ctx.fillStyle = '#000000';
+ctx.fillStyle = color || ButtonDefaults.textStyle.color;
 ctx.font = `${ButtonDefaults.textStyle.fontSize} Helvetica`;
 //ctx.fillText('Start', x+ width/2 , y + height / 2);
 ctx.textAlign = 'center'
 ctx.fillText(title,x + width / 2,y + height /2)
 //ctx.fillText('Start', x  + height /2, y + height /2 );
 ctx.closePath()
-
-
 
 }
 

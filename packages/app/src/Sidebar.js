@@ -43,8 +43,8 @@ class Sidebar extends Component {
           <Text>Stockholm</Text>
           <Button
             onPress ={()=>{}}
-            color={"red"}
-            title="Click me"
+          
+            title="PRESS ME"
           />
         </View>
       </View>
