@@ -56,7 +56,7 @@ function withNavigation<Props: RequiredProps>(
       const { currentFocusPath } = this.state;
       // arrow up/down button should select next/previous list element
       if (e.keyCode === 38) {
-        console.log(FocusSpatialMap.indexOf(currentFocusPath))
+        // console.log(FocusSpatialMap.indexOf(currentFocusPath))
         // this.setState( prevState => ({
           
         // }))
