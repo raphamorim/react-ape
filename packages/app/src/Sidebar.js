@@ -8,7 +8,7 @@ import {
   withFocus,
 } from '../../react-ape/reactApeEntry';
 
-const {height} = Dimensions.get('screen');
+const {height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   sidebar: {
