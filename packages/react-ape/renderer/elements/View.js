@@ -70,17 +70,9 @@ class View {
       const previousStroke = ctx.strokeStyle;
       ctx.beginPath();
       const {x, y, width, height, cornerRadius} = this.previousRect;
-      // ctx.rect(x, y, width, height);
-      // Ref: https://stackoverflow.com/questions/1255512/how-to-draw-a-rounded-rectangle-using-html-canvas
       ctx.moveTo(x, y);
-      /**
-        *  Top Right Radius
-        */
       ctx.lineTo(x + width - cornerRadius, y);
       ctx.quadraticCurveTo(x + width, y, x + width, y + cornerRadius);
-      /**
-        *  Bottom right Radius
-        */
       ctx.lineTo(x + width, y + height - cornerRadius);
       ctx.quadraticCurveTo(
         x + width,
@@ -88,12 +80,8 @@ class View {
         x + width - cornerRadius,
         y + height
       );
-      /**
-        *  Bottom Left Radius
-        */
       ctx.lineTo(x + cornerRadius, y + height);
       ctx.quadraticCurveTo(x, y + height, x, y + height - cornerRadius);
-      /** Top left Radius */
       ctx.lineTo(x, y + cornerRadius);
       ctx.quadraticCurveTo(x, y, x + cornerRadius, y);
       ctx.strokeStyle = style.backgroundColor || 'transparent';
@@ -125,17 +113,14 @@ class View {
 
     ctx.globalCompositeOperation = 'destination-over';
     ctx.beginPath();
-    // ctx.rect(x, y, width, height);
-    // Ref: https://stackoverflow.com/questions/1255512/how-to-draw-a-rounded-rectangle-using-html-canvas
+
+    // similar idea to ctx.rect() but to support border-radius
+
     ctx.moveTo(x, y);
-    /**
-          *  Top Right Radius
-          */
+    // Top Right Radius
     ctx.lineTo(x + width - cornerRadius, y);
     ctx.quadraticCurveTo(x + width, y, x + width, y + cornerRadius);
-    /**
-          *  Bottom right Radius
-          */
+    // Bottom right Radius
     ctx.lineTo(x + width, y + height - cornerRadius);
     ctx.quadraticCurveTo(
       x + width,
@@ -143,14 +128,13 @@ class View {
       x + width - cornerRadius,
       y + height
     );
-    /**
-          *  Bottom Left Radius
-          */
+    // Bottom Left Radius
     ctx.lineTo(x + cornerRadius, y + height);
     ctx.quadraticCurveTo(x, y + height, x, y + height - cornerRadius);
-    /** Top left Radius */
+    // Top left Radius
     ctx.lineTo(x, y + cornerRadius);
     ctx.quadraticCurveTo(x, y, x + cornerRadius, y);
+
     this.previousRect = {x, y, width, height, cornerRadius};
     ctx.strokeStyle = style.borderColor || 'transparent';
     ctx.fillStyle = style.backgroundColor || 'transparent';

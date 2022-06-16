@@ -15,14 +15,15 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     left: 70,
-    top: height - 200,
-    backgroundColor: 'orange',
-    height: 80,
-    width: 100,
+    top: 20,
+    backgroundColor: '#331A00',
+    height: 70,
+    borderRadius: 30,
+    width: 110,
   },
   time: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 28,
   },
 });
 
@@ -50,6 +51,12 @@ class Clock extends React.Component {
         <Text style={styles.time}>
           {this.state.time}
         </Text>
+        {/*<Text style={styles.time}>
+          {this.state.time}
+        </Text>
+        <Text style={styles.time}>
+          {this.state.time}
+        </Text>*/}
       </View>
     );
   }

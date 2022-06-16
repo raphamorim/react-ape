@@ -6,10 +6,10 @@ import {
   Dimensions,
   StyleSheet,
   registerComponent,
-  Navigation,
+  withNavigation
 } from '../../react-ape/reactApeEntry';
 
-import Spinner from './Spinner';
+// import Spinner from './Spinner';
 import Sidebar from './Sidebar';
 import Grid from './Grid';
 import Clock from './Clock';
@@ -17,18 +17,16 @@ import Slideshow from './Slideshow';
 
 const {width, height} = Dimensions.get('window');
 
-const {withNavigation} = Navigation;
-
 // Register Custom Components
-const custom = {
-  /* 
-    <custom.Spinner 
-      degrees={degrees}
-      style={{ top: height / 4 + 8, left: width / 2 - 60, color: 'white' }}
-    />
-  */
-  Spinner: registerComponent('Spinner', Spinner),
-};
+/* 
+  <custom.Spinner 
+    degrees={degrees}
+    style={{ top: height / 4 + 8, left: width / 2 - 60, color: 'white' }}
+  />
+*/
+// const custom = {
+//   Spinner: registerComponent('Spinner', Spinner),
+// };
 
 const styles = StyleSheet.create({
   surface: {
@@ -46,9 +44,10 @@ class App extends Component {
       hasError: false,
     };
 
-    Dimensions.addEventListener((dimensionsValue, target) => {
-      console.log(dimensionsValue, target);
-    });
+    // In case you want to update the App with new dimensions value:
+    // Dimensions.addEventListener((dimensionsValue, target) => {
+    //   console.log(dimensionsValue, target);
+    // });
   }
 
   static getDerivedStateFromError(error) {
@@ -63,9 +62,6 @@ class App extends Component {
 
   render() {
     const {hasError} = this.state;
-    const {currentFocusPath} = this.props;
-
-    console.log(currentFocusPath);
 
     if (hasError) {
       return null;
@@ -82,6 +78,6 @@ class App extends Component {
   }
 }
 
-const NavigableApp = withNavigation(App);
+const NavigationApp = withNavigation(App);
 
-render(<NavigableApp />, document.getElementById('root'));
+render(<NavigationApp />, document.getElementById('root'));

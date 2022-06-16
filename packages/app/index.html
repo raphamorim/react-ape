@@ -2,17 +2,21 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title><%= htmlWebpackPlugin.options.title %></title>
-  <style>
+  <meta name="viewport" content="width=1280, height=720, user-scalable=no" />
+  <title>App</title>
+   <style>
+    body {
+      width: 1280px;
+      height: 720px;
+    }
     canvas {
-      width: 100%;
-      height: 100%;
+      width: 1280px;
+      height: 720px;
       position: absolute;
       top: 0;
       left: 0;
     }
   </style>
-</head>
 <body>
   <canvas id="root"></canvas>
   <script src="bundle.js"></script>

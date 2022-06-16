@@ -9,12 +9,14 @@
 import ReactApeRenderer from './renderer/reactApeRenderer';
 import StyleSheetModule from './modules/StyleSheet';
 import DimensionsModule from './modules/Dimensions';
-import NavigationModule from './modules/Navigation';
 
 import ListViewComponent from './renderer/components/ListView';
-export const ListView = ListViewComponent;
-
 import RegisterComponentFn from './modules/Register';
+
+import withFocusFn from './modules/Navigation/withFocus';
+import withNavigationFn from './modules/Navigation/withNavigation';
+
+export const ListView = ListViewComponent;
 export const registerComponent = RegisterComponentFn;
 
 export const render = ReactApeRenderer.render;
@@ -26,6 +28,7 @@ export const Text = 'Text';
 
 export const StyleSheet = StyleSheetModule;
 export const Dimensions = DimensionsModule;
-export const Navigation = NavigationModule;
+export const withFocus = withFocusFn;
+export const withNavigation = withNavigationFn;
 
 export default ReactApeRenderer;
