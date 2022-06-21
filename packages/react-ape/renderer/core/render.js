@@ -23,18 +23,20 @@ function renderApeQueue(
 ) {
   if (apeContextGlobal && apeContextGlobal.renderQueue.length) {
     const queue = apeContextGlobal.renderQueue;
+    let req;
+
     const frame = () => {
-      requestAnimationFrame(frame);
+      req = requestAnimationFrame(frame);
       const element = queue.shift();
       element.render(apeContextGlobal, element.parentLayout);
 
       requestAnimationFrame(frame);
 
       if (!queue.length) {
-        cancelAnimationFrame(frame);
+        cancelAnimationFrame(req);
         onFinish();
       }
-    }
+    };
     frame();
   }
 }
