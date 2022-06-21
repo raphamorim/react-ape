@@ -9,24 +9,12 @@ import {
   withNavigation,
 } from '../../react-ape/reactApeEntry';
 
-// import Spinner from './Spinner';
 import Sidebar from './Sidebar';
 import Grid from './Grid';
 import Clock from './Clock';
 import Slideshow from './Slideshow';
 
 const {width, height} = Dimensions.get('window');
-
-// Register Custom Components
-/* 
-  <custom.Spinner 
-    degrees={degrees}
-    style={{ top: height / 4 + 8, left: width / 2 - 60, color: 'white' }}
-  />
-*/
-// const custom = {
-//   Spinner: registerComponent('Spinner', Spinner),
-// };
 
 const styles = StyleSheet.create({
   surface: {

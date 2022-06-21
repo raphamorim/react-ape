@@ -20,13 +20,14 @@ function registerComponent(componentName, Component) {
         isResetPhase: true,
       };
 
+      console.log('clearRender');
       Component.render(clearProps, apeContext, parentLayout);
     };
 
     return {
       type: componentName,
       render: Component.render.bind(this, props),
-      clear: Component.reset || clearRender,
+      clear: Component.unsafeClear || clearRender,
     };
   };
 

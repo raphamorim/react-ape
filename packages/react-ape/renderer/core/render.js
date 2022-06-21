@@ -22,11 +22,19 @@ function renderApeQueue(
   onFinish: () => mixed
 ) {
   if (apeContextGlobal && apeContextGlobal.renderQueue.length) {
-    // TODO: Move to request animation frame
+    // const renderFrame = () => {
+    //   requestAnimationFrame(renderFrame);
+    //   apeContextGlobal.renderQueue.forEach(element => {
+    //     // element.render(apeContextGlobal, element.parentLayout)
+    //     renderApeElement(apeContextGlobal, element);
+    //   });
+    //   cancelAnimationFrame(renderFrame);
+    // }
+    // renderFrame();
+
     apeContextGlobal.renderQueue.forEach(element => {
       renderApeElement(apeContextGlobal, element);
     });
-
     onFinish();
   }
 }
