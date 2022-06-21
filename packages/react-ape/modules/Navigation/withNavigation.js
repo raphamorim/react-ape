@@ -3,9 +3,9 @@
  */
 
 import * as React from 'react';
-import { getComponentDisplayName } from '../utils';
-import { unsafeCreateUniqueId } from '../../renderer/utils';
-import { FocusPathContext } from './FocusPathContext';
+import {getComponentDisplayName} from '../utils';
+import {unsafeCreateUniqueId} from '../../renderer/utils';
+import {FocusPathContext} from './FocusPathContext';
 import FocusSpatialMap from './FocusSpatialMap';
 
 type RequiredProps = {};
@@ -13,7 +13,11 @@ type RequiredProps = {};
 // See why we do `| void`
 // https://flow.org/en/docs/react/hoc/#toc-injecting-props-with-a-higher-order-component
 type InjectedProps = {
-  focusPath: string | void
+  focusPath: string | void,
+};
+
+type State = {
+  currentFocusPath: ?string,
 };
 
 /**
@@ -24,13 +28,14 @@ type InjectedProps = {
 function withNavigation<Props: RequiredProps>(
   WrappedComponent: React.ComponentType<Props>
 ): React.ComponentType<$Diff<Props, InjectedProps>> {
-  return class extends React.Component<Props> {
+  return class extends React.Component<Props, State> {
     static WrappedComponent = WrappedComponent;
     static displayName = `withNavigation(${getComponentDisplayName(
       WrappedComponent
     )})`;
 
     rootFocusPath: string;
+    focusPathList: mixed;
 
     constructor() {
       super(...arguments);
@@ -39,26 +44,23 @@ function withNavigation<Props: RequiredProps>(
 
       this.focusPathList = [];
       this.state = {
-        currentFocusPath: false
+        currentFocusPath: null,
       };
-      window.addEventListener('keydown', (e) => this.handleKeyDown(e));
+      window.addEventListener('keydown', e => this.handleKeyDown(e));
     }
 
-    setFocus = (currentFocusPath) => {
-      this.setState({ currentFocusPath });
-    }
+    setFocus = currentFocusPath => {
+      this.setState({currentFocusPath});
+    };
 
-    setFocusNext() {
+    setFocusNext() {}
 
-    }
-
-    handleKeyDown = (e) => {
-      const { currentFocusPath } = this.state;
+    handleKeyDown = e => {
+      const {currentFocusPath} = this.state;
       // arrow up/down button should select next/previous list element
       if (e.keyCode === 38) {
         // console.log(FocusSpatialMap.indexOf(currentFocusPath))
         // this.setState( prevState => ({
-          
         // }))
       } else if (e.keyCode === 40) {
         // console.log(FocusSpatialMap.indexOf(currentFocusPath))
@@ -66,24 +68,23 @@ function withNavigation<Props: RequiredProps>(
         const next = idx + 1;
         const nextFocusPath = FocusSpatialMap[next];
         this.setState({
-          currentFocusPath: nextFocusPath
+          currentFocusPath: nextFocusPath,
         });
         // this.setState( prevState => ({
         //   cursor: prevState.cursor + 1
         // }))
       }
-    }
+    };
 
     render() {
-      const { currentFocusPath } = this.state;
+      const {currentFocusPath} = this.state;
       return (
-        <FocusPathContext.Provider 
+        <FocusPathContext.Provider
           value={{
             // rootFocusPath: this.rootFocusPath,
             currentFocusPath: currentFocusPath,
-            setFocus: this.setFocus
-          }}
-        >
+            setFocus: this.setFocus,
+          }}>
           <WrappedComponent {...this.props} />
         </FocusPathContext.Provider>
       );

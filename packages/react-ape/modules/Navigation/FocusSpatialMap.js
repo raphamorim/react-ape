@@ -2,4 +2,4 @@
 // const FocusSpatialMap = new Map();
 const FocusSpatialMap = [];
 
-export default FocusSpatialMap
+export default FocusSpatialMap;

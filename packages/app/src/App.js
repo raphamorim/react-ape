@@ -6,7 +6,7 @@ import {
   Dimensions,
   StyleSheet,
   registerComponent,
-  withNavigation
+  withNavigation,
 } from '../../react-ape/reactApeEntry';
 
 // import Spinner from './Spinner';

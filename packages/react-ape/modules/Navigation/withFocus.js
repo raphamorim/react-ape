@@ -3,17 +3,17 @@
  */
 
 import * as React from 'react';
-import { getComponentDisplayName } from '../utils';
-import { FocusPathContext } from './FocusPathContext';
+import {getComponentDisplayName} from '../utils';
+import {FocusPathContext} from './FocusPathContext';
 
 type RequiredProps = {
-  focusKey: string
+  focusKey: string,
 };
 
 // See why we do `| void`
 // https://flow.org/en/docs/react/hoc/#toc-injecting-props-with-a-higher-order-component
 type InjectedProps = {
-  focused: boolean | void
+  focused: boolean | void,
 };
 
 /**
@@ -39,8 +39,8 @@ function withFocus<Props: RequiredProps>(
     renderWithFocusPath = focusContext => {
       // TODO: I need to listen to a global and observable focusPath that will
       // define if this component should be focused or not (the value of focused)
-      const { setFocus, currentFocusPath } = focusContext;
-      const { focusKey } = this.props;
+      const {setFocus, currentFocusPath} = focusContext;
+      const {focusKey} = this.props;
       // const focusPath = `${rootFocusPath}/${focusKey}`;
 
       FocusSpatialMap.push(focusKey);

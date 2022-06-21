@@ -6,7 +6,7 @@
  *
  */
 
-import { unsafeCreateUniqueId } from './utils';
+import {unsafeCreateUniqueId} from './utils';
 
 const randomKey = unsafeCreateUniqueId();
 const internalInstanceKey = '__reactInternalInstance$' + randomKey;
