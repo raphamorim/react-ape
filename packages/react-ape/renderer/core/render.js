@@ -22,20 +22,20 @@ function renderApeQueue(
   onFinish: () => mixed
 ) {
   if (apeContextGlobal && apeContextGlobal.renderQueue.length) {
-    // const renderFrame = () => {
-    //   requestAnimationFrame(renderFrame);
-    //   apeContextGlobal.renderQueue.forEach(element => {
-    //     // element.render(apeContextGlobal, element.parentLayout)
-    //     renderApeElement(apeContextGlobal, element);
-    //   });
-    //   cancelAnimationFrame(renderFrame);
-    // }
-    // renderFrame();
+    const queue = apeContextGlobal.renderQueue;
+    const frame = () => {
+      requestAnimationFrame(frame);
+      const element = queue.shift();
+      element.render(apeContextGlobal, element.parentLayout);
 
-    apeContextGlobal.renderQueue.forEach(element => {
-      renderApeElement(apeContextGlobal, element);
-    });
-    onFinish();
+      requestAnimationFrame(frame);
+
+      if (!queue.length) {
+        cancelAnimationFrame(frame);
+        onFinish();
+      }
+    }
+    frame();
   }
 }
 
