@@ -7,14 +7,12 @@
 
 import {ButtonDefaults} from '../constants';
 
-
-
 //TODO adjust Opacity when focus, Blur
 type PressEvent = {||};
 type ButtonProps = {|
   title: string,
   onPress: (event?: PressEvent) => mixed,
-  onClick: (event?: SyntheticMouseEvent<T>) => mixed,
+  onClick: (event?: SyntheticMouseEvent<HTMLButtonElement>) => mixed,
   touchSoundDisabled?: ?boolean,
   color?: ?string,
   /**
@@ -69,10 +67,10 @@ type ButtonProps = {|
 
 function renderButton(props: ButtonProps, apeContext, parentLayout) {
   //
-   console.log('[RENDER]')
+  console.log('[RENDER]');
   const {spatialGeometry = {x: 0, y: 0}} = parentLayout;
   const {ctx} = apeContext;
- 
+
   // If is relative and x and y haven't be processed, don't render
   if (!spatialGeometry) return null;
   // start drawing the canvas
@@ -85,28 +83,27 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
   let height = ButtonDefaults.containerStyle.height;
   let globalStyle = {
     width: width,
-    height:height,
+    height: height,
     color: color,
-    borderRadius:borderRadius,
+    borderRadius: borderRadius,
     backgroundColor,
-    lineWidth:0,
-    borderColor: 'transparent'
-  }
-const resetStyle = (newStyle)=>{
-  globalStyle = {...globalStyle,newStyle}
-  console.log('style)))))', globalStyle)
-}
-  const redrawButton = (ctx)=>{
+    lineWidth: 0,
+    borderColor: 'transparent',
+  };
+  const resetStyle = newStyle => {
+    globalStyle = {...globalStyle, newStyle};
+    console.log('style)))))', globalStyle);
+  };
+  const redrawButton = ctx => {
     // TODO reset Style on focus
-    let newStyle ={
-      lineWidth:2,
-      borderColor:'#ccc'
-    }
+    let newStyle = {
+      lineWidth: 2,
+      borderColor: '#ccc',
+    };
     //let prevStyle = globalStyle
-    resetStyle(newStyle)
+    resetStyle(newStyle);
+  };
 
-  }
- 
   ctx.beginPath();
   ctx.fillStyle = backgroundColor;
   ctx.moveTo(x, y);
@@ -137,8 +134,8 @@ const resetStyle = (newStyle)=>{
   ctx.quadraticCurveTo(x, y, x + borderRadius, y);
 
   ctx.fill();
-  ctx.lineWidth = globalStyle.lineWidth
-  ctx.strokeStyle = globalStyle.borderColor
+  ctx.lineWidth = globalStyle.lineWidth;
+  ctx.strokeStyle = globalStyle.borderColor;
   ctx.stroke();
   ctx.fillStyle = color || ButtonDefaults.textStyle.color;
   ctx.font = `${ButtonDefaults.textStyle.fontSize} Helvetica`;
@@ -147,41 +144,41 @@ const resetStyle = (newStyle)=>{
   ctx.fillText(title, x + width / 2, y + height / 2);
   ctx.closePath();
 
-  const onClick = (event:SyntheticMouseEvent<HTMLButtonElement>)=>{
-    const rect ={
+  const onClick = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
+    const rect = {
       x,
       y,
       height,
-      width
+      width,
+    };
+    const mousePosition = trackMousePosition(ctx.canvas, event);
+    if (isInside(mousePosition, rect)) {
+      redrawButton(ctx);
+      if (props.onClick && typeof props.onClick === 'function') {
+        props.onClick(event);
+      }
     }
-    const mousePosition = trackMousePosition(ctx.canvas,event)
-     if(isInside(mousePosition,rect)){
-        redrawButton(ctx)
-        if(props.onClick && typeof props.onClick === "function"){
-          props.onClick(event)
-        }
-    
-     }
-   
-  }
+  };
   function trackMousePosition(canvas, event) {
     return {
       x: event.clientX - canvas.offsetLeft,
-      y: event.clientY - canvas.offsetTop
+      y: event.clientY - canvas.offsetTop,
     };
   }
-  const isInside=(pos,rect)=>{
-    return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.height && pos.y > rect.y
-  }
- 
-  ctx.canvas.addEventListener('click',onClick,false)
-  ctx.canvas.addEventListener('focus',redrawButton)
-  ctx.canvas.addEventListener('blur',redrawButton)
-  
+  const isInside = (pos, rect) => {
+    return (
+      pos.x > rect.x &&
+      pos.x < rect.x + rect.width &&
+      pos.y < rect.y + rect.height &&
+      pos.y > rect.y
+    );
+  };
+
+  ctx.canvas.addEventListener('click', onClick, false);
+  ctx.canvas.addEventListener('focus', redrawButton);
+  ctx.canvas.addEventListener('blur', redrawButton);
+
   // events
-
- 
-
 }
 
 export default function createButtonInstance(props: ButtonProps): mixed {
