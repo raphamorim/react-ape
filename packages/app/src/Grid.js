@@ -7,6 +7,8 @@ import {
   StyleSheet,
 } from '../../react-ape/reactApeEntry';
 
+import Loader from './Loader';
+
 const {height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
@@ -27,8 +29,8 @@ const styles = StyleSheet.create({
     top: 520,
   },
   image: {
-    height: 328,
-    width: 248,
+    height: 228,
+    width: 148,
   },
 });
 
@@ -42,9 +44,17 @@ const list = [
 class Grid extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: true,
+    };
   }
 
   render() {
+    const {loading} = this.state;
+    if (loading) {
+      return <Loader />;
+    }
+
     return (
       <View style={styles.grid}>
         <Text style={styles.title}>Rio de Janeiro</Text>

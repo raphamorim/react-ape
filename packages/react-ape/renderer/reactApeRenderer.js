@@ -164,7 +164,6 @@ const ReactApeFiber = reconciler({
     // resetAfterCommit happens only for children changes
     renderQueue(apeContextGlobal, () => {
       apeContextGlobal.setSurfaceHeight(0);
-      apeContextGlobal.renderQueue = [];
     });
   },
 
@@ -187,7 +186,7 @@ const ReactApeFiber = reconciler({
   schedulePassiveEffects: FrameSchedulingScheduleDeferredCallback,
   cancelPassiveEffects: FrameSchedulingCancelDeferredCallback,
   noTimeout: -1,
-  useSyncScheduling: true,
+  useSyncScheduling: false,
   now: FrameSchedulingNow,
   isPrimaryRenderer: true,
   supportsMutation: true,

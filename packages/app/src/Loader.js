@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: width / 2 - 40,
     top: height / 4,
-    backgroundColor: 'blue',
+    backgroundColor: '#202020',
   },
 });
 
@@ -52,9 +52,8 @@ class Loader extends Component {
       <View style={styles.container}>
         <custom.Spinner
           degrees={degrees}
-          style={{top: height / 4 + 8, left: width / 2 - 60, color: 'white'}}
+          style={{top: 550, left: 740, color: 'orange'}}
         />
-        <Text style={{color: 'white'}}>Loading...</Text>
       </View>
     );
   }
