@@ -12,6 +12,7 @@ type PressEvent = {||};
 type ButtonProps = {|
   title: string,
   onPress: (event?: PressEvent) => mixed,
+  onClick: (event?: PressEvent) => mixed,
   touchSoundDisabled?: ?boolean,
   color?: ?string,
   /**
@@ -65,7 +66,7 @@ type ButtonProps = {|
 |};
 
 function renderButton(props: ButtonProps, apeContext, parentLayout) {
-  const {spatialGeometry = {x: 0, y: 0}, relativeIndex} = parentLayout;
+  const {spatialGeometry = {x: 0, y: 0}} = parentLayout;
   const {ctx} = apeContext;
   // If is relative and x and y haven't be processed, don't render
   if (!spatialGeometry) return null;
@@ -77,10 +78,11 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
   let y = spatialGeometry.y || 0;
   let width = x + y;
   let height = ButtonDefaults.containerStyle.height;
-  // if(parentLayout && parentLayout.style){
-  //   width = parentLayout.style.width
-  //   height = parentLayout.style.height
-  // }
+
+  //  ctx.addEventListener('click',()=>{
+  //   alert('hi')
+  // })
+
   ctx.beginPath();
   ctx.fillStyle = backgroundColor;
   ctx.moveTo(x, y);
@@ -119,6 +121,50 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
   ctx.fillText(title, x + width / 2, y + height / 2);
   //ctx.fillText('Start', x  + height /2, y + height /2 );
   ctx.closePath();
+
+  //const canvas = document.getElementById('root')
+  //const context = canvas.getContext('2d')
+  const onClick = (event: SyntheticEvent<HTMLButtonElement>) => {
+    const rect = {
+      x,
+      y,
+      height,
+      width,
+    };
+    // const clientX = event.clientX  -  ctx.canvas.offsetLeft
+    // const clientY = event.clientY  -  ctx.canvas.offsetTop
+    const mousePosition = getMousePos(ctx.canvas, event);
+
+    // console.log('mouse',x,y)
+    console.log('rect', rect);
+    console.log('mouse', mousePosition);
+    if (isInside(mousePosition, rect)) {
+      alert('hi');
+    } else {
+      //alert('not inside')
+    }
+  };
+  function getMousePos(canvas, event) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    };
+  }
+  const isInside = (pos, rect) => {
+    return (
+      pos.x > rect.x &&
+      pos.x < rect.x + rect.width &&
+      pos.y < rect.y + rect.heigth &&
+      pos.y > rect.y
+    );
+  };
+  const redrawButton = () => {};
+  ctx.canvas.addEventListener('click', onClick, false);
+  ctx.canvas.addEventListener('focus', redrawButton);
+  ctx.canvas.addEventListener('blur', redrawButton);
+
+  // events
 }
 
 export default function createButtonInstance(props: ButtonProps): mixed {
