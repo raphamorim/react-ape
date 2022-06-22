@@ -7,9 +7,11 @@
 
 import {ButtonDefaults} from '../constants';
 
+//TODO adjust Opacity when focus, Blur
+type PressEvent = {||};
 type ButtonProps = {|
   title: string,
-  onPress: (event?: any) => mixed,
+  onPress: (event?: PressEvent) => mixed,
   touchSoundDisabled?: ?boolean,
   color?: ?string,
   /**
@@ -62,8 +64,8 @@ type ButtonProps = {|
   testID?: ?string,
 |};
 
-function renderButton(props, apeContext, parentLayout) {
-  const {spatialGeometry = {}, relativeIndex} = parentLayout;
+function renderButton(props: ButtonProps, apeContext, parentLayout) {
+  const {spatialGeometry = {x: 0, y: 0}, relativeIndex} = parentLayout;
   const {ctx} = apeContext;
   // If is relative and x and y haven't be processed, don't render
   if (!spatialGeometry) return null;
@@ -71,25 +73,25 @@ function renderButton(props, apeContext, parentLayout) {
   const {title, color} = props;
   const borderRadius = ButtonDefaults.containerStyle.borderRadius;
   const backgroundColor = ButtonDefaults.containerStyle.backgroundColor;
-  let x = spatialGeometry.x || 20;
-  let y = spatialGeometry.y || 40;
-  const width = x + y;
-  const height = ButtonDefaults.containerStyle.height;
+  let x = spatialGeometry.x || 0;
+  let y = spatialGeometry.y || 0;
+  let width = x + y;
+  let height = ButtonDefaults.containerStyle.height;
+  // if(parentLayout && parentLayout.style){
+  //   width = parentLayout.style.width
+  //   height = parentLayout.style.height
+  // }
   ctx.beginPath();
-  //ctx.lineWidth = borderWidth
   ctx.fillStyle = backgroundColor;
-  //ctx.strokeStyle = borderColor
-  //ctx.rect(x,y,borderRadius,width,height,antiClockWise)
-  //ctx.rect(x,y,width,height)
   ctx.moveTo(x, y);
   /**
-        *  Top Right Radius
-        */
+*  Top Right Radius
+*/
   ctx.lineTo(x + width - borderRadius, y);
   ctx.quadraticCurveTo(x + width, y, x + width, y + borderRadius);
   /**
-        *  Bottom right Radius
-        */
+*  Bottom right Radius
+*/
 
   ctx.lineTo(x + width, y + height - borderRadius);
   ctx.quadraticCurveTo(
@@ -100,8 +102,8 @@ function renderButton(props, apeContext, parentLayout) {
   );
 
   /**
-        *  Bottom Left Radius
-        */
+*  Bottom Left Radius
+*/
   ctx.lineTo(x + borderRadius, y + height);
   ctx.quadraticCurveTo(x, y + height, x, y + height - borderRadius);
   /** Top left Radius */
@@ -119,7 +121,7 @@ function renderButton(props, apeContext, parentLayout) {
   ctx.closePath();
 }
 
-export default function createButtonInstance(props: Props): mixed {
+export default function createButtonInstance(props: ButtonProps): mixed {
   return {
     type: 'Button',
     render: renderButton.bind(this, props),
