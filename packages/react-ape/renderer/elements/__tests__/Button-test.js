@@ -25,10 +25,9 @@ describe('Button', () => {
           lineTo: jest.fn(),
           quadraticCurveTo: jest.fn(),
           font: 'Helvetica',
-          canvas:{
-            addEventListener:jest.fn()
-          }
-       
+          canvas: {
+            addEventListener: jest.fn(),
+          },
         },
       };
 
@@ -58,8 +57,7 @@ describe('Button', () => {
       expect(font).toEqual(`${ButtonDefaults.textStyle.fontSize} Helvetica`);
       expect(quadraticCurveTo.mock.calls.length).toEqual(4);
       expect(fillStyle).toBe(color);
-      expect(Button).toMatchSnapshot()
-      
+      expect(Button).toMatchSnapshot();
     });
   });
 });
