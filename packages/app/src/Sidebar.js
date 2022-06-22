@@ -41,7 +41,7 @@ class Sidebar extends Component {
           <Text>Rio de Janeiro</Text>
           <Text>Kyoto</Text>
           <Text>Stockholm</Text>
-          <Button onPress={() => {}} title="PRESS ME" />
+          <Button onClick={()=>alert('hi')} title="PRESS ME" />
         </View>
       </View>
     );
