@@ -6,6 +6,8 @@ const jsdom = new JSDOM('<!doctype html><html><body></body></html>', {
   url: 'http://localhost/',
 });
 const { window } = jsdom;
+window.requestAnimationFrame = (cb) => window.setTimeout(cb, 1000 / 60);
+window.cancelAnimationFrame = () => null;
 
 function copyProps(src, target) {
   const props = Object.getOwnPropertyNames(src)
