@@ -3,7 +3,7 @@ import {render, View} from '../reactApeEntry';
 import testCanvasSnapshot from '../../../tests/testCanvasSnapshot';
 
 describe('Layout test', () => {
-  describe('Test "relative" and "absolute" <Views/>', () => {
+  describe('Test "relative" and "absolute" Views', () => {
     test('Test 5 views with different positions (4 relative and 1 absolute)', () => {
       const canvas = document.createElement('canvas');
       canvas.height = 600;
@@ -68,6 +68,8 @@ describe('Layout test', () => {
 
       render(<Layout />, canvas, () => testCanvasSnapshot(expect, canvas));
     });
+  });
+  describe('BorderRadius', () => {
     test('Test 2 View with BorderRadius', () => {
       const canvas = document.createElement('canvas');
       canvas.height = 600;

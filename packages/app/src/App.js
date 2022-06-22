@@ -55,14 +55,35 @@ class App extends Component {
       return null;
     }
 
+    // First problem: Text style hierarchy doesn't work (it should render in orange)
+    // Second problem: View positions aren't correctly geometrically
+    // Third problem: View backgroundColor isn't correct, 2nd View should have same bgc as 1st
+    //   and also 4th should have same as 3rd
     return (
-      <View style={styles.surface}>
-        <Clock />
-        <Sidebar />
-        <Slideshow />
-        <Grid />
+      <View style={{width: 80, height: 80, backgroundColor: 'grey', color: 'orange'}}>
+        <View>
+          <View style={{width: 80, height: 80, backgroundColor: 'powderblue'}}>
+            <View
+              style={{
+                width: 30,
+                height: 30
+              }}
+            >
+              <Text>should be in orange</Text>
+            </View>
+          </View>
+        </View>
       </View>
     );
+
+    // return (
+      // <View style={styles.surface}>
+      //   <Clock />
+      //   <Sidebar />
+      //   <Slideshow />
+      //   <Grid />
+      // </View>
+    // );
   }
 }
 

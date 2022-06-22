@@ -64,8 +64,11 @@ class Sidebar extends Component {
           text="Rio de Janeiro"
           idx={120}
         />
-        <FocusableItem focusKey="sidebar-item-2" text="Kyoto" idx={160} />
+        <FocusableItem focusKey="sidebar-item-2" text="京都" idx={160} />
         <FocusableItem focusKey="sidebar-item-3" text="Stockholm" idx={200} />
+        <FocusableItem focusKey="sidebar-item-4" text="Phoenix" idx={240} />
+        <FocusableItem focusKey="sidebar-item-5" text="नई दिल्ली" idx={280} />
+        <FocusableItem focusKey="sidebar-item-6" text="Cusco" idx={320} />
         {/*</View>*/}
       </View>
     );
