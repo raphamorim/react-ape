@@ -47,6 +47,6 @@ jobs:
         run: yarn ci
 
       - name: Publish React Ape package
-        run: cd ./packages/react-ape && npm publish
+        run: cd ./packages/react-ape && yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
