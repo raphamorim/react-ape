@@ -1,6 +1,6 @@
 {
   "name": "react-ape",
-  "version": "0.0.9-alpha.3",
+  "version": "0.0.9-alpha.4",
   "description": "React Renderer to build interfaces using canvas/WebGL",
   "main": "index.js",
   "peerDependencies": {
