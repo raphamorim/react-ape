@@ -137,7 +137,6 @@ const ReactApeFiber = reconciler({
           return null;
         }
 
-        // EXPERIMENTAL: apeContextGlobal.clear();
         apeContextGlobal.renderQueue.push(apeElement);
         return null;
       }

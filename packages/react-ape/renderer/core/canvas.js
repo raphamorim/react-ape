@@ -16,7 +16,10 @@ export function scaleDPI(
   customWidth?: number,
   customHeight?: number
 ): number {
-  const devicePixelRatio = window.devicePixelRatio || 1;
+  // https://github.com/LeaVerou/dpi/blob/gh-pages/assets/js/dpi.js
+  const devicePixelRatio = window.devicePixelRatio ||
+    (window.matchMedia && window.matchMedia("(min-resolution: 2dppx), (-webkit-min-device-pixel-ratio: 1.5),(-moz-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)").matches? 2 : 1) ||
+    1;
 
   const backingStorePixelRatio: number =
     context.webkitBackingStorePixelRatio ||
@@ -30,12 +33,14 @@ export function scaleDPI(
 
   const width =
     customWidth || canvas.offsetWidth || canvas.width || canvas.clientWidth;
+
   const height =
     customHeight || canvas.offsetHeight || canvas.height || canvas.clientHeight;
-  canvas.width = Math.round(width * ratio);
-  canvas.height = Math.round(height * ratio);
 
+  // Adjust canvas if ratio =/= 1
   if (devicePixelRatio !== backingStorePixelRatio) {
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     context.scale(ratio, ratio);
