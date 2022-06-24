@@ -21,6 +21,12 @@ jobs:
       - name: Checkout source Git repo
         uses: actions/checkout@v3
 
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Cache node modules
         uses: actions/cache@v3
         env:
@@ -42,3 +48,5 @@ jobs:
 
       - name: Publish React Ape package
         run: cd ./packages/react-ape && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
