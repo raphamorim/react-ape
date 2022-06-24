@@ -3,7 +3,7 @@ import {render, View, Text, StyleSheet} from '../../../reactApeEntry';
 
 import testCanvasSnapshot from '../../../../../tests/testCanvasSnapshot';
 
-describe.only('[Updates] State - View', () => {
+describe('[Updates] State - View', () => {
   describe('View', () => {
     test('Render relative view with children updates by state', done => {
       const canvas = document.createElement('canvas');
