@@ -86,7 +86,7 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
     height: height,
     color: color,
     borderRadius: borderRadius,
-    backgroundColor,
+    backgroundColor:color,
     lineWidth: 0,
     borderColor: 'transparent',
   };
@@ -105,7 +105,7 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
   };
 
   ctx.beginPath();
-  ctx.fillStyle = backgroundColor;
+  ctx.fillStyle = color;
   ctx.moveTo(x, y);
   /**
 *  Top Right Radius
@@ -137,7 +137,7 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
   ctx.lineWidth = globalStyle.lineWidth;
   ctx.strokeStyle = globalStyle.borderColor;
   ctx.stroke();
-  ctx.fillStyle = color || ButtonDefaults.textStyle.color;
+  ctx.fillStyle =  ButtonDefaults.textStyle.color;
   ctx.font = `${ButtonDefaults.textStyle.fontSize} Helvetica`;
   //ctx.fillText('Start', x+ width/2 , y + height / 2);
   ctx.textAlign = 'center';
