@@ -4,6 +4,7 @@ import {
   View,
   Dimensions,
   StyleSheet,
+  Button,
   registerComponent,
   withFocus,
 } from '../../react-ape/reactApeEntry';
@@ -27,6 +28,11 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     backgroundColor: 'orange',
   },
+  buttonContainer:{
+      bottom:0,
+      position:"absolute"
+    
+  }
 });
 
 class Item extends React.Component {
@@ -65,6 +71,14 @@ class Sidebar extends Component {
         />
         <FocusableItem focusKey="sidebar-item-2" text="Kyoto" idx={160} />
         <FocusableItem focusKey="sidebar-item-3" text="Stockholm" idx={200} />
+        <View style={styles.buttonContainer}>
+        <Button
+        color="blue'"
+         title="Navigate"
+         onClick = {()=>{}}
+        />
+        </View>
+      
         {/*</View>*/}
       </View>
     );

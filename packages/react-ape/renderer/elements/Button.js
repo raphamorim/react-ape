@@ -6,7 +6,7 @@
  */
 
 import {ButtonDefaults} from '../constants';
-
+import {trackMousePosition,isMouseInside} from '../utils'
 //TODO adjust Opacity when focus, Blur
 type PressEvent = {||};
 type ButtonProps = {|
@@ -66,8 +66,6 @@ type ButtonProps = {|
 |};
 
 function renderButton(props: ButtonProps, apeContext, parentLayout) {
-  //
-  console.log('[RENDER]');
   const {spatialGeometry = {x: 0, y: 0}} = parentLayout;
   const {ctx} = apeContext;
 
@@ -79,7 +77,7 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
   const backgroundColor = ButtonDefaults.containerStyle.backgroundColor;
   let x = spatialGeometry.x || 0;
   let y = spatialGeometry.y || 0;
-  let width = x + y;
+  let width = x + y * title.length /3;
   let height = ButtonDefaults.containerStyle.height;
   let globalStyle = {
     width: width,
@@ -105,7 +103,7 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
   };
 
   ctx.beginPath();
-  ctx.fillStyle = color;
+  ctx.fillStyle = backgroundColor;
   ctx.moveTo(x, y);
   /**
 *  Top Right Radius
@@ -152,27 +150,15 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
       width,
     };
     const mousePosition = trackMousePosition(ctx.canvas, event);
-    if (isInside(mousePosition, rect)) {
+    if (isMouseInside(mousePosition, rect)) {
       redrawButton(ctx);
       if (props.onClick && typeof props.onClick === 'function') {
         props.onClick(event);
       }
     }
   };
-  function trackMousePosition(canvas, event) {
-    return {
-      x: event.clientX - canvas.offsetLeft,
-      y: event.clientY - canvas.offsetTop,
-    };
-  }
-  const isInside = (pos, rect) => {
-    return (
-      pos.x > rect.x &&
-      pos.x < rect.x + rect.width &&
-      pos.y < rect.y + rect.height &&
-      pos.y > rect.y
-    );
-  };
+
+
 
   ctx.canvas.addEventListener('click', onClick, false);
   ctx.canvas.addEventListener('focus', redrawButton);
