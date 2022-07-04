@@ -16,7 +16,7 @@ export function trackMousePosition(canvas, event):MouseEventType {
     y: event.clientY - canvas.offsetTop,
   };
 }
-export const isMouseInside = (pos, rect):Boolean => {
+export const isMouseInside = (pos, rect):boolean => {
   return (
     pos.x > rect.x &&
     pos.x < rect.x + rect.width &&

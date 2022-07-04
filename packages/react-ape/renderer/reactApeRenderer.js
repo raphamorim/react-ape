@@ -116,7 +116,7 @@ const ReactApeFiber = reconciler({
 
       if (diff) {
         const parentLayout = element.parentLayout || element.getParentLayout();
-        if (type === 'Text') {
+        if (type === 'Text' ) {
           parentLayout.resetLayout(); // View needs to be reset on text updates
         }
 

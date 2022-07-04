@@ -7,6 +7,7 @@
 
 import {ButtonDefaults} from '../constants';
 import {trackMousePosition,isMouseInside} from '../utils'
+import type {CanvasComponentContext} from '../types'
 //TODO adjust Opacity when focus, Blur
 type PressEvent = {||};
 type ButtonProps = {|
@@ -65,8 +66,8 @@ type ButtonProps = {|
   testID?: ?string,
 |};
 
-function renderButton(props: ButtonProps, apeContext, parentLayout) {
-  const {spatialGeometry = {x: 0, y: 0}} = parentLayout;
+function renderButton(props: ButtonProps, apeContext:CanvasComponentContext, parentLayout) {
+  const {spatialGeometry } = parentLayout;
   const {ctx} = apeContext;
 
   // If is relative and x and y haven't be processed, don't render
@@ -160,11 +161,22 @@ function renderButton(props: ButtonProps, apeContext, parentLayout) {
 
 
 
+
+// TODO:  
+/**
+ * We need to remove addEventListeners from the renderButton 
+ * function because this function runs for each state/prop update.
+ *  It will keep creating/refreshing listeners for every render.
+
+We can keep this way, if we run this addEventListener 
+once by checking if the listener already exist. 
+Note onClick will need to share scope with this function to work properly.
+ */
   ctx.canvas.addEventListener('click', onClick, false);
   ctx.canvas.addEventListener('focus', redrawButton);
   ctx.canvas.addEventListener('blur', redrawButton);
 
-  // events
+ 
 }
 
 export default function createButtonInstance(props: ButtonProps): mixed {

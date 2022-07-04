@@ -73,7 +73,7 @@ class Sidebar extends Component {
         <FocusableItem focusKey="sidebar-item-3" text="Stockholm" idx={200} />
         <View style={styles.buttonContainer}>
         <Button
-        color="blue'"
+        color="#2196F3''"
          title="Navigate"
          onClick = {()=>{}}
         />
