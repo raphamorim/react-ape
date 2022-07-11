@@ -6,7 +6,7 @@ import {
   StyleSheet,
   registerComponent,
   withFocus,
-} from '../../react-ape/reactApeEntry';
+} from '../../react-ape/entry';
 
 const {height} = Dimensions.get('window');
 

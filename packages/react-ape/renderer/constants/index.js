@@ -15,3 +15,10 @@ export const ViewDefaults = {
 
 // ReactApe Internal Constants
 export const _SectionBlockSize: number = 80; // 80x80
+
+// DevTools configuration
+export const DevToolsConfig = {
+  bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
+  version: '0.1.0',
+  rendererPackageName: 'ReactApe',
+}

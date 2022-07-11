@@ -7,7 +7,7 @@ import {
   StyleSheet,
   registerComponent,
   withNavigation,
-} from '../../react-ape/reactApeEntry';
+} from '../../react-ape/entry';
 
 import Sidebar from './Sidebar';
 import Grid from './Grid';

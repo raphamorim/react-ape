@@ -9,17 +9,19 @@
 import {CanvasComponentContext} from './types';
 
 import reconciler from 'react-reconciler';
-import reactApeComponent from './reactApeComponent';
+import reactApeComponent from './component';
+import {DevToolsConfig} from './constants';
+import {unsafeCreateUniqueId} from './utils';
 import {scaleDPI, clearCanvas} from './core/canvas';
 import {renderElement, renderQueue} from './core/render';
-import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
-import devToolsConfig from './config/devtools';
+import {precacheFiberNode, updateFiberProps} from './componentTree';
+import {associateNodeOnApeTree, insertNodeOnApeTree} from './apeTree/apeTree';
 import {
   now as FrameSchedulingNow,
   cancelDeferredCallback as FrameSchedulingCancelDeferredCallback,
   scheduleDeferredCallback as FrameSchedulingScheduleDeferredCallback,
   shouldYield as FrameSchedulingShouldYield,
-} from './reactApeFrameScheduling';
+} from './frameScheduling';
 
 // TODO: Use Context.
 let apeContextGlobal = null;
@@ -28,6 +30,7 @@ let surfaceHeight = 0;
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
     if (parentInstance.appendChild && child.type !== 'View') {
+      // START-TODO: delete it
       let layout = {};
       if (child.instructions && child.instructions.relative) {
         layout = {
@@ -36,10 +39,11 @@ const ReactApeFiber = reconciler({
         };
       }
       parentInstance.appendChild({...child, layout});
-
-      // TODO: Change it later
       child.getParentLayout = parentInstance.getLayoutDefinitions;
+      // END-TODO
     }
+
+    associateNodeOnApeTree(child.id, parentInstance.id);
   },
 
   createInstance(
@@ -61,12 +65,6 @@ const ReactApeFiber = reconciler({
           surfaceHeight = height;
         },
         ctx: rootContainerInstanceContext,
-        // EXPERIMENTAL:
-        // clear: function clear() {
-        //   const width = rootContainerInstance.width;
-        //   const height = rootContainerInstance.height;
-        //   this.ctx.clearRect(0, 0, width, height);
-        // },
         renderQueue: [],
       };
     }
@@ -78,6 +76,12 @@ const ReactApeFiber = reconciler({
       apeContextGlobal,
       internalInstanceHandle
     );
+
+    const apeId = unsafeCreateUniqueId();
+
+    apeElement.id = apeId;
+
+    insertNodeOnApeTree(apeId, apeElement);
 
     precacheFiberNode(internalInstanceHandle, apeElement);
     updateFiberProps(apeElement, props);
@@ -243,7 +247,7 @@ const ReactApeFiber = reconciler({
 });
 
 ReactApeFiber.injectIntoDevTools({
-  ...devToolsConfig,
+  ...DevToolsConfig,
   findHostInstanceByFiber: ReactApeFiber.findHostInstance,
 });
 

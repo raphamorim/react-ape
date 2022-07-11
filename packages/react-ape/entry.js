@@ -6,7 +6,7 @@
  *
  */
 
-import ReactApeRenderer from './renderer/reactApeRenderer';
+import ReactApeRenderer from './renderer/renderer';
 import StyleSheetModule from './modules/StyleSheet';
 import DimensionsModule from './modules/Dimensions';
 
