@@ -16,11 +16,10 @@ let scheduledCallback: (() => mixed) | null = null;
 let frameDeadline: number = 0;
 
 function setTimeoutCallback() {
-  // TODO (bvaughn) Hard-coded 5ms unblocks initial async testing.
   // React API probably changing to boolean rather than time remaining.
   // Longer-term plan is to rewrite this using shared memory,
   // And just return the value of the bit as the boolean.
-  frameDeadline = now() + 5;
+  frameDeadline = now();
 
   const callback = scheduledCallback;
   scheduledCallback = null;
