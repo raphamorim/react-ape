@@ -4,7 +4,7 @@
   "description": "React Renderer to build interfaces using canvas/WebGL",
   "main": "index.js",
   "peerDependencies": {
-    "react": "^18.1.0"
+    "react": "^18.2.0"
   },
   "files": [
     "dist/",
