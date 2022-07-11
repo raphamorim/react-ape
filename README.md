@@ -6,6 +6,8 @@
 
 ## [Check the Docs (raphamorim.io/react-ape)](https://raphamorim.io/react-ape)
 
+## [Join our Discord](https://discord.gg/njHHfRzJ42)
+
 ### DISCLAIMER: In experimental stage
 
 React Ape is a react renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS5, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices.
