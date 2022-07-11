@@ -30,7 +30,7 @@ describe('registerComponent', () => {
       render(<App />, canvas, () => testCanvasSnapshot(expect, canvas));
     });
 
-    test.skip('should update when props change', done => {
+    test.skip('should update when props change', (done) => {
       const canvas = document.createElement('canvas');
       expect(typeof registerComponent).toEqual('function');
       registerComponent('Spinner', Spinner);

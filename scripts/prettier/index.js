@@ -62,7 +62,7 @@ const changedFiles = new Set(
   ]).match(/[^\0]+/g)
 );
 
-Object.keys(config).forEach(key => {
+Object.keys(config).forEach((key) => {
   const patterns = config[key].patterns;
   const options = config[key].options;
   const ignore = config[key].ignore;
@@ -71,14 +71,14 @@ Object.keys(config).forEach(key => {
     patterns.length > 1 ? `{${patterns.join(',')}}` : `${patterns.join(',')}`;
   const files = glob
     .sync(globPattern, {ignore})
-    .filter(f => !onlyChanged || changedFiles.has(f));
+    .filter((f) => !onlyChanged || changedFiles.has(f));
 
   if (!files.length) {
     return;
   }
 
   const args = Object.keys(defaultOptions).map(
-    k => `--${k}=${(options && options[k]) || defaultOptions[k]}`
+    (k) => `--${k}=${(options && options[k]) || defaultOptions[k]}`
   );
   args.push(`--${shouldWrite ? 'write' : 'l'}`);
 

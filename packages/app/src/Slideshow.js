@@ -40,21 +40,18 @@ function Slideshow() {
     }
   }
 
-  React.useEffect(
-    () => {
-      resetTimeout();
-      timeoutRef.current = setTimeout(
-        () =>
-          setCurrentSlide(prev => (prev === slides.length - 1 ? 0 : prev + 1)),
-        delay
-      );
+  React.useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(
+      () =>
+        setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1)),
+      delay
+    );
 
-      return () => {
-        resetTimeout();
-      };
-    },
-    [currentSlide]
-  );
+    return () => {
+      resetTimeout();
+    };
+  }, [currentSlide]);
 
   return (
     <View style={{...styles.slideshow}}>

@@ -26,7 +26,7 @@ describe('View', () => {
     const apeContext = {
       ctx: {
         beginPath: jest.fn(),
-        fill: function() {
+        fill: function () {
           if (this && this.globalCompositeOperation === 'destination-over') {
             withDestinationOver = true;
           }
@@ -45,12 +45,8 @@ describe('View', () => {
 
     myView.render(apeContext);
 
-    const {
-      beginPath,
-      closePath,
-      fillStyle,
-      globalCompositeOperation,
-    } = apeContext.ctx;
+    const {beginPath, closePath, fillStyle, globalCompositeOperation} =
+      apeContext.ctx;
 
     expect(beginPath.mock.calls.length).toBe(1);
     expect(closePath.mock.calls.length).toBe(1);
@@ -95,7 +91,7 @@ describe('View', () => {
     const apeContext = {
       ctx: {
         beginPath: jest.fn(),
-        fill: function() {
+        fill: function () {
           if (this && this.globalCompositeOperation === 'destination-over') {
             withDestinationOver = true;
           }

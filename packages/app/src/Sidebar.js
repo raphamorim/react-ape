@@ -39,7 +39,8 @@ class Item extends React.Component {
           style={{
             color: focused ? '#331A00' : 'white',
             fontSize: 24,
-          }}>
+          }}
+        >
           {text}
         </Text>
       </View>

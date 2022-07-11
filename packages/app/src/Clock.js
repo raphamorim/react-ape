@@ -48,9 +48,7 @@ class Clock extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.time}>
-          {this.state.time}
-        </Text>
+        <Text style={styles.time}>{this.state.time}</Text>
         {/*<Text style={styles.time}>
           {this.state.time}
         </Text>

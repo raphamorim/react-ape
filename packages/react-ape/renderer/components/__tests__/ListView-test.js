@@ -15,12 +15,13 @@ describe('ListView', () => {
       {dog: 'Pug', age: 5},
       {dog: 'Golden Retriever', age: 8},
     ];
-    const renderRow = (data, idx) =>
+    const renderRow = (data, idx) => (
       <View key={idx}>
         <Text>
           {data.dog}, which age is {data.age}
         </Text>
-      </View>;
+      </View>
+    );
 
     const ListViewTree = renderer
       .create(<ListView renderRow={renderRow} dataSource={dataSource} />)
@@ -31,10 +32,11 @@ describe('ListView', () => {
 
   it('renders correctly', () => {
     const dataSource = [{name: 'Jack'}, {name: 'Russel'}];
-    const renderRow = (data, idx) =>
+    const renderRow = (data, idx) => (
       <Text key={idx} id={'render-row-' + idx}>
         {data.name}
-      </Text>;
+      </Text>
+    );
 
     const ListViewTree = renderer
       .create(<ListView renderRow={renderRow} dataSource={dataSource} />)

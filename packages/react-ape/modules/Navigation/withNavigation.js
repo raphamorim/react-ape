@@ -46,16 +46,16 @@ function withNavigation<Props: RequiredProps>(
       this.state = {
         currentFocusPath: null,
       };
-      window.addEventListener('keydown', e => this.handleKeyDown(e));
+      window.addEventListener('keydown', (e) => this.handleKeyDown(e));
     }
 
-    setFocus = currentFocusPath => {
+    setFocus = (currentFocusPath) => {
       this.setState({currentFocusPath});
     };
 
     setFocusNext() {}
 
-    handleKeyDown = e => {
+    handleKeyDown = (e) => {
       const {currentFocusPath} = this.state;
       // arrow up/down button should select next/previous list element
       if (e.keyCode === 38) {
@@ -84,7 +84,8 @@ function withNavigation<Props: RequiredProps>(
             // rootFocusPath: this.rootFocusPath,
             currentFocusPath: currentFocusPath,
             setFocus: this.setFocus,
-          }}>
+          }}
+        >
           <WrappedComponent {...this.props} />
         </FocusPathContext.Provider>
       );

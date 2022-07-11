@@ -23,7 +23,7 @@ import * as React from 'react';
 type Props = {|
   style: {[string]: string | number},
   dataSource: Array<mixed>,
-  renderRow: mixed => React.Node,
+  renderRow: (mixed) => React.Node,
 |};
 
 class ListView extends React.Component<Props> {

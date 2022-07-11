@@ -5,7 +5,7 @@ import testCanvasSnapshot from '../../../../../tests/testCanvasSnapshot';
 
 describe('[Updates] State - View', () => {
   describe('View', () => {
-    test('Render relative view with children updates by state', done => {
+    test('Render relative view with children updates by state', (done) => {
       const canvas = document.createElement('canvas');
       class ViewComponent extends React.Component {
         constructor() {
@@ -35,14 +35,10 @@ describe('[Updates] State - View', () => {
             <View>
               <View style={{backgroundColor: 'white'}}>
                 <Text>SSSSS</Text>
-                <Text>
-                  {text}
-                </Text>
+                <Text>{text}</Text>
               </View>
               <View style={{backgroundColor: 'red'}}>
-                <Text style={{color: 'white'}}>
-                  {text}
-                </Text>
+                <Text style={{color: 'white'}}>{text}</Text>
                 <Text style={{color: 'white'}}>ABC</Text>
               </View>
               <Text
@@ -51,7 +47,8 @@ describe('[Updates] State - View', () => {
                   position: 'absolute',
                   top: 100,
                   left: 100,
-                }}>
+                }}
+              >
                 122121 {text}
               </Text>
               <Text style={{position: 'absolute', top: 140, left: 100}}>

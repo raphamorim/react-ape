@@ -13,7 +13,7 @@ function create(styles) {
 
   let processedStyles = {};
 
-  Object.keys(styles).forEach(styleKey => {
+  Object.keys(styles).forEach((styleKey) => {
     let style = styles[styleKey];
     if (typeof style !== 'object') {
       return {};

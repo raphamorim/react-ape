@@ -95,7 +95,7 @@ function createBundle({entryPath, bundleType, destName}) {
     external: ['react'],
     input: entryPath,
     plugins: plugins,
-  }).then(bundle => {
+  }).then((bundle) => {
     tasks.push(
       bundle.write({
         format: 'umd',
@@ -121,6 +121,6 @@ createBundle({
   destName: 'react-ape.development.js',
 });
 
-Promise.all(tasks).catch(error => {
+Promise.all(tasks).catch((error) => {
   Promise.reject(error);
 });
