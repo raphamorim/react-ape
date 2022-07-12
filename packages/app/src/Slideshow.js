@@ -1,11 +1,5 @@
 import React, {Component, useState, useEffect} from 'react';
-import {
-  Text,
-  View,
-  Image,
-  Dimensions,
-  StyleSheet,
-} from '../../react-ape/entry';
+import {Text, View, Image, Dimensions, StyleSheet} from '../../react-ape/entry';
 
 const {width} = Dimensions.get('window');
 
@@ -40,18 +34,21 @@ function Slideshow() {
     }
   }
 
-  React.useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(
-      () =>
-        setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1)),
-      delay
-    );
-
-    return () => {
+  React.useEffect(
+    () => {
       resetTimeout();
-    };
-  }, [currentSlide]);
+      timeoutRef.current = setTimeout(
+        () =>
+          setCurrentSlide(prev => (prev === slides.length - 1 ? 0 : prev + 1)),
+        delay
+      );
+
+      return () => {
+        resetTimeout();
+      };
+    },
+    [currentSlide]
+  );
 
   return (
     <View style={{...styles.slideshow}}>

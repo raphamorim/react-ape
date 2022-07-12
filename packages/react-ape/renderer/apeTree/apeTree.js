@@ -5,7 +5,7 @@ const ReactApeTree = new Map();
  * a major rewrite of getLayout legacy
  */
 if (process.env.NODE_ENV !== 'production') {
-	window._reactApeTree = ReactApeTree;
+  window._reactApeTree = ReactApeTree;
 }
 
 /*
@@ -30,20 +30,18 @@ function createStyleNodeByApeElement(apeElement) {
   if (apeElement.props) {
     console.log(apeElement.props.style);
   }
-  return {
-
-  };
+  return {};
 }
 
 // TODO: Replace ReactApeElement by layout information
 function insertNodeOnApeTreeFn(apeId, apeElement) {
   // createStyleNodeByApeElement(apeElement);
-	ReactApeTree.set(apeId, apeElement);
+  ReactApeTree.set(apeId, apeElement);
 }
 
 function associateNodeOnApeTreeFn(parentApeId, childApeId) {
-	const child = ReactApeTree.get(childApeId);
-	ReactApeTree.set(childApeId, {...child, parent: parentApeId });
+  const child = ReactApeTree.get(childApeId);
+  ReactApeTree.set(childApeId, {...child, parent: parentApeId});
 }
 
 export const insertNodeOnApeTree = insertNodeOnApeTreeFn;

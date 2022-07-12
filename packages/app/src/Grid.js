@@ -1,11 +1,5 @@
 import React, {Component, useState, useEffect} from 'react';
-import {
-  Text,
-  View,
-  Image,
-  Dimensions,
-  StyleSheet,
-} from '../../react-ape/entry';
+import {Text, View, Image, Dimensions, StyleSheet} from '../../react-ape/entry';
 
 import Loader from './Loader';
 

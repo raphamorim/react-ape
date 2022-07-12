@@ -9,7 +9,7 @@
 export const CustomComponents = {};
 
 function registerComponent(componentName, Component) {
-  CustomComponents[componentName] = (props) => {
+  CustomComponents[componentName] = props => {
     const clearRender = (prevProps, parentLayout, apeContext) => {
       const clearProps = {
         ...prevProps,

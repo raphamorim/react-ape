@@ -24,7 +24,7 @@ const ReactApeComponent = {
   ) {
     // TODO: Run it once
     const customDict = {};
-    Object.keys(CustomComponents).forEach((customKey) => {
+    Object.keys(CustomComponents).forEach(customKey => {
       customDict[customKey] = CustomComponents[customKey](
         props,
         apeContextGlobal

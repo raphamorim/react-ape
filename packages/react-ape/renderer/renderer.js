@@ -54,14 +54,15 @@ const ReactApeFiber = reconciler({
     internalInstanceHandle
   ) {
     if (!apeContextGlobal && rootContainerInstance.getContext) {
-      const rootContainerInstanceContext =
-        rootContainerInstance.getContext('2d');
+      const rootContainerInstanceContext = rootContainerInstance.getContext(
+        '2d'
+      );
 
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
       apeContextGlobal = {
         type: 'canvas',
         getSurfaceHeight: () => surfaceHeight,
-        setSurfaceHeight: (height) => {
+        setSurfaceHeight: height => {
           surfaceHeight = height;
         },
         ctx: rootContainerInstanceContext,

@@ -36,7 +36,7 @@ function withFocus<Props: RequiredProps>(
       super(...arguments);
     }
 
-    renderWithFocusPath = (focusContext) => {
+    renderWithFocusPath = focusContext => {
       // TODO: I need to listen to a global and observable focusPath that will
       // define if this component should be focused or not (the value of focused)
       const {setFocus, currentFocusPath} = focusContext;

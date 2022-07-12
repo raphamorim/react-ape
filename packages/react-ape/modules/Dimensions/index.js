@@ -45,7 +45,7 @@ function get(property) {
 }
 
 function dimensionsListener(handler) {
-  return (target) => {
+  return target => {
     const dimensionsValue = {
       window: get('window'),
       screen: get('screen'),

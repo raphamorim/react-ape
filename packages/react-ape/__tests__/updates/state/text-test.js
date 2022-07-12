@@ -5,7 +5,7 @@ import testCanvasSnapshot from '../../../../../tests/testCanvasSnapshot';
 
 describe('[Updates] State - Text', () => {
   describe('Text', () => {
-    test('Test "Text" multiples content change', (done) => {
+    test('Test "Text" multiples content change', done => {
       const canvas = document.createElement('canvas');
       class TextComponent extends React.Component {
         constructor() {
@@ -40,8 +40,12 @@ describe('[Updates] State - Text', () => {
         render() {
           return (
             <View>
-              <Text style={{color: 'black'}}>{this.state.firstContent}</Text>
-              <Text style={{color: 'red'}}>{this.state.secondContent}</Text>
+              <Text style={{color: 'black'}}>
+                {this.state.firstContent}
+              </Text>
+              <Text style={{color: 'red'}}>
+                {this.state.secondContent}
+              </Text>
             </View>
           );
         }

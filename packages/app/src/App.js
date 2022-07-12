@@ -60,15 +60,15 @@ class App extends Component {
     // Third problem: View backgroundColor isn't correct, 2nd View should have same bgc as 1st
     //   and also 4th should have same as 3rd
     return (
-      <View style={{width: 80, height: 80, backgroundColor: 'grey', color: 'navy'}}>
+      <View
+        style={{width: 80, height: 80, backgroundColor: 'grey', color: 'navy'}}>
         <View>
           <View style={{width: 80, height: 80, backgroundColor: 'powderblue'}}>
             <View
               style={{
                 width: 30,
-                height: 30
-              }}
-            >
+                height: 30,
+              }}>
               <Text>should be in navy</Text>
             </View>
           </View>
@@ -77,12 +77,12 @@ class App extends Component {
     );
 
     // return (
-      // <View style={styles.surface}>
-      //   <Clock />
-      //   <Sidebar />
-      //   <Slideshow />
-      //   <Grid />
-      // </View>
+    // <View style={styles.surface}>
+    //   <Clock />
+    //   <Sidebar />
+    //   <Slideshow />
+    //   <Grid />
+    // </View>
     // );
   }
 }

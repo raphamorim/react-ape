@@ -148,7 +148,7 @@ class View {
 
     this.spatialGeometry = {x, y};
 
-    const callRenderFunctions = (renderFunction) => {
+    const callRenderFunctions = renderFunction => {
       renderFunction.render
         ? renderFunction.render(apeContext, {
             ...this.getLayoutDefinitions(),

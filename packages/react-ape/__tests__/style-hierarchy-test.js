@@ -11,19 +11,29 @@ describe('Style hierarchy test', () => {
       class Layout extends React.Component {
         render() {
           // Text style should render in orange
-          // View backgroundColor: 
+          // View backgroundColor:
           //  - 2nd View should have same bgc as 1st
           //  - 4th should have same bgc as 3rd
           return (
-            <View style={{width: 80, height: 80, backgroundColor: 'grey', color: 'orange'}}>
+            <View
+              style={{
+                width: 80,
+                height: 80,
+                backgroundColor: 'grey',
+                color: 'orange',
+              }}>
               <View>
-                <View style={{width: 80, height: 80, backgroundColor: 'powderblue'}}>
+                <View
+                  style={{
+                    width: 80,
+                    height: 80,
+                    backgroundColor: 'powderblue',
+                  }}>
                   <View
                     style={{
                       width: 30,
-                      height: 30
-                    }}
-                  >
+                      height: 30,
+                    }}>
                     <Text>should be in orange</Text>
                   </View>
                 </View>
