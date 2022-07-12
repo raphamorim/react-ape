@@ -1,10 +1,10 @@
 # [React Ape](https://raphamorim.io/react-ape)
 
-> React Renderer to build UI interfaces using Canvas/WebGL 
+> React Renderer to build UI interfaces using WebAssembly/Canvas (fallback to JS/Canvas)
 
 <img src="assets/logo.png" width="220" />
 
-## [Check the Docs (raphamorim.io/react-ape)](https://raphamorim.io/react-ape)
+## [Check the Docs](https://raphamorim.io/react-ape)
 
 ### DISCLAIMER: In experimental stage
 
