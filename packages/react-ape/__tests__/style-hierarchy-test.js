@@ -4,11 +4,15 @@ import testCanvasSnapshot from '../../../tests/testCanvasSnapshot';
 
 describe('Style hierarchy test', () => {
   describe('Test style props hierarchy', () => {
-    test('backgroundColor and color', () => {
+    test.skip('backgroundColor and color', () => {
       const canvas = document.createElement('canvas');
       canvas.height = 100;
       canvas.width = 100;
       class Layout extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
         render() {
           // Text style should render in orange
           // View backgroundColor:

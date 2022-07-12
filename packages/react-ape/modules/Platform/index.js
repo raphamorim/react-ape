@@ -7,19 +7,19 @@
  * @flow
  */
 
-function isLGWebOS() {
+function isLGWebOS(): boolean {
   return !!(window && window.PalmSystem);
 }
 
-function isSamsungTizen() {
+function isSamsungTizen(): boolean {
   return false;
 }
 
-function isSamsungOrsay() {
+function isSamsungOrsay(): boolean {
   return false;
 }
 
-function Plaform(checkPlatform: string) {
+function Plaform(checkPlatform: string): boolean {
   switch (checkPlatform) {
     case 'webos':
       return isLGWebOS();

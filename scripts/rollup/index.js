@@ -110,13 +110,13 @@ function createBundle({entryPath, bundleType, destName}) {
 }
 
 createBundle({
-  entryPath: `${packagePath}/reactApeEntry.js`,
+  entryPath: `${packagePath}/entry.js`,
   bundleType: 'production',
   destName: 'react-ape.production.js',
 });
 
 createBundle({
-  entryPath: `${packagePath}/reactApeEntry.js`,
+  entryPath: `${packagePath}/entry.js`,
   bundleType: 'development',
   destName: 'react-ape.development.js',
 });
