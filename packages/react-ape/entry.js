@@ -9,6 +9,7 @@
 import ReactApeRenderer from './renderer/renderer';
 import StyleSheetModule from './modules/StyleSheet';
 import DimensionsModule from './modules/Dimensions';
+import PlatformModule from './modules/Platform';
 
 import ListViewComponent from './renderer/components/ListView';
 import RegisterComponentFn from './modules/Register';
@@ -28,6 +29,7 @@ export const Text = 'Text';
 
 export const StyleSheet = StyleSheetModule;
 export const Dimensions = DimensionsModule;
+export const Platform = PlatformModule;
 export const withFocus = withFocusFn;
 export const withNavigation = withNavigationFn;
 

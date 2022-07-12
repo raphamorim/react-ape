@@ -11,12 +11,33 @@ if (process.env.NODE_ENV !== 'production') {
 /*
  * React Ape Tree:
  * - key | value
- * - randomId | ReactApeElement
+ * - randomId | ReactApeStyleNode
  *
  * ReactApeElement contains parent key once it's associated to the node
 */
 
+// export type ReactApeStyleNode = {|
+//   style: number, // props
+// |};
+
+// export type ReactApeNode = {|
+//   styleNode: ReactApeStyleNode,
+// |};
+
+// export type ReactApeTree = ReactApeNode[];
+
+function createStyleNodeByApeElement(apeElement) {
+  if (apeElement.props) {
+    console.log(apeElement.props.style);
+  }
+  return {
+
+  };
+}
+
+// TODO: Replace ReactApeElement by layout information
 function insertNodeOnApeTreeFn(apeId, apeElement) {
+  // createStyleNodeByApeElement(apeElement);
 	ReactApeTree.set(apeId, apeElement);
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import ListView from '../ListView';
-import {View, Text} from '../../../reactApeEntry';
+import {View, Text} from '../../../entry';
 
 describe('ListView', () => {
   it("should render empty view when doesn't exist dataSource", () => {

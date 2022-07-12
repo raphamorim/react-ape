@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, View} from '../reactApeEntry';
+import {render, View} from '../entry';
 import testCanvasSnapshot from '../../../tests/testCanvasSnapshot';
 
 describe('Layout test', () => {

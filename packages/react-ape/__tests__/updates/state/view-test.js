@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, View, Text, StyleSheet} from '../../../reactApeEntry';
+import {render, View, Text, StyleSheet} from '../../../entry';
 
 import testCanvasSnapshot from '../../../../../tests/testCanvasSnapshot';
 

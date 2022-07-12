@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import registerComponent, {CustomComponents} from '../index';
 import Spinner from '../test-helpers/Spinner';
 
-import {render, View, Text, StyleSheet} from '../../../reactApeEntry';
+import {render, View, Text, StyleSheet} from '../../../entry';
 
 function testCanvasSnapshot(expect, canvas) {
   expect(canvas.toDataURL()).toMatchSnapshot();

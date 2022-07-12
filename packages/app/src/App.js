@@ -60,7 +60,7 @@ class App extends Component {
     // Third problem: View backgroundColor isn't correct, 2nd View should have same bgc as 1st
     //   and also 4th should have same as 3rd
     return (
-      <View style={{width: 80, height: 80, backgroundColor: 'grey', color: 'orange'}}>
+      <View style={{width: 80, height: 80, backgroundColor: 'grey', color: 'navy'}}>
         <View>
           <View style={{width: 80, height: 80, backgroundColor: 'powderblue'}}>
             <View
@@ -69,7 +69,7 @@ class App extends Component {
                 height: 30
               }}
             >
-              <Text>should be in orange</Text>
+              <Text>should be in navy</Text>
             </View>
           </View>
         </View>
