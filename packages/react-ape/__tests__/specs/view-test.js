@@ -1,9 +1,8 @@
 import React from 'react';
-import {render, View, Text, StyleSheet} from '../entry';
+import {render, View, Text, StyleSheet} from '../../entry';
 
-import testCanvasSnapshot from '../../../tests/testCanvasSnapshot';
-import ViewElement from '../renderer/elements/View';
-import createTextElement from '../renderer/elements/Text';
+import testCanvasSnapshot from '../../../../tests/testCanvasSnapshot';
+import ViewElement from '../../renderer/elements/View';
 
 describe('View Spec', () => {
   it('Relative should be respected in Views of the same root level', () => {
