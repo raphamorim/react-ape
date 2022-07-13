@@ -9,7 +9,7 @@
 
 // Defaults for Render
 export const ViewDefaults = {
-  size: 200, // 200x200
+  size: 100, // 200x200
   lineHeight: 24,
 };
 

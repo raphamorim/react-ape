@@ -1,5 +1,8 @@
 const ReactApeTree = new Map();
 
+// Root information
+// ReactApeTree.set('root', {});
+
 /*
  * Internal usage for testing purpose since it is
  * a major rewrite of getLayout legacy
@@ -21,28 +24,34 @@ if (process.env.NODE_ENV !== 'production') {
 // |};
 
 // export type ReactApeNode = {|
-//   styleNode: ReactApeStyleNode,
+//   style: ReactApeStyleNode,
 // |};
 
 // export type ReactApeTree = ReactApeNode[];
 
-function createStyleNodeByApeElement(apeElement) {
-  if (apeElement.props) {
-    console.log(apeElement.props.style);
+// Create Style reading parent styles and propagating
+export function createStyleNodeByApeElement(apeElement) {
+  let styleNode = {};
+  if (apeElement.props && apeElement.props.style) {
+    styleNode = { ...apeElement.props.style };
   }
-  return {};
+  return styleNode;
 }
 
 // TODO: Replace ReactApeElement by layout information
-function insertNodeOnApeTreeFn(apeId, apeElement) {
-  // createStyleNodeByApeElement(apeElement);
-  ReactApeTree.set(apeId, apeElement);
+export function insertNodeOnApeTree(apeId, apeElement) {
+  const node = {
+    style: createStyleNodeByApeElement(apeElement),
+    parent: null
+  };
+  ReactApeTree.set(apeId, node);
 }
 
-function associateNodeOnApeTreeFn(parentApeId, childApeId) {
+export function associateNodeOnApeTree(parentApeId, childApeId) {
   const child = ReactApeTree.get(childApeId);
   ReactApeTree.set(childApeId, {...child, parent: parentApeId});
 }
 
-export const insertNodeOnApeTree = insertNodeOnApeTreeFn;
-export const associateNodeOnApeTree = associateNodeOnApeTreeFn;
+export function getNodeById(apeId) {
+  return ReactApeTree.get(apeId); 
+}

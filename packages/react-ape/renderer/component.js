@@ -10,6 +10,8 @@ import Image from './elements/Image';
 import Text from './elements/Text';
 import View from './elements/View';
 import {CustomComponents} from '../modules/Register';
+import {insertNodeOnApeTree} from './apeTree/apeTree';
+import {unsafeCreateUniqueId} from './utils';
 
 const CHILDREN = 'children';
 const STYLE = 'style';
@@ -31,10 +33,12 @@ const ReactApeComponent = {
       );
     });
 
+    const id = unsafeCreateUniqueId();
+
     const COMPONENTS = {
       ...customDict,
       Image: Image(props),
-      Text: Text(props),
+      Text: Text(props, id),
       View: new View(props),
     };
 
@@ -43,6 +47,10 @@ const ReactApeComponent = {
         `React Ape could not identify "${type}" as ReactApeComponent. More details: http://raphamorim.io/react-ape`
       );
     }
+
+    // TODO: rethink a better way of include it
+    insertNodeOnApeTree(id, COMPONENTS[type]);
+    COMPONENTS[type].id = id;
 
     return COMPONENTS[type];
   },

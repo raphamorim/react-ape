@@ -11,11 +11,10 @@ import {CanvasComponentContext} from './types';
 import reconciler from 'react-reconciler';
 import reactApeComponent from './component';
 import {DevToolsConfig} from './constants';
-import {unsafeCreateUniqueId} from './utils';
-import {scaleDPI, clearCanvas} from './core/canvas';
+import {scaleDPI} from './core/canvas';
 import {renderElement, renderQueue} from './core/render';
 import {precacheFiberNode, updateFiberProps} from './componentTree';
-import {associateNodeOnApeTree, insertNodeOnApeTree} from './apeTree/apeTree';
+import {associateNodeOnApeTree} from './apeTree/apeTree';
 import {
   now as FrameSchedulingNow,
   cancelDeferredCallback as FrameSchedulingCancelDeferredCallback,
@@ -23,24 +22,28 @@ import {
   shouldYield as FrameSchedulingShouldYield,
 } from './frameScheduling';
 
-// TODO: Use Context.
 let apeContextGlobal = null;
 let surfaceHeight = 0;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    if (parentInstance.appendChild && child.type !== 'View') {
-      // START-TODO: delete it
-      let layout = {};
-      if (child.instructions && child.instructions.relative) {
-        layout = {
-          ...layout,
-          ...parentInstance.getAndUpdateCurrentLayout(),
-        };
-      }
-      parentInstance.appendChild({...child, layout});
-      child.getParentLayout = parentInstance.getLayoutDefinitions;
-      // END-TODO
+    // if (parentInstance.appendChild && child.type !== 'View') {
+    //   // START-TODO: delete it
+    //   let layout = {};
+    //   if (child.instructions && child.instructions.relative) {
+    //     layout = {
+    //       ...layout,
+    //       ...parentInstance.getAndUpdateCurrentLayout(),
+    //     };
+    //   }
+    //   parentInstance.appendChild({...child, layout});
+    //   child.getParentLayout = parentInstance.getLayoutDefinitions;
+    //   // END-TODO
+    // }
+
+    // TODO: it ended up adding 3 views: c(a,b,c) a(b) b(c)
+    if (parentInstance.appendChild) {
+      parentInstance.appendChild(child);
     }
 
     associateNodeOnApeTree(child.id, parentInstance.id);
@@ -60,7 +63,6 @@ const ReactApeFiber = reconciler({
 
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
       apeContextGlobal = {
-        type: 'canvas',
         getSurfaceHeight: () => surfaceHeight,
         setSurfaceHeight: height => {
           surfaceHeight = height;
@@ -78,12 +80,6 @@ const ReactApeFiber = reconciler({
       internalInstanceHandle
     );
 
-    const apeId = unsafeCreateUniqueId();
-
-    apeElement.id = apeId;
-
-    insertNodeOnApeTree(apeId, apeElement);
-
     precacheFiberNode(internalInstanceHandle, apeElement);
     updateFiberProps(apeElement, props);
     return apeElement;
@@ -96,9 +92,7 @@ const ReactApeFiber = reconciler({
   },
 
   finalizeInitialChildren(parentInstance, type, props) {
-    if (type === 'View') {
-      parentInstance.render(apeContextGlobal);
-    }
+    // Ele renderiza text, view, view (de baixo pra cima)
     return false;
   },
 
@@ -175,7 +169,9 @@ const ReactApeFiber = reconciler({
   },
 
   getRootHostContext(rootInstance) {
-    return {};
+    return {
+      // TODO: ADICIONAR COISAS AKI
+    };
   },
 
   getChildHostContext() {
@@ -198,18 +194,20 @@ const ReactApeFiber = reconciler({
     return false;
   },
 
-  appendChildToContainer(parentInstance, child) {
-    // apeContextGlobal.setSurfaceHeight(0);
-    // if (child.render) {
-    //   child.render(apeContextGlobal);
-    // }
+  appendChildToContainer(container, child) {
+    // It goes in the container and append each child
+    apeContextGlobal.setSurfaceHeight(0);
+    if (child.render) {
+      child.render(apeContextGlobal);
+    }
   },
 
   appendChild(parentInstance, child) {
-    // console.log(parentInstance, child);
+    // console.log(3);
     // if (parentInstance.appendChild) {
-    //   parentInstance.appendChild(child);
+      // parentInstance.appendChild(child);
     // }
+    // console.log(2, parentInstance, child)
   },
 
   removeChild(parentInstance, child) {
