@@ -12,6 +12,12 @@ React Ape is a react renderer to build UI interfaces using canvas/WebGL. React A
 
 React Ape lets you build Canvas apps using React. React Ape uses the same design as React, letting you compose a rich UI from declarative components.
 
+## Elements
+
+- [`<View/>`](specs/view-spec.md)
+- [`<Text/>`](specs/text-spec.md)
+- [`<Image/>`](specs/image-spec.md)
+
 ## Understanding the Problem
 
 *tl;dr:* [Crafting a high-performance TV user interface using React](https://netflixtechblog.com/crafting-a-high-performance-tv-user-interface-using-react-3350e5a6ad3b) (and also good to read: [60 FPS on the mobile web](https://engineering.flipboard.com/2015/02/mobile-web))

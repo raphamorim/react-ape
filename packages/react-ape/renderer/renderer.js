@@ -196,7 +196,7 @@ const ReactApeFiber = reconciler({
 
   appendChildToContainer(container, child) {
     // It goes in the container and append each child
-    apeContextGlobal.setSurfaceHeight(0);
+    // apeContextGlobal.setSurfaceHeight(0);
     if (child.render) {
       child.render(apeContextGlobal);
     }
