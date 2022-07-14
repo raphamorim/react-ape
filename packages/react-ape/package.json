@@ -8,6 +8,7 @@
   },
   "files": [
     "dist/",
+    "ape/ape.wasm",
     "index.js"
   ],
   "repository": {

@@ -7,7 +7,7 @@ import {
   StyleSheet,
   registerComponent,
   withNavigation,
-} from '../../react-ape/reactApeEntry';
+} from '../../react-ape/entry';
 
 import Sidebar from './Sidebar';
 import Grid from './Grid';
@@ -23,6 +23,18 @@ const styles = StyleSheet.create({
     height: height,
     position: 'absolute',
   },
+});
+
+const s = StyleSheet.create({
+  container: {
+    backgroundColor: 'aliceblue',
+    height: 300,
+    width: 200,
+  },
+  child: {
+    height: 100,
+    width: 100,
+  }
 });
 
 class App extends Component {
@@ -55,14 +67,51 @@ class App extends Component {
       return null;
     }
 
-    return (
-      <View style={styles.surface}>
-        <Clock />
-        <Sidebar />
-        <Slideshow />
-        <Grid />
-      </View>
-    );
+    // First problem: Text style hierarchy doesn't work (it should render in orange)
+    // return (
+    //   <View
+    //     style={{width: 80, height: 80, backgroundColor: 'grey', color: 'navy'}}>
+    //     {/*<View>*/}
+    //       <View style={{width: 40, height: 40, backgroundColor: 'powderblue'}}>
+    //         {/*<View
+    //           style={{
+    //             width: 30,
+    //             height: 30,
+    //           }}>
+    //           <Text>should be in navy</Text>
+    //         </View>*/}
+    //       </View>
+    //       <View style={{width: 40, height: 40, backgroundColor: 'yellow'}}>
+
+    //       </View>
+
+    //     {/*</View>*/}
+    //   </View>
+    // );
+
+    // Second problem: Views should be relative to the parent and not the page
+    return [
+      <View
+        style={{width: 50, height: 50, backgroundColor: 'powderblue'}}
+      />,
+      <View
+        style={{width: 100, height: 100, backgroundColor: 'skyblue'}}
+      />,
+      <View
+        style={{width: 150, height: 150, backgroundColor: 'steelblue'}}
+      />
+    ];
+
+    // Third problem: View backgroundColor should propagate to children
+
+    // return (
+    // <View style={styles.surface}>
+    //   <Clock />
+    //   <Sidebar />
+    //   <Slideshow />
+    //   <Grid />
+    // </View>
+    // );
   }
 }
 

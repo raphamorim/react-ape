@@ -5,7 +5,7 @@ import {
   registerComponent,
   StyleSheet,
   Dimensions,
-} from '../../react-ape/reactApeEntry';
+} from '../../react-ape/entry';
 
 import Spinner from './Spinner';
 

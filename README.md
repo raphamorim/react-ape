@@ -1,10 +1,10 @@
 # [React Ape](https://raphamorim.io/react-ape)
 
-> React Renderer to build UI interfaces using Canvas/WebGL 
+> React Renderer to build UI interfaces using WebAssembly/Canvas (fallback to JS/Canvas)
 
 <img src="assets/logo.png" width="220" />
 
-## [Check the Docs (raphamorim.io/react-ape)](https://raphamorim.io/react-ape)
+## [Check the Docs](https://raphamorim.io/react-ape)
 
 ## [Join our Discord](https://discord.gg/njHHfRzJ42)
 
@@ -13,6 +13,12 @@
 React Ape is a react renderer to build UI interfaces using canvas/WebGL. React Ape was built to be an optional [React-TV](https://github.com/raphamorim/react-tv) renderer. It's mainly a renderer focused on creating things for TV, PS5, PS4, Nintendo Switch, PS Vita, PS3 and low memory devices.
 
 React Ape lets you build Canvas apps using React. React Ape uses the same design as React, letting you compose a rich UI from declarative components.
+
+## Elements
+
+- [`<View/>`](specs/view-spec.md)
+- [`<Text/>`](specs/text-spec.md)
+- [`<Image/>`](specs/image-spec.md)
 
 ## Understanding the Problem
 

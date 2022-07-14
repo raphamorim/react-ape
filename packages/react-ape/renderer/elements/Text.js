@@ -9,6 +9,7 @@
  */
 
 import type {CanvasComponentContext, SpatialGeometry} from '../types';
+import {getNodeById} from '../apeTree/apeTree';
 
 type Props = {|
   style: Style,
@@ -50,6 +51,8 @@ function renderText(
 
   const {spatialGeometry = {}, relativeIndex} = parentLayout || {};
   const parentStyle = (parentLayout && parentLayout.style) || {};
+
+  console.log(1, getNodeById(this.id));
 
   const {style = {}, children, content} = props;
   const fontSize = style.fontSize || 18;
@@ -111,11 +114,12 @@ function clearText(
   renderText(clearProps, apeContext, parentLayout);
 }
 
-export default function CreateTextInstance(props: Props): mixed {
+export default function CreateTextInstance(props: Props, id: string): mixed {
   const {style} = props;
+  const instanceContext = {id};
   return {
     type: 'Text',
-    render: renderText.bind(this, props),
+    render: renderText.bind(instanceContext, props),
     clear: clearText,
     instructions: {
       relative: style !== 'absolute',

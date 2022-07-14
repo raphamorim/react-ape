@@ -7,6 +7,7 @@
  */
 
 import {ViewDefaults} from '../constants';
+import {getNodeById} from '../apeTree/apeTree';
 
 class View {
   constructor(props) {
@@ -98,13 +99,28 @@ class View {
 
     const previousStroke = ctx.strokeStyle;
     let x = style.x || style.left || 0;
-    let y = style.y || style.top || 0;
+    let y = style.y || style.top || getSurfaceHeight() || 0;
     const width = style.width || ViewDefaults.size;
     const height = style.height || ViewDefaults.size;
-
-    // Draw borderRadius
     const cornerRadius = style.borderRadius || 0;
 
+    /*
+      Surface height controls wherever a view is in the page height
+      
+      It should be only used by Views at same level as:
+      
+      <View>
+        ... should not use surface height
+      </View>
+      <View>
+        ... should not use surface height
+      </View>
+
+      Surface height should be ignored for absolute Views and also children View
+    */
+
+    const node = getNodeById(this.id);
+    console.log(node.parent);
     if (!style.position || style.position === 'relative') {
       const surfaceHeight = getSurfaceHeight();
       y = surfaceHeight;
@@ -113,8 +129,6 @@ class View {
 
     ctx.globalCompositeOperation = 'destination-over';
     ctx.beginPath();
-
-    // similar idea to ctx.rect() but to support border-radius
 
     ctx.moveTo(x, y);
     // Top Right Radius
@@ -137,7 +151,7 @@ class View {
 
     this.previousRect = {x, y, width, height, cornerRadius};
     ctx.strokeStyle = style.borderColor || 'transparent';
-    ctx.fillStyle = style.backgroundColor || 'transparent';
+    ctx.fillStyle = style.backgroundColor || 'gray';
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
@@ -148,16 +162,18 @@ class View {
 
     this.spatialGeometry = {x, y};
 
-    const callRenderFunctions = (renderFunction) => {
+    const callRenderFunctions = renderFunction => {
       renderFunction.render
         ? renderFunction.render(apeContext, {
             ...this.getLayoutDefinitions(),
             ...renderFunction.layout,
           })
-        : null;
+        : undefined;
     };
 
-    this.renderQueue.forEach(callRenderFunctions);
+    if (callRenderFunctions.length >= 1) {
+      this.renderQueue.forEach(callRenderFunctions);
+    }
   }
 }
 

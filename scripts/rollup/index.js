@@ -95,7 +95,7 @@ function createBundle({entryPath, bundleType, destName}) {
     external: ['react'],
     input: entryPath,
     plugins: plugins,
-  }).then((bundle) => {
+  }).then(bundle => {
     tasks.push(
       bundle.write({
         format: 'umd',
@@ -110,17 +110,17 @@ function createBundle({entryPath, bundleType, destName}) {
 }
 
 createBundle({
-  entryPath: `${packagePath}/reactApeEntry.js`,
+  entryPath: `${packagePath}/entry.js`,
   bundleType: 'production',
   destName: 'react-ape.production.js',
 });
 
 createBundle({
-  entryPath: `${packagePath}/reactApeEntry.js`,
+  entryPath: `${packagePath}/entry.js`,
   bundleType: 'development',
   destName: 'react-ape.development.js',
 });
 
-Promise.all(tasks).catch((error) => {
+Promise.all(tasks).catch(error => {
   Promise.reject(error);
 });

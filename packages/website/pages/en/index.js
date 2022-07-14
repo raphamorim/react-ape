@@ -98,7 +98,7 @@ const DefinitionCallout = () =>
     <Container>
       <div className="blockElement">
         <div className="blockContent">
-          <h1>Build UI interfaces using HTML5 Canvas/WebGL and React</h1>
+          <h1>Build UI interfaces using WebAssembly, Canvas and React</h1>
           <p>
             React Ape lets you build Canvas apps using React. React Ape uses the
             same design as React, letting you compose a rich UI from declarative
@@ -107,18 +107,17 @@ const DefinitionCallout = () =>
           <MarkdownBlock>
             {`\`\`\`javascript
 import React, { Component } from 'react';
-import { Text, View } from 'react-ape';
+import { Text, View, Platform } from 'react-ape';
 
 class ReactApeComponent extends Component {
   render() {
     return (
       <View>
         <Text>
-          Render this text on Canvas
+          Render this text with WASM on Canvas
         </Text>
         <Text>
-          You just use React Ape components like 'View' and 'Text',
-          just like React Native.
+          { Platform('webos') && 'You are rendering in a LG WebOS' }
         </Text>
       </View>
     );

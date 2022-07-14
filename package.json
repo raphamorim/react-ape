@@ -11,6 +11,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node ./scripts/rollup",
+    "wasm": "cd ./packages/react-ape/ape && cargo build --release --target wasm32-unknown-unknown && mv ./target/wasm32-unknown-unknown/release/ape.wasm ./",
     "ci": "yarn test && yarn build",
     "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
     "docs-build": "cd ./packages/website && yarn run build",

@@ -7,7 +7,7 @@ import {
   Dimensions,
   StyleSheet,
   registerComponent,
-} from '../../react-ape/reactApeEntry';
+} from '../../react-ape/entry';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -48,7 +48,9 @@ class Clock extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.time}>{this.state.time}</Text>
+        <Text style={styles.time}>
+          {this.state.time}
+        </Text>
         {/*<Text style={styles.time}>
           {this.state.time}
         </Text>

@@ -9,37 +9,44 @@
 import {CanvasComponentContext} from './types';
 
 import reconciler from 'react-reconciler';
-import reactApeComponent from './reactApeComponent';
-import {scaleDPI, clearCanvas} from './core/canvas';
+import reactApeComponent from './component';
+import {DevToolsConfig} from './constants';
+import {scaleDPI} from './core/canvas';
 import {renderElement, renderQueue} from './core/render';
-import {precacheFiberNode, updateFiberProps} from './reactApeComponentTree';
-import devToolsConfig from './config/devtools';
+import {precacheFiberNode, updateFiberProps} from './componentTree';
+import {associateNodeOnApeTree} from './apeTree/apeTree';
 import {
   now as FrameSchedulingNow,
   cancelDeferredCallback as FrameSchedulingCancelDeferredCallback,
   scheduleDeferredCallback as FrameSchedulingScheduleDeferredCallback,
   shouldYield as FrameSchedulingShouldYield,
-} from './reactApeFrameScheduling';
+} from './frameScheduling';
 
-// TODO: Use Context.
 let apeContextGlobal = null;
 let surfaceHeight = 0;
 
 const ReactApeFiber = reconciler({
   appendInitialChild(parentInstance, child) {
-    if (parentInstance.appendChild && child.type !== 'View') {
-      let layout = {};
-      if (child.instructions && child.instructions.relative) {
-        layout = {
-          ...layout,
-          ...parentInstance.getAndUpdateCurrentLayout(),
-        };
-      }
-      parentInstance.appendChild({...child, layout});
+    // if (parentInstance.appendChild && child.type !== 'View') {
+    //   // START-TODO: delete it
+    //   let layout = {};
+    //   if (child.instructions && child.instructions.relative) {
+    //     layout = {
+    //       ...layout,
+    //       ...parentInstance.getAndUpdateCurrentLayout(),
+    //     };
+    //   }
+    //   parentInstance.appendChild({...child, layout});
+    //   child.getParentLayout = parentInstance.getLayoutDefinitions;
+    //   // END-TODO
+    // }
 
-      // TODO: Change it later
-      child.getParentLayout = parentInstance.getLayoutDefinitions;
+    // TODO: it ended up adding 3 views: c(a,b,c) a(b) b(c)
+    if (parentInstance.appendChild) {
+      parentInstance.appendChild(child);
     }
+
+    associateNodeOnApeTree(child.id, parentInstance.id);
   },
 
   createInstance(
@@ -50,23 +57,17 @@ const ReactApeFiber = reconciler({
     internalInstanceHandle
   ) {
     if (!apeContextGlobal && rootContainerInstance.getContext) {
-      const rootContainerInstanceContext =
-        rootContainerInstance.getContext('2d');
+      const rootContainerInstanceContext = rootContainerInstance.getContext(
+        '2d'
+      );
 
       scaleDPI(rootContainerInstance, rootContainerInstanceContext);
       apeContextGlobal = {
-        type: 'canvas',
         getSurfaceHeight: () => surfaceHeight,
-        setSurfaceHeight: (height) => {
+        setSurfaceHeight: height => {
           surfaceHeight = height;
         },
         ctx: rootContainerInstanceContext,
-        // EXPERIMENTAL:
-        // clear: function clear() {
-        //   const width = rootContainerInstance.width;
-        //   const height = rootContainerInstance.height;
-        //   this.ctx.clearRect(0, 0, width, height);
-        // },
         renderQueue: [],
       };
     }
@@ -91,9 +92,7 @@ const ReactApeFiber = reconciler({
   },
 
   finalizeInitialChildren(parentInstance, type, props) {
-    if (type === 'View') {
-      parentInstance.render(apeContextGlobal);
-    }
+    // Ele renderiza text, view, view (de baixo pra cima)
     return false;
   },
 
@@ -170,7 +169,9 @@ const ReactApeFiber = reconciler({
   },
 
   getRootHostContext(rootInstance) {
-    return {};
+    return {
+      // TODO: ADICIONAR COISAS AKI
+    };
   },
 
   getChildHostContext() {
@@ -193,18 +194,20 @@ const ReactApeFiber = reconciler({
     return false;
   },
 
-  appendChildToContainer(parentInstance, child) {
+  appendChildToContainer(container, child) {
+    // It goes in the container and append each child
     // apeContextGlobal.setSurfaceHeight(0);
-    // if (child.render) {
-    //   child.render(apeContextGlobal);
-    // }
+    if (child.render) {
+      child.render(apeContextGlobal);
+    }
   },
 
   appendChild(parentInstance, child) {
-    // console.log(parentInstance, child);
+    // console.log(3);
     // if (parentInstance.appendChild) {
-    //   parentInstance.appendChild(child);
+      // parentInstance.appendChild(child);
     // }
+    // console.log(2, parentInstance, child)
   },
 
   removeChild(parentInstance, child) {
@@ -243,7 +246,7 @@ const ReactApeFiber = reconciler({
 });
 
 ReactApeFiber.injectIntoDevTools({
-  ...devToolsConfig,
+  ...DevToolsConfig,
   findHostInstanceByFiber: ReactApeFiber.findHostInstance,
 });
 
