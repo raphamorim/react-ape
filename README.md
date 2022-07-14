@@ -71,11 +71,11 @@ class ReactApeComponent extends Component {
 
 ## Demo on PS Vita
 
-<img alt='Demo PS Vita' src='assets/demo-ps-vita.jpg' width='400px' />
+![Demo on PS Vita](assets/demo-ps-vita.jpg)
 
 ## Demo on TV
 
-<img alt='Demo TV' src='assets/demo-tv.png' height='400px' />
+![Demo on TV](assets/demo-tv.png)
 
 ## Testing it
 
