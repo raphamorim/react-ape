@@ -28,11 +28,7 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     backgroundColor: 'orange',
   },
-  buttonContainer:{
-      bottom:0,
-      position:"absolute"
-    
-  }
+
 });
 
 class Item extends React.Component {
@@ -64,6 +60,11 @@ class Sidebar extends Component {
     return (
       <View style={styles.sidebar}>
         {/*<View style={styles.container}>*/}
+        <Button
+          color={"#000"}
+         title="Click Me 🚀"
+         onClick = {()=>{alert('hi')}}
+        />
         <FocusableItem
           focusKey="sidebar-item-1"
           text="Rio de Janeiro"
@@ -71,13 +72,7 @@ class Sidebar extends Component {
         />
         <FocusableItem focusKey="sidebar-item-2" text="Kyoto" idx={160} />
         <FocusableItem focusKey="sidebar-item-3" text="Stockholm" idx={200} />
-        <View style={styles.buttonContainer}>
-        <Button
-        color="#2196F3''"
-         title="Navigate"
-         onClick = {()=>{}}
-        />
-        </View>
+        
       
         {/*</View>*/}
       </View>

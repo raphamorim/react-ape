@@ -8,6 +8,7 @@
 import {ButtonDefaults} from '../constants';
 import {trackMousePosition,isMouseInside} from '../utils'
 import type {CanvasComponentContext} from '../types'
+
 //TODO adjust Opacity when focus, Blur
 type PressEvent = {||};
 type ButtonProps = {|
@@ -67,18 +68,21 @@ type ButtonProps = {|
 |};
 
 function renderButton(props: ButtonProps, apeContext:CanvasComponentContext, parentLayout) {
-  const {spatialGeometry } = parentLayout;
   const {ctx} = apeContext;
 
   // If is relative and x and y haven't be processed, don't render
-  if (!spatialGeometry) return null;
   // start drawing the canvas
+  console.log('[PROPS]',props)
   const {title, color} = props;
+  if(!title){
+    throw Error("Title required!")
+  }
   const borderRadius = ButtonDefaults.containerStyle.borderRadius;
   const backgroundColor = ButtonDefaults.containerStyle.backgroundColor;
-  let x = spatialGeometry.x || 0;
-  let y = spatialGeometry.y || 0;
-  let width = x + y * title.length /3;
+  let x = 40;
+  let y = 300;
+  const textWidth = ctx.measureText(title).width;
+  let width =  textWidth * 1.5;
   let height = ButtonDefaults.containerStyle.height;
   let globalStyle = {
     width: width,
@@ -91,7 +95,7 @@ function renderButton(props: ButtonProps, apeContext:CanvasComponentContext, par
   };
   const resetStyle = newStyle => {
     globalStyle = {...globalStyle, newStyle};
-    console.log('style)))))', globalStyle);
+
   };
   const redrawButton = ctx => {
     // TODO reset Style on focus
@@ -99,12 +103,11 @@ function renderButton(props: ButtonProps, apeContext:CanvasComponentContext, par
       lineWidth: 2,
       borderColor: '#ccc',
     };
-    //let prevStyle = globalStyle
     resetStyle(newStyle);
   };
 
   ctx.beginPath();
-  ctx.fillStyle = backgroundColor;
+  ctx.fillStyle = color || ButtonDefaults.containerStyle.backgroundColor
   ctx.moveTo(x, y);
   /**
 *  Top Right Radius
@@ -137,10 +140,16 @@ function renderButton(props: ButtonProps, apeContext:CanvasComponentContext, par
   ctx.strokeStyle = globalStyle.borderColor;
   ctx.stroke();
   ctx.fillStyle =  ButtonDefaults.textStyle.color;
-  ctx.font = `${ButtonDefaults.textStyle.fontSize} Helvetica`;
-  //ctx.fillText('Start', x+ width/2 , y + height / 2);
-  ctx.textAlign = 'center';
-  ctx.fillText(title, x + width / 2, y + height / 2);
+
+  //set the fontSize
+const fontArgs = ctx.font.split(' ');
+const newSize =` ${ButtonDefaults.textStyle.fontSize}px`;
+  ctx.font = newSize + ' ' + fontArgs[fontArgs.length - 1];
+
+// ctx.textAlign = 'center';
+
+// ctx.fillText(title,  400 / 2, y + height / 2,textWidth);
+ctx.fillText(title , (x + textWidth /2.5), y + height /2);
   ctx.closePath();
 
   const onClick = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
@@ -178,6 +187,8 @@ Note onClick will need to share scope with this function to work properly.
 
  
 }
+
+
 
 export default function createButtonInstance(props: ButtonProps): mixed {
   return {

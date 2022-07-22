@@ -51,6 +51,7 @@ class Clock extends React.Component {
         <Text style={styles.time}>
           {this.state.time}
         </Text>
+       
         {/*<Text style={styles.time}>
           {this.state.time}
         </Text>
