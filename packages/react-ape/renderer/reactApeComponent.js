@@ -34,7 +34,6 @@ const ReactApeComponent = {
     });
 
     const tag = '[CREATE_ELEMENT]';
-
     if (type === 'Button') {
       const {ctx} = apeContextGlobal;
       ctx.canvas.addEventListener(
@@ -49,21 +48,21 @@ const ReactApeComponent = {
      *  Handling click button event
      * @param {*} event 
      */
-    const onClick = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
-      const rect = {
-        x,
-        y,
-        height,
-        width,
-      };
-      const mousePosition = trackMousePosition(ctx.canvas, event);
-      if (isMouseInside(mousePosition, rect)) {
-        //redrawButton(ctx);
-        if (props.onClick && typeof props.onClick === 'function') {
-          props.onClick(event);
-        }
-      }
-    };
+    // const onClick = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
+    //   const rect = {
+    //     x,
+    //     y,
+    //     height,
+    //     width,
+    //   };
+    //   const mousePosition = trackMousePosition(ctx.canvas, event);
+    //   if (isMouseInside(mousePosition, rect)) {
+    //     //redrawButton(ctx);
+    //     if (props.onClick && typeof props.onClick === 'function') {
+    //       props.onClick(event);
+    //     }
+    //   }
+    // };
     const COMPONENTS = {
       ...customDict,
       Image: Image(props),
