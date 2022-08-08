@@ -25,6 +25,7 @@ export const render = ReactApeRenderer.render;
 export const Image = 'Image';
 export const View = 'View';
 export const Text = 'Text';
+export const Button = 'Button';
 
 export const StyleSheet = StyleSheetModule;
 export const Dimensions = DimensionsModule;

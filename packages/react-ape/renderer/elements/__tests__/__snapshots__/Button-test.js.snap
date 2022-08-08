@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Call the button with Props Should render properly 1`] = `
+Object {
+  "render": [Function],
+  "type": "Button",
+}
+`;

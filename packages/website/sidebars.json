@@ -16,8 +16,10 @@
     "Components": [
       "components-image",
       "components-text",
-      "components-view"
+      "components-view",
+      "components-button"
     ],
+    
     "APIs": [
       "apis-dimensions",
       "apis-platform",

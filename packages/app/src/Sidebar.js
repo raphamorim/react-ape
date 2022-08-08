@@ -4,6 +4,7 @@ import {
   View,
   Dimensions,
   StyleSheet,
+  Button,
   registerComponent,
   withFocus,
 } from '../../react-ape/reactApeEntry';
@@ -59,6 +60,14 @@ class Sidebar extends Component {
     return (
       <View style={styles.sidebar}>
         {/*<View style={styles.container}>*/}
+        <Button
+          color={'#000'}
+          title="Click Me 🚀"
+          onClick={() => {
+            alert('hi');
+          }}
+        />
+
         <FocusableItem
           focusKey="sidebar-item-1"
           text="Rio de Janeiro"
@@ -66,6 +75,7 @@ class Sidebar extends Component {
         />
         <FocusableItem focusKey="sidebar-item-2" text="Kyoto" idx={160} />
         <FocusableItem focusKey="sidebar-item-3" text="Stockholm" idx={200} />
+
         {/*</View>*/}
       </View>
     );
