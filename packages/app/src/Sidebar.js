@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     backgroundColor: 'orange',
   },
-
 });
 
 class Item extends React.Component {
@@ -61,10 +60,13 @@ class Sidebar extends Component {
       <View style={styles.sidebar}>
         {/*<View style={styles.container}>*/}
         <Button
-          color={"#000"}
-         title="Click Me 🚀"
-         onClick = {()=>{alert('hi')}}
+          color={'#000'}
+          title="Click Me 🚀"
+          onClick={() => {
+            alert('hi');
+          }}
         />
+         
         <FocusableItem
           focusKey="sidebar-item-1"
           text="Rio de Janeiro"
@@ -72,8 +74,7 @@ class Sidebar extends Component {
         />
         <FocusableItem focusKey="sidebar-item-2" text="Kyoto" idx={160} />
         <FocusableItem focusKey="sidebar-item-3" text="Stockholm" idx={200} />
-        
-      
+
         {/*</View>*/}
       </View>
     );
