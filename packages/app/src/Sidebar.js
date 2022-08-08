@@ -66,7 +66,7 @@ class Sidebar extends Component {
             alert('hi');
           }}
         />
-         
+
         <FocusableItem
           focusKey="sidebar-item-1"
           text="Rio de Janeiro"
