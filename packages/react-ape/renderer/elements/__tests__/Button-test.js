@@ -25,6 +25,7 @@ describe('Button', () => {
           lineTo: jest.fn(),
           quadraticCurveTo: jest.fn(),
           font: 'Helvetica',
+          measureText: jest.fn(),
           canvas: {
             addEventListener: jest.fn(),
           },
