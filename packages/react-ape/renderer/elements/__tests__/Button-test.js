@@ -9,7 +9,7 @@ describe('Button', () => {
       const title = 'Press Me';
       const color = '#f8a978';
       const x = 40;
-      const y = 20;
+      const y = 300;
       const width = x + y;
       const height = ButtonDefaults.containerStyle.height;
       const props = {title, color};
@@ -25,7 +25,11 @@ describe('Button', () => {
           lineTo: jest.fn(),
           quadraticCurveTo: jest.fn(),
           font: 'Helvetica',
-          measureText: jest.fn(),
+          measureText: jest.fn(() => {
+            return {
+              width: 100,
+            };
+          }),
           canvas: {
             addEventListener: jest.fn(),
           },
@@ -54,10 +58,10 @@ describe('Button', () => {
       expect(lineTo.mock.calls.length).toEqual(4);
       expect(fill.mock.calls.length).toBe(1);
       expect(fillText.mock.calls.length).toBe(1);
-      expect(fillText).toBeCalledWith(title, x + width / 2, y + height / 2);
-      expect(font).toEqual(`${ButtonDefaults.textStyle.fontSize} Helvetica`);
+      expect(fillText.mock.calls.length).toBe(1);
+      expect(font).toEqual(`${ButtonDefaults.textStyle.fontSize}px Helvetica`);
       expect(quadraticCurveTo.mock.calls.length).toEqual(4);
-      expect(fillStyle).toBe(color);
+      expect(fillStyle).toEqual('white');
       expect(Button).toMatchSnapshot();
     });
   });

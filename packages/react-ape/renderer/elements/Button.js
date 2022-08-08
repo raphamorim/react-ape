@@ -148,7 +148,7 @@ function renderButton(
 
   //set the fontSize
   const fontArgs = ctx.font.split(' ');
-  const newSize = ` ${ButtonDefaults.textStyle.fontSize}px`;
+  const newSize = `${ButtonDefaults.textStyle.fontSize}px`;
   ctx.font = newSize + ' ' + fontArgs[fontArgs.length - 1];
 
   // ctx.textAlign = 'center';
