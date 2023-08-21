@@ -28,6 +28,24 @@ type Style = {|
   lineHeight?: number,
   x: number,
   y: number,
+  margin?: <Array>number || <Array>string,
+  marginBottom?: number || string,
+  marginEnd?: number || string,
+  marginHorizontal?: number || string,
+  marginLeft?: number || string,
+  marginRight?: number || string,
+  marginStart?: number || string,
+  marginTop?: number || string,
+  marginVertical?: number || string,
+  padding?: <Array>number,
+  paddingBottom?: number || string,
+  paddingEnd?: number || string,
+  paddingHorizontal?: number || string,
+  paddingLeft?: number || string,
+  paddingRight?: number || string,
+  paddingStart?: number || string,
+  paddingTop?: number || string,
+  paddingVertical?: number || string,
 |};
 
 type RenderAcc = {|
@@ -55,6 +73,26 @@ function renderText(
   const fontSize = style.fontSize || 18;
   const fontFamily = style.fontFamily || 'Helvetica';
   const previousStroke = ctx.strokeStyle;
+
+  let margin = style.margin;
+  let marginBottom = style.marginBottom;
+  let marginTop = style.marginTop;
+  let marginRight = style.marginRight;
+  let marginLeft = style.marginLeft;
+  let marginVertical = style.marginTop && style.marginBottom;
+  let marginHorizontal = style.marginLeft && style.marginRight;
+  let marginEnd = this.dir === 'rtl' ? style.marginLeft : style.marginRight;
+  let marginStart = this.dir === 'rtl' ? style.marginRight : style.marginLeft;
+
+  let padding = style.padding;
+  let paddingBottom = style.paddingBottom;
+  let paddingTop = style.paddingTop;
+  let paddingRight = style.paddingRight;
+  let paddingLeft = style.paddingLeft;
+  let paddingVertical = style.paddingTop && style.paddingBottom;
+  let paddingHorizontal = style.paddingLeft && style.paddingRight;
+  let paddingEnd = this.dir === 'rtl' ? style.paddingLeft : style.paddingRight;
+  let paddingStart = this.dir === 'rtl' ? style.paddingRight : style.paddingLeft;
 
   let x = style.left || spatialGeometry.x || 0;
   let y = style.top || spatialGeometry.y + fontSize / 2 || fontSize;
